@@ -1,7 +1,8 @@
 import styles from "./Container.module.sass";
+import { ReactNode } from "react";
 
 interface ContainerProps {
-  children: JSX.Element;
+  children: ReactNode;
 }
 
 export const Container = ({ children }: ContainerProps) => (

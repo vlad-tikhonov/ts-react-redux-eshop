@@ -1,6 +1,5 @@
 import cn from "classnames";
 import styles from "./Button.module.sass";
-import { Text } from "components";
 import {
   ElementSizes,
   ElementAccent,

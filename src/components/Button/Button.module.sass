@@ -1,0 +1,125 @@
+@use 'style/style.sass' as *
+
+.btn
+	display: flex
+	align-items: center
+	justify-content: space-between
+	gap: .8rem
+	padding: 1.6rem
+	border: none
+	border-radius: .4rem
+	font-family: $font-family
+	font-weight: 400
+	line-height: 150%
+	&_l
+		font-size: 2.4rem
+		& > .icon
+			width: 3.2rem
+			height: 3.2rem
+	&_m
+		font-size: 1.6rem
+		padding: .8rem
+		& > .icon
+			width: 2.4rem
+			height: 2.4rem
+	&_s
+		font-size: 1.2rem
+		padding: .8rem
+		& > .icon
+			width: 2.4rem
+			height: 2.4rem
+
+	&_primary
+		background-color: $color-primary
+		color: #fff
+		& > .icon
+			fill: #fff
+		&.btn_outline
+			border: .1rem solid $color-primary
+
+		&.btn_outline, &.btn_no
+			background-color: transparent
+			color: $color-primary
+			& > .icon
+				fill: $color-primary
+			&[disabled]
+				background-color: transparent
+				border-color: $color-primary-muted
+				color: $color-light
+				& > .icon
+					fill: $color-light
+		&[disabled]
+			background-color: $color-primary-muted
+			color: $color-primary
+			& > .icon
+				fill: $color-primary
+
+	&_secondary
+		background-color: $color-secondary
+		color: #fff
+		& > .icon
+			fill: #fff
+		&.btn_outline
+			border: .1rem solid $color-secondary
+		&.btn_outline, &.btn_no
+			background-color: transparent
+			color: $color-secondary
+			& > .icon
+				fill: $color-secondary
+			&[disabled]
+				background-color: transparent
+				border-color: $color-secondary-muted
+				color: $color-light
+				& > .icon
+					fill: $color-light
+		&[disabled]
+			background-color: $color-secondary-muted
+			color: $color-secondary
+			& > .icon
+				fill: $color-secondary
+
+	&_grayscale
+		background-color: $color-lightest
+		color: $color-hardest
+		&.btn_outline
+			border: .1rem solid $color-hard
+		&.btn_outline, &.btn_no
+			background-color: transparent
+			color: $color-hard
+			& > .icon
+				fill: $color-hard
+			&[disabled]
+				background-color: transparent
+				border-color: $color-light
+				color: $color-light
+				& > .icon
+					fill: $color-light
+		&[disabled]
+			background-color: $color-surface
+			color: $color-light
+			& > .icon
+				fill: $color-light
+
+	&_error
+		background-color: $color-error
+		color: #fff
+		& > .icon
+			fill: #fff
+		&.btn_outline
+			border: .1rem solid $color-error
+		&.btn_outline, &.btn_no
+			background-color: transparent
+			color: $color-error
+			& > .icon
+				fill: $color-error
+			&[disabled]
+				background-color: transparent
+				border-color: $color-error-muted
+				color: $color-light
+				& > .icon
+					fill: $color-error-muted
+		&[disabled]
+			background-color: $color-error-muted
+			color: $color-error
+			& > .icon
+				fill: $color-error

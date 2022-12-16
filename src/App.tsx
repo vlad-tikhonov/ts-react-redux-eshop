@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Home, Categories } from "pages";
+import { Test, Home, Categories } from "pages";
 import { Container, Layout } from "layouts";
 
 import { RoutesNames } from "constants/routes-names";
@@ -12,6 +12,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
+      {
+        path: RoutesNames.Test,
+        element: <Test />,
+      },
       {
         path: RoutesNames.Home,
         element: <Home />,

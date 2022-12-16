@@ -9,5 +9,6 @@ declare module '*.svg' {
   >;
 
   const src: string;
+	export { ReactComponent };
   export default src;
 }

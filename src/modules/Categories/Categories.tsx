@@ -7,13 +7,12 @@ import styles from "./Categories.module.sass";
 const breadcrumbItems: BreadcrumbItem[] = [
   {
     label: "Каталог",
-    to: RoutesNames.Categories,
+    to: "",
   },
 ];
 
 export const Categories = () => (
   <Container>
-    <div>Categories page</div>
     <Breadcrumbs items={breadcrumbItems} />
   </Container>
 );

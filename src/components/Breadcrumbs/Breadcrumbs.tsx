@@ -1,7 +1,8 @@
+import cn from "classnames";
 import { Text } from "components";
 import { BreadcrumbItem } from "types/componets-types";
 import { RoutesNames } from "constants/routes-names";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Breadcrumbs.module.sass";
 
 interface BreadcrumbsProps {
@@ -20,10 +21,15 @@ export const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
   return (
     <div className={styles.breadcrumbs}>
       {breadcrumbItems.map((item) => (
-        <span key={item.label} className={styles.breadcrumbItem}>
-          <Link to={item.to} className={styles.link}>
-            <Text size="xs">{item.label}</Text>
-          </Link>
+        <span key={item.label} className={styles.item}>
+          <NavLink
+            to={item.to}
+            className={({ isActive }) =>
+              isActive ? cn(styles.link, styles.link_active) : styles.link
+            }
+          >
+            {item.label}
+          </NavLink>
         </span>
       ))}
     </div>

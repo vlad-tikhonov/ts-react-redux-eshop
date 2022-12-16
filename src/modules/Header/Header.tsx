@@ -1,10 +1,12 @@
 import { Container } from "layouts";
 import { Button } from "components";
-import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
-import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
+import { Search } from "./components";
 import styles from "./Header.module.sass";
 
-const renderLeftIcon = (className: string) => (
+import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
+import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
+
+const renderMenuIcon = (className: string) => (
   <MenuIcon className={className} />
 );
 
@@ -17,10 +19,11 @@ export const Header = () => (
           accent="secondary"
           size="m"
           decoration="default"
-          renderLeftIcon={renderLeftIcon}
+          renderLeftIcon={renderMenuIcon}
         >
           Каталог
         </Button>
+        <Search className={styles.search} />
       </div>
     </Container>
   </header>

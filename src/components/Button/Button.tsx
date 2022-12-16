@@ -51,7 +51,7 @@ export const Button = (props: ButtonProps) => {
       disabled={disabled}
     >
       {renderLeftIcon(styles.icon)}
-      {children && <span>{children}</span>}
+      {children && <span className={styles.text}>{children}</span>}
       {renderRightIcon(styles.icon)}
     </button>
   );

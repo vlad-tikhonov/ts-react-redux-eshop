@@ -1,3 +1,5 @@
 export * from './Test/Test'
+export * from './Header/Header'
+export * from './Footer/Footer'
 export * from './Home/Home'
 export * from './Categories/Categories'

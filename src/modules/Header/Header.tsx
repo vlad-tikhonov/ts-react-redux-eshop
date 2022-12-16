@@ -1,6 +1,6 @@
 import { Container } from "layouts";
 import { Button } from "components";
-import { Search } from "./components";
+import { Search, Menu } from "./components";
 import styles from "./Header.module.sass";
 
 import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
@@ -24,6 +24,7 @@ export const Header = () => (
           Каталог
         </Button>
         <Search className={styles.search} />
+        <Menu />
       </div>
     </Container>
   </header>

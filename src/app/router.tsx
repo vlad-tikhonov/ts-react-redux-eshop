@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { Test, Home, Categories } from "modules";
+import { Test, Home, Categories, Favorites, Orders, Cart } from "modules";
 import { Layout } from "layouts";
 
 import { RoutesNames } from "constants/routes-names";
@@ -21,6 +21,18 @@ const router = createBrowserRouter([
       {
         path: RoutesNames.Categories,
         element: <Categories />,
+      },
+      {
+        path: RoutesNames.Favorites,
+        element: <Favorites />,
+      },
+      {
+        path: RoutesNames.Orders,
+        element: <Orders />,
+      },
+      {
+        path: RoutesNames.Cart,
+        element: <Cart />,
       },
     ],
   },

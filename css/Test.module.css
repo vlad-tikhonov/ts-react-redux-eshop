@@ -1,0 +1,13 @@
+.test {
+  height: 70rem;
+  padding: 2rem;
+  display: flex;
+}
+
+.row {
+  margin-bottom: 1rem;
+}
+
+.col {
+  margin-right: 1rem;
+}/*# sourceMappingURL=Test.module.css.map */

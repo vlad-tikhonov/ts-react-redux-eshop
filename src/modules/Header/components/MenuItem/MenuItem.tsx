@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import cn from "classnames";
 import styles from "./MenuItem.module.sass";
 import { setActiveClass } from "helpers/utils";
 interface MenuItemProps {

@@ -11,7 +11,9 @@ const breadcrumbItems: BreadcrumbItem[] = [
 ];
 
 export const Categories = () => (
-  <Container>
-    <Breadcrumbs items={breadcrumbItems} />
-  </Container>
+  <div>
+    <Container>
+      <Breadcrumbs items={breadcrumbItems} />
+    </Container>
+  </div>
 );

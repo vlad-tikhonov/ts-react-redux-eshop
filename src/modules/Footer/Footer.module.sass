@@ -1,0 +1,79 @@
+.footer
+	background: url('/assets/patterns/pattern-2.svg')
+	background-color: #F9F4E2
+	margin-top: auto
+	display: block
+
+.wrapper
+	padding: 2.4rem 0
+	display: grid
+	grid-template: auto / repeat(12, 1fr)
+	grid-column-gap: 4rem
+	grid-template-areas: "logo menu menu menu menu menu menu menu socials socials contacts contacts"
+	align-items: center
+
+.logo
+	grid-area: logo
+	position: relative
+	min-height: 4.4rem
+	background-image: url('/assets/images/logo.svg')
+	background-size: contain
+	background-repeat: no-repeat
+	background-position: center
+	flex-shrink: 0
+
+.link
+	position: absolute
+	top: 0
+	bottom: 0
+	left: 0
+	right: 0
+
+.menu
+	grid-area: menu
+	display: flex
+	flex-wrap: wrap
+	justify-content: space-between
+	align-items: center
+	list-style: none
+
+	&_item
+		// margin: 0 4rem .8rem 0
+
+.socials
+	grid-area: socials
+	display: flex
+	flex-wrap: wrap
+	align-items: center
+	gap: 1.6rem
+
+	&_item
+		width: 2.4rem
+		height: 2.4rem
+		position: relative
+
+.inst, .facebook
+	background-image: url('/assets/icons/x-square.svg')
+
+.vk
+	background-image: url('/assets/icons/vkontakte.svg')
+
+.ok
+	background-image: url('/assets/icons/ok.svg')
+
+.contacts
+	grid-area: contacts
+	display: flex
+	flex-shrink: 0
+	align-items: center
+	position: relative
+
+	&_icon
+		margin-right: 8px
+
+	&_link
+		position: absolute
+		top: 0
+		left: 0
+		bottom: 0
+		right: 0

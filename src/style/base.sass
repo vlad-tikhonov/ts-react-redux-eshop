@@ -1,14 +1,16 @@
-@use './mixins' as *
+// @use './mixins' as *
+// @use './variables' as *
+
 @font-face
 	font-family: 'Rubik'
 	font-weight: 700
-	src: url('../assets/fonts/Rubik-Bold.woff2') format('woff2'),
-	src: url('../assets/fonts/Rubik-Bold.woff') format('woff')
+	src: url('/assets/fonts/Rubik-Bold.woff2') format('woff2'),
+	src: url('/assets/fonts/Rubik-Bold.woff') format('woff')
 @font-face
 	font-family: 'Rubik'
 	font-weight: 400
-	src: url('../assets/fonts/Rubik-Regular.woff2') format('woff2'),
-	src: url('../assets/fonts/Rubik-Regular.woff') format('woff')
+	src: url('/assets/fonts/Rubik-Regular.woff2') format('woff2'),
+	src: url('/assets/fonts/Rubik-Regular.woff') format('woff')
 
 *, ::after, ::before
 	margin: 0
@@ -30,3 +32,7 @@ body
 	display: flex
 	flex-direction: column
 	height: 100vh
+
+a, a:visited, a:link
+	color: $color-surface-text
+	text-decoration: none

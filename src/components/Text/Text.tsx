@@ -1,6 +1,6 @@
 import cn from "classnames";
 import { ElementSizes } from "types/element-props";
-import style from "./Text.module.sass";
+import styles from "./Text.module.sass";
 
 interface TextProps {
   size: ElementSizes;
@@ -16,12 +16,12 @@ export const Text = ({
   className,
 }: TextProps) => {
   const textStyles = {
-    [style.xl]: size === "xl",
-    [style.l]: size === "l",
-    [style.m]: size === "m",
-    [style.s]: size === "s",
-    [style.xs]: size === "xs",
-    [style.bold]: bold === true,
+    [styles.xl]: size === "xl",
+    [styles.l]: size === "l",
+    [styles.m]: size === "m",
+    [styles.s]: size === "s",
+    [styles.xs]: size === "xs",
+    [styles.bold]: bold === true,
   };
 
   return <span className={cn(className, textStyles)}>{children}</span>;

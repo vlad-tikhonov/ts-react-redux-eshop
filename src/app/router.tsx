@@ -1,6 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { Test, Home, Categories, Favorites, Orders, Cart } from "modules";
+import {
+  Test,
+  Home,
+  Categories,
+  Favorites,
+  Orders,
+  Cart,
+  Category,
+} from "modules";
 import { Layout } from "layouts";
 
 import { RoutesNames } from "constants/routes-names";
@@ -21,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: RoutesNames.Categories,
         element: <Categories />,
+      },
+      {
+        path: RoutesNames.Category,
+        element: <Category />,
       },
       {
         path: RoutesNames.Favorites,

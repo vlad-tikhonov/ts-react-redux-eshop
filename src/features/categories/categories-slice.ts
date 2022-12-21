@@ -50,7 +50,7 @@ const categoriesSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(loadCategories.pending, (state) => {
-				state.isLoading = false
+				state.isLoading = true
 				state.error = null
 			})
 			.addCase(loadCategories.rejected, (state, action) => {

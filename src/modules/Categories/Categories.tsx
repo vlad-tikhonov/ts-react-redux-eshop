@@ -15,12 +15,13 @@ const breadcrumbItems: BreadcrumbItem[] = [
 
 export const Categories = () => {
   const [categories, { isLoading, error }] = useCategories();
-  console.log(categories);
   return (
     <div>
       <Container>
         <Breadcrumbs items={breadcrumbItems} />
-        <Htag size="xl">Каталог</Htag>
+        <Htag size="xl" className={styles.title}>
+          Каталог
+        </Htag>
         {isLoading ? (
           <div>Loding data...</div>
         ) : (
@@ -41,7 +42,11 @@ export const Categories = () => {
                     {c.title}
                   </Text>
                 </Link>
-                <img src={c._img} alt={c.title} className={styles.img} />
+                <img
+                  src={c._img}
+                  alt={c.title}
+                  className={styles.catalog_item_img}
+                />
               </div>
             ))}
           </div>

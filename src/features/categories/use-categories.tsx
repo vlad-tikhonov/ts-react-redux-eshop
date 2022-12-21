@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "app/store";
+import { useAppDispatch, useAppSelector } from "app/hooks";
 import {
   selectCategoriesInfo,
   selectAllCategories,

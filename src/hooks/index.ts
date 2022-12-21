@@ -1,1 +1,1 @@
-export * from './useActiveElement'
+export * from './use-active-element'

@@ -67,8 +67,8 @@ export const Footer = () => (
           ))}
         </ul>
         <div className={styles.socials}>
-          {socialsItems.map((item) => (
-            <div className={item.className}>
+          {socialsItems.map((item, i) => (
+            <div className={item.className} key={i}>
               <a
                 href={item.href}
                 target="_blank"

@@ -21,8 +21,8 @@ export const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
   const breadcrumbItems = [...defaultItems, ...items];
   return (
     <div className={styles.breadcrumbs}>
-      {breadcrumbItems.map((item) => (
-        <span key={item.label} className={styles.item}>
+      {breadcrumbItems.map((item, i) => (
+        <span key={i} className={styles.item}>
           <NavLink to={item.to} className={setIsActive}>
             {item.label}
           </NavLink>

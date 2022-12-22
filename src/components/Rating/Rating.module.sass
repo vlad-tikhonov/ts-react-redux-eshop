@@ -1,0 +1,18 @@
+@use 'style/variables' as *
+
+.rating
+	display: inline-block
+
+.star
+	vertical-align: middle
+	margin-right: .4rem
+	&_filled
+		fill: $color-primary
+	&_big
+		width: 2.4rem
+		height: 2.4rem
+	&_editable
+		cursor: pointer
+
+.item:last-child
+	margin-right: 0

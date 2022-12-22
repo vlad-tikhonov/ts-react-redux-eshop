@@ -1,12 +1,12 @@
-import { Rating } from "types";
-import { Button } from "components";
+import { Rating as TRating } from "types";
+import { Button, Rating } from "components";
 import styles from "./ProductCard.module.sass";
 
 interface ProductCardProps {
   title: string;
   price: string;
   discountPrice: string;
-  rating: Rating;
+  rating: TRating;
   image: string;
 }
 
@@ -25,6 +25,7 @@ export const ProductCard = ({
       </div>
       <div className="card_body"></div>
       <div className="card_footer">
+        <Rating rating={2} readonly />
         <Button
           size="m"
           accent="secondary"

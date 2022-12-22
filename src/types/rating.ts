@@ -1,4 +1,5 @@
 export enum Rating {
+	Zero,
   One,
   Two,
   Three,

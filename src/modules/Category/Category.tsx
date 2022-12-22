@@ -13,7 +13,8 @@ export const Category = () => {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       label: "Каталог",
-      to: RoutesNames.Categories,
+      to: "/" + RoutesNames.Categories,
+      end: true,
     },
     {
       label: category?.title,

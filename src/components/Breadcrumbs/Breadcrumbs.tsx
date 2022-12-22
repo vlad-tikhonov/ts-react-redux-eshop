@@ -1,6 +1,6 @@
 import { BreadcrumbItem } from "types/componets-types";
 import { RoutesNames } from "constants/routes-names";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import styles from "./Breadcrumbs.module.sass";
 import { setActiveClass } from "helpers/utils";
 
@@ -23,7 +23,7 @@ export const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
     <div className={styles.breadcrumbs}>
       {breadcrumbItems.map((item, i) => (
         <span key={i} className={styles.item}>
-          <NavLink to={item.to} className={setIsActive}>
+          <NavLink end={item.end} to={item.to} className={setIsActive}>
             {item.label}
           </NavLink>
         </span>

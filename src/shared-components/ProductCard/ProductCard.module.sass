@@ -1,5 +1,6 @@
+@use 'style/variables' as *
+
 .card
-	// border: 1px solid black
 	display: flex
 	flex-direction: column
 	background-color: #fff
@@ -8,8 +9,32 @@
 	&_header
 		width: 22.6rem
 		height: 16rem
+		position: relative
 	&_body
 	&_footer
-		&_btn
-			width: 100%
-			text-align: center
+
+.notice
+	position: absolute
+	bottom: .8rem
+	left: 0
+
+.rating
+	margin-bottom: .8rem
+
+.btn
+	width: 100%
+	text-align: center
+
+.price
+	&_discount
+		display: flex
+		justify-content: space-between
+		&_discount, &_common
+			display: flex
+			flex-direction: column
+			justify-content: space-between
+	&_discount, &_common
+		height: 4.5rem
+		margin-bottom: .8rem
+	&_label
+		color: $color-light

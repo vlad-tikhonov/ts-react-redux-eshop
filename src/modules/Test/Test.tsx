@@ -14,23 +14,29 @@ const renderRightIcon = (className: string) => (
   <RightIcon className={className} />
 );
 
+const ProductCardPropsDiscount = {
+  title: "Product",
+  price: "100",
+  discount: "50",
+  rating: 3,
+  image: "./product-image.png",
+};
 const ProductCardProps = {
   title: "Product",
-  price: "100p",
-  discountPrice: "50p",
-  rating: 5,
+  price: "100",
+  rating: 3,
   image: "./product-image.png",
 };
 
 export const Test = () => {
-  const [rating, setRating] = useState(4);
-
   return (
     <Container>
       <div className={styles.test}>
-        <div>
-          <Rating rating={rating} setRating={setRating} />
+        <div className={styles.col}>
           <ProductCard {...ProductCardProps} />
+        </div>
+        <div className={styles.col}>
+          <ProductCard {...ProductCardPropsDiscount} />
         </div>
       </div>
     </Container>

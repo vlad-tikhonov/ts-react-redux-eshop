@@ -13,8 +13,7 @@ export const getCategoryId = (slug: string) => {
 }
 
 export const getCategories = () => {
-  const params = new URLSearchParams()
-  params.append('per_page', '20')
+  const params = new URLSearchParams({per_page: '20'})
   return axios
     .get('/collections/categories/', {params})
     .then((response: GetApisfulDataResponse<Category[]>) => response.data.results )

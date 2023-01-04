@@ -1,14 +1,32 @@
 import axios from './axios'
 import {Product, GetApisfulDataResponse} from 'types'
 
-export const getProducts = (filters: string, perPage: string, page: string) => {
-  const params = new URLSearchParams()
-  params.append('per_page', perPage)
-  params.append('page', page)
-  params.append('filter', JSON.stringify(filters))
+type GetProductsFilters = {
+	category_slug: {
+		exact: string;
+	};
+	price: {
+		gte: number;
+	}
+	_price: {
+		lte: number;
+	}
+}
 
+export type GetProductsProps = {
+	filters: GetProductsFilters;
+	perPage: string;
+	page: string;
+}
+
+export const getProducts = ({filters, perPage, page}: GetProductsProps) => {
+  const params = new URLSearchParams([
+		['per_page', perPage],
+		['page', page],
+		['filter', JSON.stringify(filters)]
+	])
   return axios.get('/collections/products/', {params})
-		.then((response: GetApisfulDataResponse<Product[]>) => {
-			return response.data.results
-		})
+		.then((response: GetApisfulDataResponse<Product[]>) =>
+			response.data.results
+		)
 }

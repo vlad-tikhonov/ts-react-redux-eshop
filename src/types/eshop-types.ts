@@ -25,5 +25,6 @@ export type Product = {
 	slug: string;
   price: number;
 	category: string;
+	_price?: number;
 	discount?: number;
 }

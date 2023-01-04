@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Product, Extra } from "types";
+import { GetProductsProps } from "api/products";
 
 type ProductsSlice = {
   data: Product[];
@@ -15,11 +16,7 @@ const initialState: ProductsSlice = {
 
 export const loadProducts = createAsyncThunk<
   Product[],
-  {
-    filters: string;
-    perPage: string;
-    page: string;
-  },
+  GetProductsProps,
   {
     state: { products: ProductsSlice };
     extra: Extra;
@@ -29,7 +26,7 @@ export const loadProducts = createAsyncThunk<
   "@@products/load-products",
   async ({ filters, perPage, page }, { extra: { api }, rejectWithValue }) => {
     try {
-      return api.getProducts(filters, perPage, page);
+      return api.getProducts({ filters, perPage, page });
     } catch (e) {
       if (e instanceof Error) {
         return rejectWithValue(e.message);

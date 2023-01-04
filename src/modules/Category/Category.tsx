@@ -6,6 +6,10 @@ import { RoutesNames } from "constants/routes-names";
 import { BreadcrumbItem } from "types";
 import styles from "./Category.module.sass";
 
+import { useAppDispatch } from "app/hooks";
+import { loadProducts } from "features/products/products-slice";
+import { useEffect } from "react";
+
 export const Category = () => {
   const { slug } = useParams();
   const category = useCategory(slug);
@@ -22,7 +26,25 @@ export const Category = () => {
     },
   ];
 
-  console.log(category);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (slug) {
+      const filters = {
+        category_slug: { exact: slug },
+        price: { gte: 0 },
+        _price: { lte: 9999 },
+      };
+
+      dispatch(
+        loadProducts({
+          filters,
+          perPage: "6",
+          page: "1",
+        })
+      );
+    }
+  }, [slug]);
 
   return (
     <div>

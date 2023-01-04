@@ -1,4 +1,4 @@
-import axios from 'api/axios'
+import axios from './axios'
 import {Category, GetApisfulDataResponse} from 'types'
 
 export const getCategoryId = (slug: string) => {

@@ -1,10 +1,13 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import * as api from 'api'
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+
 import { categoriesReducer } from 'features/categories/categories-slice';
+import { productsReducer } from 'features/products/products-slice'
 
 export const store = configureStore({
   reducer: {
     categories: categoriesReducer,
+		products: productsReducer,
   },
 	devTools: true,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({

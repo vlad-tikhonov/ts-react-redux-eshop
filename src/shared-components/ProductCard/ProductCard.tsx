@@ -15,7 +15,6 @@ const ProductPrice = ({ price, discount }: ProductPriceProps) => {
 
   const modifiedPrice = modifyPrice(price);
   const modifiedPriceWithDiscount = modifyPrice(priceWithDiscount);
-  console.log(price, discount, modifiedPrice, modifiedPriceWithDiscount);
   return (
     <>
       {discount ? (

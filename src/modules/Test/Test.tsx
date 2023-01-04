@@ -16,16 +16,28 @@ const renderRightIcon = (className: string) => (
 
 const ProductCardPropsDiscount = {
   title: "Product",
-  price: "100",
-  discount: "50",
+  available: true,
+  brand: "brand",
+  country: "country",
+  img: "./product-image.png",
+  package: "package",
   rating: 3,
-  image: "./product-image.png",
+  slug: "slug",
+  price: 100,
+  category: "category",
+  discount: 50,
 };
 const ProductCardProps = {
   title: "Product",
-  price: "100",
+  available: true,
+  brand: "brand",
+  country: "country",
+  img: "./product-image.png",
+  package: "package",
   rating: 3,
-  image: "./product-image.png",
+  slug: "slug",
+  price: 100,
+  category: "category",
 };
 
 export const Test = () => {

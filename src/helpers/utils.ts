@@ -9,17 +9,24 @@ export const setActiveClass = (activeClass: string, noActiveClass: string ):SetC
 		(isActive ? cn(activeClass, noActiveClass) : noActiveClass)
 
 
-export const modifyPrice = (price: string) => {
-  const roundedPrice = parseInt(price).toFixed(2)
+export const modifyPrice = (price: string | number) => {
+	let roundedPrice
+
+	if (typeof price === 'string') {
+		roundedPrice = parseInt(price).toFixed(2)
+	} else {
+		roundedPrice = price.toFixed(2)
+	}
+
   return String(roundedPrice + ' ₽').replace(/\./, ',')
 }
 
-export const modifyDiscount = (discount: string) =>
+export const modifyDiscount = (discount: number) =>
   String('-' + discount + '%')
 
 
-export const calculatePriceWithDiscount = (price: string, discount: string) =>
-  String(Number(price) - (Number(price) / 100) * Number(discount))
+export const calculatePriceWithDiscount = (price: number, discount: number) =>
+  String(price - (price / 100) * discount)
 
 
 export const shortnerTitle = (title: string, maxLength: number) => {

@@ -1,5 +1,5 @@
-import { Rating as TRating } from "types";
 import { Button, Rating, Text, Notice } from "components";
+import { Product as ProductCardProps } from "types";
 import styles from "./ProductCard.module.sass";
 import {
   calculatePriceWithDiscount,
@@ -7,18 +7,11 @@ import {
   modifyDiscount,
   shortnerTitle,
 } from "helpers/utils";
-interface ProductCardProps {
-  title: string;
-  price: string;
-  discount?: string;
-  rating: TRating;
-  image: string;
-}
 
 type ProductPriceProps = Pick<ProductCardProps, "price" | "discount">;
 
 const ProductPrice = ({ price, discount }: ProductPriceProps) => {
-  const priceWithDiscount = calculatePriceWithDiscount(price, discount ?? "0");
+  const priceWithDiscount = calculatePriceWithDiscount(price, discount ?? 0);
 
   const modifiedPrice = modifyPrice(price);
   const modifiedPriceWithDiscount = modifyPrice(priceWithDiscount);
@@ -58,14 +51,14 @@ export const ProductCard = ({
   price,
   discount,
   rating,
-  image,
+  img,
 }: ProductCardProps) => {
   const modifiedDiscount = discount ? modifyDiscount(discount) : "";
   const croppedTitle = shortnerTitle(title, 40);
   return (
     <div className={styles.card}>
       <div className={styles.card_header}>
-        <img src={image} alt={title} />
+        <img src={img} alt={title} />
         {discount && (
           <Notice size="m" accent="primary" className={styles.notice}>
             {modifiedDiscount}

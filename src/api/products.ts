@@ -1,5 +1,6 @@
 import axios from './axios'
 import {Product, GetApisfulDataResponse} from 'types'
+import {mockProducts} from 'mock/products/products-mock'
 
 type GetProductsFilters = {
 	category_slug: {
@@ -19,14 +20,17 @@ export type GetProductsProps = {
 	page: string;
 }
 
+
+
 export const getProducts = ({filters, perPage, page}: GetProductsProps) => {
   const params = new URLSearchParams({
 		per_page: perPage,
 		page: page,
 		filter: JSON.stringify(filters)
 	})
-  return axios.get('/collections/products/', {params})
-		.then((response: GetApisfulDataResponse<Product[]>) =>
-			response.data.results
-		)
+  // return axios.get('/collections/products/', {params})
+	// 	.then((response: GetApisfulDataResponse<Product[]>) =>
+	// 		response.data.results
+	// 	)
+	return mockProducts
 }

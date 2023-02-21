@@ -8,10 +8,13 @@ export enum Rating {
 }
 
 export type Category = {
-	_id: number;
+	_id: string;
+	image: string;
 	title: string;
-	_img: string;
 	slug: string;
+	orderId: number;
+	createdAt: string;
+	updatedAt: string;
 }
 
 export type Product = {

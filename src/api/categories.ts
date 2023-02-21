@@ -1,5 +1,6 @@
 import axios from './axios'
-import {Category, GetApisfulDataResponse} from 'types'
+import {Category} from 'types'
+import { AxiosResponse } from 'axios'
 
 export const getCategoryId = (slug: string) => {
   const filter = {slug: {exact: slug}}
@@ -13,8 +14,7 @@ export const getCategoryId = (slug: string) => {
 }
 
 export const getCategories = () => {
-  const params = new URLSearchParams({per_page: '20'})
   return axios
-    .get('/collections/categories/', {params})
-    .then((response: GetApisfulDataResponse<Category[]>) => response.data.results )
+    .get('/category/all')
+    .then((response: AxiosResponse<Category[]>) => response.data )
 }

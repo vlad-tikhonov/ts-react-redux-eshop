@@ -36,4 +36,5 @@ export type Product = {
 	tags: string[];
 	code: string;
 	rating: number | null
+	slug: string;
 }

@@ -9,10 +9,11 @@ import {
   shortnerTitle,
 } from "helpers/utils";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type ProductCardProps = Pick<
   Product,
-  "title" | "price" | "discount" | "image" | "rating"
+  "title" | "price" | "discount" | "image" | "rating" | "categorySlug" | "slug"
 >;
 
 type ProductPriceProps = Pick<ProductCardProps, "price" | "discount">;
@@ -65,6 +66,8 @@ export const ProductCard = ({
   discount,
   image,
   rating,
+  categorySlug,
+  slug,
 }: ProductCardProps) => {
   const [isActive, setIsActive] = useState(false);
   const [btnState, setBtnState] = useState<CardBtnProps>(defaultBtnState);
@@ -91,6 +94,10 @@ export const ProductCard = ({
       onMouseEnter={changeStyle}
       onMouseLeave={changeStyleDefault}
     >
+      <Link
+        to={`/categories/${categorySlug}/${slug}`}
+        className={styles.link}
+      ></Link>
       <div className={styles.card_header}>
         <img
           src={process.env.REACT_APP_STATIC_CONTENT_URL + image}

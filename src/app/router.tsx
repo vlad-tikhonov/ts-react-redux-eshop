@@ -8,6 +8,7 @@ import {
   Orders,
   Cart,
   Category,
+  Product,
 } from "modules";
 import { Layout } from "layouts";
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: RoutesNames.Cart,
         element: <Cart />,
+      },
+      {
+        path: RoutesNames.Product,
+        element: <Product />,
       },
     ],
   },

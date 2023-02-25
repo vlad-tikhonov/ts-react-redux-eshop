@@ -46,6 +46,8 @@ export const Category = () => {
                 discount={p.discount}
                 rating={p.rating}
                 title={p.title}
+                categorySlug={p.categorySlug}
+                slug={p.slug}
                 key={p._id}
               />
             ))}

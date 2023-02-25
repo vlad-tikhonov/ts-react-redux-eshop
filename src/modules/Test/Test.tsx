@@ -28,6 +28,7 @@ const ProductCardPropsDiscount = {
   tags: ["tag"],
   code: "2ewdwedw",
   rating: 5,
+  slug: "xxxx",
 };
 const ProductCardProps = {
   image: "./product-image.png",
@@ -45,6 +46,7 @@ const ProductCardProps = {
   tags: ["tag"],
   code: "2ewdwedw",
   rating: 5,
+  slug: "xxxx",
 };
 
 export const Test = () => {

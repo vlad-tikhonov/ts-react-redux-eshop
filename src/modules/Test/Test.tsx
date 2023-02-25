@@ -15,29 +15,36 @@ const renderRightIcon = (className: string) => (
 );
 
 const ProductCardPropsDiscount = {
-  title: "Product",
-  available: true,
-  brand: "brand",
-  country: "country",
-  img: "./product-image.png",
-  package: "package",
-  rating: 3,
-  slug: "slug",
+  image: "./product-image.png",
+  title: "title",
   price: 100,
-  category: "category",
-  discount: 50,
+  description: {
+    brand: "brand",
+    country: "country",
+    package: "package",
+  },
+  categoryId: "ewfdwe",
+  categorySlug: "slug",
+  tags: ["tag"],
+  code: "2ewdwedw",
+  rating: 5,
 };
 const ProductCardProps = {
-  title: "Product",
-  available: true,
-  brand: "brand",
-  country: "country",
-  img: "./product-image.png",
-  package: "package",
-  rating: 3,
-  slug: "slug",
+  image: "./product-image.png",
+  title: "title",
   price: 100,
-  category: "category",
+  priceWithCard: 50,
+  discount: 50,
+  description: {
+    brand: "brand",
+    country: "country",
+    package: "package",
+  },
+  categoryId: "ewfdwe",
+  categorySlug: "slug",
+  tags: ["tag"],
+  code: "2ewdwedw",
+  rating: 5,
 };
 
 export const Test = () => {

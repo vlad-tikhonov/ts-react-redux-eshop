@@ -1,36 +1,10 @@
 import axios from './axios'
-import {Product, GetApisfulDataResponse} from 'types'
-import {mockProducts} from 'mock/products/products-mock'
+import { Product } from 'types'
+import { AxiosResponse } from 'axios';
 
-type GetProductsFilters = {
-	category_slug: {
-		exact: string;
-	};
-	price: {
-		gte: number;
-	}
-	_price: {
-		lte: number;
-	}
-}
-
-export type GetProductsProps = {
-	filters: GetProductsFilters;
-	perPage: string;
-	page: string;
-}
-
-
-
-export const getProducts = ({filters, perPage, page}: GetProductsProps) => {
-  const params = new URLSearchParams({
-		per_page: perPage,
-		page: page,
-		filter: JSON.stringify(filters)
-	})
-  // return axios.get('/collections/products/', {params})
-	// 	.then((response: GetApisfulDataResponse<Product[]>) =>
-	// 		response.data.results
-	// 	)
-	return mockProducts
+export const getProducts = (slug: string): Promise<Product[]> => {
+  return axios.post('/product/bySlug', { categorySlug: slug})
+		.then((response: AxiosResponse<Product[]>) =>
+			response.data
+		)
 }

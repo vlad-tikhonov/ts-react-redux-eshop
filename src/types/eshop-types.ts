@@ -17,17 +17,23 @@ export type Category = {
 	updatedAt: string;
 }
 
-export type Product = {
-	title: string;
-	available: boolean;
+export type ProductDescription = {
 	brand: string;
 	country: string;
-  img: string;
 	package: string;
-  rating: Rating;
-	slug: string;
-  price: number;
-	category: string;
-	_price?: number;
+}
+
+export type Product = {
+	_id: string;
+	image: string;
+	title: string;
+	price: number;
+	priceWithCard?: number;
 	discount?: number;
+	description: ProductDescription;
+	categoryId: string;
+	categorySlug: string;
+	tags: string[];
+	code: string;
+	rating: number | null
 }

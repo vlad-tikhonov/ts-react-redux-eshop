@@ -25,7 +25,7 @@ export const Categories = () => {
         <div>Loding data...</div>
       ) : (
         <div className={styles.catalog_items}>
-          {categories.map((c, i) => (
+          {categories.map((c) => (
             <div
               key={c._id}
               className={cn(

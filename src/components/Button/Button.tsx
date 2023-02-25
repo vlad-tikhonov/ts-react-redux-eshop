@@ -6,7 +6,7 @@ import {
   ElementDecoration,
 } from "types/element-props";
 
-interface ButtonProps {
+export interface ButtonProps {
   size: Exclude<ElementSizes, "xl" | "xs">;
   decoration: ElementDecoration;
   children?: string;

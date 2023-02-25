@@ -5,6 +5,7 @@ import { Breadcrumbs, Htag } from "components";
 import { RoutesNames } from "constants/routes-names";
 import { BreadcrumbItem } from "types";
 import { useProducts } from "features/products/use-products";
+import { ProductCard } from "shared-components";
 import styles from "./Category.module.sass";
 
 const category = {
@@ -13,9 +14,10 @@ const category = {
 
 export const Category = () => {
   const { slug } = useParams();
-  // const category = useCategory(slug);
-
+  console.log(slug);
+  const category = useCategory(slug);
   const [products, { isLoading, error }] = useProducts(slug);
+
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       label: "Каталог",
@@ -29,16 +31,25 @@ export const Category = () => {
   ];
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Container>
         <div>
           <Breadcrumbs items={breadcrumbItems} />
-          <Htag size="l">{category?.title}</Htag>
-          <pre>
+          <Htag size="l" className={styles.title}>
+            {category?.title}
+          </Htag>
+          <div className={styles.products}>
             {products.map((p) => (
-              <p>{p.title}</p>
+              <ProductCard
+                image={p.image}
+                price={p.price}
+                discount={p.discount}
+                rating={p.rating}
+                title={p.title}
+                key={p._id}
+              />
             ))}
-          </pre>
+          </div>
         </div>
       </Container>
     </div>

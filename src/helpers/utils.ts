@@ -36,6 +36,35 @@ export const shortnerTitle = (title: string, maxLength: number) => {
   return title.slice(0, maxLength) + ' ...'
 }
 
+export const formatDate = (date: Date): string => {
+	let dd = '';
+	let mm = '';
+	let yy = '';
+
+  let day = date.getDate();
+  if (day < 10) {
+		dd = '0' + day;
+	} else {
+		dd = day.toString()
+	}
+
+  let month = (date.getMonth() + 1);
+  if (month < 10) {
+		mm = '0' + month;
+	} else {
+		mm = month.toString()
+	}
+
+  let year = date.getFullYear() % 100;
+  if (year < 10) {
+		yy = '0' + year;
+	} else {
+		yy = year.toString()
+	}
+
+	return `${dd}.${mm}.${yy}`
+}
+
 // export const calculatePriceRange = (productsArray) => {
 //   let priceSet = new Set()
 //   productsArray.forEach((product) => {

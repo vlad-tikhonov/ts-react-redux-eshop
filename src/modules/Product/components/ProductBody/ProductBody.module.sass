@@ -1,0 +1,72 @@
+@use 'style/variables' as *
+
+.body
+	display: grid
+	grid-template-columns: repeat(12, 1fr)
+	grid-template-areas: "img img img img img img info info info info similar similar"
+	grid-column-gap: 4rem
+	margin-bottom: 12rem
+
+	&_img
+		grid-area: img
+		background-color: #fff
+		padding: 1rem
+		border-radius: .4rem
+		height: 49.6rem
+		box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1)
+		position: relative
+		& > img
+			display: block
+			margin: 0 auto
+			height: 100%
+			width: 100%
+			object-fit: contain
+		& > .notice
+			position: absolute
+			top: 2rem
+			right: 2rem
+
+	&_info
+		grid-area: info
+		& > .price_wrapper
+			margin-bottom: 1.6rem
+			& > .price, & > .labels
+				display: flex
+				justify-content: space-between
+				align-items: center
+			& > .labels
+				& > .label
+					color: $color-light
+
+		& > .btn
+			width: 100%
+			margin-bottom: .8rem
+			transition: box-shadow 0.2s
+
+		& > .bonus_wrapper
+			display: flex
+			justify-content: center
+			align-items: center
+			margin-bottom: 2.4rem
+			& > .smile
+				margin-right: .8rem
+				fill: $color-secondary
+			& > .text
+				color: $color-secondary
+
+		& >.features_wrapper
+			& > .table
+				width: 100%
+				border-spacing: 0 0
+				& .odd
+					background-color: $color-lightest
+				& td
+					padding: .4rem
+
+	&_similar
+		grid-area: similar
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		& > .title
+			color: $color-hardest

@@ -1,0 +1,74 @@
+@use 'style/variables' as *
+
+.title
+	margin-bottom: 4rem
+
+.reviews_wrapper
+	display: grid
+	grid-template: auto / repeat(12, 1fr)
+	grid-template-areas: "left left a right right right right right right right b c"
+	grid-column-gap: 4rem
+
+	& > .left
+		grid-area: left
+
+		& > .row
+			display: flex
+			justify-content: space-between
+			align-items: center
+			color: $color-surface-text
+			margin-bottom: 1.6rem
+
+		& > .row_title
+			display: flex
+			align-items: center
+			flex-wrap: wrap
+
+	& > .right
+		grid-area: right
+
+		& > .reviews
+			& > .review
+				margin-bottom: 4rem
+
+				& > .user
+					display: flex
+					align-items: center
+					margin-bottom: .8rem
+					& > .icon
+						margin-right: .8rem
+					& > .name
+
+				& > .rating
+					margin-bottom: .8rem
+					& > .stars
+						margin-right: .8rem
+					& > .createdAt
+						color: $color-hard
+
+			& > .body
+
+		& > .new
+			& > .rating
+				display: flex
+				align-items: center
+				margin-bottom: 16px
+
+				& > .rating_title
+					margin-right: 16px
+
+			& > .form
+				& > .textArea
+					width: 100%
+					border-radius: 4px
+					border: 1px solid var(--grayscale-ligh)
+					text-indent: 2px
+					margin-bottom: 16px
+					padding: .5rem
+					resize: none
+				& > .textArea[disabled]
+					border: 1px solid $color-light
+					&:focus
+						outline: none
+						border: 1px solid $color-secondary
+						box-shadow: 4px 8px 16px rgba(112, 192, 91, 0.2)

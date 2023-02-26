@@ -17,6 +17,16 @@ export type Category = {
 	updatedAt: string;
 }
 
+export type Review = {
+	_id: string;
+	name: string;
+	title: string;
+	description: string;
+	rating: Rating;
+	productId: string;
+	createdAt: string;
+}
+
 export type ProductDescription = {
 	brand: string;
 	country: string;
@@ -36,10 +46,10 @@ export type Product = {
 	categorySlug: string;
 	tags: string[];
 	code: string;
-	rating: Rating | null
 	slug: string;
-	reviews: string[];
+	reviews: Review[];
 	reviewsCount: number;
+	reviewsAvg: Rating | null
 }
 
 export type ProductWithRelated = Product & { relatedProducts: Product[] }

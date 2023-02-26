@@ -27,7 +27,7 @@ const ProductCardPropsDiscount = {
   categorySlug: "slug",
   tags: ["tag"],
   code: "2ewdwedw",
-  rating: 5,
+  reviewsAvg: 5,
   slug: "xxxx",
 };
 const ProductCardProps = {
@@ -45,7 +45,7 @@ const ProductCardProps = {
   categorySlug: "slug",
   tags: ["tag"],
   code: "2ewdwedw",
-  rating: 5,
+  reviewsAvg: 5,
   slug: "xxxx",
 };
 

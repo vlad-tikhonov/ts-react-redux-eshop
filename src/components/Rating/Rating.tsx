@@ -30,7 +30,9 @@ export const Rating = ({
 
     const filledStars = new Array(filledStarsCount).fill(
       <StarIcon
-        className={cn(styles.star_filled, styles.star, { [styles.big]: big })}
+        className={cn(styles.star_filled, styles.star, {
+          [styles.star_big]: big,
+        })}
       />
     );
     const emptyStars = new Array(emptyStarsCount).fill(

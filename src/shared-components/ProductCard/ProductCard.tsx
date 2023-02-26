@@ -13,7 +13,7 @@ type ProductCardProps = Pick<
   | "priceWithCard"
   | "discount"
   | "image"
-  | "rating"
+  | "reviewsAvg"
   | "categorySlug"
   | "slug"
 >;
@@ -62,7 +62,7 @@ export const ProductCard = ({
   priceWithCard,
   discount,
   image,
-  rating,
+  reviewsAvg,
   categorySlug,
   slug,
 }: ProductCardProps) => {
@@ -112,7 +112,7 @@ export const ProductCard = ({
       </div>
       <div className={styles.card_footer}>
         <Rating
-          rating={rating ? rating : 0}
+          rating={reviewsAvg ? reviewsAvg : 0}
           readonly
           className={styles.rating}
         />

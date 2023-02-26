@@ -32,9 +32,14 @@ export type Product = {
 	discount?: number;
 	description: ProductDescription;
 	categoryId: string;
+	categoryTitle: string;
 	categorySlug: string;
 	tags: string[];
 	code: string;
-	rating: number | null
+	rating: Rating | null
 	slug: string;
+	reviews: string[];
+	reviewsCount: number;
 }
+
+export type ProductWithRelated = Product & { relatedProducts: Product[] }

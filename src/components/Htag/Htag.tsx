@@ -4,7 +4,7 @@ import styles from "./Htag.module.sass";
 
 interface HtagProps {
   size: ElementSizes;
-  children: string;
+  children: string | number;
   className?: string;
 }
 

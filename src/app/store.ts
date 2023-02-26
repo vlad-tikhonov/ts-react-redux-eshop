@@ -3,11 +3,13 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
 import { categoriesReducer } from 'features/categories/categories-slice';
 import { productsReducer } from 'features/products/products-slice'
+import { productReducer } from 'features/product/product-slice'
 
 export const store = configureStore({
   reducer: {
     categories: categoriesReducer,
 		products: productsReducer,
+		product: productReducer,
   },
 	devTools: true,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({

@@ -1,6 +1,6 @@
 import { BreadcrumbItem } from "types/componets-types";
 import { RoutesNames } from "constants/routes-names";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Breadcrumbs.module.sass";
 import { setActiveClass } from "helpers/utils";
 

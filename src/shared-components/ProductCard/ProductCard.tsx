@@ -2,56 +2,52 @@ import { Button, Rating, Text, Notice, ButtonProps } from "components";
 import { Product } from "types";
 import styles from "./ProductCard.module.sass";
 import cn from "classnames";
-import {
-  calculatePriceWithDiscount,
-  modifyPrice,
-  modifyDiscount,
-  shortnerTitle,
-} from "helpers/utils";
+import { modifyPrice, modifyDiscount, shortnerTitle } from "helpers/utils";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 type ProductCardProps = Pick<
   Product,
-  "title" | "price" | "discount" | "image" | "rating" | "categorySlug" | "slug"
+  | "title"
+  | "price"
+  | "priceWithCard"
+  | "discount"
+  | "image"
+  | "rating"
+  | "categorySlug"
+  | "slug"
 >;
 
-type ProductPriceProps = Pick<ProductCardProps, "price" | "discount">;
+type ProductPriceProps = Pick<ProductCardProps, "price" | "priceWithCard">;
 
-const ProductPrice = ({ price, discount }: ProductPriceProps) => {
-  const priceWithDiscount = calculatePriceWithDiscount(price, discount ?? 0);
-
-  const modifiedPrice = modifyPrice(price);
-  const modifiedPriceWithDiscount = modifyPrice(priceWithDiscount);
-  return (
-    <>
-      {discount ? (
-        <div className={styles.price_discount}>
-          <div className={styles.price_discount_discount}>
-            <Text bold size="m">
-              {modifiedPriceWithDiscount}
-            </Text>
-            <Text size="xs" className={styles.price_label}>
-              С картой
-            </Text>
-          </div>
-          <div className={styles.price_discount_common}>
-            <Text size="s">{modifiedPrice}</Text>
-            <Text size="xs" className={styles.price_label}>
-              Обычная
-            </Text>
-          </div>
-        </div>
-      ) : (
-        <div className={styles.price_common}>
-          <Text size="m" bold>
-            {modifiedPrice}
+const ProductPrice = ({ price, priceWithCard }: ProductPriceProps) => (
+  <>
+    {priceWithCard ? (
+      <div className={styles.price_discount}>
+        <div className={styles.price_discount_discount}>
+          <Text bold size="m">
+            {modifyPrice(priceWithCard)}
+          </Text>
+          <Text size="xs" className={styles.price_label}>
+            С картой
           </Text>
         </div>
-      )}
-    </>
-  );
-};
+        <div className={styles.price_discount_common}>
+          <Text size="s">{modifyPrice(price)}</Text>
+          <Text size="xs" className={styles.price_label}>
+            Обычная
+          </Text>
+        </div>
+      </div>
+    ) : (
+      <div className={styles.price_common}>
+        <Text size="m" bold>
+          {modifyPrice(price)}
+        </Text>
+      </div>
+    )}
+  </>
+);
 
 type CardBtnProps = Pick<ButtonProps, "accent" | "decoration">;
 
@@ -63,6 +59,7 @@ const defaultBtnState: CardBtnProps = {
 export const ProductCard = ({
   title,
   price,
+  priceWithCard,
   discount,
   image,
   rating,
@@ -110,7 +107,7 @@ export const ProductCard = ({
         )}
       </div>
       <div className={styles.card_body}>
-        <ProductPrice price={price} discount={discount} />
+        <ProductPrice price={price} priceWithCard={priceWithCard} />
         <div className={styles.title}>{croppedTitle}</div>
       </div>
       <div className={styles.card_footer}>

@@ -14,7 +14,6 @@ const category = {
 
 export const Category = () => {
   const { slug } = useParams();
-  console.log(slug);
   const category = useCategory(slug);
   const [products, { isLoading, error }] = useProducts(slug);
 
@@ -43,6 +42,7 @@ export const Category = () => {
               <ProductCard
                 image={p.image}
                 price={p.price}
+                priceWithCard={p.priceWithCard}
                 discount={p.discount}
                 rating={p.rating}
                 title={p.title}

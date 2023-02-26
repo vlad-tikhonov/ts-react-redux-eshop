@@ -1,10 +1,10 @@
 import cn from "classnames";
 import { ElementSizes } from "types/element-props";
 import styles from "./Text.module.sass";
-
+import { ReactNode } from "react";
 interface TextProps {
   size: ElementSizes;
-  children: string;
+  children: ReactNode;
   bold?: boolean;
   className?: string;
 }

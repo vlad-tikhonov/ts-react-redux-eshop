@@ -16,8 +16,6 @@ export const ProductReviews = ({
   reviewsAvg,
   className,
 }: ProductReviewsProps) => {
-  console.log(reviews);
-  console.log(reviewsAvg);
   const [rating, setRating] = useState(0);
 
   const ratingCount = (num: number) => {

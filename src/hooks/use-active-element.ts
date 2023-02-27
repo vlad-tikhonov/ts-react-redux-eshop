@@ -8,9 +8,9 @@ export const useActiveElement = () => {
   }
 
   useEffect(() => {
-    document.addEventListener('click', changeActiveElement)
+    document.addEventListener('click', changeActiveElement, {capture: true})
     changeActiveElement()
-    return () => document.removeEventListener('click', changeActiveElement)
+    return () => document.removeEventListener('click', changeActiveElement, {capture: true})
   }, [])
 
   return element

@@ -5,6 +5,7 @@ import {
   ElementAccent,
   ElementDecoration,
 } from "types/element-props";
+import { ButtonHTMLAttributes } from "react";
 
 export interface ButtonProps {
   size: Exclude<ElementSizes, "xl" | "xs">;
@@ -13,6 +14,8 @@ export interface ButtonProps {
   renderLeftIcon?: (className: string) => JSX.Element;
   renderRightIcon?: (className: string) => JSX.Element;
   accent: ElementAccent;
+  type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  onClick?: () => void;
   disabled?: boolean;
   className?: string;
 }
@@ -24,8 +27,10 @@ export const Button = (props: ButtonProps) => {
     accent,
     decoration,
     size,
+    type = "button",
     children,
     disabled = false,
+    onClick,
     className,
   } = props;
 
@@ -44,11 +49,20 @@ export const Button = (props: ButtonProps) => {
     [styles.btn_no]: decoration === "no",
   };
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+
+    return;
+  };
+
   return (
     <button
       className={cn(buttonStyles, className)}
-      type="button"
       disabled={disabled}
+      type={type}
+      onClick={handleClick}
     >
       {renderLeftIcon(styles.icon)}
       {children && <span className={styles.text}>{children}</span>}

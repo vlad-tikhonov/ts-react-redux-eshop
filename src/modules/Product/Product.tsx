@@ -14,7 +14,6 @@ export const Product = () => {
   }
 
   if (product) {
-    console.log(product);
     const breadcrumbItems = [
       { label: "Каталог", to: "/categories", end: true },
       {

@@ -5,6 +5,8 @@ import styles from "./AuthForm.module.sass";
 import { ReactComponent as EyeIcon } from "assets/icons/eye.svg";
 import { ReactComponent as EyeOffIcon } from "assets/icons/eye-off.svg";
 import { useState } from "react";
+import { useAppDispatch } from "app/hooks";
+import { login } from "features/auth/auth-slice";
 
 interface AuthFormProps {}
 
@@ -15,6 +17,7 @@ interface FormValues {
 
 export const AuthForm = () => {
   const [showPass, setShowPass] = useState(false);
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -25,7 +28,7 @@ export const AuthForm = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    dispatch(login({ email: data.email, password: data.password }));
   };
 
   const toggleShowPass = () => {

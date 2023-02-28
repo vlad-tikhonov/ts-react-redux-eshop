@@ -23,21 +23,18 @@ export const loadProduct = createAsyncThunk<
   }
 >(
   "@@product/load-product",
-  async (slug, { extra: { api }, rejectWithValue }) => {
+  async (slug, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
       return await api.getProduct(slug);
     } catch (e) {
-      if (e instanceof Error) {
-        return rejectWithValue(e.message);
-      }
-      return rejectWithValue("Unknown error");
+			const message = errorHandler(e)
+
+			return rejectWithValue(message)
     }
   },
   {
     condition: (_, { getState }) => {
-      const {
-        product: { isLoading },
-      } = getState();
+      const { product: { isLoading } } = getState();
       if (isLoading) {
         return false;
       }

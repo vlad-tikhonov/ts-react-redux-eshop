@@ -1,6 +1,6 @@
-import * as api from 'api'
+import * as api from 'api';
+import { errorHandler } from 'helpers/errorHandler';
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-
 import { categoriesReducer } from 'features/categories/categories-slice';
 import { productsReducer } from 'features/products/products-slice'
 import { productReducer } from 'features/product/product-slice'
@@ -17,7 +17,7 @@ export const store = configureStore({
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({
 		thunk: {
 			extraArgument: {
-				api
+				api, errorHandler
 			}
 		}
 	})

@@ -23,14 +23,13 @@ export const loadCategories = createAsyncThunk<
 	}>
 	(
 		"@@categories/load-categories",
-		async(_, {extra: {api}, rejectWithValue}) => {
+		async(_, {extra: {api, errorHandler}, rejectWithValue}) => {
 			try {
-				return api.getCategories()
+				return await api.getCategories()
 			} catch (e) {
-				if (e instanceof Error){
-					return rejectWithValue(e.message)
-				}
-			return rejectWithValue('Unknown error')
+				const message = errorHandler(e)
+
+				return rejectWithValue(message)
 			}
 		},
 		{

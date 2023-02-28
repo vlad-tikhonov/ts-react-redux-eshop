@@ -25,15 +25,13 @@ export const login = createAsyncThunk<
 	}>
 	(
 		"@@auth/login",
-		async({email, password}, { extra: { api }, rejectWithValue}) => {
+		async({email, password}, { extra: { api, errorHandler }, rejectWithValue}) => {
 			try {
 				return await api.login(email, password)
 			} catch (e) {
-				console.log(e);
-				if (e instanceof Error){
-					return rejectWithValue(e.message)
-				}
-			return rejectWithValue('Unknown error')
+			const message = errorHandler(e)
+
+			return rejectWithValue(message)
 			}
 		},
 		{

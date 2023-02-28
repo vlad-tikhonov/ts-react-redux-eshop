@@ -1,0 +1,46 @@
+@use 'style/style.sass' as *
+
+.wrapper
+	position: relative
+
+	& > .menu
+		display: flex
+		align-items: center
+		cursor: pointer
+		box-sizing: border-box
+		position: relative
+		padding: 0 .5rem
+		&:hover .name
+			color: $color-primary
+		&:hover .chevron
+			fill: $color-primary
+		& > .photo
+			width: 5rem
+			height: 5rem
+			background-image: url('/assets/images/manager.png')
+			background-repeat: no-repeat
+			background-position: center
+			border: 1px solid $color-light
+			border-radius: 50%
+		& > .name
+			margin: 0 3.5rem 0 1rem
+		& > .btn
+
+	& > .dropdown_wrapper
+		position: absolute
+		left: 0
+		right: 0
+		background-color: #fff
+		box-shadow: 4px 14px 16px rgba(0, 0, 0, 0.1)
+		border-radius: 0 0 4px 4px
+		padding: .5rem
+		& > .dropdown
+			list-style-type: none
+			& > .item
+				padding: .8rem
+				cursor: pointer
+				margin-bottom: 1rem
+				&:hover
+					color: $color-primary
+				&:not(last-child)
+					margin-bottom: 0

@@ -44,6 +44,10 @@
 	&_primary
 		background-color: $color-primary
 		color: #fff
+		&:not([disabled]):hover
+			box-shadow: 4px 8px 16px rgba(255, 102, 51, 0.2)
+		&:not([disabled]):active
+			box-shadow: inset 0px 2px 0px rgba(0, 0, 0, 0.2)
 		& > .icon
 			fill: #fff
 		&.btn_outline
@@ -69,6 +73,10 @@
 	&_secondary
 		background-color: $color-secondary
 		color: #fff
+		&:not([disabled]):hover
+			box-shadow: 4px 8px 16px rgba(112, 192, 91, 0.2)
+		&:not([disabled]):active
+			box-shadow: inset 0px 2px 0px rgba(0, 0, 0, 0.2)
 		& > .icon
 			fill: #fff
 		&.btn_outline
@@ -93,6 +101,10 @@
 	&_grayscale
 		background-color: $color-lightest
 		color: $color-hardest
+		&:not([disabled]):hover
+			box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.1)
+		&:not([disabled]):active
+			box-shadow: inset 0px 2px 0px rgba(0, 0, 0, 0.2)
 		&.btn_outline
 			outline: .1rem solid $color-hard
 		&.btn_outline, &.btn_no

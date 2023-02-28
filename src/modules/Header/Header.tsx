@@ -7,9 +7,14 @@ import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { useState } from "react";
 import { AuthForm } from "modules/Auth/components";
+import { ReactComponent as LoginIcon } from "assets/icons/log-in.svg";
 
 const renderMenuIcon = (className: string) => (
   <MenuIcon className={className} />
+);
+
+const renderLoginIcon = (className: string) => (
+  <LoginIcon className={className} />
 );
 
 export const Header = () => {
@@ -42,6 +47,7 @@ export const Header = () => {
             accent="primary"
             decoration="default"
             size="m"
+            renderRightIcon={renderLoginIcon}
             onClick={openModal}
           >
             Войти

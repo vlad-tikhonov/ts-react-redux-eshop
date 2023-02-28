@@ -60,7 +60,7 @@ export const Header = () => {
             </Button>
           )}
           <Modal isActive={modalState} closeModal={closeModal}>
-            <AuthForm />
+            <AuthForm onLogin={closeModal} />
           </Modal>
         </div>
       </Container>

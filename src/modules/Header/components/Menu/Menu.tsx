@@ -8,17 +8,17 @@ import styles from "./Menu.module.sass";
 const MenuItems = [
   {
     label: "Избранное",
-    renderIcon: () => <HeartIcon />,
+    renderIcon: (className: string) => <HeartIcon className={className} />,
     path: RoutesNames.Favorites,
   },
   {
     label: "Заказы",
-    renderIcon: () => <PackageIcon />,
+    renderIcon: (className: string) => <PackageIcon className={className} />,
     path: RoutesNames.Orders,
   },
   {
     label: "Корзина",
-    renderIcon: () => <CartIcon />,
+    renderIcon: (className: string) => <CartIcon className={className} />,
     path: RoutesNames.Cart,
   },
 ];

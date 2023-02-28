@@ -8,14 +8,16 @@ import { useState } from "react";
 import { useAppDispatch } from "app/hooks";
 import { login } from "features/auth/auth-slice";
 
-interface AuthFormProps {}
+interface AuthFormProps {
+  onLogin: () => void;
+}
 
 interface FormValues {
   email: string;
   password: string;
 }
 
-export const AuthForm = () => {
+export const AuthForm = ({ onLogin }: AuthFormProps) => {
   const [showPass, setShowPass] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -28,7 +30,14 @@ export const AuthForm = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    dispatch(login({ email: data.email, password: data.password }));
+    dispatch(
+      login({
+        email: data.email,
+        password: data.password,
+      })
+    ).then(() => {
+      onLogin();
+    });
   };
 
   const toggleShowPass = () => {

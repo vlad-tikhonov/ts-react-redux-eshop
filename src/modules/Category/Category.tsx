@@ -5,8 +5,8 @@ import { Breadcrumbs, Htag } from "components";
 import { RoutesNames } from "constants/routes-names";
 import { BreadcrumbItem } from "types";
 import { useProducts } from "features/products/use-products";
-import { ProductCard } from "shared-components";
 import styles from "./Category.module.sass";
+import { ProductCard } from "modules/Product/components";
 
 const category = {
   title: "[category-name]",

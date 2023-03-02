@@ -7,7 +7,7 @@ type NoticeAccent<T> = "gray" | "success" | T;
 interface NoticeProps {
   size: Extract<ElementSizes, "m" | "s">;
   accent: NoticeAccent<ElementAccent>;
-  children: string;
+  children: string | number;
   className?: string;
 }
 

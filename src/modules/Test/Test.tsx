@@ -1,9 +1,7 @@
 import { Container } from "layouts";
 import styles from "./Test.module.sass";
-import { Button, Rating } from "components";
 import { ReactComponent as LeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as RightIcon } from "assets/icons/chevron-right.svg";
-import { useState } from "react";
 import { ProductCard } from "modules/Product/components";
 
 const renderLeftIcon = (className: string) => (
@@ -52,14 +50,14 @@ const ProductCardProps = {
 export const Test = () => {
   return (
     <Container>
-      <div className={styles.test}>
+      {/* <div className={styles.test}>
         <div className={styles.col}>
           <ProductCard {...ProductCardProps} />
         </div>
         <div className={styles.col}>
           <ProductCard {...ProductCardPropsDiscount} />
         </div>
-      </div>
+      </div> */}
     </Container>
   );
 };

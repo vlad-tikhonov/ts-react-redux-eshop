@@ -35,17 +35,7 @@ export const Category = () => {
           </Htag>
           <div className={styles.products}>
             {products.map((p) => (
-              <ProductCard
-                image={p.image}
-                price={p.price}
-                priceWithCard={p.priceWithCard}
-                discount={p.discount}
-                reviewsAvg={p.reviewsAvg}
-                title={p.title}
-                categorySlug={p.categorySlug}
-                slug={p.slug}
-                key={p._id}
-              />
+              <ProductCard product={p} key={p._id} />
             ))}
           </div>
         </div>

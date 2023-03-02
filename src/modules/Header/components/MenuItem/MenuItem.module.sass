@@ -7,6 +7,7 @@
 	gap: .8rem
 	text-decoration: none
 	font-size: 1.2rem
+	position: relative
 	&:visited
 		color: $color-surface-text
 	&_active, &_active:visited
@@ -20,6 +21,15 @@
 		scale: (1.05)
 		fill: $color-primary
 .label
+
+.tag
+	border-radius: 4px
+	font-size: .7rem
+	background-color: $color-primary
+	color: #fff
+	padding: .2rem .4rem
+	position: absolute
+	right: 0
 
 .item, .icon
 	transition: scale .1s

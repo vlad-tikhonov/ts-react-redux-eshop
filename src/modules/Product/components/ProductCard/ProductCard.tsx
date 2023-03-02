@@ -5,20 +5,20 @@ import cn from "classnames";
 import { modifyPrice, modifyDiscount, shortnerTitle } from "helpers/utils";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ProductCartButton } from "..";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { selectProductCount } from "features/cart/cart-selectors";
+import { addToCart, removeFromCart } from "features/cart/cart-slice";
 
-type ProductCardProps = Pick<
-  Product,
-  | "title"
-  | "price"
-  | "priceWithCard"
-  | "discount"
-  | "image"
-  | "reviewsAvg"
-  | "categorySlug"
-  | "slug"
->;
+interface ProductCardProps {
+  product: Product;
+  className?: string;
+}
 
-type ProductPriceProps = Pick<ProductCardProps, "price" | "priceWithCard">;
+interface ProductPriceProps {
+  price: Product["price"];
+  priceWithCard: Product["priceWithCard"];
+}
 
 const ProductPrice = ({ price, priceWithCard }: ProductPriceProps) => (
   <>
@@ -56,19 +56,24 @@ const defaultBtnState: CardBtnProps = {
   decoration: "outline",
 };
 
-export const ProductCard = ({
-  title,
-  price,
-  priceWithCard,
-  discount,
-  image,
-  reviewsAvg,
-  categorySlug,
-  slug,
-}: ProductCardProps) => {
+export const ProductCard = ({ product }: ProductCardProps) => {
+  const {
+    _id,
+    title,
+    price,
+    priceWithCard,
+    discount,
+    image,
+    reviewsAvg,
+    categorySlug,
+    slug,
+  } = product;
+
   const [isActive, setIsActive] = useState(false);
   const [btnState, setBtnState] = useState<CardBtnProps>(defaultBtnState);
 
+  const dispatch = useAppDispatch();
+  const productPageLink = `/categories/${categorySlug}/${slug}`;
   const modifiedDiscount = discount ? modifyDiscount(discount) : "";
   const croppedTitle = shortnerTitle(title, 40);
 
@@ -85,16 +90,24 @@ export const ProductCard = ({
     setIsActive(false);
   };
 
+  const handleAdd = () => {
+    dispatch(addToCart(product));
+  };
+
+  const handleRemove = () => {
+    dispatch(removeFromCart(_id));
+  };
+
+  const productCount = useAppSelector((state) =>
+    selectProductCount(state, _id)
+  );
+
   return (
     <div
       className={cn(styles.card, { [styles["card-active"]]: isActive })}
       onMouseEnter={changeStyle}
       onMouseLeave={changeStyleDefault}
     >
-      <Link
-        to={`/categories/${categorySlug}/${slug}`}
-        className={styles.link}
-      ></Link>
       <div className={styles.card_header}>
         <img
           src={process.env.REACT_APP_STATIC_CONTENT_URL + image}
@@ -105,20 +118,37 @@ export const ProductCard = ({
             {modifiedDiscount}
           </Notice>
         )}
+        <Link to={productPageLink} className={styles.link}></Link>
       </div>
       <div className={styles.card_body}>
         <ProductPrice price={price} priceWithCard={priceWithCard} />
         <div className={styles.title}>{croppedTitle}</div>
-      </div>
-      <div className={styles.card_footer}>
         <Rating
           rating={reviewsAvg ? reviewsAvg : 0}
           readonly
           className={styles.rating}
         />
-        <Button size="m" {...btnState} className={styles.btn}>
-          В корзину
-        </Button>
+        <Link to={productPageLink} className={styles.link}></Link>
+      </div>
+      <div className={styles.card_footer}>
+        {productCount > 0 ? (
+          <ProductCartButton
+            addToCart={handleAdd}
+            removeFromCart={handleRemove}
+            size="m"
+          >
+            {productCount}
+          </ProductCartButton>
+        ) : (
+          <Button
+            size="m"
+            {...btnState}
+            className={styles.btn}
+            onClick={handleAdd}
+          >
+            В корзину
+          </Button>
+        )}
       </div>
     </div>
   );

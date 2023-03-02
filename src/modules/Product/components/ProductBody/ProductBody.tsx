@@ -1,26 +1,18 @@
 import styles from "./ProductBody.module.sass";
-import { ProductWithRelated, ProductDescription, Product } from "types";
+import { ProductWithRelated } from "types";
 import { modifyDiscount, modifyPrice } from "helpers/utils";
 import { Notice, Text, Htag, Button } from "components";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
 import { ReactComponent as SmileIcon } from "assets/icons/smile.svg";
-import { MiniProductCard } from "..";
+import { MiniProductCard, ProductCartButton } from "..";
 import cn from "classnames";
-import { useAppDispatch } from "app/hooks";
-import { addToCart } from "features/cart/cart-slice";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { addToCart, removeFromCart } from "features/cart/cart-slice";
+import { selectProductCount } from "features/cart/cart-selectors";
 
 interface ProductBodyProps {
   product: ProductWithRelated;
   className?: string;
-  // title: ProductWithRelated["title"];
-  // image: ProductWithRelated["image"];
-  // discount?: ProductWithRelated["discount"];
-  // price: ProductWithRelated["price"];
-  // priceWithCard: ProductWithRelated["priceWithCard"];
-  // relatedProducts: ProductWithRelated["relatedProducts"];
-  // brand: ProductDescription["brand"];
-  // country: ProductDescription["country"];
-  // pack: ProductDescription["package"];
 }
 
 const CartRenderIcon = (className: string) => (
@@ -30,6 +22,7 @@ const CartRenderIcon = (className: string) => (
 export const ProductBody = ({ product, className }: ProductBodyProps) => {
   const dispatch = useAppDispatch();
   const {
+    _id,
     image,
     title,
     discount,
@@ -39,8 +32,16 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
     relatedProducts,
   } = product;
 
+  const productCount = useAppSelector((state) => {
+    return selectProductCount(state, _id);
+  });
+
   const handleAdd = () => {
     dispatch(addToCart(product));
+  };
+
+  const handleRemove = () => {
+    dispatch(removeFromCart(_id));
   };
 
   return (
@@ -77,16 +78,27 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
             <Htag size="m">{price}</Htag>
           )}
         </div>
-        <Button
-          size="l"
-          accent="primary"
-          decoration="default"
-          renderLeftIcon={CartRenderIcon}
-          onClick={handleAdd}
-          className={styles.btn}
-        >
-          В корзину
-        </Button>
+        {productCount > 0 ? (
+          <ProductCartButton
+            addToCart={handleAdd}
+            removeFromCart={handleRemove}
+            size="l"
+            className={styles.btn}
+          >
+            {productCount}
+          </ProductCartButton>
+        ) : (
+          <Button
+            size="l"
+            accent="primary"
+            decoration="default"
+            renderLeftIcon={CartRenderIcon}
+            onClick={handleAdd}
+            className={styles.btn}
+          >
+            В корзину
+          </Button>
+        )}
         <div className={styles.bonus_wrapper}>
           <SmileIcon className={styles.smile} />
           <Text size="xs" className={styles.text}>

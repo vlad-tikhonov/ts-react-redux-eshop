@@ -1,19 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductWithRelated } from 'types'
+import { Product, CartProduct } from 'types'
 import { getItem, setItem} from 'helpers/persistenceStorage'
 import { PERSISTENCE_STORAGE_CART_KEY } from 'constants/persistence-storage'
 
-class CartProduct {
-	id: ProductWithRelated['_id'];
-	count: number;
-	data: ProductWithRelated
 
-	constructor(product: ProductWithRelated) {
-		this.id = product._id
-		this.count = 1
-		this.data = product
-	}
-}
+const createCartProduct = (product: Product): CartProduct =>({
+		id: product._id,
+		count: 1,
+		data: product
+})
 
 type CartSlice = {
 	data: CartProduct[],
@@ -36,20 +31,19 @@ const cartSlice = createSlice({
 
 			state.data = cart
 		},
-		addToCart: (state, action: PayloadAction<ProductWithRelated>) => {
+		addToCart: (state, action: PayloadAction<Product>) => {
 			const cartProduct = state.data.find(p => p.id === action.payload._id)
 
 			if(cartProduct) {
 				cartProduct.count++
 			} else {
-				state.data.push(new CartProduct(action.payload))
+				state.data.push(createCartProduct(action.payload))
 			}
 
 			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)
 		},
 		removeFromCart: (state, action: PayloadAction<CartProduct['id']>) => {
 			const cartProduct = state.data.find(p => p.id === action.payload)
-
 			if (!cartProduct) {
 				return
 			}
@@ -57,7 +51,7 @@ const cartSlice = createSlice({
 			if(cartProduct.count > 1) {
 				cartProduct.count--
 			} else {
-				state.data.filter(p => p.id !== action.payload)
+				state.data = state.data.filter(p => p.id !== action.payload)
 			}
 
 			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)

@@ -21,7 +21,8 @@ export const store = configureStore({
 			extraArgument: {
 				api, errorHandler
 			}
-		}
+		},
+		// serializableCheck: false
 	})
 });
 

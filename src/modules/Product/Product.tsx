@@ -38,18 +38,7 @@ export const Product = () => {
             reviewsAvg={product.reviewsAvg}
             reviewsCount={product.reviewsCount}
           />
-          <ProductBody
-            product={product}
-            // image={product.image}
-            // title={product.title}
-            // price={product.price}
-            // priceWithCard={product.priceWithCard}
-            // discount={product.discount}
-            // brand={product.description.brand}
-            // country={product.description.country}
-            // pack={product.description.package}
-            // relatedProducts={product.relatedProducts}
-          />
+          <ProductBody product={product} />
           <ProductReviews
             reviewsAvg={product.reviewsAvg}
             reviews={product.reviews}

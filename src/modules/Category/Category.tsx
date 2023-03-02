@@ -8,10 +8,6 @@ import { useProducts } from "features/products/use-products";
 import styles from "./Category.module.sass";
 import { ProductCard } from "modules/Product/components";
 
-const category = {
-  title: "[category-name]",
-};
-
 export const Category = () => {
   const { slug } = useParams();
   const category = useCategory(slug);

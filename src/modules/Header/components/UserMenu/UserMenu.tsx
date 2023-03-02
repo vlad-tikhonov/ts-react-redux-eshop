@@ -42,7 +42,9 @@ export const UserMenu = ({ name, surname, className }: UserMenuProps) => {
       <div className={styles.menu} onClick={toggleMenu}>
         <div className={styles.photo}></div>
         <div className={styles.name}>
-          <Text size="s">{name + " " + surname}</Text>
+          <Text size="s" className={styles.name_text}>
+            {name + " " + surname}
+          </Text>
         </div>
         <div className={styles.btn}>
           {isOpen ? (

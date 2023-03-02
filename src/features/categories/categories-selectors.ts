@@ -8,5 +8,6 @@ export const selectCategoriesInfo = (state: RootState) => ({
 
 export const selectAllCategories = (state: RootState) => state.categories.data
 
+//reselect?
 export const selectCategory = (state: RootState, slug: Category['slug'] | undefined) =>
 	state.categories.data.filter(category => category.slug === slug)[0]

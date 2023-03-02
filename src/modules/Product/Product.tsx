@@ -39,15 +39,16 @@ export const Product = () => {
             reviewsCount={product.reviewsCount}
           />
           <ProductBody
-            image={product.image}
-            title={product.title}
-            price={product.price}
-            priceWithCard={product.priceWithCard}
-            discount={product.discount}
-            brand={product.description.brand}
-            country={product.description.country}
-            pack={product.description.package}
-            relatedProducts={product.relatedProducts}
+            product={product}
+            // image={product.image}
+            // title={product.title}
+            // price={product.price}
+            // priceWithCard={product.priceWithCard}
+            // discount={product.discount}
+            // brand={product.description.brand}
+            // country={product.description.country}
+            // pack={product.description.package}
+            // relatedProducts={product.relatedProducts}
           />
           <ProductReviews
             reviewsAvg={product.reviewsAvg}

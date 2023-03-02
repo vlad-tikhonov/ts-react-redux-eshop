@@ -5,6 +5,7 @@ import { categoriesReducer } from 'features/categories/categories-slice';
 import { productsReducer } from 'features/products/products-slice'
 import { productReducer } from 'features/product/product-slice'
 import { authReducer } from 'features/auth/auth-slice'
+import { cartReducer } from 'features/cart/cart-slice'
 
 export const store = configureStore({
   reducer: {
@@ -12,8 +13,9 @@ export const store = configureStore({
 		products: productsReducer,
 		product: productReducer,
 		auth: authReducer,
+		cart: cartReducer,
   },
-	devTools: true,
+	devTools: process.env.NODE_ENV !== 'production',
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({
 		thunk: {
 			extraArgument: {

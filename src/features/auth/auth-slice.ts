@@ -58,7 +58,6 @@ const authSlice = createSlice({
 			})
 			.addCase(login.rejected, (state, action) => {
 				state.isLoading = false
-				console.log(action.payload);
 				state.error = action.payload || "Cannot load data"
 			})
 			.addCase(login.fulfilled, (state, action) => {

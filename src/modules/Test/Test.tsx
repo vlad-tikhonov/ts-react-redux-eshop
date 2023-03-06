@@ -1,4 +1,4 @@
-import { Container } from "layouts";
+import { Container, Wrapper } from "layouts";
 import styles from "./Test.module.sass";
 import { ReactComponent as LeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as RightIcon } from "assets/icons/chevron-right.svg";
@@ -49,15 +49,17 @@ const ProductCardProps = {
 
 export const Test = () => {
   return (
-    <Container>
-      {/* <div className={styles.test}>
-        <div className={styles.col}>
-          <ProductCard {...ProductCardProps} />
-        </div>
-        <div className={styles.col}>
-          <ProductCard {...ProductCardPropsDiscount} />
-        </div>
-      </div> */}
-    </Container>
+    <Wrapper>
+      <Container>
+        {/* <div className={styles.test}>
+	        <div className={styles.col}>
+	          <ProductCard {...ProductCardProps} />
+	        </div>
+	        <div className={styles.col}>
+	          <ProductCard {...ProductCardPropsDiscount} />
+	        </div>
+	      </div> */}
+      </Container>
+    </Wrapper>
   );
 };

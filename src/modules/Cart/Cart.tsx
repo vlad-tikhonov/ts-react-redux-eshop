@@ -1,4 +1,4 @@
-import { Container } from "layouts";
+import { Container, Main, Wrapper } from "layouts";
 import { Breadcrumbs, Htag, Button, Text, Checkbox, Notice } from "components";
 import { BreadcrumbItem } from "types";
 import styles from "./Cart.module.sass";
@@ -44,41 +44,43 @@ export const Cart = () => {
   }, [count, selectedCount]);
 
   return (
-    <Container>
-      <Breadcrumbs items={breadcrumbItems} />
-      <div className={styles.title}>
-        <Htag size="xl">Корзина</Htag>
-        <Notice accent="primary" size="m" className={styles.notice}>
-          {count}
-        </Notice>
-      </div>
-      <div className={styles.itemsHandler}>
-        <Checkbox
-          size="l"
-          className={styles.checkbox}
-          onChange={handleSelectAll}
-          checked={selectionState}
-        />
-        <Text size="s" className={styles.label}>
-          Выделить всё
-        </Text>
-        <Button
-          decoration="no"
-          size="s"
-          accent="primary"
-          onClick={handleRemove}
-          disabled={!selectedCount}
-        >
-          Удалить выбранные
-        </Button>
-      </div>
-      <div className={styles.body}>
-        <div className={styles.products}>
-          {products.map((p) => (
-            <CartItem cartProduct={p} key={p.id} />
-          ))}
+    <Wrapper>
+      <Container>
+        <Breadcrumbs items={breadcrumbItems} />
+        <div className={styles.title}>
+          <Htag size="xl">Корзина</Htag>
+          <Notice accent="primary" size="m" className={styles.notice}>
+            {count}
+          </Notice>
         </div>
-      </div>
-    </Container>
+        <div className={styles.itemsHandler}>
+          <Checkbox
+            size="l"
+            className={styles.checkbox}
+            onChange={handleSelectAll}
+            checked={selectionState}
+          />
+          <Text size="s" className={styles.label}>
+            Выделить всё
+          </Text>
+          <Button
+            decoration="no"
+            size="s"
+            accent="primary"
+            onClick={handleRemove}
+            disabled={!selectedCount}
+          >
+            Удалить выбранные
+          </Button>
+        </div>
+        <div className={styles.body}>
+          <div className={styles.products}>
+            {products.map((p) => (
+              <CartItem cartProduct={p} key={p.id} />
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Wrapper>
   );
 };

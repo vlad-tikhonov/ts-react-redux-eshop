@@ -8,6 +8,7 @@ import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { ReactComponent as LoginIcon } from "assets/icons/log-in.svg";
 import { useAuth } from "features/auth/useAuth";
 import { UserMenu } from "./components";
+import { Link } from "react-router-dom";
 import styles from "./Header.module.sass";
 
 const renderMenuIcon = (className: string) => (
@@ -35,7 +36,10 @@ export const Header = () => {
     <header className={styles.header}>
       <Container>
         <div className={styles.wrapper}>
-          <FullLogoImg />
+          <div className={styles.logo}>
+            <FullLogoImg />
+            <Link to={"/"} className={styles.homeLink} />
+          </div>
           <Button
             accent="secondary"
             size="m"

@@ -51,6 +51,7 @@ export const Checkbox = ({
         break;
       default: // null
         setCheckboxState(true);
+        onChange(true);
         break;
     }
   };

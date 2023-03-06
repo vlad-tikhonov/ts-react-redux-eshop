@@ -1,12 +1,27 @@
 .header
+	display: flex
+	align-items: center
 	background-color: #fff
 	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1)
-	margin-bottom: 2.4rem
-	padding: 1rem 1.6rem
+	position: fixed
+	width: 100%
+	z-index: 100
+	height: 72px
 
 .wrapper
 	display: flex
 	align-items: center
 	gap: 4rem
+
 .search
 	flex-grow: 2
+
+.logo
+	position: relative
+
+	& .homeLink
+		position: absolute
+		top: 0
+		left: 0
+		bottom: 0
+		right: 0

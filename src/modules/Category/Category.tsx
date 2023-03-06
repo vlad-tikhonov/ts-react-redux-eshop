@@ -1,4 +1,4 @@
-import { Container } from "layouts";
+import { Container, Wrapper } from "layouts";
 import { useParams } from "react-router-dom";
 import { useCategory } from "features/categories/use-category";
 import { Breadcrumbs, Htag } from "components";
@@ -26,7 +26,7 @@ export const Category = () => {
   ];
 
   return (
-    <div className={styles.wrapper}>
+    <Wrapper>
       <Container>
         <div>
           <Breadcrumbs items={breadcrumbItems} />
@@ -40,6 +40,6 @@ export const Category = () => {
           </div>
         </div>
       </Container>
-    </div>
+    </Wrapper>
   );
 };

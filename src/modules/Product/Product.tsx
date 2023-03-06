@@ -1,6 +1,6 @@
 import { Breadcrumbs, Htag } from "components";
 import { useProduct } from "features/product/useProduct";
-import { Container } from "layouts";
+import { Container, Wrapper } from "layouts";
 import { useParams } from "react-router-dom";
 import { ProductBody, ProductMenu, ProductReviews } from "./components";
 import styles from "./Product.module.sass";
@@ -29,22 +29,24 @@ export const Product = () => {
     ];
 
     return (
-      <Container>
-        <div className={styles.product_wrapper}>
-          <Breadcrumbs items={breadcrumbItems} />
-          <Htag size="s">{product.title}</Htag>
-          <ProductMenu
-            code={product.code}
-            reviewsAvg={product.reviewsAvg}
-            reviewsCount={product.reviewsCount}
-          />
-          <ProductBody product={product} />
-          <ProductReviews
-            reviewsAvg={product.reviewsAvg}
-            reviews={product.reviews}
-          />
-        </div>
-      </Container>
+      <Wrapper>
+        <Container>
+          <div className={styles.product_wrapper}>
+            <Breadcrumbs items={breadcrumbItems} />
+            <Htag size="s">{product.title}</Htag>
+            <ProductMenu
+              code={product.code}
+              reviewsAvg={product.reviewsAvg}
+              reviewsCount={product.reviewsCount}
+            />
+            <ProductBody product={product} />
+            <ProductReviews
+              reviewsAvg={product.reviewsAvg}
+              reviews={product.reviews}
+            />
+          </div>
+        </Container>
+      </Wrapper>
     );
   }
 

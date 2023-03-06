@@ -12,3 +12,7 @@ export const selectProductCount = (state: RootState, productId: ProductWithRelat
 
 	return product ? product.count : 0
 }
+
+export const selectSelectedCount = (state: RootState) => state.cart.data.reduce((acc, el) => el.isSelected ? acc + 1 : acc, 0)
+
+export const selectCartProducts = (state: RootState) => state.cart.data

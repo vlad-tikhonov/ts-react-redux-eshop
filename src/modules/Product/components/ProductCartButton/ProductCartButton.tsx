@@ -1,4 +1,4 @@
-import { Button, Text } from "components";
+import { Button } from "components";
 import { ReactComponent as MinusIcon } from "assets/icons/minus.svg";
 import { ReactComponent as PlusIcon } from "assets/icons/plus.svg";
 import styles from "./ProductCartButton.module.sass";

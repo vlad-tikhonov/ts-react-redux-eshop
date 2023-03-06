@@ -7,7 +7,8 @@ import { PERSISTENCE_STORAGE_CART_KEY } from 'constants/persistence-storage'
 const createCartProduct = (product: Product): CartProduct =>({
 		id: product._id,
 		count: 1,
-		data: product
+		data: product,
+		isSelected: false
 })
 
 type CartSlice = {
@@ -55,9 +56,24 @@ const cartSlice = createSlice({
 			}
 
 			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)
-		}
+		},
+		productSelectionHandler: (state, action: PayloadAction<{id: CartProduct['id'], selectionState: CartProduct['isSelected']}>) => {
+			const product = state.data.find(p => p.id === action.payload.id)
+
+			if (!product) {
+				return
+			}
+
+			product.isSelected = action.payload.selectionState
+
+			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)
+		},
+		allSelectionHandler: (state, action: PayloadAction<boolean>) => {
+			state.data.forEach(el => el.isSelected = action.payload)
+			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)
+		},
 	},
 })
 
-export const { initCart, addToCart, removeFromCart } = cartSlice.actions
+export const { initCart, addToCart, removeFromCart, productSelectionHandler, allSelectionHandler } = cartSlice.actions
 export const cartReducer = cartSlice.reducer

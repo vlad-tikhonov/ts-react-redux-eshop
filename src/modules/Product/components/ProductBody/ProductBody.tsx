@@ -75,7 +75,7 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
               </div>
             </>
           ) : (
-            <Htag size="m">{price}</Htag>
+            <Htag size="m">{modifyPrice(price)}</Htag>
           )}
         </div>
         {productCount > 0 ? (

@@ -1,5 +1,4 @@
 import { CartProduct } from "types";
-import { useState, useEffect } from "react";
 import { Text, Notice, Checkbox } from "components";
 import { ProductCartButton } from "modules/Product/components";
 import { modifyPrice, modifyDiscount } from "helpers/utils";

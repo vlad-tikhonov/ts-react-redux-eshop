@@ -72,8 +72,12 @@ const cartSlice = createSlice({
 			state.data.forEach(el => el.isSelected = action.payload)
 			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)
 		},
+		removeSelected: (state) => {
+			state.data = state.data.filter(el => !el.isSelected)
+			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)
+		},
 	},
 })
 
-export const { initCart, addToCart, removeFromCart, productSelectionHandler, allSelectionHandler } = cartSlice.actions
+export const { initCart, addToCart, removeFromCart, productSelectionHandler, allSelectionHandler, removeSelected } = cartSlice.actions
 export const cartReducer = cartSlice.reducer

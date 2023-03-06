@@ -2,7 +2,6 @@ import styles from "./Checkbox.module.sass";
 import cn from "classnames";
 import { ElementSizes } from "types";
 import { useState, useRef, useEffect } from "react";
-import { useIsFirstRender } from "hooks";
 
 interface CheckboxProps {
   size: Exclude<ElementSizes, "xs">;

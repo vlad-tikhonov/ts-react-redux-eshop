@@ -8,7 +8,7 @@ import {
   selectCartLength,
   selectSelectedCount,
 } from "features/cart/cart-selectors";
-import { allSelectionHandler } from "features/cart/cart-slice";
+import { allSelectionHandler, removeSelected } from "features/cart/cart-slice";
 import { CartItem } from "./components";
 import { useEffect, useState } from "react";
 
@@ -27,6 +27,10 @@ export const Cart = () => {
 
   const handleSelectAll = (b: boolean) => {
     dispatch(allSelectionHandler(b));
+  };
+
+  const handleRemove = () => {
+    dispatch(removeSelected());
   };
 
   useEffect(() => {
@@ -62,8 +66,8 @@ export const Cart = () => {
           decoration="no"
           size="s"
           accent="primary"
-          onClick={() => {}}
-          disabled={true}
+          onClick={handleRemove}
+          disabled={!selectedCount}
         >
           Удалить выбранные
         </Button>

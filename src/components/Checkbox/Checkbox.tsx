@@ -19,26 +19,6 @@ export const Checkbox = ({
   const [checkboxState, setCheckboxState] = useState<boolean | null>(checked);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const updateInput = () => {
-    if (!inputRef.current) {
-      return;
-    }
-
-    switch (checkboxState) {
-      case true:
-        inputRef.current.checked = checkboxState;
-        break;
-      case false:
-        inputRef.current.checked = checkboxState;
-        break;
-      case null:
-        inputRef.current.indeterminate = false;
-        break;
-      default:
-        return;
-    }
-  };
-
   const handleClick = () => {
     switch (checkboxState) {
       case true:
@@ -57,6 +37,26 @@ export const Checkbox = ({
   };
 
   useEffect(() => {
+    const updateInput = () => {
+      if (!inputRef.current) {
+        return;
+      }
+
+      switch (checkboxState) {
+        case true:
+          inputRef.current.checked = checkboxState;
+          break;
+        case false:
+          inputRef.current.checked = checkboxState;
+          break;
+        case null:
+          inputRef.current.indeterminate = false;
+          break;
+        default:
+          return;
+      }
+    };
+
     updateInput();
     setCheckboxState(checked);
   }, [checked]);

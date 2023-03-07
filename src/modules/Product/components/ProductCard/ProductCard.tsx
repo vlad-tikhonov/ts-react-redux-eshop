@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { ProductCartButton } from "..";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import { selectProductCount } from "features/cart/cart-selectors";
-import { addToCart, removeFromCart } from "features/cart/cart-slice";
+import { addToCart, decreaseProductCount } from "features/cart/cart-slice";
 
 interface ProductCardProps {
   product: Product;
@@ -95,7 +95,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   const handleRemove = () => {
-    dispatch(removeFromCart(_id));
+    dispatch(decreaseProductCount(_id));
   };
 
   const productCount = useAppSelector((state) =>

@@ -7,7 +7,7 @@ import { ReactComponent as SmileIcon } from "assets/icons/smile.svg";
 import { MiniProductCard, ProductCartButton } from "..";
 import cn from "classnames";
 import { useAppDispatch, useAppSelector } from "app/hooks";
-import { addToCart, removeFromCart } from "features/cart/cart-slice";
+import { addToCart, decreaseProductCount } from "features/cart/cart-slice";
 import { selectProductCount } from "features/cart/cart-selectors";
 
 interface ProductBodyProps {
@@ -41,7 +41,7 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
   };
 
   const handleRemove = () => {
-    dispatch(removeFromCart(_id));
+    dispatch(decreaseProductCount(_id));
   };
 
   return (

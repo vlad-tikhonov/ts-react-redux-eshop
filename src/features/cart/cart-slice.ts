@@ -43,7 +43,7 @@ const cartSlice = createSlice({
 
 			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)
 		},
-		removeFromCart: (state, action: PayloadAction<CartProduct['id']>) => {
+		decreaseProductCount: (state, action: PayloadAction<CartProduct['id']>) => {
 			const cartProduct = state.data.find(p => p.id === action.payload)
 			if (!cartProduct) {
 				return
@@ -76,8 +76,17 @@ const cartSlice = createSlice({
 			state.data = state.data.filter(el => !el.isSelected)
 			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)
 		},
+		increaseProductCount: (state, action: PayloadAction<CartProduct['id']>) => {
+			const product = state.data.find(p => p.id === action.payload)
+
+			if (!product){
+				return
+			}
+
+			product.count++
+		}
 	},
 })
 
-export const { initCart, addToCart, removeFromCart, productSelectionHandler, allSelectionHandler, removeSelected } = cartSlice.actions
+export const { initCart, addToCart, decreaseProductCount, productSelectionHandler, allSelectionHandler, removeSelected, increaseProductCount } = cartSlice.actions
 export const cartReducer = cartSlice.reducer

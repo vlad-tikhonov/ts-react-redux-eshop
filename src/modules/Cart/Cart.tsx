@@ -49,9 +49,11 @@ export const Cart = () => {
         <Breadcrumbs items={breadcrumbItems} />
         <div className={styles.title}>
           <Htag size="xl">Корзина</Htag>
-          <Notice accent="primary" size="m" className={styles.notice}>
-            {count}
-          </Notice>
+          {!!count && (
+            <Notice accent="primary" size="m" className={styles.notice}>
+              {count}
+            </Notice>
+          )}
         </div>
         <div className={styles.itemsHandler}>
           <Checkbox

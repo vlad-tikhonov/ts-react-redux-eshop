@@ -4,7 +4,12 @@ import { ProductCartButton } from "modules/Product/components";
 import { modifyPrice, modifyDiscount } from "helpers/utils";
 import styles from "./CartItem.module.sass";
 import { useAppDispatch } from "app/hooks";
-import { productSelectionHandler } from "features/cart/cart-slice";
+import {
+  decreaseProductCount,
+  increaseProductCount,
+  productSelectionHandler,
+} from "features/cart/cart-slice";
+import cn from "classnames";
 
 interface CartItemProps {
   cartProduct: CartProduct;
@@ -78,8 +83,16 @@ export const CartItem = ({ cartProduct, className }: CartItemProps) => {
     );
   };
 
+  const handleIncrease = () => {
+    dispatch(increaseProductCount(cartProduct.id));
+  };
+
+  const handleRemove = () => {
+    dispatch(decreaseProductCount(cartProduct.id));
+  };
+
   return (
-    <div className={styles.item}>
+    <div className={cn(styles.item, className)}>
       <Checkbox
         size="l"
         checked={cartProduct.isSelected}
@@ -106,8 +119,8 @@ export const CartItem = ({ cartProduct, className }: CartItemProps) => {
         <div className={styles.summary}>
           <div className={styles.btn}>
             <ProductCartButton
-              addToCart={() => {}}
-              removeFromCart={() => {}}
+              addToCart={handleIncrease}
+              removeFromCart={handleRemove}
               size="m"
             >
               {count}

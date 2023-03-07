@@ -5,11 +5,11 @@ import {
   selectProductsInfo,
 } from "features/products/products-selectors";
 import { loadProducts } from "features/products/products-slice";
-import { ProductWithReviews } from "types";
+import { ProductWithReviewsAvg } from "types";
 
 export const useProducts = (
   categorySlug: string | undefined
-): [ProductWithReviews[], ReturnType<typeof selectProductsInfo>] => {
+): [ProductWithReviewsAvg[], ReturnType<typeof selectProductsInfo>] => {
   const dispatch = useAppDispatch();
   const { isLoading, error } = useAppSelector(selectProductsInfo);
   const products = useAppSelector(selectProducts);

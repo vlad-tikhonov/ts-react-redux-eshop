@@ -1,28 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Product, Extra } from "types";
+import { ProductWithReviewsAvg, Extra } from "types";
 
-type ProductsSlice = {
-  data: Product[];
+type PromotionSlice = {
+  data: ProductWithReviewsAvg[];
   error: string | null;
   isLoading: boolean;
 };
 
-const initialState: ProductsSlice = {
+const initialState: PromotionSlice = {
   data: [],
   isLoading: false,
   error: null,
 };
 
-export const loadProducts = createAsyncThunk<
-  Product[],
+export const loadPromotionProducts = createAsyncThunk<
+  ProductWithReviewsAvg[],
   {slug: string},
   {
-    state: { products: ProductsSlice };
+    state: { promotion: PromotionSlice };
     extra: Extra;
     rejectValue: string;
   }
 >(
-  "@@products/load-products",
+  "@@promotion/load-promotion",
   async ({ slug }, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
       return await api.getProducts(slug);
@@ -34,7 +34,7 @@ export const loadProducts = createAsyncThunk<
   },
   {
     condition: (_, { getState }) => {
-      const { products: { isLoading } } = getState();
+      const { promotion: { isLoading } } = getState();
       if (isLoading) {
         return false;
       }
@@ -42,25 +42,25 @@ export const loadProducts = createAsyncThunk<
   }
 );
 
-const productsSlice = createSlice({
-  name: "@@products",
+const promotionSlice = createSlice({
+  name: "@@promotion",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loadProducts.pending, (state) => {
+      .addCase(loadPromotionProducts.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(loadProducts.rejected, (state, action) => {
+      .addCase(loadPromotionProducts.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || "Cannot load data";
       })
-      .addCase(loadProducts.fulfilled, (state, action) => {
+      .addCase(loadPromotionProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
       });
   },
 });
 
-export const productsReducer = productsSlice.reducer;
+export const productsReducer = promotionSlice.reducer;

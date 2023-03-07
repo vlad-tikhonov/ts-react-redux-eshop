@@ -1,5 +1,5 @@
 import axios from './axios'
-import { ProductWithReviews,ProductWithReviewsAndRelated } from 'types'
+import { ProductWithReviewsAvg,ProductWithReviewsAndRelated } from 'types'
 import { AxiosResponse } from 'axios';
 
 export const getProduct = (slug: string): Promise<ProductWithReviewsAndRelated> => {
@@ -8,9 +8,16 @@ export const getProduct = (slug: string): Promise<ProductWithReviewsAndRelated> 
 			response.data)
 }
 
-export const getProducts = (slug: string): Promise<ProductWithReviews[]> => {
+export const getProducts = (slug: string): Promise<ProductWithReviewsAvg[]> => {
   return axios.post('/product/bySlug', { categorySlug: slug})
-		.then((response: AxiosResponse<ProductWithReviews[]>) =>
+		.then((response: AxiosResponse<ProductWithReviewsAvg[]>) =>
+			response.data
+		)
+}
+
+export const getPromotions = (): Promise<ProductWithReviewsAvg[]> => {
+  return axios.post('/product/promotions')
+		.then((response: AxiosResponse<ProductWithReviewsAvg[]>) =>
 			response.data
 		)
 }

@@ -22,6 +22,8 @@ export type Product = {
 	slug: string;
 }
 
+export type ProductWithReviewsAvg = Product & { reviewsAvg: Rating | null; }
+
 export type ProductWithReviews = Product & {
 	reviews: Review[];
 	reviewsCount: number;

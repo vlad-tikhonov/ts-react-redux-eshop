@@ -1,14 +1,14 @@
 import styles from "./ProductMenu.module.sass";
-import { Product } from "types";
+import { ProductWithReviews } from "types";
 import cn from "classnames";
 import { ReactComponent as ShareIcon } from "assets/icons/share.svg";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
 import { Button, Rating } from "components";
 
 interface ProductMenuProps {
-  code: Product["code"];
-  reviewsAvg: Product["reviewsAvg"];
-  reviewsCount: Product["reviewsCount"];
+  code: ProductWithReviews["code"];
+  reviewsAvg: ProductWithReviews["reviewsAvg"];
+  reviewsCount: ProductWithReviews["reviewsCount"];
   className?: string;
 }
 

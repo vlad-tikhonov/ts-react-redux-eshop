@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Extra, ProductWithReviews } from "types";
+import { Product, Extra } from "types";
 
 type ProductsSlice = {
-  data: ProductWithReviews[];
+  data: Product[];
   error: string | null;
   isLoading: boolean;
 };
@@ -14,7 +14,7 @@ const initialState: ProductsSlice = {
 };
 
 export const loadProducts = createAsyncThunk<
-	ProductWithReviews[],
+  Product[],
   {slug: string},
   {
     state: { products: ProductsSlice };

@@ -1,5 +1,5 @@
 import { Htag, Text, Rating, Button } from "components";
-import { Review, Product } from "types";
+import { Review, ProductWithReviews } from "types";
 import cn from "classnames";
 import styles from "./ProductReviews.module.sass";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import { ReactComponent as UserIcon } from "assets/icons/user.svg";
 import { formatDate } from "helpers/utils";
 interface ProductReviewsProps {
   reviews: Review[];
-  reviewsAvg: Product["reviewsAvg"];
+  reviewsAvg: ProductWithReviews["reviewsAvg"];
   className?: string;
 }
 

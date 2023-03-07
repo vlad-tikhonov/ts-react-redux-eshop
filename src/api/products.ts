@@ -1,16 +1,16 @@
 import axios from './axios'
-import { Product,ProductWithRelated } from 'types'
+import { ProductWithReviews,ProductWithReviewsAndRelated } from 'types'
 import { AxiosResponse } from 'axios';
 
-export const getProduct = (slug: string): Promise<ProductWithRelated> => {
+export const getProduct = (slug: string): Promise<ProductWithReviewsAndRelated> => {
   return axios.get(`/product/bySlug/${slug}`)
-		.then((response: AxiosResponse<ProductWithRelated>) =>
+		.then((response: AxiosResponse<ProductWithReviewsAndRelated>) =>
 			response.data)
 }
 
-export const getProducts = (slug: string): Promise<Product[]> => {
+export const getProducts = (slug: string): Promise<ProductWithReviews[]> => {
   return axios.post('/product/bySlug', { categorySlug: slug})
-		.then((response: AxiosResponse<Product[]>) =>
+		.then((response: AxiosResponse<ProductWithReviews[]>) =>
 			response.data
 		)
 }

@@ -1,5 +1,5 @@
 import styles from "./ProductBody.module.sass";
-import { ProductWithRelated } from "types";
+import { ProductWithReviewsAndRelated } from "types";
 import { modifyDiscount, modifyPrice } from "helpers/utils";
 import { Notice, Text, Htag, Button } from "components";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
@@ -11,7 +11,7 @@ import { addToCart, decreaseProductCount } from "features/cart/cart-slice";
 import { selectProductCount } from "features/cart/cart-selectors";
 
 interface ProductBodyProps {
-  product: ProductWithRelated;
+  product: ProductWithReviewsAndRelated;
   className?: string;
 }
 

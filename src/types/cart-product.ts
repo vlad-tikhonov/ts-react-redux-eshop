@@ -1,4 +1,4 @@
-import { Product } from "./eshop-types"
+import { Product } from "types"
 
 export type CartProduct = {
 	id: Product['_id'];

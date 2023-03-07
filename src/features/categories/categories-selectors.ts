@@ -1,5 +1,5 @@
 import {RootState} from 'app/store'
-import {Category} from 'types/eshop-types'
+import {Category} from 'types'
 
 export const selectCategoriesInfo = (state: RootState) => ({
 	isLoading: state.categories.isLoading,

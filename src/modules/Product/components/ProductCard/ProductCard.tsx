@@ -9,6 +9,13 @@ import { ProductCartButton } from "..";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import { selectProductCount } from "features/cart/cart-selectors";
 import { addToCart, decreaseProductCount } from "features/cart/cart-slice";
+import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
+import { ReactComponent as HeartFilledIcon } from "assets/icons/heart-filled.svg";
+import { selectIsInFavorites } from "features/favorites/favorites-selectors";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "features/favorites/favorites.slice";
 
 interface ProductCardProps {
   product: Product;
@@ -90,16 +97,28 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     setIsActive(false);
   };
 
-  const handleAdd = () => {
+  const handleAddToCart = () => {
     dispatch(addToCart(product));
   };
 
-  const handleRemove = () => {
+  const handleRemoveFromCart = () => {
     dispatch(decreaseProductCount(_id));
   };
 
   const productCount = useAppSelector((state) =>
     selectProductCount(state, _id)
+  );
+
+  const handleAddToFavorites = () => {
+    dispatch(addToFavorites(product));
+  };
+
+  const handleRemoveFromFavorites = () => {
+    dispatch(removeFromFavorites(_id));
+  };
+
+  const isInFavorites = useAppSelector((state) =>
+    selectIsInFavorites(state, _id)
   );
 
   return (
@@ -119,6 +138,18 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </Notice>
         )}
         <Link to={productPageLink} className={styles.link}></Link>
+        <div
+          className={styles.favorites}
+          onClick={
+            isInFavorites ? handleRemoveFromFavorites : handleAddToFavorites
+          }
+        >
+          {isInFavorites ? (
+            <HeartFilledIcon className={styles.heart} />
+          ) : (
+            <HeartIcon className={styles.heart} />
+          )}
+        </div>
       </div>
       <div className={styles.card_body}>
         <ProductPrice price={price} priceWithCard={priceWithCard} />
@@ -133,8 +164,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       <div className={styles.card_footer}>
         {productCount > 0 ? (
           <ProductCartButton
-            addToCart={handleAdd}
-            removeFromCart={handleRemove}
+            addToCart={handleAddToCart}
+            removeFromCart={handleRemoveFromCart}
             size="m"
           >
             {productCount}
@@ -144,7 +175,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             size="m"
             {...btnState}
             className={styles.btn}
-            onClick={handleAdd}
+            onClick={handleAddToCart}
           >
             В корзину
           </Button>

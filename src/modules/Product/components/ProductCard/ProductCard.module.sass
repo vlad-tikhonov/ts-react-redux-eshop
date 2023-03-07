@@ -23,6 +23,24 @@
 			width: 100%
 			height: 100%
 			object-fit: contain
+		& .favoritesBtn
+			position: absolute
+			right: -15px
+			z-index: 2
+		& .favorites
+			width: 32px
+			height: 32px
+			border-radius: 4px
+			position: absolute
+			right: -15px
+			display: flex
+			cursor: pointer
+			z-index: 2
+			background-color: $color-lightest
+			& .heart
+				margin: auto
+				fill: $color-hard
+		& >
 	&_body
 		position: relative
 	&_footer

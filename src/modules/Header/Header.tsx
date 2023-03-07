@@ -2,7 +2,7 @@ import { Container } from "layouts";
 import { Button, Modal } from "components";
 import { Search, Menu } from "./components";
 import { useState } from "react";
-import { AuthForm } from "modules/Auth/components";
+import { AuthForm } from "modules/Auth";
 import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { ReactComponent as LoginIcon } from "assets/icons/log-in.svg";

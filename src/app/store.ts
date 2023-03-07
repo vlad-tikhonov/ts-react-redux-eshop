@@ -7,6 +7,7 @@ import { productReducer } from 'features/product/product-slice'
 import { authReducer } from 'features/auth/auth-slice'
 import { cartReducer } from 'features/cart/cart-slice'
 import { favoritesReducer } from 'features/favorites/favorites.slice';
+import { promotionsReducer } from 'features/promotions/promotions-slice';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
 		auth: authReducer,
 		cart: cartReducer,
 		favorites: favoritesReducer,
+		promotions: promotionsReducer,
   },
 	devTools: process.env.NODE_ENV !== 'production',
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({

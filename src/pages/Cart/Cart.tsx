@@ -1,4 +1,4 @@
-import { Container, Main, Wrapper } from "layouts";
+import { Container, Wrapper } from "layouts";
 import { Breadcrumbs, Htag, Button, Text, Checkbox, Notice } from "components";
 import { BreadcrumbItem } from "types";
 import styles from "./Cart.module.sass";
@@ -9,7 +9,7 @@ import {
   selectSelectedCount,
 } from "features/cart/cart-selectors";
 import { allSelectionHandler, removeSelected } from "features/cart/cart-slice";
-import { CartItem } from "./components";
+import { CartItem } from "modules/Cart";
 import { useEffect, useState } from "react";
 
 const breadcrumbItems: BreadcrumbItem[] = [

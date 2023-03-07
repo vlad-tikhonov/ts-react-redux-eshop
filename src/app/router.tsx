@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import {
-  Test,
-  Home,
-  Categories,
-  Favorites,
-  Orders,
   Cart,
+  Categories,
   Category,
+  Home,
+  Orders,
   Product,
-} from "modules";
+  Favorites,
+  Test,
+} from "pages";
 import { Layout } from "layouts";
 
 import { RoutesNames } from "constants/routes-names";

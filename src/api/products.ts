@@ -15,8 +15,8 @@ export const getProducts = (slug: string): Promise<ProductWithReviewsAvg[]> => {
 		)
 }
 
-export const getPromotions = (): Promise<ProductWithReviewsAvg[]> => {
-  return axios.post('/product/promotions')
+export const getPromotionProducts = (): Promise<ProductWithReviewsAvg[]> => {
+  return axios.get('/product/promotions')
 		.then((response: AxiosResponse<ProductWithReviewsAvg[]>) =>
 			response.data
 		)

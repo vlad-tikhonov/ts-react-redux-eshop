@@ -13,19 +13,19 @@ const initialState: PromotionSlice = {
   error: null,
 };
 
-export const loadPromotionProducts = createAsyncThunk<
+export const loadPromotionsProducts = createAsyncThunk<
   ProductWithReviewsAvg[],
-  {slug: string},
-  {
-    state: { promotion: PromotionSlice };
+	undefined,
+	{
+    state: { promotions: PromotionSlice };
     extra: Extra;
     rejectValue: string;
   }
 >(
-  "@@promotion/load-promotion",
-  async ({ slug }, { extra: { api, errorHandler }, rejectWithValue }) => {
+  "@@promotions/load-promotions",
+  async (_, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
-      return await api.getProducts(slug);
+      return await api.getPromotionProducts();
     } catch (e) {
 			const message = errorHandler(e)
 
@@ -34,7 +34,7 @@ export const loadPromotionProducts = createAsyncThunk<
   },
   {
     condition: (_, { getState }) => {
-      const { promotion: { isLoading } } = getState();
+      const { promotions: { isLoading } } = getState();
       if (isLoading) {
         return false;
       }
@@ -42,25 +42,25 @@ export const loadPromotionProducts = createAsyncThunk<
   }
 );
 
-const promotionSlice = createSlice({
-  name: "@@promotion",
+const promotionsSlice = createSlice({
+  name: "@@promotions",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(loadPromotionProducts.pending, (state) => {
+      .addCase(loadPromotionsProducts.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(loadPromotionProducts.rejected, (state, action) => {
+      .addCase(loadPromotionsProducts.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || "Cannot load data";
       })
-      .addCase(loadPromotionProducts.fulfilled, (state, action) => {
+      .addCase(loadPromotionsProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
       });
   },
 });
 
-export const productsReducer = promotionSlice.reducer;
+export const promotionsReducer = promotionsSlice.reducer;

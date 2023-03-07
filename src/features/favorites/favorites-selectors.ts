@@ -7,3 +7,7 @@ export const selectIsInFavorites = (state: RootState, productId: Product['_id'])
 
 	return !!product
 }
+
+export const selectFavoritesLength = (state: RootState) => state.favorites.data.length
+
+export const selectFavorites = (state: RootState) => state.favorites.data

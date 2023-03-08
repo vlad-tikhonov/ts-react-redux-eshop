@@ -2,8 +2,9 @@ import { Container } from "layouts";
 import { DeliveryBanner, SpecialOffers } from "modules/Home/components";
 import { ProductsPanel } from "modules/Product/components";
 import { usePromotions } from "features/promotions/use-promotions";
-import styles from "./Home.module.sass";
 import { useNovelties } from "features/novelties/use-novelties";
+import styles from "./Home.module.sass";
+import { Articles } from "modules/Header/components";
 
 export const Home = () => {
   const [promotions, { isLoading: pIsLoading, error: pError }] =
@@ -23,7 +24,8 @@ export const Home = () => {
         title="Новинки"
         className={styles.novelties}
       />
-      <SpecialOffers />
+      <SpecialOffers className={styles.offers} />
+      <Articles />
     </Container>
   );
 };

@@ -1,4 +1,4 @@
-import { Breadcrumbs, Htag } from "components";
+import { Breadcrumbs, Htag } from "ui";
 import { ProductCard } from "modules/Product/components";
 import { Container, Wrapper } from "layouts";
 import { BreadcrumbItem } from "types";

@@ -1,4 +1,4 @@
-import { Htag, Text, Rating, Button } from "components";
+import { Htag, Text, Rating, Button } from "ui";
 import { Review, ProductWithReviews } from "types";
 import cn from "classnames";
 import styles from "./ProductReviews.module.sass";

@@ -1,5 +1,5 @@
 import { Container, Wrapper } from "layouts";
-import { Breadcrumbs, Htag, Text } from "components";
+import { Breadcrumbs, Htag, Text } from "ui";
 import { BreadcrumbItem } from "types/componets-types";
 import { useCategories } from "features/categories/use-categories";
 import { Link } from "react-router-dom";

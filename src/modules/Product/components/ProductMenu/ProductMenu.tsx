@@ -3,7 +3,7 @@ import { ProductWithReviews } from "types";
 import cn from "classnames";
 import { ReactComponent as ShareIcon } from "assets/icons/share.svg";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
-import { Button, Rating } from "components";
+import { Button, Rating } from "ui";
 
 interface ProductMenuProps {
   code: ProductWithReviews["code"];

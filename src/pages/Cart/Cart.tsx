@@ -1,5 +1,5 @@
 import { Container, Wrapper } from "layouts";
-import { Breadcrumbs, Htag, Button, Text, Checkbox, Notice } from "components";
+import { Breadcrumbs, Htag, Button, Text, Checkbox, Notice } from "ui";
 import { BreadcrumbItem } from "types";
 import styles from "./Cart.module.sass";
 import { useAppDispatch, useAppSelector } from "app/hooks";

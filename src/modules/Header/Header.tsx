@@ -1,5 +1,5 @@
 import { Container } from "layouts";
-import { Button, Modal } from "components";
+import { Button, Modal } from "ui";
 import { Search, Menu } from "./components";
 import { useState } from "react";
 import { AuthForm } from "modules/Auth";

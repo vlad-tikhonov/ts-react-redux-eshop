@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import ReactDOM from "react-dom";
-import { Button } from "components";
+import { Button } from "ui";
 import styles from "./Modal.module.sass";
 import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
 

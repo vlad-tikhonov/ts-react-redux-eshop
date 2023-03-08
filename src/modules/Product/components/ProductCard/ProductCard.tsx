@@ -1,4 +1,4 @@
-import { Button, Rating, Text, Notice, ButtonProps } from "components";
+import { Button, Rating, Text, Notice, ButtonProps } from "ui";
 import { ProductWithReviewsAvg } from "types";
 import styles from "./ProductCard.module.sass";
 import cn from "classnames";

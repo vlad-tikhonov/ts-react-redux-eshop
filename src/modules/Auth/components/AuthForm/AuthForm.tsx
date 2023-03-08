@@ -1,5 +1,5 @@
-import { Button, Htag } from "components";
-import { TextField } from "components/TextField/TextField";
+import { Button, Htag } from "ui";
+import { TextField } from "ui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./AuthForm.module.sass";
 import { ReactComponent as EyeIcon } from "assets/icons/eye.svg";

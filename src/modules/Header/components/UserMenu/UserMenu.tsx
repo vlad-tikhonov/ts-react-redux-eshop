@@ -1,7 +1,7 @@
 import { useClickOutside } from "hooks";
 import { useRef, useState } from "react";
 import { User } from "types";
-import { Text } from "components";
+import { Text } from "ui";
 import cn from "classnames";
 import { ReactComponent as ChevronDown } from "assets/icons/chevron-down.svg";
 import { ReactComponent as ChevronUp } from "assets/icons/chevron-up.svg";

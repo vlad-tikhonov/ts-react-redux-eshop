@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { Text } from "components";
+import { Text } from "ui";
 import { Container } from "layouts";
 import { Link } from "react-router-dom";
 import cn from "classnames";

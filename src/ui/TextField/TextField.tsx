@@ -1,7 +1,7 @@
 import styles from "./TextField.module.sass";
 import cn from "classnames";
 import { ElementSizes } from "types";
-import { Text } from "components";
+import { Text } from "ui";
 import { HTMLInputTypeAttribute, useEffect, useRef, useState } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { useActiveElement } from "hooks";

@@ -2,7 +2,6 @@ import { Container, Wrapper } from "layouts";
 import styles from "./Test.module.sass";
 import { ReactComponent as LeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as RightIcon } from "assets/icons/chevron-right.svg";
-import { ProductCard } from "modules/Product/components";
 
 const renderLeftIcon = (className: string) => (
   <LeftIcon className={className} />

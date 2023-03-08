@@ -1,7 +1,7 @@
 import { Container, Wrapper } from "layouts";
 import { useParams } from "react-router-dom";
 import { useCategory } from "features/categories/use-category";
-import { Breadcrumbs, Htag } from "components";
+import { Breadcrumbs, Htag } from "ui";
 import { RoutesNames } from "constants/routes-names";
 import { BreadcrumbItem } from "types";
 import { useProducts } from "features/products/use-products";

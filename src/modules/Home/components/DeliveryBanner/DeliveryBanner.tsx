@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { Htag } from "components";
+import { Htag } from "ui";
 import productPackageImg from "assets/images/products-package.png";
 import styles from "./DeliveryBanner.module.sass";
 

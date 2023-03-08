@@ -1,6 +1,7 @@
-import { Htag } from "components";
+import { Htag } from "ui";
 import { ProductCard } from "..";
 import { ProductWithReviewsAvg } from "types";
+import cn from "classnames";
 import styles from "./ProductsPanel.module.sass";
 
 interface ProductsPanelProps {
@@ -15,7 +16,7 @@ export const ProductsPanel = ({
   className,
 }: ProductsPanelProps) => {
   return (
-    <div className={styles.panel}>
+    <div className={cn(styles.panel, className)}>
       <Htag size="m" className={styles.title}>
         {title}
       </Htag>

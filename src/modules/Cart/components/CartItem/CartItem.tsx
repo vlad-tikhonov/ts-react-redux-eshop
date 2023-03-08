@@ -1,5 +1,5 @@
 import { CartProduct } from "types";
-import { Text, Notice, Checkbox } from "components";
+import { Text, Notice, Checkbox } from "ui";
 import { ProductCartButton } from "modules/Product/components";
 import { modifyPrice, modifyDiscount } from "helpers/utils";
 import styles from "./CartItem.module.sass";

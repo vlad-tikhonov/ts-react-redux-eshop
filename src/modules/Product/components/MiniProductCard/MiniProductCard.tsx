@@ -2,7 +2,7 @@ import { Product } from "types";
 import styles from "./MiniProductCard.module.sass";
 import { modifyPrice } from "helpers/utils";
 import { Link } from "react-router-dom";
-import { Text } from "components";
+import { Text } from "ui";
 
 interface MiniProductCardProps {
   image: Product["image"];

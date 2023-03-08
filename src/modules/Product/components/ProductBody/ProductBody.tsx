@@ -1,7 +1,7 @@
 import styles from "./ProductBody.module.sass";
 import { ProductWithReviewsAndRelated } from "types";
 import { modifyDiscount, modifyPrice } from "helpers/utils";
-import { Notice, Text, Htag, Button } from "components";
+import { Notice, Text, Htag, Button } from "ui";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
 import { ReactComponent as SmileIcon } from "assets/icons/smile.svg";
 import { MiniProductCard, ProductCartButton } from "..";

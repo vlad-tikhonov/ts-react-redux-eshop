@@ -1,0 +1,23 @@
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { selectNoveltiesInfo, selectNoveltiesProducts} from "./novelties-selectors";
+import { useEffect } from "react";
+import { loadNoveltiesProducts } from "./novelties-slice";
+import { ProductWithReviewsAvg } from "types";
+
+export const useNovelties = (): [
+  ProductWithReviewsAvg[],
+  ReturnType<typeof selectNoveltiesInfo>
+] => {
+  const dispatch = useAppDispatch();
+
+  const { isLoading, error } = useAppSelector(selectNoveltiesInfo);
+  const novelties = useAppSelector(selectNoveltiesProducts);
+
+  useEffect(() => {
+    if (novelties.length === 0) {
+      dispatch(loadNoveltiesProducts());
+    }
+  }, [novelties, dispatch]);
+
+  return [novelties, { isLoading, error }];
+};

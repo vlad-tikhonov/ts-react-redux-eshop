@@ -5,4 +5,4 @@ export const selectPromotionsInfo = (state: RootState) => ({
 	error: state.promotions.error,
 })
 
-export const selectAllPromotionsProducts = (state: RootState) => state.promotions.data
+export const selectPromotionsProducts = (state: RootState) => state.promotions.data

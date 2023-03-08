@@ -22,3 +22,10 @@ export const getPromotionProducts = (): Promise<ProductWithReviewsAvg[]> => {
 		)
 }
 
+export const getNoveltiesProducts = (): Promise<ProductWithReviewsAvg[]> => {
+  return axios.get('/product/novelties')
+		.then((response: AxiosResponse<ProductWithReviewsAvg[]>) =>
+			response.data
+		)
+}
+

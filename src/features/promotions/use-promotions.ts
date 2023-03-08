@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "app/hooks";
-import { selectPromotionsInfo, selectAllPromotionsProducts} from "./promotions-selectors";
+import { selectPromotionsInfo, selectPromotionsProducts} from "./promotions-selectors";
 import { useEffect } from "react";
 import { loadPromotionsProducts } from "./promotions-slice";
 import { ProductWithReviewsAvg } from "types";
@@ -11,7 +11,7 @@ export const usePromotions = (): [
   const dispatch = useAppDispatch();
 
   const { isLoading, error } = useAppSelector(selectPromotionsInfo);
-  const promotions = useAppSelector(selectAllPromotionsProducts);
+  const promotions = useAppSelector(selectPromotionsProducts);
 
   useEffect(() => {
     if (promotions.length === 0) {

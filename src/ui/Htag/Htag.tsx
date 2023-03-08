@@ -1,10 +1,11 @@
 import cn from "classnames";
+import { ReactNode } from "react";
 import { ElementSizes } from "types/element-props";
 import styles from "./Htag.module.sass";
 
 interface HtagProps {
   size: ElementSizes;
-  children: string | number;
+  children: ReactNode;
   className?: string;
 }
 

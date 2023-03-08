@@ -1,5 +1,5 @@
 import { Container } from "layouts";
-import { DeliveryBanner } from "modules/Home/components";
+import { DeliveryBanner, SpecialOffers } from "modules/Home/components";
 import { ProductsPanel } from "modules/Product/components";
 import { usePromotions } from "features/promotions/use-promotions";
 import styles from "./Home.module.sass";
@@ -23,6 +23,7 @@ export const Home = () => {
         title="Новинки"
         className={styles.novelties}
       />
+      <SpecialOffers />
     </Container>
   );
 };

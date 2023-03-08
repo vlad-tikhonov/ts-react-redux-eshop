@@ -1,14 +1,13 @@
 import cn from "classnames";
 import styles from "./Article.module.sass";
 import { Text, Button, Htag } from "ui";
-
-interface Article {
+import { useState } from "react";
+interface ArticleProps {
   image: string;
   date: string;
   title: string;
   description: string;
   link: string;
-  className?: string;
 }
 
 export const Article = ({
@@ -17,10 +16,26 @@ export const Article = ({
   title,
   description,
   link,
-  className,
-}: Article) => {
+}: ArticleProps) => {
+  const [activeArticle, setActiveArticle] = useState(false);
+
+  const onMouseEnter = () => {
+    setActiveArticle(true);
+  };
+
+  const onMouseLeave = () => {
+    setActiveArticle(false);
+  };
+
   return (
-    <article className={cn(styles.article, className)}>
+    <article
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className={cn({
+        [styles.article]: true,
+        [styles.article_active]: activeArticle,
+      })}
+    >
       <div className={styles.header}>
         <img src={image} alt="article img" />
       </div>
@@ -34,9 +49,16 @@ export const Article = ({
         <div className={styles.description}>
           <Text size="s">{description}</Text>
         </div>
-        <Button size="m" decoration="default" accent="secondary">
-          Подробнее
-        </Button>
+        <div>
+          <Button
+            size="m"
+            decoration="default"
+            accent="secondary"
+            disabled={!activeArticle}
+          >
+            Подробнее
+          </Button>
+        </div>
       </div>
     </article>
   );

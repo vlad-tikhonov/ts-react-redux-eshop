@@ -1,20 +1,20 @@
 import cn from "classnames";
 import styles from "./CatalogDropdown.module.sass";
-import { Category } from "types";
 import { Link } from "react-router-dom";
 import { Text } from "ui";
+import { useCategories } from "features/categories/use-categories";
 
 interface CatalogDropdownProps {
   isOpen: boolean;
-  items: Category[];
   className?: string;
 }
 
 export const CatalogDropdown = ({
   isOpen,
-  items,
   className,
 }: CatalogDropdownProps) => {
+  const [categories] = useCategories();
+
   return (
     <div
       className={cn(
@@ -26,12 +26,12 @@ export const CatalogDropdown = ({
       )}
     >
       <ul className={styles.items}>
-        {items.map((i) => (
-          <li key={i._id} className={styles.item}>
+        {categories.map((c) => (
+          <li key={c._id} className={styles.item}>
             <Text size="s" bold className={styles.text}>
-              {i.title}
+              {c.title}
             </Text>
-            <Link to={`/categories/${i.slug}`} className={styles.link}></Link>
+            <Link to={`/categories/${c.slug}`} className={styles.link}></Link>
           </li>
         ))}
       </ul>

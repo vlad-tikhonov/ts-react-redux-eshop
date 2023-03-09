@@ -11,7 +11,6 @@ import { useAuth } from "features/auth/use-auth";
 import { UserMenu } from "./components";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Header.module.sass";
-import { useCategories } from "features/categories/use-categories";
 import { useClickOutside } from "hooks";
 
 const renderMenuIcon = (className: string) => (
@@ -31,7 +30,6 @@ export const Header = () => {
 
   const headerRef = useRef<HTMLDivElement | null>(null);
   const { pathname } = useLocation();
-  const [categories] = useCategories();
   const { user } = useAuth();
 
   const openModal = () => {
@@ -99,7 +97,7 @@ export const Header = () => {
           </div>
         </Container>
       </div>
-      <CatalogDropdown isOpen={dropdownState} items={categories} />
+      <CatalogDropdown isOpen={dropdownState} />
     </header>
   );
 };

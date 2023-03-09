@@ -27,9 +27,15 @@ export const Search = ({ className }: SearchProps) => {
   };
 
   useEffect(() => {
-    activeElement === inputRef.current
-      ? setInputIsActive(true)
-      : setInputIsActive(false);
+    if (activeElement === inputRef.current && !inputIsActive) {
+      setInputIsActive(true);
+    } else if (activeElement !== inputRef.current && inputIsActive) {
+      setInputIsActive(false);
+    }
+
+    // activeElement === inputRef.current
+    //   ? setInputIsActive(true)
+    //   : setInputIsActive(false);
   }, [activeElement]);
 
   useEffect(() => {
@@ -38,7 +44,8 @@ export const Search = ({ className }: SearchProps) => {
     }
   }, [inputValue]);
 
-  console.log(results);
+  // console.log(results);
+  console.log("search render");
   return (
     <form
       className={cn(styles.form, className, {

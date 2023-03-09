@@ -50,7 +50,7 @@ export const Header = () => {
   useEffect(() => {
     closeDropdown();
   }, [pathname]);
-  console.log("header render");
+
   return (
     <header ref={headerRef}>
       <div className={styles.header}>

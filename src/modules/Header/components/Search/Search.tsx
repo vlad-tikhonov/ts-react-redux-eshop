@@ -19,24 +19,11 @@ export const Search = ({ className }: SearchProps) => {
   const dispatch = useAppDispatch();
   const results = useAppSelector(selectSearchResults);
 
-  const activeElement = useActiveElement();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-
-  useEffect(() => {
-    if (activeElement === inputRef.current && !inputIsActive) {
-      setInputIsActive(true);
-    } else if (activeElement !== inputRef.current && inputIsActive) {
-      setInputIsActive(false);
-    }
-
-    // activeElement === inputRef.current
-    //   ? setInputIsActive(true)
-    //   : setInputIsActive(false);
-  }, [activeElement]);
 
   useEffect(() => {
     if (inputValue) {
@@ -52,7 +39,7 @@ export const Search = ({ className }: SearchProps) => {
         [styles.activeForm]: inputIsActive,
       })}
     >
-      <fieldset className={styles.inputWrapper}>
+      <div className={styles.inputWrapper}>
         <input
           className={styles.input}
           type="text"
@@ -60,10 +47,16 @@ export const Search = ({ className }: SearchProps) => {
           ref={inputRef}
           value={inputValue}
           onChange={handleChange}
+          onFocus={() => {
+            setInputIsActive(true);
+          }}
+          onBlur={() => {
+            setInputIsActive(false);
+          }}
         />
         <SearchIcon />
-      </fieldset>
-      <fieldset className={styles.resultsWrapper}></fieldset>
+      </div>
+      <div className={styles.resultsWrapper}></div>
     </form>
   );
 };

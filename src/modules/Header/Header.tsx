@@ -7,7 +7,7 @@ import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { ReactComponent as LoginIcon } from "assets/icons/log-in.svg";
 import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
-import { useAuth } from "features/auth/useAuth";
+import { useAuth } from "features/auth/use-auth";
 import { UserMenu } from "./components";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Header.module.sass";

@@ -2,17 +2,29 @@ import cn from "classnames";
 import styles from "./Search.module.sass";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { useActiveElement } from "hooks";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, ChangeEvent } from "react";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { loadSearchResults } from "features/search/search-slice";
+import { selectSearchResults } from "features/search/search-selectors";
+import { useSearch } from "features/search/use-search";
 
 interface SearchProps {
   className?: string;
 }
 
 export const Search = ({ className }: SearchProps) => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const activeElement = useActiveElement();
-
+  const [inputValue, setInputValue] = useState<string>("");
   const [inputIsActive, setInputIsActive] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const results = useAppSelector(selectSearchResults);
+
+  const activeElement = useActiveElement();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
 
   useEffect(() => {
     activeElement === inputRef.current
@@ -20,6 +32,13 @@ export const Search = ({ className }: SearchProps) => {
       : setInputIsActive(false);
   }, [activeElement]);
 
+  useEffect(() => {
+    if (inputValue) {
+      dispatch(loadSearchResults(inputValue));
+    }
+  }, [inputValue]);
+
+  console.log(results);
   return (
     <form
       className={cn(styles.form, className, {
@@ -32,8 +51,8 @@ export const Search = ({ className }: SearchProps) => {
           type="text"
           placeholder="Найти товар"
           ref={inputRef}
-          // value={value}
-          // onChange={handleChange}
+          value={inputValue}
+          onChange={handleChange}
         />
         <SearchIcon />
       </fieldset>

@@ -9,6 +9,7 @@ import { cartReducer } from 'features/cart/cart-slice'
 import { favoritesReducer } from 'features/favorites/favorites.slice';
 import { promotionsReducer } from 'features/promotions/promotions-slice';
 import { noveltiesReducer } from 'features/novelties/novelties-slice';
+import { searchReducer } from 'features/search/search-slice'
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +20,8 @@ export const store = configureStore({
 		cart: cartReducer,
 		favorites: favoritesReducer,
 		promotions: promotionsReducer,
-		novelties: noveltiesReducer
+		novelties: noveltiesReducer,
+		search: searchReducer
   },
 	devTools: process.env.NODE_ENV !== 'production',
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({

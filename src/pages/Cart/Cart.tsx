@@ -11,6 +11,7 @@ import {
 import { allSelectionHandler, removeSelected } from "features/cart/cart-slice";
 import { CartItem } from "modules/Cart";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const breadcrumbItems: BreadcrumbItem[] = [
   { label: "Корзина", to: "/cart", end: true },
@@ -42,6 +43,23 @@ export const Cart = () => {
       setSelectionState(false);
     }
   }, [count, selectedCount]);
+
+  if (products.length === 0) {
+    return (
+      <Wrapper>
+        <Container>
+          <Breadcrumbs items={breadcrumbItems} />
+          <div className={styles.empty}>
+            <Htag size="xs">Корзина пуста</Htag>
+            <div>
+              Воспользуйтесь поиском, чтобы найти всё что нужно. Либо перейдите
+              в <Link to={"/categories"}>каталог</Link>.
+            </div>
+          </div>
+        </Container>
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper>

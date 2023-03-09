@@ -62,7 +62,7 @@ export const Button = (props: ButtonProps) => {
       className={cn(buttonStyles, className)}
       disabled={disabled}
       type={type}
-      onClick={handleClick}
+      onClick={disabled ? undefined : handleClick}
     >
       {renderLeftIcon(styles.icon)}
       {children && <span className={styles.text}>{children}</span>}

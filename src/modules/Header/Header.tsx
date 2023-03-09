@@ -1,18 +1,24 @@
 import { Container } from "layouts";
 import { Button, Modal } from "ui";
-import { Search, Menu } from "./components";
-import { useState } from "react";
+import { Search, Menu, CatalogDropdown } from "./components";
+import { useEffect, useRef, useState } from "react";
 import { AuthForm } from "modules/Auth";
 import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { ReactComponent as LoginIcon } from "assets/icons/log-in.svg";
+import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
 import { useAuth } from "features/auth/useAuth";
 import { UserMenu } from "./components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./Header.module.sass";
+import { useCategories } from "features/categories/use-categories";
+import { useClickOutside } from "hooks";
 
 const renderMenuIcon = (className: string) => (
   <MenuIcon className={className} />
+);
+const renderCrossIcon = (className: string) => (
+  <CrossIcon className={className} />
 );
 
 const renderLoginIcon = (className: string) => (
@@ -21,6 +27,12 @@ const renderLoginIcon = (className: string) => (
 
 export const Header = () => {
   const [modalState, setModalState] = useState(false);
+  const [dropdownState, setDropdownState] = useState(false);
+
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const { pathname } = useLocation();
+  const [categories] = useCategories();
+  const { user } = useAuth();
 
   const openModal = () => {
     setModalState(true);
@@ -30,44 +42,64 @@ export const Header = () => {
     setModalState(false);
   };
 
-  const { user } = useAuth();
+  const openDropdown = () => {
+    if (!dropdownState) {
+      setDropdownState(true);
+    }
+  };
+
+  const closeDropdown = () => {
+    if (dropdownState) {
+      setDropdownState(false);
+    }
+  };
+
+  useClickOutside(headerRef, closeDropdown);
+
+  useEffect(() => {
+    closeDropdown();
+  }, [pathname]);
 
   return (
-    <header className={styles.header}>
-      <Container>
-        <div className={styles.wrapper}>
-          <div className={styles.logo}>
-            <FullLogoImg />
-            <Link to={"/"} className={styles.homeLink} />
-          </div>
-          <Button
-            accent="secondary"
-            size="m"
-            decoration="default"
-            renderLeftIcon={renderMenuIcon}
-          >
-            Каталог
-          </Button>
-          <Search className={styles.search} />
-          <Menu />
-          {user ? (
-            <UserMenu name={user.name} surname={user.surname} />
-          ) : (
+    <header ref={headerRef}>
+      <div className={styles.header}>
+        <Container>
+          <div className={styles.wrapper}>
+            <div className={styles.logo}>
+              <FullLogoImg />
+              <Link to={"/"} className={styles.homeLink} />
+            </div>
             <Button
-              accent="primary"
-              decoration="default"
+              accent="secondary"
               size="m"
-              renderRightIcon={renderLoginIcon}
-              onClick={openModal}
+              decoration="default"
+              renderLeftIcon={dropdownState ? renderCrossIcon : renderMenuIcon}
+              onClick={dropdownState ? closeDropdown : openDropdown}
             >
-              Войти
+              Каталог
             </Button>
-          )}
-          <Modal isActive={modalState} closeModal={closeModal}>
-            <AuthForm onLogin={closeModal} />
-          </Modal>
-        </div>
-      </Container>
+            <Search className={styles.search} />
+            <Menu />
+            {user ? (
+              <UserMenu name={user.name} surname={user.surname} />
+            ) : (
+              <Button
+                accent="primary"
+                decoration="default"
+                size="m"
+                renderRightIcon={renderLoginIcon}
+                onClick={openModal}
+              >
+                Войти
+              </Button>
+            )}
+            <Modal isActive={modalState} closeModal={closeModal}>
+              <AuthForm onLogin={closeModal} />
+            </Modal>
+          </div>
+        </Container>
+      </div>
+      <CatalogDropdown isOpen={dropdownState} items={categories} />
     </header>
   );
 };

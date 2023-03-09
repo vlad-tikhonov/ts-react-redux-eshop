@@ -21,7 +21,7 @@ export const Text = ({
     [styles.m]: size === "m",
     [styles.s]: size === "s",
     [styles.xs]: size === "xs",
-    [styles.bold]: bold === true,
+    [styles.bold]: bold,
   };
 
   return <span className={cn(className, textStyles)}>{children}</span>;

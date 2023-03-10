@@ -1,20 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Extra, SearchResults } from "types";
+import { Extra, SearchItem } from "types";
 
 type SearchSlice = {
-	data: SearchResults | null;
+	data: SearchItem[];
 	error: string | null;
 	isLoading: boolean
 }
 
 const initialState: SearchSlice = {
-	data: null,
+	data: [],
 	error: null,
 	isLoading: false,
 }
 
 export const loadSearchResults = createAsyncThunk<
-  SearchResults,
+  SearchItem[],
   string,
   {
     state: { search: SearchSlice };
@@ -45,7 +45,9 @@ export const loadSearchResults = createAsyncThunk<
 const searchSlice = createSlice({
 	name: "@@search",
 	initialState,
-	reducers: {},
+	reducers: {
+		resetSearch: () => initialState
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loadSearchResults.pending, (state) => {
@@ -63,4 +65,5 @@ const searchSlice = createSlice({
 	}
 })
 
+export const { resetSearch } = searchSlice.actions
 export const searchReducer = searchSlice.reducer

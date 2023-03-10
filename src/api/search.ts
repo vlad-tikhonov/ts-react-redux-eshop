@@ -1,10 +1,10 @@
 import axios from './axios'
 import { AxiosResponse } from 'axios';
-import { SearchResults } from 'types'
+import { SearchItem } from 'types'
 
-export const getSearchResult = (query: string): Promise<SearchResults> => {
+export const getSearchResult = (query: string): Promise<SearchItem[]> => {
   return axios.post('/search', { query })
-		.then((response: AxiosResponse<SearchResults>) =>
+		.then((response: AxiosResponse<SearchItem[]>) =>
 			response.data
 		)
 }

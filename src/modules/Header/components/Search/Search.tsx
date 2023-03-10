@@ -1,43 +1,64 @@
 import cn from "classnames";
+import { Text } from "ui";
 import styles from "./Search.module.sass";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
-import { useActiveElement } from "hooks";
+import { useClickOutside, useDebounce } from "hooks";
 import { useRef, useEffect, useState, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "app/hooks";
-import { loadSearchResults } from "features/search/search-slice";
+import { loadSearchResults, resetSearch } from "features/search/search-slice";
 import { selectSearchResults } from "features/search/search-selectors";
-import { useSearch } from "features/search/use-search";
-
+import { useLocation, Link } from "react-router-dom";
 interface SearchProps {
   className?: string;
 }
 
 export const Search = ({ className }: SearchProps) => {
-  const [inputValue, setInputValue] = useState<string>("");
+  const [value, setValue] = useState<string>("");
+  const debouncedValue = useDebounce<string>(value, 500);
   const [inputIsActive, setInputIsActive] = useState(false);
 
+  const { pathname } = useLocation();
+
   const dispatch = useAppDispatch();
-  const results = useAppSelector(selectSearchResults);
+  const results = useAppSelector(selectSearchResults(pathname));
 
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setValue(e.target.value);
   };
 
-  useEffect(() => {
-    if (inputValue) {
-      dispatch(loadSearchResults(inputValue));
-    }
-  }, [inputValue]);
+  const resetResults = () => {
+    dispatch(resetSearch());
+  };
 
-  // console.log(results);
-  console.log("search render");
+  useClickOutside(formRef, () => {
+    resetResults();
+  });
+
+  useEffect(() => {
+    if (debouncedValue) {
+      dispatch(loadSearchResults(debouncedValue));
+    }
+  }, [debouncedValue]);
+
+  useEffect(() => {
+    if (results) {
+      resetResults();
+    }
+
+    if (value) {
+      setValue("");
+    }
+  }, [pathname]);
+  console.log("render search");
   return (
     <form
       className={cn(styles.form, className, {
         [styles.activeForm]: inputIsActive,
       })}
+      ref={formRef}
     >
       <div className={styles.inputWrapper}>
         <input
@@ -45,7 +66,7 @@ export const Search = ({ className }: SearchProps) => {
           type="text"
           placeholder="Найти товар"
           ref={inputRef}
-          value={inputValue}
+          value={value}
           onChange={handleChange}
           onFocus={() => {
             setInputIsActive(true);
@@ -56,7 +77,27 @@ export const Search = ({ className }: SearchProps) => {
         />
         <SearchIcon />
       </div>
-      <div className={styles.resultsWrapper}></div>
+      {!!results.length && (
+        <div className={styles.results}>
+          <ul>
+            {results.map((r) => (
+              <li
+                key={r.id}
+                className={cn(styles.item, {
+                  [styles.item]: true,
+                  [styles.item_category]: r.type === "category",
+                })}
+              >
+                <Text size="s">{r.title}</Text>
+                <Link
+                  to={`/categories/${r.slug}`}
+                  className={styles.link}
+                ></Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </form>
   );
 };

@@ -10,6 +10,49 @@ import { useAppDispatch, useAppSelector } from "app/hooks";
 import { addToCart, decreaseProductCount } from "features/cart/cart-slice";
 import { selectProductCount } from "features/cart/cart-selectors";
 
+interface ProductBodyButtonProps {
+  product: ProductWithReviewsAndRelated;
+}
+
+const ProductBodyButton = ({ product }: ProductBodyButtonProps) => {
+  const dispatch = useAppDispatch();
+  const productCount = useAppSelector(selectProductCount(product._id));
+
+  const handleAdd = () => {
+    dispatch(addToCart(product));
+  };
+
+  const handleRemove = () => {
+    dispatch(decreaseProductCount(product._id));
+  };
+
+  return (
+    <>
+      {productCount > 0 ? (
+        <ProductCartButton
+          addToCart={handleAdd}
+          removeFromCart={handleRemove}
+          size="l"
+          className={styles.btn}
+        >
+          {productCount}
+        </ProductCartButton>
+      ) : (
+        <Button
+          size="l"
+          accent="primary"
+          decoration="default"
+          renderLeftIcon={CartRenderIcon}
+          onClick={handleAdd}
+          className={styles.btn}
+        >
+          В корзину
+        </Button>
+      )}
+    </>
+  );
+};
+
 interface ProductBodyProps {
   product: ProductWithReviewsAndRelated;
   className?: string;
@@ -20,9 +63,7 @@ const CartRenderIcon = (className: string) => (
 );
 
 export const ProductBody = ({ product, className }: ProductBodyProps) => {
-  const dispatch = useAppDispatch();
   const {
-    _id,
     image,
     title,
     discount,
@@ -31,16 +72,6 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
     description: { brand, country, package: pack },
     relatedProducts,
   } = product;
-
-  const productCount = useAppSelector(selectProductCount(_id));
-
-  const handleAdd = () => {
-    dispatch(addToCart(product));
-  };
-
-  const handleRemove = () => {
-    dispatch(decreaseProductCount(_id));
-  };
 
   return (
     <div className={cn(styles.body, className)}>
@@ -76,27 +107,7 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
             <Htag size="m">{modifyPrice(price)}</Htag>
           )}
         </div>
-        {productCount > 0 ? (
-          <ProductCartButton
-            addToCart={handleAdd}
-            removeFromCart={handleRemove}
-            size="l"
-            className={styles.btn}
-          >
-            {productCount}
-          </ProductCartButton>
-        ) : (
-          <Button
-            size="l"
-            accent="primary"
-            decoration="default"
-            renderLeftIcon={CartRenderIcon}
-            onClick={handleAdd}
-            className={styles.btn}
-          >
-            В корзину
-          </Button>
-        )}
+        <ProductBodyButton product={product} />
         <div className={styles.bonus_wrapper}>
           <SmileIcon className={styles.smile} />
           <Text size="xs" className={styles.text}>

@@ -12,15 +12,4 @@ export const selectAuthInfo = createSelector(
 	})
 )
 
-export const selectToken = createSelector(
-	baseAuthSelector,
-	(state) => state.token
-)
-
-// export const selectAuthInfo = (state: RootState) => ({
-// 	user: state.auth.user,
-// 	isLoading: state.auth.isLoading,
-// 	error: state.auth.error,
-// })
-
-// export const selectToken = (state: RootState) => state.auth.token
+export const selectToken = (state: RootState) => state.auth.token

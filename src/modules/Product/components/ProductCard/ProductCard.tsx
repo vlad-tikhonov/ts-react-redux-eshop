@@ -105,9 +105,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     dispatch(decreaseProductCount(_id));
   };
 
-  const productCount = useAppSelector((state) =>
-    selectProductCount(state, _id)
-  );
+  const productCount = useAppSelector(selectProductCount(_id));
 
   const handleAddToFavorites = () => {
     dispatch(addToFavorites(product));
@@ -117,9 +115,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     dispatch(removeFromFavorites(_id));
   };
 
-  const isInFavorites = useAppSelector((state) =>
-    selectIsInFavorites(state, _id)
-  );
+  const isInFavorites = useAppSelector(selectIsInFavorites(_id));
 
   return (
     <div

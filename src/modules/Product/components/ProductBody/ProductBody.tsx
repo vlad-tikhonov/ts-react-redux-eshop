@@ -32,9 +32,7 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
     relatedProducts,
   } = product;
 
-  const productCount = useAppSelector((state) => {
-    return selectProductCount(state, _id);
-  });
+  const productCount = useAppSelector(selectProductCount(_id));
 
   const handleAdd = () => {
     dispatch(addToCart(product));

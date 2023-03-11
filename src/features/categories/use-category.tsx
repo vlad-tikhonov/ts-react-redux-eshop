@@ -10,7 +10,7 @@ export const useCategory = (
   const dispatch = useAppDispatch();
 
   const categories = useAppSelector(selectAllCategories);
-  const category = useAppSelector((state) => selectCategory(state, slug));
+  const category = useAppSelector(selectCategory(slug));
 
   useEffect(() => {
     if (categories.length === 0) {

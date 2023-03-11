@@ -1,18 +1,34 @@
 import { RootState } from "app/store"
+import { createSelector } from "@reduxjs/toolkit"
 import { ProductWithReviewsAndRelated } from "types"
 
-export const selectCartLength = (state: RootState) => state.cart.data.reduce((acc, p) => acc + p.count, 0)
+const baseCartSelector = (state: RootState) => state.cart.data
 
-export const selectProductCount = (state: RootState, productId: ProductWithReviewsAndRelated['_id']) => {
-	if (!state.cart.data.length) {
-		return 0
-	}
+export const selectCartLength = createSelector(
+	baseCartSelector,
+	(cartData) => cartData.reduce((acc, p) => acc + p.count, 0)
+)
 
-	const product = state.cart.data.find(p => p.id === productId)
+export const selectProductCount = (productId: ProductWithReviewsAndRelated['_id']) =>
+	createSelector(
+		baseCartSelector,
+		(cartData) => {
+			if (!cartData.length) {
+				return 0
+			}
 
-	return product ? product.count : 0
-}
+			const product = cartData.find(p => p.id === productId)
 
-export const selectSelectedCount = (state: RootState) => state.cart.data.reduce((acc, el) => el.isSelected ? acc + 1 : acc, 0)
+			return product ? product.count : 0
+		}
+)
 
-export const selectCartProducts = (state: RootState) => state.cart.data
+export const selectSelectedCount = createSelector(
+	baseCartSelector,
+	(cartData) => cartData.reduce((acc, el) => el.isSelected ? acc + 1 : acc, 0)
+)
+
+export const selectCartProducts = createSelector(
+	baseCartSelector,
+	(cartData) => cartData
+)

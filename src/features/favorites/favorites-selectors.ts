@@ -1,13 +1,24 @@
+import { createSelector } from "@reduxjs/toolkit"
 import { RootState } from "app/store"
 import { Product } from "types"
 
+const baseFavoritesSelector = (state: RootState) => state.favorites
 
-export const selectIsInFavorites = (state: RootState, productId: Product['_id']) => {
-	const product = state.favorites.data.find(p => p._id === productId)
+export const selectIsInFavorites = (productId: Product['_id']) => createSelector(
+	baseFavoritesSelector,
+	(favorites) => {
+		const product = favorites.data.find(p => p._id === productId)
 
-	return !!product
-}
+		return !!product
+	}
+)
 
-export const selectFavoritesLength = (state: RootState) => state.favorites.data.length
+export const selectFavoritesLength = createSelector(
+	baseFavoritesSelector,
+	(favorites) => favorites.data.length
+)
 
-export const selectFavorites = (state: RootState) => state.favorites.data
+export const selectFavorites = createSelector(
+	baseFavoritesSelector,
+	(favorites) => favorites.data
+)

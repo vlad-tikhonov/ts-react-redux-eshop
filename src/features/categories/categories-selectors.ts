@@ -1,13 +1,23 @@
+import { createSelector } from '@reduxjs/toolkit'
 import {RootState} from 'app/store'
 import {Category} from 'types'
 
-export const selectCategoriesInfo = (state: RootState) => ({
-	isLoading: state.categories.isLoading,
-	error: state.categories.error,
-})
+const baseCategoriesSelector = (state: RootState) => state.categories
 
-export const selectAllCategories = (state: RootState) => state.categories.data
+export const selectCategoriesInfo = createSelector(
+	baseCategoriesSelector,
+	(categories) => ({
+		isLoading: categories.isLoading,
+		error: categories.error,
+	})
+)
 
-//reselect?
-export const selectCategory = (state: RootState, slug: Category['slug'] | undefined) =>
-	state.categories.data.filter(category => category.slug === slug)[0]
+export const selectAllCategories = createSelector(
+	baseCategoriesSelector,
+	(categories) => categories.data
+)
+
+export const selectCategory = (slug: Category['slug'] | undefined) => createSelector(
+	baseCategoriesSelector,
+	(categories) => categories.data.filter(category => category.slug === slug)[0]
+)

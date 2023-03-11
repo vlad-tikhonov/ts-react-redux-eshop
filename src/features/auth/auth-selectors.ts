@@ -1,10 +1,26 @@
 import {RootState} from 'app/store'
 import { createSelector } from '@reduxjs/toolkit'
 
-export const selectAuthInfo = (state: RootState) => ({
-	user: state.auth.user,
-	isLoading: state.auth.isLoading,
-	error: state.auth.error,
-})
+const baseAuthSelector = (state: RootState) => state.auth
 
-export const selectToken = (state: RootState) => state.auth.token
+export const selectAuthInfo = createSelector(
+	baseAuthSelector,
+	(state) => ({
+		user: state.user,
+		isLoading: state.isLoading,
+		error: state.error,
+	})
+)
+
+export const selectToken = createSelector(
+	baseAuthSelector,
+	(state) => state.token
+)
+
+// export const selectAuthInfo = (state: RootState) => ({
+// 	user: state.auth.user,
+// 	isLoading: state.auth.isLoading,
+// 	error: state.auth.error,
+// })
+
+// export const selectToken = (state: RootState) => state.auth.token

@@ -1,8 +1,17 @@
 import {RootState} from 'app/store'
+import { createSelector } from '@reduxjs/toolkit'
 
-export const selectPromotionsInfo = (state: RootState) => ({
-	isLoading: state.promotions.isLoading,
-	error: state.promotions.error,
-})
+const basePromotionsSelector = (state: RootState) => state.promotions
 
-export const selectPromotionsProducts = (state: RootState) => state.promotions.data
+export const selectPromotionsInfo = createSelector(
+	basePromotionsSelector,
+	(state) => ({
+		isLoading: state.isLoading,
+		error: state.error
+	})
+)
+
+export const selectPromotionsProducts = createSelector(
+	basePromotionsSelector,
+	(state) => state.data
+)

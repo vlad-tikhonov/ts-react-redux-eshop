@@ -52,7 +52,7 @@ export const Search = ({ className }: SearchProps) => {
       setValue("");
     }
   }, [pathname]);
-  console.log("render search");
+
   return (
     <form
       className={cn(styles.form, className, {

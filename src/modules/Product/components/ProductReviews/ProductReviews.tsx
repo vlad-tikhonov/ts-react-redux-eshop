@@ -1,5 +1,5 @@
 import { Htag, Text, Rating, Button } from "ui";
-import { Review, ProductWithReviewsInfo } from "types";
+import { ProductWithReviewsInfo } from "types";
 import cn from "classnames";
 import styles from "./ProductReviews.module.sass";
 import { useState } from "react";
@@ -7,9 +7,10 @@ import { ReactComponent as UserIcon } from "assets/icons/user.svg";
 import { formatDate } from "helpers/utils";
 import { useAuth } from "features/auth/use-auth";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { createReview } from "api/reviews";
 import { selectToken } from "features/auth/auth-selectors";
-import { useAppSelector } from "app/hooks";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { useReviews } from "features/reviews/use-reviews";
+import { createReview } from "features/reviews/reviews-slice";
 interface ProductReviewsProps {
   productId: ProductWithReviewsInfo["_id"];
   reviewsAvg: ProductWithReviewsInfo["reviewsAvg"];
@@ -28,33 +29,47 @@ export const ProductReviews = ({
   const [rating, setRating] = useState(0);
   const [text, setText] = useState("");
 
-  const reviews = [
-    { rating: 1, name: "", description: "", createdAt: "", _id: "" },
-  ];
+  const dispatch = useAppDispatch();
+
+  const [reviews, { isLoading, error }] = useReviews(productId);
 
   const ratingCount = (num: number) => {
-    return reviews.reduce((acc, el) => (el.rating === num ? acc + 1 : acc), 0);
+    if (reviews) {
+      return reviews.reduce(
+        (acc, el) => (el.rating === num ? acc + 1 : acc),
+        0
+      );
+    }
+    return 0;
   };
 
   const [user] = useAuth();
-  const token = useAppSelector(selectToken);
+  const accessToken = useAppSelector(selectToken);
 
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
+    reset,
   } = useForm<FormValues>({
     mode: "onBlur",
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    if (user && token) {
-      createReview({
-        name: user.name,
-        description: data.reviewText,
-        productId,
-        rating,
-        token,
+    if (user && accessToken) {
+      dispatch(
+        createReview({
+          review: {
+            name: user.name + " " + user.surname,
+            description: data.reviewText,
+            productId,
+            rating,
+          },
+          token: accessToken,
+        })
+      ).then(() => {
+        reset();
+        setRating(0);
       });
     }
   };
@@ -100,7 +115,7 @@ export const ProductReviews = ({
         </div>
         <div className={styles.right}>
           <div className={styles.reviews}>
-            {reviews.map((r) => (
+            {reviews?.map((r) => (
               <div className={styles.review} key={r._id}>
                 <div className={styles.user}>
                   <UserIcon className={styles.icon} />

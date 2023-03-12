@@ -10,6 +10,7 @@ import { favoritesReducer } from 'features/favorites/favorites.slice';
 import { promotionsReducer } from 'features/promotions/promotions-slice';
 import { noveltiesReducer } from 'features/novelties/novelties-slice';
 import { searchReducer } from 'features/search/search-slice'
+import { reviewsReducer } from 'features/reviews/reviews-slice';
 
 export const store = configureStore({
   reducer: {
@@ -21,7 +22,8 @@ export const store = configureStore({
 		favorites: favoritesReducer,
 		promotions: promotionsReducer,
 		novelties: noveltiesReducer,
-		search: searchReducer
+		search: searchReducer,
+		reviews: reviewsReducer,
   },
 	devTools: process.env.NODE_ENV !== 'production',
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({

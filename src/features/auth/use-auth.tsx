@@ -1,8 +1,12 @@
 import { useAppSelector } from "app/hooks";
-import { selectAuthInfo } from "./auth-selectors";
+import { selectAuthInfo, selectUser } from "./auth-selectors";
 
-export const useAuth = (): ReturnType<typeof selectAuthInfo> => {
-  const { user, isLoading, error } = useAppSelector(selectAuthInfo);
+export const useAuth = (): [
+  ReturnType<typeof selectUser>,
+  ReturnType<typeof selectAuthInfo>
+] => {
+  const { isLoading, error } = useAppSelector(selectAuthInfo);
+  const user = useAppSelector(selectUser);
 
-  return { user, isLoading, error };
+  return [user, { isLoading, error }];
 };

@@ -2,10 +2,10 @@ import { useAppDispatch, useAppSelector } from "app/hooks";
 import { selectPromotionsInfo, selectPromotionsProducts} from "./promotions-selectors";
 import { useEffect } from "react";
 import { loadPromotionsProducts } from "./promotions-slice";
-import { ProductWithReviewsAvg } from "types";
+import { ProductWithReviewsInfo } from "types";
 
 export const usePromotions = (): [
-  ProductWithReviewsAvg[],
+  ProductWithReviewsInfo[],
   ReturnType<typeof selectPromotionsInfo>
 ] => {
   const dispatch = useAppDispatch();

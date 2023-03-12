@@ -1,5 +1,5 @@
 import { Button, Rating, Text, Notice, ButtonProps } from "ui";
-import { ProductWithReviewsAvg } from "types";
+import { ProductWithReviewsInfo } from "types";
 import styles from "./ProductCard.module.sass";
 import cn from "classnames";
 import { modifyPrice, modifyDiscount, shortnerTitle } from "helpers/utils";
@@ -18,13 +18,13 @@ import {
 } from "features/favorites/favorites.slice";
 
 interface ProductCardProps {
-  product: ProductWithReviewsAvg;
+  product: ProductWithReviewsInfo;
   className?: string;
 }
 
 interface ProductPriceProps {
-  price: ProductWithReviewsAvg["price"];
-  priceWithCard: ProductWithReviewsAvg["priceWithCard"];
+  price: ProductWithReviewsInfo["price"];
+  priceWithCard: ProductWithReviewsInfo["priceWithCard"];
 }
 
 const ProductPrice = ({ price, priceWithCard }: ProductPriceProps) => (

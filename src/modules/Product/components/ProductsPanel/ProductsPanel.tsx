@@ -1,12 +1,12 @@
 import { Htag } from "ui";
 import { ProductCard } from "..";
-import { ProductWithReviewsAvg } from "types";
+import { ProductWithReviewsInfo } from "types";
 import cn from "classnames";
 import styles from "./ProductsPanel.module.sass";
 
 interface ProductsPanelProps {
   title: string;
-  products: ProductWithReviewsAvg[];
+  products: ProductWithReviewsInfo[];
   className?: string;
 }
 

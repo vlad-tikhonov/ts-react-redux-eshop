@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductWithReviewsAvg } from 'types'
+import { ProductWithReviewsInfo } from 'types'
 import { getItem, setItem} from 'helpers/persistenceStorage'
 import { PERSISTENCE_STORAGE_FAVORITES_KEY } from 'constants/persistence-storage'
 
 
 type FavoritesSlice = {
-	data: ProductWithReviewsAvg[],
+	data: ProductWithReviewsInfo[],
 }
 
 const initialState: FavoritesSlice = {
@@ -25,11 +25,11 @@ const favoritesSlice = createSlice({
 
 			state.data = cart
 		},
-		addToFavorites: (state, action: PayloadAction<ProductWithReviewsAvg>) => {
+		addToFavorites: (state, action: PayloadAction<ProductWithReviewsInfo>) => {
 			state.data.push(action.payload)
 			setItem(PERSISTENCE_STORAGE_FAVORITES_KEY, state.data)
 		},
-		removeFromFavorites: (state, action: PayloadAction<ProductWithReviewsAvg['_id']>) => {
+		removeFromFavorites: (state, action: PayloadAction<ProductWithReviewsInfo['_id']>) => {
 			state.data = state.data.filter(p => p._id !== action.payload)
 			setItem(PERSISTENCE_STORAGE_FAVORITES_KEY, state.data)
 		}

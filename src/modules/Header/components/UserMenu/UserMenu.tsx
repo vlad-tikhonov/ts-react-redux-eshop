@@ -25,7 +25,7 @@ export const UserMenu = ({ openModal, className }: UserMenuProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const dispatch = useAppDispatch();
-  const { user } = useAuth();
+  const [user] = useAuth();
 
   const handleLogout = () => {
     dispatch(logout());

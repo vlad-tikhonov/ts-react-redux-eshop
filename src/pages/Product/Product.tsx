@@ -37,15 +37,11 @@ export const Product = () => {
         <Container>
           <Breadcrumbs items={breadcrumbItems} />
           <Htag size="s">{product.title}</Htag>
-          <ProductMenu
-            code={product.code}
-            reviewsAvg={product.reviewsAvg}
-            reviewsCount={product.reviewsCount}
-          />
+          <ProductMenu product={product} />
           <ProductBody product={product} />
           <ProductReviews
+            productId={product._id}
             reviewsAvg={product.reviewsAvg}
-            reviews={product.reviews}
           />
         </Container>
       </Wrapper>

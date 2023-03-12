@@ -1,5 +1,5 @@
 import styles from "./ProductBody.module.sass";
-import { ProductWithReviewsAndRelated } from "types";
+import { ProductWithReviewsInfoAndRelated } from "types";
 import { modifyDiscount, modifyPrice } from "helpers/utils";
 import { Notice, Text, Htag, Button } from "ui";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
@@ -11,7 +11,7 @@ import { addToCart, decreaseProductCount } from "features/cart/cart-slice";
 import { selectProductCount } from "features/cart/cart-selectors";
 
 interface ProductBodyButtonProps {
-  product: ProductWithReviewsAndRelated;
+  product: ProductWithReviewsInfoAndRelated;
 }
 
 const ProductBodyButton = ({ product }: ProductBodyButtonProps) => {
@@ -54,7 +54,7 @@ const ProductBodyButton = ({ product }: ProductBodyButtonProps) => {
 };
 
 interface ProductBodyProps {
-  product: ProductWithReviewsAndRelated;
+  product: ProductWithReviewsInfoAndRelated;
   className?: string;
 }
 

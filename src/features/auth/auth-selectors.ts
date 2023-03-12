@@ -3,10 +3,14 @@ import { createSelector } from '@reduxjs/toolkit'
 
 const baseAuthSelector = (state: RootState) => state.auth
 
+export const selectUser = createSelector(
+	baseAuthSelector,
+	(auth) => auth.user
+)
+
 export const selectAuthInfo = createSelector(
 	baseAuthSelector,
 	(auth) => ({
-		user: auth.user,
 		isLoading: auth.isLoading,
 		error: auth.error,
 	})

@@ -2,10 +2,10 @@ import { useAppDispatch, useAppSelector } from "app/hooks";
 import { selectNoveltiesInfo, selectNoveltiesProducts} from "./novelties-selectors";
 import { useEffect } from "react";
 import { loadNoveltiesProducts } from "./novelties-slice";
-import { ProductWithReviewsAvg } from "types";
+import { ProductWithReviewsInfo } from "types";
 
 export const useNovelties = (): [
-  ProductWithReviewsAvg[],
+  ProductWithReviewsInfo[],
   ReturnType<typeof selectNoveltiesInfo>
 ] => {
   const dispatch = useAppDispatch();

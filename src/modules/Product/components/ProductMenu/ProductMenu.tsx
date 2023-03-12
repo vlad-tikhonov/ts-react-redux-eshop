@@ -1,60 +1,84 @@
 import styles from "./ProductMenu.module.sass";
-import { ProductWithReviews } from "types";
+import { ProductWithReviewsInfo } from "types";
 import cn from "classnames";
 import { ReactComponent as ShareIcon } from "assets/icons/share.svg";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
+import { ReactComponent as HeartFilledIcon } from "assets/icons/heart-filled.svg";
 import { Button, Rating } from "ui";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "features/favorites/favorites.slice";
+import { selectIsInFavorites } from "features/favorites/favorites-selectors";
 
 interface ProductMenuProps {
-  code: ProductWithReviews["code"];
-  reviewsAvg: ProductWithReviews["reviewsAvg"];
-  reviewsCount: ProductWithReviews["reviewsCount"];
+  product: ProductWithReviewsInfo;
   className?: string;
 }
 
-const ShareRenderIcon = (className: string) => (
+const renderShareIcon = (className: string) => (
   <ShareIcon className={className} />
 );
-const HeartRenderIcon = (className: string) => (
+const renderHearthIcon = (className: string) => (
   <HeartIcon className={className} />
 );
-
-export const ProductMenu = ({
-  code,
-  reviewsAvg,
-  reviewsCount,
-  className,
-}: ProductMenuProps) => (
-  <div className={cn(styles.menu, className)}>
-    <div className={styles.menu_code}>арт.{code}</div>
-    <div className={styles.menu_rating}>
-      <Rating
-        stars={5}
-        rating={reviewsAvg ? reviewsAvg : 0}
-        readonly={true}
-        className={styles.menu_stars}
-      />
-      <span className={styles.menu_reviewsCount}>
-        {reviewsCount > 0 ? reviewsCount + " отзыва" : "нет отзывов"}
-      </span>
-    </div>
-    <Button
-      accent="grayscale"
-      decoration="no"
-      renderLeftIcon={ShareRenderIcon}
-      size="s"
-      className={styles.menu_btn}
-    >
-      Поделиться
-    </Button>
-    <Button
-      accent="grayscale"
-      decoration="no"
-      renderLeftIcon={HeartRenderIcon}
-      size="s"
-      className={styles.btn}
-    >
-      В избранное
-    </Button>
-  </div>
+const renderHearthFilledIcon = (className: string) => (
+  <HeartFilledIcon className={className} />
 );
+
+export const ProductMenu = ({ product, className }: ProductMenuProps) => {
+  const dispatch = useAppDispatch();
+
+  const isInFavorites = useAppSelector(selectIsInFavorites(product._id));
+
+  const handleAddToFavorites = () => {
+    dispatch(addToFavorites(product));
+  };
+
+  const handleRemoveFromFavorites = () => {
+    dispatch(removeFromFavorites(product._id));
+  };
+
+  return (
+    <div className={cn(styles.menu, className)}>
+      <div className={styles.menu_code}>арт.{product.code}</div>
+      <div className={styles.menu_rating}>
+        <Rating
+          stars={5}
+          rating={product.reviewsAvg ? product.reviewsAvg : 0}
+          readonly={true}
+          className={styles.menu_stars}
+        />
+        <span className={styles.menu_reviewsCount}>
+          {product.reviewsCount > 0
+            ? product.reviewsCount + " отзыва"
+            : "нет отзывов"}
+        </span>
+      </div>
+      <Button
+        accent="grayscale"
+        decoration="no"
+        renderLeftIcon={renderShareIcon}
+        size="s"
+        className={styles.menu_btn}
+      >
+        Поделиться
+      </Button>
+      <Button
+        accent="grayscale"
+        decoration="no"
+        renderLeftIcon={
+          isInFavorites ? renderHearthFilledIcon : renderHearthIcon
+        }
+        onClick={
+          isInFavorites ? handleRemoveFromFavorites : handleAddToFavorites
+        }
+        size="s"
+        className={styles.btn}
+      >
+        В избранное
+      </Button>
+    </div>
+  );
+};

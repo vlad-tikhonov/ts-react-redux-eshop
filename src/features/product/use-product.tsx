@@ -5,12 +5,12 @@ import {
   selectProductInfo,
 } from "features/product/product-selectors";
 import { loadProduct } from "features/product/product-slice";
-import { ProductWithReviewsAndRelated } from "types";
+import { ProductWithReviewsInfoAndRelated } from "types";
 
 export const useProduct = (
   slug: string | undefined
 ): [
-  ProductWithReviewsAndRelated | null,
+  ProductWithReviewsInfoAndRelated | null,
   ReturnType<typeof selectProductInfo>
 ] => {
   const dispatch = useAppDispatch();

@@ -22,12 +22,15 @@ export type Product = {
 	slug: string;
 }
 
-export type ProductWithReviewsAvg = Product & { reviewsAvg: Rating | null; }
-
-export type ProductWithReviews = Product & {
-	reviews: Review[];
+export type ProductWithReviewsInfo = Product & {
 	reviewsCount: number;
 	reviewsAvg: Rating | null;
 }
 
-export type ProductWithReviewsAndRelated = ProductWithReviews & { relatedProducts: Product[] }
+// export type ProductWithReviews = Product & {
+// 	reviews: Review[];
+// 	reviewsCount: number;
+// 	reviewsAvg: Rating | null;
+// }
+
+export type ProductWithReviewsInfoAndRelated = ProductWithReviewsInfo & { relatedProducts: Product[] }

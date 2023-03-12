@@ -1,25 +1,62 @@
 import { Htag, Text, Rating, Button } from "ui";
-import { Review, ProductWithReviews } from "types";
+import { Review, ProductWithReviewsInfo } from "types";
 import cn from "classnames";
 import styles from "./ProductReviews.module.sass";
 import { useState } from "react";
 import { ReactComponent as UserIcon } from "assets/icons/user.svg";
 import { formatDate } from "helpers/utils";
+import { useAuth } from "features/auth/use-auth";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { createReview } from "api/reviews";
+import { selectToken } from "features/auth/auth-selectors";
+import { useAppSelector } from "app/hooks";
 interface ProductReviewsProps {
-  reviews: Review[];
-  reviewsAvg: ProductWithReviews["reviewsAvg"];
+  productId: ProductWithReviewsInfo["_id"];
+  reviewsAvg: ProductWithReviewsInfo["reviewsAvg"];
   className?: string;
 }
 
+interface FormValues {
+  reviewText: string;
+}
+
 export const ProductReviews = ({
-  reviews,
+  productId,
   reviewsAvg,
   className,
 }: ProductReviewsProps) => {
   const [rating, setRating] = useState(0);
+  const [text, setText] = useState("");
+
+  const reviews = [
+    { rating: 1, name: "", description: "", createdAt: "", _id: "" },
+  ];
 
   const ratingCount = (num: number) => {
     return reviews.reduce((acc, el) => (el.rating === num ? acc + 1 : acc), 0);
+  };
+
+  const [user] = useAuth();
+  const token = useAppSelector(selectToken);
+
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+  } = useForm<FormValues>({
+    mode: "onBlur",
+  });
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    if (user && token) {
+      createReview({
+        name: user.name,
+        description: data.reviewText,
+        productId,
+        rating,
+        token,
+      });
+    }
   };
 
   return (
@@ -86,17 +123,31 @@ export const ProductReviews = ({
               <Text size="m" bold className={styles.rating_title}>
                 Ваша оценка
               </Text>
-              <Rating rating={rating} setRating={setRating} big readonly />
+              <Rating
+                rating={rating}
+                setRating={setRating}
+                big
+                readonly={!user}
+              />
             </div>
-            <form action="" className={styles.form}>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className={styles.form}
+              name="x"
+            >
               <textarea
-                name=""
-                id=""
                 rows={5}
                 className={styles.textArea}
-                disabled
+                disabled={!user}
+                {...register("reviewText", { required: true, minLength: 10 })}
               ></textarea>
-              <Button decoration="default" size="m" accent="primary" disabled>
+              <Button
+                decoration="default"
+                size="m"
+                accent="primary"
+                disabled={!user || !isValid}
+                type="submit"
+              >
                 Отправить
               </Button>
             </form>

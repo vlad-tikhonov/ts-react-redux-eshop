@@ -5,13 +5,13 @@ const baseNoveltiesSelector = (state: RootState) => state.novelties
 
 export const selectNoveltiesInfo = createSelector(
 	baseNoveltiesSelector,
-	(state) => ({
-		isLoading: state.isLoading,
-		error: state.error
+	(novelties) => ({
+		isLoading: novelties.isLoading,
+		error: novelties.error
 	})
 )
 
 export const selectNoveltiesProducts = createSelector(
 	baseNoveltiesSelector,
-	(state) => state.data
+	(novelties) => novelties.data
 )

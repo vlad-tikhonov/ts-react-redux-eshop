@@ -1,5 +1,4 @@
 import cn from "classnames";
-import { Text } from "ui";
 import styles from "./Search.module.sass";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { useClickOutside, useDebounce } from "hooks";
@@ -8,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "app/hooks";
 import { loadSearchResults, resetSearch } from "features/search/search-slice";
 import { selectSearchResults } from "features/search/search-selectors";
 import { useLocation, Link } from "react-router-dom";
+import { Highlighter } from "modules/Header/components";
 interface SearchProps {
   className?: string;
 }
@@ -88,7 +88,11 @@ export const Search = ({ className }: SearchProps) => {
                   [styles.item_category]: r.type === "category",
                 })}
               >
-                <Text size="s">{r.title}</Text>
+                <Highlighter
+                  text={r.title}
+                  query={debouncedValue}
+                  className={styles.highlighted}
+                ></Highlighter>
                 <Link
                   to={`/categories/${r.slug}`}
                   className={styles.link}

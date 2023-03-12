@@ -4,7 +4,10 @@ import {RootState} from 'app/store'
 const baseProductSelector = (state: RootState) => state.product
 
 
-export const selectProduct = (state: RootState) => state.product.data
+export const selectProduct = createSelector(
+	baseProductSelector,
+	(product) => product.data
+)
 
 export const selectProductInfo = createSelector(
 	baseProductSelector,

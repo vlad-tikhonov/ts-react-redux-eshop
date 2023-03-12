@@ -64,14 +64,3 @@ export const formatDate = (date: Date): string => {
 
 	return `${dd}.${mm}.${yy}`
 }
-
-// export const calculatePriceRange = (productsArray) => {
-//   let priceSet = new Set()
-//   productsArray.forEach((product) => {
-//     priceSet.add(product.price)
-//   })
-//   const minPrice = Math.min(...Array.from(priceSet))
-//   const maxPrice = Math.max(...Array.from(priceSet))
-
-//   return [minPrice, maxPrice]
-// }

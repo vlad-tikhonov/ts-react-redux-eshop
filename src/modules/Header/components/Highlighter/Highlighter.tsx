@@ -15,9 +15,9 @@ export const Highlighter = ({ text, query, className }: HighlighterProps) => {
 
   return (
     <Text size="s" className={className}>
-      {replaced.map((w) => {
+      {replaced.map((w, i) => {
         if (w === "@") {
-          return <b>{lowerQuery}</b>;
+          return <b key={i}>{lowerQuery}</b>;
         } else {
           return w;
         }

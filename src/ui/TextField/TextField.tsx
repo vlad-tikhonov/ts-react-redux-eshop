@@ -2,26 +2,37 @@ import styles from "./TextField.module.sass";
 import cn from "classnames";
 import { ElementSizes } from "types";
 import { Text } from "ui";
-import { HTMLInputTypeAttribute, useEffect, useRef, useState } from "react";
+import {
+  HTMLInputTypeAttribute,
+  useEffect,
+  useRef,
+  useState,
+  ChangeEvent,
+} from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { useActiveElement } from "hooks";
 
 interface TextFieldProps {
-  register: UseFormRegisterReturn;
-  placeholder: string;
   size: Extract<ElementSizes, "m" | "l">;
   labelText: string;
   message?: string;
   disabled?: boolean;
-  type?:
-    | Extract<HTMLInputTypeAttribute, "text" | "password" | "email" | "number">
-    | undefined;
+  value?: string;
+  placeholder?: string;
+  type?: Extract<
+    HTMLInputTypeAttribute,
+    "text" | "password" | "email" | "number"
+  >;
   className?: string;
+  register?: UseFormRegisterReturn;
+  onChange?: (x: string) => void;
   renderLeftIcon?: (className: string) => JSX.Element;
   renderRightIcon?: (className: string) => JSX.Element;
 }
 
 export const TextField = ({
+  onChange,
+  value,
   register,
   type,
   placeholder,
@@ -60,20 +71,43 @@ export const TextField = ({
     [styles.inputWrapperDisabled]: disabled,
   });
 
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const activeElement = useActiveElement();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!onChange) {
+      return;
+    }
+    onChange(e.target.value);
+  };
+
+  const getFormProps = () => {
+    if (register) {
+      return {
+        ...register,
+        ref: (el: HTMLInputElement) => {
+          inputRef.current = el;
+          register.ref(el);
+        },
+        onChange: (e: ChangeEvent<HTMLInputElement>) => {
+          register.onChange(e);
+          handleChange(e);
+        },
+      };
+    }
+    return {
+      ref: (el: HTMLInputElement) => {
+        inputRef.current = el;
+      },
+      onChange: (e: ChangeEvent<HTMLInputElement>) => {
+        handleChange(e);
+      },
+    };
+  };
 
   useEffect(() => {
     inputRef.current === activeElement ? setIsActive(true) : setIsActive(false);
   }, [activeElement]);
-
-  const reactHookFormProps: UseFormRegisterReturn = {
-    ...register,
-    ref: (el) => {
-      inputRef.current = el;
-      register.ref(el);
-    },
-  };
 
   return (
     <div className={cn(className, styles.wrapper)}>
@@ -88,7 +122,8 @@ export const TextField = ({
             spellCheck="false"
             autoComplete="off"
             className={inputClasses}
-            {...reactHookFormProps}
+            value={value}
+            {...getFormProps()}
           />
           {renderRightIcon && renderRightIcon(iconsClasses)}
         </div>

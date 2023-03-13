@@ -44,11 +44,11 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
     setShowPass((b) => !b);
   };
 
-  const EyeRenderIcon = (className: string) => (
+  const renderEyeIcon = (className: string) => (
     <EyeIcon className={className} onClick={toggleShowPass} />
   );
 
-  const EyeOffRenderIcon = (className: string) => (
+  const renderEyeOffIcon = (className: string) => (
     <EyeOffIcon className={className} onClick={toggleShowPass} />
   );
 
@@ -60,7 +60,6 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
       <TextField
         labelText="E-mail"
         size="l"
-        placeholder=""
         type="email"
         register={register("email", {
           required: "Пожалуйста, введите email",
@@ -72,12 +71,11 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
       <TextField
         labelText="Пароль"
         size="l"
-        placeholder=""
         register={register("password", {
           required: "Пожалуйста, введите пароль",
         })}
         type={showPass ? "text" : "password"}
-        renderRightIcon={showPass ? EyeOffRenderIcon : EyeRenderIcon}
+        renderRightIcon={showPass ? renderEyeOffIcon : renderEyeIcon}
         message={errors.password?.message}
         className={styles.password}
       />

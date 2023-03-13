@@ -17,7 +17,7 @@ export const useReviews = (
 
   useEffect(() => {
     dispatch(loadReviews(productId));
-  }, [productId]);
+  }, [productId, dispatch]);
 
   return [reviews, { isLoading, error }];
 };

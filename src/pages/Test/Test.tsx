@@ -2,7 +2,7 @@ import { Container, Wrapper } from "layouts";
 import styles from "./Test.module.sass";
 import { ReactComponent as LeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as RightIcon } from "assets/icons/chevron-right.svg";
-import { Button } from "ui";
+import { Button, InputDate } from "ui";
 
 const renderLeftIcon = (className: string) => (
   <LeftIcon className={className} />
@@ -18,9 +18,7 @@ export const Test = () => {
       <Container>
         <div className={styles.test}>
           <div>
-            <Button accent="secondary" size="m" decoration="default" disabled>
-              Каталог
-            </Button>
+            <InputDate size="m" message="" labelText="дд.мм.гггг" />
           </div>
         </div>
       </Container>

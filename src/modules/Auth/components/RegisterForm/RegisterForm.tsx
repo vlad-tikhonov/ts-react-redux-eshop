@@ -1,5 +1,5 @@
 import styles from "./RegisterForm.module.sass";
-import { Htag, TextField, Button } from "ui";
+import { Htag, TextField, Button, InputDate } from "ui";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { DatePicker } from "widgets";
@@ -116,7 +116,7 @@ export const RegisterForm = ({}: RegisterFormProps) => {
           />
         </div>
         <div className={styles.right}>
-          <DatePicker
+          <InputDate
             labelText="Дата рождения"
             message=""
             register={register("birth")}

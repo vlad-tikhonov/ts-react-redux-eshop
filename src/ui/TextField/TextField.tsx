@@ -25,7 +25,7 @@ interface TextFieldProps {
   >;
   className?: string;
   register?: UseFormRegisterReturn;
-  onChange?: (x: string) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   renderLeftIcon?: (className: string) => JSX.Element;
   renderRightIcon?: (className: string) => JSX.Element;
 }
@@ -72,13 +72,13 @@ export const TextField = ({
   });
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const activeElement = useActiveElement();
+  // const activeElement = useActiveElement();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!onChange) {
       return;
     }
-    onChange(e.target.value);
+    onChange(e);
   };
 
   const getFormProps = () => {
@@ -105,9 +105,9 @@ export const TextField = ({
     };
   };
 
-  useEffect(() => {
-    inputRef.current === activeElement ? setIsActive(true) : setIsActive(false);
-  }, [activeElement]);
+  // useEffect(() => {
+  //   inputRef.current === activeElement ? setIsActive(true) : setIsActive(false);
+  // }, [activeElement]);
 
   return (
     <div className={cn(className, styles.wrapper)}>

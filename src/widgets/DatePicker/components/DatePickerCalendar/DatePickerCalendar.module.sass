@@ -1,0 +1,66 @@
+@use 'style/style.sass' as *
+
+.calendar
+	padding: 0 8px 8px 8px
+
+.row
+	display: flex
+	align-items: center
+	gap: 23px
+	margin-bottom: 16px
+
+	&:last-child
+		margin-bottom: 0
+
+.header
+	margin-bottom: 8px
+	display: flex
+	gap: 23px
+	text-transform: capitalize
+
+.cell
+	font-size: 18px
+	padding: 4px
+	width: 27px
+	height: 27px
+	border-radius: 50%
+	display: flex
+	align-items: center
+	justify-content: center
+	color: $color-hard
+	box-sizing: border-box
+
+.headerCell
+	color: $color-surface
+
+.dayCell
+	cursor: pointer
+	position: relative
+	z-index: 0
+	transition: background-color .2s ease-in-out, color .2s ease-in-out
+
+	&:not(&_selected):hover::after
+		background-color: $color-lightest
+		content: ''
+		width: 40px
+		height: 40px
+		position: absolute
+		z-index: -1
+		border-radius: 50%
+
+	&:active
+		background-color: #d1d1d1
+
+	&_selected
+		color: #fff
+		position: relative
+		z-index: 0
+
+	&_selected::after
+		content: ''
+		width: 40px
+		height: 40px
+		background-color: $color-primary
+		position: absolute
+		z-index: -1
+		border-radius: 50%

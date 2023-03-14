@@ -13,16 +13,16 @@
 		margin-bottom: 0
 
 .header
-	margin-bottom: 8px
+	margin-bottom: .8rem
 	display: flex
-	gap: 23px
+	gap: 2.3rem
 	text-transform: capitalize
 
 .cell
-	font-size: 18px
-	padding: 4px
-	width: 27px
-	height: 27px
+	font-size: 1.8rem
+	padding: 4.rem
+	width: 2.7rem
+	height: 2.7rem
 	border-radius: 50%
 	display: flex
 	align-items: center
@@ -42,8 +42,8 @@
 	&:not(&_selected):hover::after
 		background-color: $color-lightest
 		content: ''
-		width: 40px
-		height: 40px
+		width: 4rem
+		height: 4rem
 		position: absolute
 		z-index: -1
 		border-radius: 50%
@@ -58,8 +58,8 @@
 
 	&_selected::after
 		content: ''
-		width: 40px
-		height: 40px
+		width: 4rem
+		height: 4rem
 		background-color: $color-primary
 		position: absolute
 		z-index: -1

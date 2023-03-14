@@ -4,7 +4,7 @@ import { Dayjs } from "dayjs";
 import { ReactComponent as ChevronLeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as ChevronRightIcon } from "assets/icons/chevron-right.svg";
 import styles from "./DatePickerSelector.module.sass";
-import { changeDateMonth, getWeeks } from "widgets/DatePicker/helpers/calendar";
+import { changeDateMonth } from "widgets/DatePicker/helpers/calendar";
 
 interface DatePickerSelectorProps {
   currentDate: Dayjs;

@@ -2,15 +2,8 @@ import styles from "./TextField.module.sass";
 import cn from "classnames";
 import { ElementSizes } from "types";
 import { Text } from "ui";
-import {
-  HTMLInputTypeAttribute,
-  useEffect,
-  useRef,
-  useState,
-  ChangeEvent,
-} from "react";
+import { HTMLInputTypeAttribute, useRef, useState, ChangeEvent } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
-import { useActiveElement } from "hooks";
 
 interface TextFieldProps {
   size: Extract<ElementSizes, "m" | "l">;
@@ -72,7 +65,6 @@ export const TextField = ({
   });
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-  // const activeElement = useActiveElement();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!onChange) {
@@ -93,6 +85,13 @@ export const TextField = ({
           register.onChange(e);
           handleChange(e);
         },
+        onFocus: () => {
+          setIsActive(true);
+        },
+        onBlur: (e: ChangeEvent<HTMLInputElement>) => {
+          setIsActive(false);
+          register.onBlur(e);
+        },
       };
     }
     return {
@@ -102,12 +101,14 @@ export const TextField = ({
       onChange: (e: ChangeEvent<HTMLInputElement>) => {
         handleChange(e);
       },
+      onFocus: () => {
+        setIsActive(true);
+      },
+      onBlur: () => {
+        setIsActive(false);
+      },
     };
   };
-
-  // useEffect(() => {
-  //   inputRef.current === activeElement ? setIsActive(true) : setIsActive(false);
-  // }, [activeElement]);
 
   return (
     <div className={cn(className, styles.wrapper)}>

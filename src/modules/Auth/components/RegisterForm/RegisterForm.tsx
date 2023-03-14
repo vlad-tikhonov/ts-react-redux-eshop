@@ -1,11 +1,8 @@
 import styles from "./RegisterForm.module.sass";
 import { Htag, TextField, Button, InputDate } from "ui";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useState } from "react";
-import { DatePicker } from "widgets";
-import { ReactComponent as EyeIcon } from "assets/icons/eye.svg";
-import { ReactComponent as EyeOffIcon } from "assets/icons/eye-off.svg";
-
+import { PasswordField } from "widgets";
+import cn from "classnames";
 interface RegisterFormProps {
   className?: string;
 }
@@ -24,10 +21,7 @@ interface FormValues {
   phone: string;
 }
 
-export const RegisterForm = ({}: RegisterFormProps) => {
-  const [showPass, setShowPass] = useState(false);
-  const [showConfirm, setConfirm] = useState(false);
-
+export const RegisterForm = ({ className }: RegisterFormProps) => {
   const {
     register,
     formState: { errors, isValid },
@@ -36,44 +30,14 @@ export const RegisterForm = ({}: RegisterFormProps) => {
     mode: "onBlur",
   });
 
-  const toggleShowPass = () => {
-    setShowPass((b) => !b);
-  };
-
-  const toggleConfirmPass = () => {
-    setConfirm((b) => !b);
-  };
-
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
   };
 
-  const getEyeRender =
-    (fieldName: "password" | "confirm") => (className: string) =>
-      (
-        <EyeIcon
-          className={className}
-          onClick={
-            fieldName === "password" ? toggleShowPass : toggleConfirmPass
-          }
-        />
-      );
-
-  const getEyeOffRender =
-    (fieldName: "password" | "confirm") => (className: string) =>
-      (
-        <EyeOffIcon
-          className={className}
-          onClick={
-            fieldName === "password" ? toggleShowPass : toggleConfirmPass
-          }
-        />
-      );
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={styles.form}
+      className={cn(styles.form, className)}
       autoComplete="off"
     >
       <Htag size="s" className={styles.title}>
@@ -96,23 +60,15 @@ export const RegisterForm = ({}: RegisterFormProps) => {
             register={register("surname")}
           />
           <TextField labelText="Имя" size="m" register={register("name")} />
-          <TextField
+          <PasswordField
             labelText="Пароль"
             size="m"
-            type={showPass ? "text" : "password"}
             register={register("password")}
-            renderRightIcon={
-              showPass ? getEyeOffRender("password") : getEyeRender("password")
-            }
           />
-          <TextField
+          <PasswordField
             labelText="Повторите пароль"
             size="m"
-            type={showConfirm ? "text" : "password"}
             register={register("confirm")}
-            renderRightIcon={
-              showConfirm ? getEyeOffRender("confirm") : getEyeRender("confirm")
-            }
           />
         </div>
         <div className={styles.right}>

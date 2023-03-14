@@ -5,7 +5,7 @@ import { Text } from "ui";
 import { HTMLInputTypeAttribute, useRef, useState, ChangeEvent } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
-interface TextFieldProps {
+export interface TextFieldProps {
   size: Extract<ElementSizes, "m" | "l">;
   labelText: string;
   message?: string;

@@ -21,6 +21,7 @@ const renderCrossIcon = (className: string) => (
 export const Header = () => {
   const [modalState, setModalState] = useState(false);
   const [dropdownState, setDropdownState] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
 
   const headerRef = useRef<HTMLDivElement | null>(null);
   const { pathname } = useLocation();
@@ -72,8 +73,8 @@ export const Header = () => {
             <Search className={styles.search} />
             <Menu />
             <UserMenu openModal={openModal} />
-            <Modal isActive={modalState} closeModal={closeModal}>
-              <AuthRegisterForm open={openModal} close={closeModal} />
+            <Modal opened={modalState} onClose={closeModal}>
+              <AuthRegisterForm close={closeModal} />
             </Modal>
           </div>
         </Container>

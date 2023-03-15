@@ -2,13 +2,11 @@ import { Button } from "ui";
 import { useState } from "react";
 import { AuthForm, RegisterForm } from "modules/Auth";
 import styles from "./AuthRegisterForm.module.sass";
-
 interface AuthRegisterFormProps {
-  open: () => void;
   close: () => void;
 }
 
-export const AuthRegisterForm = ({ open, close }: AuthRegisterFormProps) => {
+export const AuthRegisterForm = ({ close }: AuthRegisterFormProps) => {
   const [isShowRegister, setIsShowRegister] = useState(false);
 
   const toggleShowRegister = () => {

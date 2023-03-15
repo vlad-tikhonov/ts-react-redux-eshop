@@ -2,11 +2,9 @@ import { Button, Htag } from "ui";
 import { TextField } from "ui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./AuthForm.module.sass";
-import { ReactComponent as EyeIcon } from "assets/icons/eye.svg";
-import { ReactComponent as EyeOffIcon } from "assets/icons/eye-off.svg";
-import { useState } from "react";
 import { useAppDispatch } from "app/hooks";
 import { login } from "features/auth/auth-slice";
+import { PasswordField } from "widgets";
 
 interface AuthFormProps {
   onLogin: () => void;
@@ -18,7 +16,6 @@ interface FormValues {
 }
 
 export const AuthForm = ({ onLogin }: AuthFormProps) => {
-  const [showPass, setShowPass] = useState(false);
   const dispatch = useAppDispatch();
 
   const {
@@ -40,18 +37,6 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
     });
   };
 
-  const toggleShowPass = () => {
-    setShowPass((b) => !b);
-  };
-
-  const renderEyeIcon = (className: string) => (
-    <EyeIcon className={className} onClick={toggleShowPass} />
-  );
-
-  const renderEyeOffIcon = (className: string) => (
-    <EyeOffIcon className={className} onClick={toggleShowPass} />
-  );
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <Htag size="s" className={styles.title}>
@@ -67,15 +52,12 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
         message={errors.email?.message}
         className={styles.email}
       />
-
-      <TextField
+      <PasswordField
         labelText="Пароль"
         size="l"
         register={register("password", {
           required: "Пожалуйста, введите пароль",
         })}
-        type={showPass ? "text" : "password"}
-        renderRightIcon={showPass ? renderEyeOffIcon : renderEyeIcon}
         message={errors.password?.message}
         className={styles.password}
       />

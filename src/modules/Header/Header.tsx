@@ -2,7 +2,7 @@ import { Container } from "layouts";
 import { Button, Modal } from "ui";
 import { Search, Menu, CatalogDropdown } from "./components";
 import { useEffect, useRef, useState } from "react";
-import { AuthForm, RegisterForm } from "modules/Auth";
+import { AuthForm, AuthRegisterForm, RegisterForm } from "modules/Auth";
 import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
@@ -73,8 +73,7 @@ export const Header = () => {
             <Menu />
             <UserMenu openModal={openModal} />
             <Modal isActive={modalState} closeModal={closeModal}>
-              {/* <AuthForm onLogin={closeModal} /> */}
-              <RegisterForm />
+              <AuthRegisterForm open={openModal} close={closeModal} />
             </Modal>
           </div>
         </Container>

@@ -10,7 +10,6 @@ export const Home = () => {
   const [promotions, { isLoading: pIsLoading, error: pError }] =
     usePromotions();
   const [novelties, { isLoading: nIsLoading, error: nError }] = useNovelties();
-  console.log("render home");
   return (
     <Container>
       <DeliveryBanner />

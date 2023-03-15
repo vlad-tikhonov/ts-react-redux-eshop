@@ -1,13 +1,15 @@
-.modal-enter
-	transform: scale3d(0,0,0)
+.form-enter
+	opacity: 0
 
-.modal-enter-active
-	transform: scale3d(1,1,1)
-	transition: transform 300ms cubic-bezier(.31,.77,.57,.84)
+.form-enter-active
+	opacity: 1
 
-.modal-exit
-	transform: scale3d(1, 1, 1)
+.form-exit
+	opacity: 1
 
-.modal-exit-active
-	transform: scale3d(0,0,0)
-	transition: transform 300ms cubic-bezier(.31,.77,.57,.84)
+.form-exit-active
+	opacity: 0
+
+.form-enter-active,
+.form-exit-active
+	transition: opacity 200ms ease-in-out

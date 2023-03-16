@@ -1,8 +1,8 @@
 import styles from "./RegisterForm.module.sass";
 import { Htag, TextField, Button } from "ui";
-import { InputDate, Radio } from "components";
+import { InputDate, ButtonsGroup } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { PasswordField, SelectField } from "components";
+import { PasswordField, SelectField, Option } from "components";
 import cn from "classnames";
 interface RegisterFormProps {
   className?: string;
@@ -31,9 +31,6 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
     register,
     formState: { errors, isValid },
     handleSubmit,
-    control,
-    trigger,
-    setFocus,
     setValue,
   } = useForm<FormValues>({
     mode: "onBlur",
@@ -43,20 +40,18 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
     console.log(data);
   };
 
-  const options = [
+  const options: [Option, Option] = [
     {
-      value: "1",
+      value: "0",
       label: "Мужской",
-      checked: true,
-      id: "1",
     },
     {
       value: "1",
       label: "Женский",
-      checked: false,
-      id: "2",
     },
   ];
+
+  register("sex");
 
   return (
     <form
@@ -147,7 +142,12 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
             name={"locality"}
             setFormValue={setValue}
           />
-          <Radio options={options} />
+          <ButtonsGroup
+            options={options}
+            label="Пол"
+            setFormValue={setValue}
+            name="sex"
+          />
         </div>
       </div>
       <Htag size="xs" className={styles.title_opt}>
@@ -169,7 +169,13 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
           />
         </div>
       </div>
-      <Button accent="primary" decoration="default" size="l" type="submit">
+      <Button
+        accent="primary"
+        decoration="default"
+        size="l"
+        type="submit"
+        disabled={!isValid}
+      >
         Продолжить
       </Button>
     </form>

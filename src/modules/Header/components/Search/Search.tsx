@@ -30,7 +30,9 @@ export const Search = ({ className }: SearchProps) => {
   };
 
   const resetResults = () => {
-    dispatch(resetSearch());
+    if (results.length) {
+      dispatch(resetSearch());
+    }
   };
 
   useClickOutside(formRef, () => {
@@ -44,7 +46,7 @@ export const Search = ({ className }: SearchProps) => {
   }, [debouncedValue]);
 
   useEffect(() => {
-    if (results) {
+    if (results.length) {
       resetResults();
     }
 

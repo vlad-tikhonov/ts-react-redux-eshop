@@ -1,7 +1,8 @@
 import styles from "./RegisterForm.module.sass";
-import { Htag, TextField, Button, InputDate } from "ui";
+import { Htag, TextField, Button } from "ui";
+import { InputDate } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { PasswordField } from "widgets";
+import { PasswordField, SelectField } from "components";
 import cn from "classnames";
 interface RegisterFormProps {
   className?: string;
@@ -21,11 +22,17 @@ interface FormValues {
   phone: string;
 }
 
+const regions = ["Москва"];
+
+const cities = ["Москва"];
+
 export const RegisterForm = ({ className }: RegisterFormProps) => {
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
+    trigger,
+    setFocus,
   } = useForm<FormValues>({
     mode: "onBlur",
   });
@@ -51,42 +58,74 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
           <TextField
             labelText="E-mail"
             size="m"
-            register={register("email")}
+            register={register("email", {
+              required: "Введите E-mail",
+            })}
             type="email"
+            message={errors.email?.message}
           />
           <TextField
             labelText="Фамилия"
             size="m"
-            register={register("surname")}
+            register={register("surname", {
+              required: "Введите фамилию",
+            })}
+            message={errors.surname?.message}
           />
-          <TextField labelText="Имя" size="m" register={register("name")} />
+          <TextField
+            labelText="Имя"
+            size="m"
+            register={register("name", {
+              required: "Введите имя",
+            })}
+            message={errors.name?.message}
+          />
           <PasswordField
             labelText="Пароль"
             size="m"
-            register={register("password")}
+            register={register("password", {
+              required: "Введите пароль",
+            })}
+            message={errors.password?.message}
           />
           <PasswordField
             labelText="Повторите пароль"
             size="m"
-            register={register("confirm")}
+            register={register("confirm", {
+              required: "Повторите пароль",
+            })}
+            message={errors.confirm?.message}
           />
         </div>
         <div className={styles.right}>
           <InputDate
             labelText="Дата рождения"
-            message=""
-            register={register("birth")}
+            register={register("birth", {
+              required: "Введите дату рождения",
+            })}
             size="m"
+            message={errors.birth?.message}
+            setFocus={setFocus}
           />
-          <TextField
+          <SelectField
             labelText="Регион"
             size="m"
-            register={register("region")}
+            register={register("region", {
+              required: "Выберите регион",
+            })}
+            list={regions}
+            message={errors.region?.message}
+            setFocus={setFocus}
           />
-          <TextField
+          <SelectField
             labelText="Населенный пункт"
             size="m"
-            register={register("locality")}
+            register={register("locality", {
+              required: "Выберите населенный пункт",
+            })}
+            list={cities}
+            message={errors.locality?.message}
+            setFocus={setFocus}
           />
           <TextField labelText="Пол" size="m" register={register("sex")} />
         </div>
@@ -100,7 +139,6 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
             labelText="Номер карты"
             size="m"
             register={register("card")}
-            placeholder=""
           />
         </div>
         <div className={styles.right}>
@@ -108,11 +146,16 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
             labelText="Телефон"
             size="m"
             register={register("phone")}
-            placeholder=""
           />
         </div>
       </div>
-      <Button accent="primary" decoration="default" size="l" type="submit">
+      <Button
+        accent="primary"
+        decoration="default"
+        size="l"
+        type="submit"
+        disabled={!isValid}
+      >
         Продолжить
       </Button>
     </form>

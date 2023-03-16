@@ -2,7 +2,7 @@ import { Container, Wrapper } from "layouts";
 import styles from "./Test.module.sass";
 import { ReactComponent as LeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as RightIcon } from "assets/icons/chevron-right.svg";
-import { Button, InputDate } from "ui";
+import { InputDate, SelectField } from "components";
 
 const renderLeftIcon = (className: string) => (
   <LeftIcon className={className} />
@@ -12,6 +12,13 @@ const renderRightIcon = (className: string) => (
   <RightIcon className={className} />
 );
 
+const list = [
+  "Республика Башкортостан",
+  "Удмуртская республика",
+  "Москва",
+  "Санткт-Петербург",
+];
+
 export const Test = () => {
   return (
     <Wrapper>
@@ -19,6 +26,12 @@ export const Test = () => {
         <div className={styles.test}>
           <div>
             <InputDate size="m" message="" labelText="дд.мм.гггг" />
+          </div>
+          <div>
+            <SelectField labelText="Регион" message="" size="m" list={list} />
+          </div>
+          <div>
+            <SelectField labelText="Регион" message="" size="l" list={list} />
           </div>
         </div>
       </Container>

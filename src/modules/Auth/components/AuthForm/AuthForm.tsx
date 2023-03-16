@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./AuthForm.module.sass";
 import { useAppDispatch } from "app/hooks";
 import { login } from "features/auth/auth-slice";
-import { PasswordField } from "widgets";
+import { PasswordField } from "components";
 
 interface AuthFormProps {
   onLogin: () => void;

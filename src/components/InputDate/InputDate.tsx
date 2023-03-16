@@ -1,6 +1,4 @@
-import { UseFormRegisterReturn } from "react-hook-form";
-import { ElementSizes } from "types";
-import { TextField } from "ui";
+import { TextField, TextFieldProps } from "ui";
 import { ChangeEvent, useRef, useState } from "react";
 import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg";
 import { DatePicker } from "widgets";
@@ -10,23 +8,21 @@ import styles from "./InputDate.module.sass";
 import cn from "classnames";
 import { useClickOutside } from "hooks";
 import { DATE_REGEXP } from "constants/date-regexp";
+import { FieldValues, UseFormSetFocus, Path } from "react-hook-form";
 
-interface InputDateProps {
-  labelText: string;
-  size: Extract<ElementSizes, "l" | "m">;
-  message: string;
-  placeholder?: string;
-  disabled?: boolean;
-  register?: UseFormRegisterReturn;
-}
+type InputDateProps<T extends FieldValues> = Pick<
+  TextFieldProps,
+  "labelText" | "disabled" | "message" | "register" | "size"
+> & { setFocus?: UseFormSetFocus<T> };
 
-export const InputDate = ({
+export const InputDate = <T extends FieldValues>({
   size,
   labelText,
   disabled,
   message,
   register,
-}: InputDateProps) => {
+  setFocus,
+}: InputDateProps<T>) => {
   const [inputValue, setInputValue] = useState("");
   const [isShowDatePicker, setIsShowDatePicker] = useState(false);
   const [currentDate, setCurrentDate] = useState<Dayjs>(dayjs());
@@ -53,6 +49,12 @@ export const InputDate = ({
   const handleSetSelectedDate = (date: Dayjs) => {
     setInputValue(date.format("DD.MM.YYYY"));
     setSelectedDate(date);
+    setIsShowDatePicker(false);
+
+    if (register && setFocus) {
+      const fieldName = register.name as Path<T>;
+      setFocus(fieldName);
+    }
   };
 
   const handleSetCurrentDate = (date: Dayjs) => {
@@ -83,6 +85,7 @@ export const InputDate = ({
         register={register}
         onChange={onChange}
         value={inputValue}
+        type="text"
       />
       {isShowDatePicker && (
         <DatePicker

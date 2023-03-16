@@ -8,12 +8,21 @@ import styles from "./InputDate.module.sass";
 import cn from "classnames";
 import { useClickOutside } from "hooks";
 import { DATE_REGEXP } from "constants/date-regexp";
-import { FieldValues, UseFormSetFocus, Path } from "react-hook-form";
+import {
+  FieldValues,
+  UseFormSetValue,
+  Path,
+  FieldPath,
+  PathValue,
+} from "react-hook-form";
 
 type InputDateProps<T extends FieldValues> = Pick<
   TextFieldProps,
   "labelText" | "disabled" | "message" | "register" | "size"
-> & { setFocus?: UseFormSetFocus<T> };
+> & {
+  setFormValue?: UseFormSetValue<T>;
+  name?: FieldPath<T>;
+};
 
 export const InputDate = <T extends FieldValues>({
   size,
@@ -21,7 +30,8 @@ export const InputDate = <T extends FieldValues>({
   disabled,
   message,
   register,
-  setFocus,
+  setFormValue,
+  name,
 }: InputDateProps<T>) => {
   const [inputValue, setInputValue] = useState("");
   const [isShowDatePicker, setIsShowDatePicker] = useState(false);
@@ -47,13 +57,15 @@ export const InputDate = <T extends FieldValues>({
   };
 
   const handleSetSelectedDate = (date: Dayjs) => {
-    setInputValue(date.format("DD.MM.YYYY"));
+    const newValue = date.format("DD.MM.YYYY");
+    setInputValue(newValue);
     setSelectedDate(date);
     setIsShowDatePicker(false);
 
-    if (register && setFocus) {
-      const fieldName = register.name as Path<T>;
-      setFocus(fieldName);
+    if (name && setFormValue) {
+      setFormValue(name, newValue as PathValue<T, Path<T>>, {
+        shouldValidate: true,
+      });
     }
   };
 

@@ -1,6 +1,6 @@
 import styles from "./RegisterForm.module.sass";
 import { Htag, TextField, Button } from "ui";
-import { InputDate } from "components";
+import { InputDate, Radio } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PasswordField, SelectField } from "components";
 import cn from "classnames";
@@ -31,8 +31,10 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
     register,
     formState: { errors, isValid },
     handleSubmit,
+    control,
     trigger,
     setFocus,
+    setValue,
   } = useForm<FormValues>({
     mode: "onBlur",
   });
@@ -40,6 +42,21 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
   };
+
+  const options = [
+    {
+      value: "1",
+      label: "Мужской",
+      checked: true,
+      id: "1",
+    },
+    {
+      value: "1",
+      label: "Женский",
+      checked: false,
+      id: "2",
+    },
+  ];
 
   return (
     <form
@@ -105,7 +122,8 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
             })}
             size="m"
             message={errors.birth?.message}
-            setFocus={setFocus}
+            setFormValue={setValue}
+            name={"birth"}
           />
           <SelectField
             labelText="Регион"
@@ -115,7 +133,8 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
             })}
             list={regions}
             message={errors.region?.message}
-            setFocus={setFocus}
+            setFormValue={setValue}
+            name={"region"}
           />
           <SelectField
             labelText="Населенный пункт"
@@ -125,9 +144,10 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
             })}
             list={cities}
             message={errors.locality?.message}
-            setFocus={setFocus}
+            name={"locality"}
+            setFormValue={setValue}
           />
-          <TextField labelText="Пол" size="m" register={register("sex")} />
+          <Radio options={options} />
         </div>
       </div>
       <Htag size="xs" className={styles.title_opt}>
@@ -149,13 +169,7 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
           />
         </div>
       </div>
-      <Button
-        accent="primary"
-        decoration="default"
-        size="l"
-        type="submit"
-        disabled={!isValid}
-      >
+      <Button accent="primary" decoration="default" size="l" type="submit">
         Продолжить
       </Button>
     </form>

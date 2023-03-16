@@ -1,24 +1,31 @@
 import { TextField, TextFieldProps } from "ui";
-import { useState, useRef, ChangeEvent, useEffect } from "react";
+import { useState, useRef, ChangeEvent, MouseEvent } from "react";
 import styles from "./SelectField.module.sass";
 import { ReactComponent as ChevronDownIcon } from "assets/icons/chevron-down.svg";
 import { ReactComponent as ChevronUpIcon } from "assets/icons/chevron-up.svg";
 import { useClickOutside } from "hooks";
 import cn from "classnames";
-import { FieldValues, UseFormSetFocus, Path } from "react-hook-form";
+import {
+  FieldValues,
+  Path,
+  UseFormSetValue,
+  PathValue,
+  FieldPath,
+} from "react-hook-form";
 
 type SelectFieldProps<T extends FieldValues> = Pick<
   TextFieldProps,
   "labelText" | "size" | "message" | "placeholder" | "disabled" | "register"
 > & {
   list: string[];
-  setFocus?: UseFormSetFocus<T>;
+  setFormValue?: UseFormSetValue<T>;
+  name?: FieldPath<T>;
 };
 
 export const SelectField = <T extends FieldValues>(
   props: SelectFieldProps<T>
 ) => {
-  const { size, register, list, setFocus } = props;
+  const { size, register, list, setFormValue, name } = props;
 
   const [isShowList, setIsShowList] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -40,18 +47,20 @@ export const SelectField = <T extends FieldValues>(
     return;
   };
 
-  const handleClick = async (
-    e: React.MouseEvent<HTMLUListElement, globalThis.MouseEvent>
+  const handleClick = (
+    e: MouseEvent<HTMLUListElement, globalThis.MouseEvent>
   ) => {
     if (
       e.target instanceof HTMLElement &&
       typeof e.target.dataset.value === "string"
     ) {
-      setValue(e.target.dataset.value);
+      const newValue = e.target.dataset.value;
+      setValue(newValue);
       setIsShowList(false);
-      if (register && setFocus) {
-        const fieldName = register.name as Path<T>;
-        setFocus(fieldName);
+      if (name && setFormValue) {
+        setFormValue(name, newValue as PathValue<T, Path<T>>, {
+          shouldValidate: true,
+        });
       }
     }
   };
@@ -59,8 +68,6 @@ export const SelectField = <T extends FieldValues>(
   useClickOutside(wrapperRef, () => {
     setIsShowList(false);
   });
-
-  useEffect(() => {}, [value]);
 
   return (
     <div

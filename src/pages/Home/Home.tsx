@@ -5,6 +5,7 @@ import { usePromotions } from "features/promotions/use-promotions";
 import { useNovelties } from "features/novelties/use-novelties";
 import styles from "./Home.module.sass";
 import { Articles } from "modules/Header/components";
+import { StoreMap } from "modules/Home/widgets";
 
 export const Home = () => {
   const [promotions, { isLoading: pIsLoading, error: pError }] =
@@ -23,6 +24,7 @@ export const Home = () => {
         title="Новинки"
         className={styles.novelties}
       />
+      <StoreMap />
       <SpecialOffers className={styles.offers} />
       <Articles />
     </Container>

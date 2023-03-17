@@ -3,13 +3,16 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import App from "./app/App";
+import { YMaps } from "@pbe/react-yandex-maps";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 root.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <App />
+    <YMaps>
+      <App />
+    </YMaps>
   </Provider>
   // </React.StrictMode>
 );

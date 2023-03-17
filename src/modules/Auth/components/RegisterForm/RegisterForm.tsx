@@ -3,6 +3,7 @@ import { Htag, TextField, Button } from "ui";
 import { InputDate, ButtonsGroup } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PasswordField, SelectField, Option } from "components";
+import { Sex } from "types";
 import cn from "classnames";
 interface RegisterFormProps {
   className?: string;
@@ -26,6 +27,17 @@ const regions = ["Москва"];
 
 const cities = ["Москва"];
 
+const options: [Option, Option] = [
+  {
+    value: Sex.Male,
+    label: "Мужской",
+  },
+  {
+    value: Sex.Female,
+    label: "Женский",
+  },
+];
+
 export const RegisterForm = ({ className }: RegisterFormProps) => {
   const {
     register,
@@ -39,17 +51,6 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
   };
-
-  const options: [Option, Option] = [
-    {
-      value: "0",
-      label: "Мужской",
-    },
-    {
-      value: "1",
-      label: "Женский",
-    },
-  ];
 
   register("sex");
 

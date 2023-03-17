@@ -120,7 +120,7 @@ export const TextField = ({
             placeholder={placeholder}
             type={type}
             spellCheck="false"
-            autoComplete="off"
+            autoComplete={"new-password"}
             className={inputClasses}
             value={value}
             {...getFormProps()}

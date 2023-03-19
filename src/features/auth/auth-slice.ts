@@ -4,14 +4,14 @@ import { Extra, User, Login } from 'types'
 type AuthSlice = {
 	user: User | null,
 	token: string | null;
-	error: string | null,
+	errors: string[],
 	isLoading: boolean,
 }
 
 const initialState: AuthSlice = {
 	user: null,
 	token: null,
-	error: null,
+	errors: [],
 	isLoading: false,
 }
 
@@ -21,7 +21,7 @@ export const login = createAsyncThunk<
 	{
 		state: { auth: AuthSlice },
 		extra: Extra,
-		rejectValue: string,
+		rejectValue: string | string[],
 	}>
 	(
 		"@@auth/login",
@@ -54,11 +54,16 @@ const authSlice = createSlice({
 		builder
 			.addCase(login.pending, (state) => {
 				state.isLoading = true
-				state.error = null
+				state.errors = []
 			})
 			.addCase(login.rejected, (state, action) => {
 				state.isLoading = false
-				state.error = action.payload || "Cannot load data"
+
+				if (Array.isArray(action.payload)) {
+					state.errors = action.payload
+				} else {
+					state.errors.push(action.payload ?? 'Unable to auth - unknown error')
+				}
 			})
 			.addCase(login.fulfilled, (state, action) => {
 				state.isLoading = false

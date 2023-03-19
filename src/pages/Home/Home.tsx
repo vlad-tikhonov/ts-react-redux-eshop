@@ -7,9 +7,10 @@ import styles from "./Home.module.sass";
 import { StoreMap, Articles } from "modules/Home/widgets";
 
 export const Home = () => {
-  const [promotions, { isLoading: pIsLoading, error: pError }] =
+  const [promotions, { isLoading: pIsLoading, errors: pErrors }] =
     usePromotions();
-  const [novelties, { isLoading: nIsLoading, error: nError }] = useNovelties();
+  const [novelties, { isLoading: nIsLoading, errors: nErrors }] =
+    useNovelties();
   return (
     <Container>
       <DeliveryBanner />

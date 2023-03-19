@@ -12,7 +12,7 @@ export const selectAuthInfo = createSelector(
 	baseAuthSelector,
 	(auth) => ({
 		isLoading: auth.isLoading,
-		error: auth.error,
+		errors: auth.errors,
 	})
 )
 

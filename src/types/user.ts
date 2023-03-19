@@ -9,4 +9,5 @@ export type User = {
 	region: string;
 	locality: string;
 	card: number;
+	phone: string;
 }

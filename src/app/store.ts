@@ -11,6 +11,7 @@ import { promotionsReducer } from 'features/promotions/promotions-slice';
 import { noveltiesReducer } from 'features/novelties/novelties-slice';
 import { searchReducer } from 'features/search/search-slice'
 import { reviewsReducer } from 'features/reviews/reviews-slice';
+import { registerReducer } from 'features/register/register-slice';
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ export const store = configureStore({
 		novelties: noveltiesReducer,
 		search: searchReducer,
 		reviews: reviewsReducer,
+		register: registerReducer,
   },
 	devTools: process.env.NODE_ENV !== 'production',
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({
@@ -32,7 +34,6 @@ export const store = configureStore({
 				api, errorHandler
 			}
 		},
-		// serializableCheck: false
 	})
 });
 

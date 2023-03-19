@@ -11,7 +11,7 @@ export const useProducts = (
   categorySlug: string | undefined
 ): [ProductWithReviewsInfo[], ReturnType<typeof selectProductsInfo>] => {
   const dispatch = useAppDispatch();
-  const { isLoading, error } = useAppSelector(selectProductsInfo);
+  const { isLoading, errors } = useAppSelector(selectProductsInfo);
   const products = useAppSelector(selectProducts);
 
   useEffect(() => {
@@ -20,5 +20,5 @@ export const useProducts = (
     }
   }, [categorySlug, dispatch]);
 
-  return [products, { isLoading, error }];
+  return [products, { isLoading, errors }];
 };

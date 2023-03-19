@@ -14,7 +14,7 @@ export const useProduct = (
   ReturnType<typeof selectProductInfo>
 ] => {
   const dispatch = useAppDispatch();
-  const { isLoading, error } = useAppSelector(selectProductInfo);
+  const { isLoading, errors } = useAppSelector(selectProductInfo);
   const product = useAppSelector(selectProduct);
 
   useEffect(() => {
@@ -23,5 +23,5 @@ export const useProduct = (
     }
   }, [slug, dispatch]);
 
-  return [product, { isLoading, error }];
+  return [product, { isLoading, errors }];
 };

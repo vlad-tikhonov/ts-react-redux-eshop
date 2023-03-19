@@ -7,7 +7,7 @@ export const selectPromotionsInfo = createSelector(
 	basePromotionsSelector,
 	(state) => ({
 		isLoading: state.isLoading,
-		error: state.error
+		errors: state.errors
 	})
 )
 

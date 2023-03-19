@@ -13,7 +13,7 @@ export const useCategories = (): [
 ] => {
   const dispatch = useAppDispatch();
 
-  const { isLoading, error } = useAppSelector(selectCategoriesInfo);
+  const { isLoading, errors } = useAppSelector(selectCategoriesInfo);
   const categories = useAppSelector(selectAllCategories);
 
   useEffect(() => {
@@ -22,5 +22,5 @@ export const useCategories = (): [
     }
   }, [categories, dispatch]);
 
-  return [categories, { isLoading, error }];
+  return [categories, { isLoading, errors }];
 };

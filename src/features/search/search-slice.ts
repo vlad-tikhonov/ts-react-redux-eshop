@@ -3,13 +3,13 @@ import { Extra, SearchItem } from "types";
 
 type SearchSlice = {
 	data: SearchItem[];
-	error: string | null;
+	errors: string[];
 	isLoading: boolean
 }
 
 const initialState: SearchSlice = {
 	data: [],
-	error: null,
+	errors: [],
 	isLoading: false,
 }
 
@@ -19,7 +19,7 @@ export const loadSearchResults = createAsyncThunk<
   {
     state: { search: SearchSlice };
     extra: Extra;
-    rejectValue: string;
+    rejectValue: string | string[];
   }
 >(
   "@@search/load-results",
@@ -52,11 +52,16 @@ const searchSlice = createSlice({
 		builder
 			.addCase(loadSearchResults.pending, (state) => {
 				state.isLoading = true
-				state.error = null
+				state.errors = []
 			})
 			.addCase(loadSearchResults.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload || "Cannot load data";
+
+				if (Array.isArray(action.payload)) {
+					state.errors = action.payload
+				} else {
+					state.errors.push(action.payload ?? 'Unable to auth - unknown error')
+				}
 			})
 			.addCase(loadSearchResults.fulfilled, (state, action) => {
         state.isLoading = false;

@@ -3,13 +3,13 @@ import { Extra, Login, Review, CreateReview } from "types";
 
 type ReviewsSlice = {
 	data: Review[];
-	error: string | null;
+	errors: string[];
 	isLoading: boolean
 }
 
 const initialState: ReviewsSlice = {
 	data: [],
-	error: null,
+	errors: [],
 	isLoading: false,
 }
 
@@ -19,7 +19,7 @@ export const loadReviews = createAsyncThunk<
   {
     state: { reviews: ReviewsSlice };
     extra: Extra;
-    rejectValue: string;
+    rejectValue: string | string[];
   }
 >(
   "@@reviews/load-reviews",
@@ -48,7 +48,7 @@ export const createReview = createAsyncThunk<
   {
     state: { reviews: ReviewsSlice };
     extra: Extra;
-    rejectValue: string;
+    rejectValue: string | string[];
   }
 >(
   "@@reviews/create-review",
@@ -80,11 +80,16 @@ const reviewsSlice = createSlice({
 		builder
 			.addCase(loadReviews.pending, (state) => {
 				state.isLoading = true
-				state.error = null
+				state.errors = []
 			})
 			.addCase(loadReviews.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload || "Cannot load data";
+
+				if (Array.isArray(action.payload)) {
+					state.errors = action.payload
+				} else {
+					state.errors.push(action.payload ?? 'Cannot load data - unknown error')
+				}
 			})
 			.addCase(loadReviews.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -92,11 +97,16 @@ const reviewsSlice = createSlice({
 			})
 			.addCase(createReview.pending, (state) => {
 				state.isLoading = true
-				state.error = null
+				state.errors = []
 			})
 			.addCase(createReview.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload || "Cannot load data";
+
+				if (Array.isArray(action.payload)) {
+					state.errors = action.payload
+				} else {
+					state.errors.push(action.payload ?? 'Cannot load data - unknown error')
+				}
 			})
 			.addCase(createReview.fulfilled, (state, action) => {
         state.isLoading = false;

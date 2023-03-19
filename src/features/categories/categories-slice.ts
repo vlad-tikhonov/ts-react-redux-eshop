@@ -3,14 +3,14 @@ import {Category, Extra} from 'types'
 
 type CategoriesSlice = {
 	data: Category[],
-	error: string | null,
+	errors: string[],
 	isLoading: boolean,
 }
 
 const initialState: CategoriesSlice = {
 	data: [],
 	isLoading: false,
-	error: null
+	errors: []
 }
 
 export const loadCategories = createAsyncThunk<
@@ -19,7 +19,7 @@ export const loadCategories = createAsyncThunk<
 	{
 		state: {categories: CategoriesSlice},
 		extra: Extra,
-		rejectValue: string,
+		rejectValue: string | string[],
 	}>
 	(
 		"@@categories/load-categories",
@@ -50,11 +50,16 @@ const categoriesSlice = createSlice({
 		builder
 			.addCase(loadCategories.pending, (state) => {
 				state.isLoading = true
-				state.error = null
+				state.errors = []
 			})
 			.addCase(loadCategories.rejected, (state, action) => {
 				state.isLoading = false
-				state.error = action.payload || "Cannot load data"
+
+				if (Array.isArray(action.payload)) {
+					state.errors = action.payload
+				} else {
+					state.errors.push(action.payload ?? 'Cannot load data - unknown error')
+				}
 			})
 			.addCase(loadCategories.fulfilled, (state, action) => {
 				state.isLoading = false

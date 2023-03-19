@@ -36,7 +36,11 @@ export const AuthRegisterForm = ({ close }: AuthRegisterFormProps) => {
           classNames={formAnimation}
         >
           <div ref={nodeRef}>
-            {isShowRegister ? <RegisterForm /> : <AuthForm onLogin={close} />}
+            {isShowRegister ? (
+              <RegisterForm onRegister={close} />
+            ) : (
+              <AuthForm onLogin={close} />
+            )}
           </div>
         </CSSTransition>
       </SwitchTransition>

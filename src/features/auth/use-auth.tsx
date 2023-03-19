@@ -5,8 +5,8 @@ export const useAuth = (): [
   ReturnType<typeof selectUser>,
   ReturnType<typeof selectAuthInfo>
 ] => {
-  const { isLoading, error } = useAppSelector(selectAuthInfo);
+  const { isLoading, errors } = useAppSelector(selectAuthInfo);
   const user = useAppSelector(selectUser);
 
-  return [user, { isLoading, error }];
+  return [user, { isLoading, errors }];
 };

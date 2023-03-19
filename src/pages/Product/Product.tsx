@@ -11,7 +11,7 @@ import styles from "./Product.module.sass";
 
 export const Product = () => {
   const { productSlug } = useParams();
-  const [product, { isLoading, error }] = useProduct(productSlug);
+  const [product, { isLoading, errors }] = useProduct(productSlug);
 
   if (isLoading) {
     return <div>"Loading product"</div>;

@@ -3,13 +3,13 @@ import { Extra, ProductWithReviewsInfoAndRelated } from "types";
 
 type ProductSlice = {
 	data: ProductWithReviewsInfoAndRelated | null;
-	error: string | null;
+	errors: string[];
 	isLoading: boolean
 }
 
 const initialState: ProductSlice = {
 	data: null,
-	error: null,
+	errors: [],
 	isLoading: false,
 }
 
@@ -19,7 +19,7 @@ export const loadProduct = createAsyncThunk<
   {
     state: { product: ProductSlice };
     extra: Extra;
-    rejectValue: string;
+    rejectValue: string | string[];
   }
 >(
   "@@product/load-product",
@@ -51,11 +51,17 @@ const productSlice = createSlice({
 		builder
 			.addCase(loadProduct.pending, (state) => {
 				state.isLoading = true
-				state.error = null
+				state.errors = []
 			})
 			.addCase(loadProduct.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload || "Cannot load data";
+
+				if (Array.isArray(action.payload)) {
+					state.errors = action.payload
+				} else {
+					state.errors.push(action.payload ?? 'Cannot load data - unknown error')
+				}
+
 			})
 			.addCase(loadProduct.fulfilled, (state, action) => {
         state.isLoading = false;

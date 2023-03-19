@@ -5,7 +5,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { PasswordField, SelectField, Option } from "components";
 import { Sex } from "types";
 import cn from "classnames";
+import { useAppDispatch } from "app/hooks";
+import { registerUser } from "features/register/register-slice";
+import { useRegister } from "features/register/use-register";
+import { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
+
 interface RegisterFormProps {
+  onRegister: () => void;
   className?: string;
 }
 
@@ -19,7 +26,7 @@ interface FormValues {
   region: string;
   locality: string;
   sex: string;
-  card: number;
+  card: string;
   phone: string;
 }
 
@@ -38,7 +45,11 @@ const options: [Option, Option] = [
   },
 ];
 
-export const RegisterForm = ({ className }: RegisterFormProps) => {
+export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
+  const dispatch = useAppDispatch();
+
+  const [user, { isLoading, errors: registerErrors }] = useRegister();
+
   const {
     register,
     formState: { errors, isValid },
@@ -49,8 +60,31 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    dispatch(
+      registerUser({
+        login: data.email,
+        password: data.password,
+        birthDate: data.birth,
+        // birthDate: data.birth.split(".").reverse().join("-"),
+        name: data.name,
+        surname: data.surname,
+        sex: data.sex,
+        region: data.region,
+        locality: data.locality,
+        phone: data.phone,
+        card: data.card,
+      })
+    );
   };
+
+  useEffect(() => {
+    if (registerErrors.length) {
+      console.log(errors);
+      registerErrors.forEach((e) => {
+        toast(e);
+      });
+    }
+  }, [errors]);
 
   register("sex");
 
@@ -179,6 +213,7 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
       >
         Продолжить
       </Button>
+      <Toaster position="top-right" />
     </form>
   );
 };

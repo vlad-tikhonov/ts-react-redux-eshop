@@ -7,7 +7,7 @@ export const selectNoveltiesInfo = createSelector(
 	baseNoveltiesSelector,
 	(novelties) => ({
 		isLoading: novelties.isLoading,
-		error: novelties.error
+		errors: novelties.errors
 	})
 )
 

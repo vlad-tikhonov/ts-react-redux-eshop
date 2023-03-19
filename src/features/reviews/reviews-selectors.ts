@@ -7,7 +7,7 @@ export const selectReviewsInfo = createSelector(
 	baseReviewsSelector,
 	(reviews) => ({
 		isLoading: reviews.isLoading,
-		error: reviews.error
+		errors: reviews.errors
 	})
 )
 

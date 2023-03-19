@@ -10,7 +10,7 @@ export const useNovelties = (): [
 ] => {
   const dispatch = useAppDispatch();
 
-  const { isLoading, error } = useAppSelector(selectNoveltiesInfo);
+  const { isLoading, errors } = useAppSelector(selectNoveltiesInfo);
   const novelties = useAppSelector(selectNoveltiesProducts);
 
   useEffect(() => {
@@ -19,5 +19,5 @@ export const useNovelties = (): [
     }
   }, [novelties, dispatch]);
 
-  return [novelties, { isLoading, error }];
+  return [novelties, { isLoading, errors }];
 };

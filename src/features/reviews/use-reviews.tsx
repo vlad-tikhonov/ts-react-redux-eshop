@@ -13,11 +13,11 @@ export const useReviews = (
   const dispatch = useAppDispatch();
 
   const reviews = useAppSelector(selectReviews);
-  const { isLoading, error } = useAppSelector(selectReviewsInfo);
+  const { isLoading, errors } = useAppSelector(selectReviewsInfo);
 
   useEffect(() => {
     dispatch(loadReviews(productId));
   }, [productId, dispatch]);
 
-  return [reviews, { isLoading, error }];
+  return [reviews, { isLoading, errors }];
 };

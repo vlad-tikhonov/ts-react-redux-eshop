@@ -3,14 +3,14 @@ import { ProductWithReviewsInfo, Extra } from "types";
 
 type PromotionSlice = {
   data: ProductWithReviewsInfo[];
-  error: string | null;
+  errors: string[];
   isLoading: boolean;
 };
 
 const initialState: PromotionSlice = {
   data: [],
   isLoading: false,
-  error: null,
+  errors: [],
 };
 
 export const loadPromotionsProducts = createAsyncThunk<
@@ -19,7 +19,7 @@ export const loadPromotionsProducts = createAsyncThunk<
 	{
     state: { promotions: PromotionSlice };
     extra: Extra;
-    rejectValue: string;
+    rejectValue: string | string[];
   }
 >(
   "@@promotions/load-promotions",
@@ -50,11 +50,16 @@ const promotionsSlice = createSlice({
     builder
       .addCase(loadPromotionsProducts.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
+        state.errors = [];
       })
       .addCase(loadPromotionsProducts.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload || "Cannot load data";
+
+				if (Array.isArray(action.payload)) {
+					state.errors = action.payload
+				} else {
+					state.errors.push(action.payload ?? 'Unable to auth - unknown error')
+				}
       })
       .addCase(loadPromotionsProducts.fulfilled, (state, action) => {
         state.isLoading = false;

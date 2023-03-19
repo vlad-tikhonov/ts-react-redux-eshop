@@ -31,7 +31,7 @@ export const ProductReviews = ({
 
   const dispatch = useAppDispatch();
 
-  const [reviews, { isLoading, error }] = useReviews(productId);
+  const [reviews, { isLoading, errors: reviewsErrors }] = useReviews(productId);
 
   const ratingCount = (num: number) => {
     if (reviews) {

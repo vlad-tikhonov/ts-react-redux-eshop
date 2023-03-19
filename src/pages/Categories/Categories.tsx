@@ -14,7 +14,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
 ];
 
 export const Categories = () => {
-  const [categories, { isLoading, error }] = useCategories();
+  const [categories, { isLoading, errors }] = useCategories();
   return (
     <Wrapper>
       <Container>

@@ -11,7 +11,7 @@ import { ProductCard } from "modules/Product/components";
 export const Category = () => {
   const { slug } = useParams();
   const category = useCategory(slug);
-  const [products, { isLoading, error }] = useProducts(slug);
+  const [products, { isLoading, errors }] = useProducts(slug);
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {

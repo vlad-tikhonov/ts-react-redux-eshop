@@ -12,6 +12,6 @@ export const selectProductsInfo = createSelector(
 	baseProductsSelector,
 	(products) => ({
 		isLoading: products.isLoading,
-		error: products.error
+		errors: products.errors
 	})
 )

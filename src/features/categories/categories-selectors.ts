@@ -8,7 +8,7 @@ export const selectCategoriesInfo = createSelector(
 	baseCategoriesSelector,
 	(categories) => ({
 		isLoading: categories.isLoading,
-		error: categories.error,
+		errors: categories.errors,
 	})
 )
 

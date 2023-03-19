@@ -13,7 +13,7 @@ export const selectProductInfo = createSelector(
 	baseProductSelector,
 	(product) => ({
 		isLoading: product.isLoading,
-		error: product.error
+		errors: product.errors
 		}
 	)
 )

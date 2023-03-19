@@ -10,7 +10,7 @@ export const usePromotions = (): [
 ] => {
   const dispatch = useAppDispatch();
 
-  const { isLoading, error } = useAppSelector(selectPromotionsInfo);
+  const { isLoading, errors } = useAppSelector(selectPromotionsInfo);
   const promotions = useAppSelector(selectPromotionsProducts);
 
   useEffect(() => {
@@ -19,5 +19,5 @@ export const usePromotions = (): [
     }
   }, [promotions, dispatch]);
 
-  return [promotions, { isLoading, error }];
+  return [promotions, { isLoading, errors }];
 };

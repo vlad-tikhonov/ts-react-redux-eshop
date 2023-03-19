@@ -4,8 +4,7 @@ import { ProductsPanel } from "modules/Product/components";
 import { usePromotions } from "features/promotions/use-promotions";
 import { useNovelties } from "features/novelties/use-novelties";
 import styles from "./Home.module.sass";
-import { Articles } from "modules/Header/components";
-import { StoreMap } from "modules/Home/widgets";
+import { StoreMap, Articles } from "modules/Home/widgets";
 
 export const Home = () => {
   const [promotions, { isLoading: pIsLoading, error: pError }] =

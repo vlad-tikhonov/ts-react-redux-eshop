@@ -1,4 +1,4 @@
-import { Article } from "..";
+import { Article } from "modules/Home/components";
 import { Htag } from "ui";
 import styles from "./Articles.module.sass";
 import cn from "classnames";

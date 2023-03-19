@@ -21,7 +21,7 @@ export const login = createAsyncThunk<
 	{
 		state: { auth: AuthSlice },
 		extra: Extra,
-		rejectValue: string | string[],
+		rejectValue: string[],
 	}>
 	(
 		"@@auth/login",
@@ -59,10 +59,10 @@ const authSlice = createSlice({
 			.addCase(login.rejected, (state, action) => {
 				state.isLoading = false
 
-				if (Array.isArray(action.payload)) {
+				if (action.payload) {
 					state.errors = action.payload
 				} else {
-					state.errors.push(action.payload ?? 'Unable to auth - unknown error')
+					state.errors.push('Unable to auth - unknown error')
 				}
 			})
 			.addCase(login.fulfilled, (state, action) => {

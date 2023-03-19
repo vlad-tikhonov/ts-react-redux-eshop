@@ -19,7 +19,7 @@ export const loadPromotionsProducts = createAsyncThunk<
 	{
     state: { promotions: PromotionSlice };
     extra: Extra;
-    rejectValue: string | string[];
+    rejectValue: string[];
   }
 >(
   "@@promotions/load-promotions",
@@ -55,10 +55,10 @@ const promotionsSlice = createSlice({
       .addCase(loadPromotionsProducts.rejected, (state, action) => {
         state.isLoading = false;
 
-				if (Array.isArray(action.payload)) {
+				if (action.payload) {
 					state.errors = action.payload
 				} else {
-					state.errors.push(action.payload ?? 'Unable to auth - unknown error')
+					state.errors.push('Cannot load data - unknown error')
 				}
       })
       .addCase(loadPromotionsProducts.fulfilled, (state, action) => {

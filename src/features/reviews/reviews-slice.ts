@@ -19,7 +19,7 @@ export const loadReviews = createAsyncThunk<
   {
     state: { reviews: ReviewsSlice };
     extra: Extra;
-    rejectValue: string | string[];
+    rejectValue: string[];
   }
 >(
   "@@reviews/load-reviews",
@@ -48,7 +48,7 @@ export const createReview = createAsyncThunk<
   {
     state: { reviews: ReviewsSlice };
     extra: Extra;
-    rejectValue: string | string[];
+    rejectValue: string[];
   }
 >(
   "@@reviews/create-review",
@@ -85,10 +85,10 @@ const reviewsSlice = createSlice({
 			.addCase(loadReviews.rejected, (state, action) => {
         state.isLoading = false;
 
-				if (Array.isArray(action.payload)) {
+				if (action.payload) {
 					state.errors = action.payload
 				} else {
-					state.errors.push(action.payload ?? 'Cannot load data - unknown error')
+					state.errors.push('Cannot load data - unknown error')
 				}
 			})
 			.addCase(loadReviews.fulfilled, (state, action) => {
@@ -102,10 +102,10 @@ const reviewsSlice = createSlice({
 			.addCase(createReview.rejected, (state, action) => {
         state.isLoading = false;
 
-				if (Array.isArray(action.payload)) {
+				if (action.payload) {
 					state.errors = action.payload
 				} else {
-					state.errors.push(action.payload ?? 'Cannot load data - unknown error')
+					state.errors.push('Cannot load data - unknown error')
 				}
 			})
 			.addCase(createReview.fulfilled, (state, action) => {

@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk<
 	{
 		state: { register: RegisterSlice },
 		extra: Extra,
-		rejectValue: string | string[],
+		rejectValue: string[],
 	}>
 	(
 		"@@register/register",
@@ -55,10 +55,10 @@ const registerSlice = createSlice({
 			.addCase(registerUser.rejected, (state, action) => {
 				state.isLoading = false
 
-				if (Array.isArray(action.payload)) {
+				if (action.payload) {
 					state.errors = action.payload
 				} else {
-					state.errors.push(action.payload ?? 'Unable to register - unknown error')
+					state.errors.push('Unable to register - unknown error')
 				}
 			})
 			.addCase(registerUser.fulfilled, (state, action) => {

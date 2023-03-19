@@ -19,7 +19,7 @@ export const loadNoveltiesProducts = createAsyncThunk<
 	{
     state: { novelties: NoveltiesSlice };
     extra: Extra;
-    rejectValue: string | string[];
+    rejectValue: string[];
   }
 >(
   "@@novelties/load-novelties",
@@ -55,10 +55,10 @@ const noveltiesSlice = createSlice({
       .addCase(loadNoveltiesProducts.rejected, (state, action) => {
         state.isLoading = false;
 
-				if (Array.isArray(action.payload)) {
+				if (action.payload) {
 					state.errors = action.payload
 				} else {
-					state.errors.push(action.payload ?? 'Cannot load data - unknown error')
+					state.errors.push('Cannot load data - unknown error')
 				}
       })
       .addCase(loadNoveltiesProducts.fulfilled, (state, action) => {

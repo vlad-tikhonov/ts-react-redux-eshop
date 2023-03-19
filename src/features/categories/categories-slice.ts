@@ -19,7 +19,7 @@ export const loadCategories = createAsyncThunk<
 	{
 		state: {categories: CategoriesSlice},
 		extra: Extra,
-		rejectValue: string | string[],
+		rejectValue: string[],
 	}>
 	(
 		"@@categories/load-categories",
@@ -55,10 +55,10 @@ const categoriesSlice = createSlice({
 			.addCase(loadCategories.rejected, (state, action) => {
 				state.isLoading = false
 
-				if (Array.isArray(action.payload)) {
+				if (action.payload) {
 					state.errors = action.payload
 				} else {
-					state.errors.push(action.payload ?? 'Cannot load data - unknown error')
+					state.errors.push('Cannot load data - unknown error')
 				}
 			})
 			.addCase(loadCategories.fulfilled, (state, action) => {

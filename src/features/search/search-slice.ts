@@ -19,7 +19,7 @@ export const loadSearchResults = createAsyncThunk<
   {
     state: { search: SearchSlice };
     extra: Extra;
-    rejectValue: string | string[];
+    rejectValue: string[];
   }
 >(
   "@@search/load-results",
@@ -57,10 +57,10 @@ const searchSlice = createSlice({
 			.addCase(loadSearchResults.rejected, (state, action) => {
         state.isLoading = false;
 
-				if (Array.isArray(action.payload)) {
+				if (action.payload) {
 					state.errors = action.payload
 				} else {
-					state.errors.push(action.payload ?? 'Unable to auth - unknown error')
+					state.errors.push('Cannot load data - unknown error')
 				}
 			})
 			.addCase(loadSearchResults.fulfilled, (state, action) => {

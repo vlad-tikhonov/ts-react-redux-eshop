@@ -19,7 +19,7 @@ export const loadProduct = createAsyncThunk<
   {
     state: { product: ProductSlice };
     extra: Extra;
-    rejectValue: string | string[];
+    rejectValue: string[];
   }
 >(
   "@@product/load-product",
@@ -56,10 +56,10 @@ const productSlice = createSlice({
 			.addCase(loadProduct.rejected, (state, action) => {
         state.isLoading = false;
 
-				if (Array.isArray(action.payload)) {
+				if (action.payload) {
 					state.errors = action.payload
 				} else {
-					state.errors.push(action.payload ?? 'Cannot load data - unknown error')
+					state.errors.push('Cannot load data - unknown error')
 				}
 
 			})

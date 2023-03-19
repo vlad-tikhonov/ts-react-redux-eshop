@@ -5,9 +5,7 @@ import styles from "./AuthForm.module.sass";
 import { useAppDispatch } from "app/hooks";
 import { login } from "features/auth/auth-slice";
 import { PasswordField } from "components";
-import { useAuth } from "features/auth/use-auth";
-import toast, { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 interface AuthFormProps {
   onLogin: () => void;
@@ -20,7 +18,6 @@ interface FormValues {
 
 export const AuthForm = ({ onLogin }: AuthFormProps) => {
   const dispatch = useAppDispatch();
-  const [user, { isLoading, errors: authErrors }] = useAuth();
 
   const {
     register,
@@ -37,12 +34,13 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
         password: data.password,
       })
     ).then((res) => {
-      const status = res.meta.requestStatus;
-      if (status === "fulfilled") {
+      if (res.meta.requestStatus === "fulfilled") {
         onLogin();
         toast.success("Вход успешно выполнен");
-      } else if (status === "rejected") {
-        authErrors.forEach((m) => {
+      }
+
+      if (Array.isArray(res.payload)) {
+        res.payload.forEach((m) => {
           toast.error(m);
         });
       }

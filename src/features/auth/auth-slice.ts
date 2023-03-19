@@ -29,14 +29,14 @@ export const login = createAsyncThunk<
 			try {
 				return await api.login(email, password)
 			} catch (e) {
-			const message = errorHandler(e)
+				const message = errorHandler(e)
 
-			return rejectWithValue(message)
+				return rejectWithValue(message)
 			}
 		},
 		{
 			condition: (_, {getState}) => {
-				const {auth: {isLoading}} = getState()
+				const { auth: { isLoading } } = getState()
 				if (isLoading){
 					return false
 				}

@@ -7,9 +7,7 @@ import { Sex } from "types";
 import cn from "classnames";
 import { useAppDispatch } from "app/hooks";
 import { registerUser } from "features/register/register-slice";
-import { useRegister } from "features/register/use-register";
-import { useEffect } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 interface RegisterFormProps {
   onRegister: () => void;
@@ -30,9 +28,9 @@ interface FormValues {
   phone: string;
 }
 
-const regions = ["Москва"];
+const regions = ["респ. Коми"];
 
-const cities = ["Москва"];
+const cities = ["п. Щеляюр", "д. Вертеп", "с. Краснобор", "д. Диюр"];
 
 const options: [Option, Option] = [
   {
@@ -48,8 +46,6 @@ const options: [Option, Option] = [
 export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
   const dispatch = useAppDispatch();
 
-  const [user, { isLoading, errors: registerErrors }] = useRegister();
-
   const {
     register,
     formState: { errors, isValid },
@@ -64,8 +60,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
       registerUser({
         login: data.email,
         password: data.password,
-        birthDate: data.birth,
-        // birthDate: data.birth.split(".").reverse().join("-"),
+        birthDate: data.birth.split(".").reverse().join("-"),
         name: data.name,
         surname: data.surname,
         sex: data.sex,
@@ -74,7 +69,18 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
         phone: data.phone,
         card: data.card,
       })
-    );
+    ).then((res) => {
+      if (res.meta.requestStatus === "fulfilled") {
+        onRegister();
+        toast.success("Регистрация прошла успешно. Выполните вход");
+      }
+
+      if (Array.isArray(res.payload)) {
+        res.payload.forEach((m) => {
+          toast.error(m, { duration: 5000 });
+        });
+      }
+    });
   };
 
   register("sex");

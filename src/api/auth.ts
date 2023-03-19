@@ -8,8 +8,8 @@ export const login = (login: string, password: string) => {
 		.then((response: AxiosResponse<Login>) => response.data)
 }
 
-export const register = (dto: RegisterData) => {
+export const register = (data: RegisterData) => {
 	return axios
-		.post('/auth/register', { ...dto })
+		.post('/auth/register', data)
 		.then((response: AxiosResponse<RegisterResponse>) => response.data)
 }

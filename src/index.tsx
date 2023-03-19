@@ -8,11 +8,9 @@ import { YMaps } from "@pbe/react-yandex-maps";
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 root.render(
-  // <React.StrictMode>
   <Provider store={store}>
     <YMaps>
       <App />
     </YMaps>
   </Provider>
-  // </React.StrictMode>
 );

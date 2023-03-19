@@ -36,12 +36,12 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
     ).then((res) => {
       if (res.meta.requestStatus === "fulfilled") {
         onLogin();
-        toast.success("Вход успешно выполнен");
+        toast.success("Вход успешно выполнен", { duration: 5000 });
       }
 
       if (Array.isArray(res.payload)) {
         res.payload.forEach((m) => {
-          toast.error(m);
+          toast.error(m, { duration: 5000 });
         });
       }
     });
@@ -67,6 +67,10 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
         size="l"
         register={register("password", {
           required: "Пожалуйста, введите пароль",
+          minLength: {
+            value: 4,
+            message: "Минимальная длинна пароля 4 символа",
+          },
         })}
         message={errors.password?.message}
         className={styles.password}

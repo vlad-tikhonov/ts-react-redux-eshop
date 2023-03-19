@@ -48,11 +48,12 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
+    getValues,
     setValue,
   } = useForm<FormValues>({
-    mode: "onBlur",
+    mode: "onSubmit",
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -72,7 +73,9 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
     ).then((res) => {
       if (res.meta.requestStatus === "fulfilled") {
         onRegister();
-        toast.success("Регистрация прошла успешно. Выполните вход");
+        toast.success("Регистрация прошла успешно. Выполните вход", {
+          duration: 5000,
+        });
       }
 
       if (Array.isArray(res.payload)) {
@@ -129,6 +132,10 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
             size="m"
             register={register("password", {
               required: "Введите пароль",
+              minLength: {
+                value: 4,
+                message: "Минимальная длинна пароля 4 символа",
+              },
             })}
             message={errors.password?.message}
           />
@@ -137,6 +144,8 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
             size="m"
             register={register("confirm", {
               required: "Повторите пароль",
+              validate: (value) =>
+                value === getValues("password") || "Пароли не совпадают",
             })}
             message={errors.confirm?.message}
           />
@@ -201,13 +210,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
           />
         </div>
       </div>
-      <Button
-        accent="primary"
-        decoration="default"
-        size="l"
-        type="submit"
-        disabled={!isValid}
-      >
+      <Button accent="primary" decoration="default" size="l" type="submit">
         Продолжить
       </Button>
     </form>

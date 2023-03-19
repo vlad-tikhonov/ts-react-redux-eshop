@@ -36,20 +36,18 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
         email: data.email,
         password: data.password,
       })
-    ).then(() => {
-      if (!authErrors && !isLoading) {
+    ).then((res) => {
+      const status = res.meta.requestStatus;
+      if (status === "fulfilled") {
         onLogin();
+        toast.success("Вход успешно выполнен");
+      } else if (status === "rejected") {
+        authErrors.forEach((m) => {
+          toast.error(m);
+        });
       }
     });
   };
-
-  useEffect(() => {
-    if (authErrors.length) {
-      authErrors.forEach((e) => {
-        toast(e);
-      });
-    }
-  }, [authErrors]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -84,7 +82,6 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
       >
         Вход
       </Button>
-      <Toaster position="top-right" />
     </form>
   );
 };

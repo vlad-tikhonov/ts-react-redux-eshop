@@ -77,15 +77,6 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
     );
   };
 
-  useEffect(() => {
-    if (registerErrors.length) {
-      console.log(errors);
-      registerErrors.forEach((e) => {
-        toast(e);
-      });
-    }
-  }, [errors]);
-
   register("sex");
 
   return (
@@ -213,7 +204,6 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
       >
         Продолжить
       </Button>
-      <Toaster position="top-right" />
     </form>
   );
 };

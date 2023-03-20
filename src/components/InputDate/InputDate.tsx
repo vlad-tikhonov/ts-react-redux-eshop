@@ -1,4 +1,4 @@
-import { TextField, TextFieldProps } from "ui";
+import { TextField, TextFieldProps } from "components";
 import { ChangeEvent, useRef, useState } from "react";
 import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg";
 import { DatePicker } from "widgets";

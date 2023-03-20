@@ -1,9 +1,9 @@
-import { BorderLoader, Button, Htag, TextField } from "ui";
+import { BorderLoader, Button, Htag } from "ui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./AuthForm.module.sass";
 import { useAppDispatch } from "app/hooks";
 import { login } from "features/auth/auth-slice";
-import { PasswordField } from "components";
+import { PasswordField, TextField } from "components";
 import toast from "react-hot-toast";
 import { useAuth } from "features/auth/use-auth";
 

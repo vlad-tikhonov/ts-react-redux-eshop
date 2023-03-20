@@ -1,6 +1,6 @@
 import styles from "./RegisterForm.module.sass";
-import { Htag, TextField, Button, BorderLoader } from "ui";
-import { InputDate, ButtonsGroup } from "components";
+import { Htag, Button, BorderLoader } from "ui";
+import { InputDate, ButtonsGroup, TextField } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PasswordField, SelectField, Option } from "components";
 import { Sex } from "types";

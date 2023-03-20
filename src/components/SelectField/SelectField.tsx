@@ -1,4 +1,4 @@
-import { TextField, TextFieldProps } from "ui";
+import { TextField, TextFieldProps } from "components";
 import { useState, useRef, ChangeEvent, MouseEvent } from "react";
 import styles from "./SelectField.module.sass";
 import { ReactComponent as ChevronDownIcon } from "assets/icons/chevron-down.svg";

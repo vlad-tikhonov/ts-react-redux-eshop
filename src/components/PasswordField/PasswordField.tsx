@@ -1,4 +1,4 @@
-import { TextField, TextFieldProps } from "ui";
+import { TextField, TextFieldProps } from "components";
 import { ReactComponent as EyeIcon } from "assets/icons/eye.svg";
 import { ReactComponent as EyeOffIcon } from "assets/icons/eye-off.svg";
 import { useState } from "react";

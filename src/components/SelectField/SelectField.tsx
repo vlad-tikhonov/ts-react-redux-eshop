@@ -31,10 +31,6 @@ export const SelectField = <T extends FieldValues>(
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState("");
 
-  const toggleShowList = () => {
-    setIsShowList((b) => !b);
-  };
-
   const renderDownIcon = (className: string) => (
     <ChevronDownIcon className={className} onClick={toggleShowList} />
   );
@@ -42,6 +38,16 @@ export const SelectField = <T extends FieldValues>(
   const renderUpIcon = (className: string) => (
     <ChevronUpIcon className={className} onClick={toggleShowList} />
   );
+
+  const toggleShowList = () => {
+    setIsShowList((b) => !b);
+  };
+
+  const openList = () => {
+    if (!isShowList) {
+      setIsShowList(true);
+    }
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     return;
@@ -77,6 +83,7 @@ export const SelectField = <T extends FieldValues>(
         [styles.wrapper_m]: size === "m",
         [styles.wrapper_l]: size === "l",
       })}
+      onClick={openList}
     >
       <TextField
         {...props}

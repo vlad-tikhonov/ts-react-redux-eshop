@@ -6,6 +6,7 @@ import { useAppDispatch } from "app/hooks";
 import { login } from "features/auth/auth-slice";
 import { PasswordField } from "components";
 import toast from "react-hot-toast";
+import { useAuth } from "features/auth/use-auth";
 
 interface AuthFormProps {
   onLogin: () => void;
@@ -18,13 +19,14 @@ interface FormValues {
 
 export const AuthForm = ({ onLogin }: AuthFormProps) => {
   const dispatch = useAppDispatch();
+  const [, { isLoading }] = useAuth();
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
   } = useForm<FormValues>({
-    mode: "onBlur",
+    mode: "onSubmit",
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -80,7 +82,7 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
         decoration="default"
         size="l"
         type="submit"
-        disabled={!isValid}
+        disabled={isLoading}
       >
         Вход
       </Button>

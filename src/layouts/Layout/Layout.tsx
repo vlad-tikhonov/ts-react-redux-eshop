@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Header, Footer } from "modules";
+import { Header, Footer } from "widgets";
 import { Main } from "..";
 import { Toaster } from "react-hot-toast";
 

@@ -1,6 +1,6 @@
 import { CartProduct } from "types";
 import { Text, Notice, Checkbox } from "ui";
-import { ProductCartButton } from "modules/Product/components";
+import { ProductCartButton } from "components";
 import { modifyPrice, modifyDiscount } from "helpers/utils";
 import styles from "./CartItem.module.sass";
 import { useAppDispatch } from "app/hooks";

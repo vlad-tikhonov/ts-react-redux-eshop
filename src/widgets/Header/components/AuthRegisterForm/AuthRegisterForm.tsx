@@ -1,9 +1,11 @@
 import { Button } from "ui";
 import { useState, useRef } from "react";
-import { AuthForm, RegisterForm } from "modules/Auth";
+import { AuthForm } from "./AuthForm/AuthForm";
+import { RegisterForm } from "./RegisterForm/RegisterForm";
 import styles from "./AuthRegisterForm.module.sass";
 import animationStyles from "./Animation.module.sass";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
+
 interface AuthRegisterFormProps {
   close: () => void;
 }

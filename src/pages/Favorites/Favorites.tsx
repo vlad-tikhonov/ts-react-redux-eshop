@@ -1,5 +1,5 @@
 import { Breadcrumbs, Htag } from "ui";
-import { ProductCard } from "modules/Product/components";
+import { ProductCard } from "components";
 import { Container, Wrapper } from "layouts";
 import { BreadcrumbItem } from "types";
 import { selectFavorites } from "features/favorites/favorites-selectors";

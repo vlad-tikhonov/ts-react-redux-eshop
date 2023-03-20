@@ -1,1 +1,5 @@
 export * from './DatePicker/DatePicker'
+export * from './Header/Header'
+export * from './Footer/Footer'
+export * from './Article/Article'
+export * from './ProductsPanel/ProductsPanel'

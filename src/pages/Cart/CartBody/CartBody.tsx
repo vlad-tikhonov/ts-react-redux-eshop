@@ -1,5 +1,5 @@
 import { CartProduct } from "types";
-import { CartItem } from "modules/Cart";
+import { CartItem } from "./CartItem/CartItem";
 import styles from "./CartBody.module.sass";
 import cn from "classnames";
 

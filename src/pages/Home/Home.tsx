@@ -1,10 +1,12 @@
 import { Container } from "layouts";
-import { DeliveryBanner, SpecialOffers } from "modules/Home/components";
-import { ProductsPanel } from "modules/Product/components";
+import { SpecialOffers } from "./SpecialOffers/SpecialOffers";
+import { DeliveryBanner } from "./DeliveryBanner/DeliveryBanner";
+import { ProductsPanel } from "widgets";
+import { StoreMap } from "./StoreMap/StoreMap";
+import { Articles } from "./Articles/Articles";
 import { usePromotions } from "features/promotions/use-promotions";
 import { useNovelties } from "features/novelties/use-novelties";
 import styles from "./Home.module.sass";
-import { StoreMap, Articles } from "modules/Home/widgets";
 
 export const Home = () => {
   const [promotions, { isLoading: pIsLoading, errors: pErrors }] =

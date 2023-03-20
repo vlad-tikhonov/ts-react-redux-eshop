@@ -1,12 +1,16 @@
 import { Container } from "layouts";
 import { Button, Modal } from "ui";
-import { Search, Menu, CatalogDropdown } from "./components";
+import {
+  Search,
+  Menu,
+  CatalogDropdown,
+  AuthRegisterForm,
+  UserMenu,
+} from "./components";
 import { useEffect, useRef, useState } from "react";
-import { AuthForm, AuthRegisterForm, RegisterForm } from "modules/Auth";
 import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
-import { UserMenu } from "./components";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Header.module.sass";
 import { useClickOutside } from "hooks";
@@ -21,7 +25,6 @@ const renderCrossIcon = (className: string) => (
 export const Header = () => {
   const [modalState, setModalState] = useState(false);
   const [dropdownState, setDropdownState] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
 
   const headerRef = useRef<HTMLDivElement | null>(null);
   const { pathname } = useLocation();

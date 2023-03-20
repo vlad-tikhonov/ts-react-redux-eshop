@@ -2,11 +2,9 @@ import { Breadcrumbs, Htag } from "ui";
 import { useProduct } from "features/product/use-product";
 import { Container, Wrapper } from "layouts";
 import { useParams } from "react-router-dom";
-import {
-  ProductBody,
-  ProductMenu,
-  ProductReviews,
-} from "modules/Product/components";
+import { ProductBody } from "./ProductBody/ProductBody";
+import { ProductMenu } from "./ProductMenu/ProductMenu";
+import { ProductReviews } from "./ProductReviews/ProductReviews";
 import styles from "./Product.module.sass";
 
 export const Product = () => {

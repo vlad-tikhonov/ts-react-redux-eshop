@@ -1,10 +1,9 @@
 import { Container, Wrapper } from "layouts";
-import { Breadcrumbs, Htag, Text } from "ui";
+import { Breadcrumbs, Htag } from "ui";
 import { BreadcrumbItem } from "types/componets-types";
 import { useCategories } from "features/categories/use-categories";
-import { Link } from "react-router-dom";
-import cn from "classnames";
 import styles from "./Categories.module.sass";
+import { CategoriesTile } from "./CategoriesTile/CategoriesTile";
 
 const breadcrumbItems: BreadcrumbItem[] = [
   {
@@ -25,31 +24,7 @@ export const Categories = () => {
         {isLoading ? (
           <div>Loding data...</div>
         ) : (
-          <div className={styles.catalog_items}>
-            {categories.map((c) => (
-              <div
-                key={c._id}
-                className={cn(
-                  styles.catalog_item,
-                  styles[`catalog_item_${c.orderId}`]
-                )}
-              >
-                <Link
-                  to={`/categories/${c.slug}`}
-                  className={styles.catalog_item_link}
-                >
-                  <Text size="m" bold className={styles.catalog_item_title}>
-                    {c.title}
-                  </Text>
-                </Link>
-                <img
-                  src={`${process.env.REACT_APP_STATIC_CONTENT_URL}/${c.image}`}
-                  alt={c.title}
-                  className={styles.catalog_item_img}
-                />
-              </div>
-            ))}
-          </div>
+          <CategoriesTile categories={categories} />
         )}
       </Container>
     </Wrapper>

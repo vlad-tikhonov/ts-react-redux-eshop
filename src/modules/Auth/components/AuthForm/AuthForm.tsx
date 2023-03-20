@@ -60,7 +60,7 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
         size="l"
         type="email"
         register={register("email", {
-          required: "Пожалуйста, введите email",
+          required: "Введите email",
         })}
         message={errors.email?.message}
         className={styles.email}
@@ -69,7 +69,7 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
         labelText="Пароль"
         size="l"
         register={register("password", {
-          required: "Пожалуйста, введите пароль",
+          required: "Введите пароль",
           minLength: {
             value: 4,
             message: "Минимальная длинна пароля 4 символа",

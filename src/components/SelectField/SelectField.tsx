@@ -25,7 +25,7 @@ type SelectFieldProps<T extends FieldValues> = Pick<
 export const SelectField = <T extends FieldValues>(
   props: SelectFieldProps<T>
 ) => {
-  const { size, register, list, setFormValue, name } = props;
+  const { size, list, setFormValue, name } = props;
 
   const [isShowList, setIsShowList] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -83,6 +83,8 @@ export const SelectField = <T extends FieldValues>(
         value={value}
         onChange={handleChange}
         renderRightIcon={isShowList ? renderUpIcon : renderDownIcon}
+        writeble
+        disabled
       />
       {isShowList && (
         <ul className={styles.list} onClick={handleClick}>

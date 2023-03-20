@@ -1,5 +1,5 @@
 import styles from "./RegisterForm.module.sass";
-import { Htag, TextField, Button } from "ui";
+import { Htag, TextField, Button, BorderLoader } from "ui";
 import { InputDate, ButtonsGroup } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PasswordField, SelectField, Option } from "components";
@@ -8,6 +8,7 @@ import cn from "classnames";
 import { useAppDispatch } from "app/hooks";
 import { registerUser } from "features/register/register-slice";
 import toast from "react-hot-toast";
+import { useRegister } from "features/register/use-register";
 
 interface RegisterFormProps {
   onRegister: () => void;
@@ -43,8 +44,11 @@ const options: [Option, Option] = [
   },
 ];
 
+const renderLoader = () => <BorderLoader accent="primary" />;
+
 export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
   const dispatch = useAppDispatch();
+  const [, { isLoading }] = useRegister();
 
   const {
     register,
@@ -210,7 +214,14 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
           />
         </div>
       </div>
-      <Button accent="primary" decoration="default" size="l" type="submit">
+      <Button
+        accent="primary"
+        decoration="default"
+        size="l"
+        type="submit"
+        renderRightIcon={isLoading ? renderLoader : undefined}
+        disabled={isLoading}
+      >
         Продолжить
       </Button>
     </form>

@@ -12,6 +12,7 @@ export interface TextFieldProps {
   disabled?: boolean;
   value?: string;
   placeholder?: string;
+  writeble?: boolean;
   type?: Extract<
     HTMLInputTypeAttribute,
     "text" | "password" | "email" | "number"
@@ -36,6 +37,7 @@ export const TextField = ({
   renderLeftIcon,
   renderRightIcon,
   className,
+  writeble,
 }: TextFieldProps) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -54,6 +56,7 @@ export const TextField = ({
       (renderLeftIcon || renderRightIcon) && size === "l",
     [styles.inputWithIconsM]: renderLeftIcon && renderRightIcon && size === "m",
     [styles.inputWithIconsL]: renderLeftIcon && renderRightIcon && size === "l",
+    [styles.inputPseudoDisabled]: disabled && writeble,
   });
 
   const inputWrapperClasses = cn({
@@ -61,7 +64,7 @@ export const TextField = ({
     [styles.inputWrapperM]: size === "m",
     [styles.inputWrapperL]: size === "l",
     [styles.inputWrapperActive]: isActive,
-    [styles.inputWrapperDisabled]: disabled,
+    [styles.inputWrapperDisabled]: disabled && !writeble,
   });
 
   const inputRef = useRef<HTMLInputElement | null>(null);

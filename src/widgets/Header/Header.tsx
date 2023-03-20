@@ -1,5 +1,6 @@
 import { Container } from "layouts";
-import { Button, Modal } from "ui";
+import { Button } from "ui";
+import { Modal } from "components";
 import {
   Search,
   Menu,

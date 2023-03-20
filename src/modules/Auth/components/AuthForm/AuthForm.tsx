@@ -1,5 +1,4 @@
-import { Button, Htag } from "ui";
-import { TextField } from "ui";
+import { BorderLoader, Button, Htag, TextField } from "ui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./AuthForm.module.sass";
 import { useAppDispatch } from "app/hooks";
@@ -16,6 +15,8 @@ interface FormValues {
   email: string;
   password: string;
 }
+
+const renderLoader = () => <BorderLoader accent="primary" />;
 
 export const AuthForm = ({ onLogin }: AuthFormProps) => {
   const dispatch = useAppDispatch();
@@ -82,6 +83,7 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
         decoration="default"
         size="l"
         type="submit"
+        renderRightIcon={isLoading ? renderLoader : undefined}
         disabled={isLoading}
       >
         Вход

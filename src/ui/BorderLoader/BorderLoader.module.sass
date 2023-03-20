@@ -1,0 +1,35 @@
+@use 'style/style.sass' as *
+
+.spinner
+	height: 2.4rem
+	width: 2.4rem
+	border-top: 3px solid transparent
+	border-radius: 50%
+	animation: spinner 1s linear infinite
+	transition-timing-function: cubic-bezier(0, 0, 1, 1)
+
+	&_primary
+		border-left: 3px solid $color-primary
+		border-bottom: 3px solid $color-primary
+		border-right: 3px solid $color-primary
+
+	&_secondary
+		border-left: 3px solid $color-secondary
+		border-bottom: 3px solid $color-secondary
+		border-right: 3px solid $color-secondary
+
+	&_grayscale
+		border-left: 3px solid $color-hardest
+		border-bottom: 3px solid $color-hardest
+		border-right: 3px solid $color-hardest
+
+	&_error
+		border-left: 3px solid $color-error
+		border-bottom: 3px solid $color-error
+		border-right: 3px solid $color-error
+
+@keyframes spinner
+	from
+		transform: rotate(0deg)
+	to
+		transform: rotate(360deg)

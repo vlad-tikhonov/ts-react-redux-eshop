@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "app/hooks";
 import { loadSearchResults, resetSearch } from "features/search/search-slice";
 import { selectSearchResults } from "features/search/search-selectors";
 import { useLocation, Link } from "react-router-dom";
-import { Highlighter } from "widgets/Header/components";
+import { Highlighter } from "components";
 interface SearchProps {
   className?: string;
 }

@@ -1,8 +1,8 @@
 import { RouterProvider } from "react-router-dom";
 import router from "app/router";
 import "style/style.sass";
-import { useAppDispatch } from "./hooks";
-import { initCart } from "features/cart/cart-slice";
+import { useAppDispatch } from "store/hooks";
+import { initCart } from "store/cart/cart-slice";
 import { useEffect } from "react";
 
 const App = () => {

@@ -1,7 +1,7 @@
 import { Container, Wrapper } from "layouts";
 import { Breadcrumbs, Htag } from "ui";
 import { BreadcrumbItem } from "types/componets-types";
-import { useCategories } from "features/categories/use-categories";
+import { useCategories } from "store/categories/use-categories";
 import styles from "./Categories.module.sass";
 import { CategoriesTile } from "./CategoriesTile/CategoriesTile";
 

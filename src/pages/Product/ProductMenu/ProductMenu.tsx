@@ -5,12 +5,12 @@ import { ReactComponent as ShareIcon } from "assets/icons/share.svg";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
 import { ReactComponent as HeartFilledIcon } from "assets/icons/heart-filled.svg";
 import { Button, Rating } from "ui";
-import { useAppDispatch, useAppSelector } from "app/hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import {
   addToFavorites,
   removeFromFavorites,
-} from "features/favorites/favorites.slice";
-import { selectIsInFavorites } from "features/favorites/favorites-selectors";
+} from "store/favorites/favorites-slice";
+import { selectIsInFavorites } from "store/favorites/favorites-selectors";
 
 interface ProductMenuProps {
   product: ProductWithReviewsInfo;

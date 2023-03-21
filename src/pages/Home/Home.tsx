@@ -4,8 +4,8 @@ import { DeliveryBanner } from "./DeliveryBanner/DeliveryBanner";
 import { ProductsPanel } from "widgets";
 import { StoreMap } from "./StoreMap/StoreMap";
 import { Articles } from "./Articles/Articles";
-import { usePromotions } from "features/promotions/use-promotions";
-import { useNovelties } from "features/novelties/use-novelties";
+import { usePromotions } from "store/promotions/use-promotions";
+import { useNovelties } from "store/novelties/use-novelties";
 import styles from "./Home.module.sass";
 
 export const Home = () => {

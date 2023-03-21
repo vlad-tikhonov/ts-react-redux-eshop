@@ -1,8 +1,8 @@
 import { Checkbox, Text, Button } from "ui";
 import styles from "./ItemsHandler.module.sass";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { allSelectionHandler, removeSelected } from "features/cart/cart-slice";
-import { selectSelectedCount } from "features/cart/cart-selectors";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { allSelectionHandler, removeSelected } from "store/cart/cart-slice";
+import { selectSelectedCount } from "store/cart/cart-selectors";
 import { useState, useEffect } from "react";
 import cn from "classnames";
 

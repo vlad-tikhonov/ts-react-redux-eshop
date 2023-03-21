@@ -5,10 +5,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { PasswordField, SelectField, Option } from "components";
 import { Sex } from "types";
 import cn from "classnames";
-import { useAppDispatch } from "app/hooks";
-import { registerUser } from "features/register/register-slice";
+import { useAppDispatch } from "store/hooks";
+import { registerUser } from "store/register/register-slice";
 import toast from "react-hot-toast";
-import { useRegister } from "features/register/use-register";
+import { useRegister } from "store/register/use-register";
 
 interface RegisterFormProps {
   onRegister: () => void;

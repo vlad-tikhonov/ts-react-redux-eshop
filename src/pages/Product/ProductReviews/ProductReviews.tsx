@@ -5,12 +5,12 @@ import styles from "./ProductReviews.module.sass";
 import { useState } from "react";
 import { ReactComponent as UserIcon } from "assets/icons/user.svg";
 import { formatDate } from "helpers/utils";
-import { useAuth } from "features/auth/use-auth";
+import { useAuth } from "store/auth/use-auth";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { selectToken } from "features/auth/auth-selectors";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { useReviews } from "features/reviews/use-reviews";
-import { createReview } from "features/reviews/reviews-slice";
+import { selectToken } from "store/auth/auth-selectors";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { useReviews } from "store/reviews/use-reviews";
+import { createReview } from "store/reviews/reviews-slice";
 interface ProductReviewsProps {
   productId: ProductWithReviewsInfo["_id"];
   reviewsAvg: ProductWithReviewsInfo["reviewsAvg"];

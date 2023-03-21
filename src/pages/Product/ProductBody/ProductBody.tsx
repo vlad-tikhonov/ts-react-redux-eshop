@@ -7,9 +7,9 @@ import { ReactComponent as SmileIcon } from "assets/icons/smile.svg";
 import { ProductCartButton } from "components";
 import { MiniProductCard } from "./MiniProductCard/MiniProductCard";
 import cn from "classnames";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { addToCart, decreaseProductCount } from "features/cart/cart-slice";
-import { selectProductCount } from "features/cart/cart-selectors";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { addToCart, decreaseProductCount } from "store/cart/cart-slice";
+import { selectProductCount } from "store/cart/cart-selectors";
 
 interface ProductBodyButtonProps {
   product: ProductWithReviewsInfoAndRelated;

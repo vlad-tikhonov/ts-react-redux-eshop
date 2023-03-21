@@ -1,11 +1,11 @@
 import { Container, Wrapper } from "layouts";
 import { Breadcrumbs } from "ui";
 import { BreadcrumbItem } from "types";
-import { useAppSelector } from "app/hooks";
+import { useAppSelector } from "store/hooks";
 import {
   selectCartProducts,
   selectCartLength,
-} from "features/cart/cart-selectors";
+} from "store/cart/cart-selectors";
 import { EmtyCart } from "./EmptyCart/EmtyCart";
 import { CartTitle } from "./CartTitle/CartTitle";
 import { ItemsHandler } from "./ItemsHandler/ItemsHandler";

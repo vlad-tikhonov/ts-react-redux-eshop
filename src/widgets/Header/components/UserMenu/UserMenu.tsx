@@ -7,9 +7,9 @@ import { ReactComponent as ChevronUp } from "assets/icons/chevron-up.svg";
 import { ReactComponent as LoginIcon } from "assets/icons/log-in.svg";
 
 import styles from "./UserMenu.module.sass";
-import { useAppDispatch } from "app/hooks";
-import { logout } from "features/auth/auth-slice";
-import { useAuth } from "features/auth/use-auth";
+import { useAppDispatch } from "store/hooks";
+import { logout } from "store/auth/auth-slice";
+import { useAuth } from "store/auth/use-auth";
 
 interface UserMenuProps {
   openModal: () => void;

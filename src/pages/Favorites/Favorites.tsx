@@ -2,9 +2,9 @@ import { Breadcrumbs, Htag } from "ui";
 import { ProductCard } from "components";
 import { Container, Wrapper } from "layouts";
 import { BreadcrumbItem } from "types";
-import { selectFavorites } from "features/favorites/favorites-selectors";
+import { selectFavorites } from "store/favorites/favorites-selectors";
 import styles from "./Favorites.module.sass";
-import { useAppSelector } from "app/hooks";
+import { useAppSelector } from "store/hooks";
 import { FavoritesEmpty } from "./FavoritesEmpty/FavoritesEmpty";
 
 const breadcrumbItems: BreadcrumbItem[] = [

@@ -3,12 +3,12 @@ import { Text, Notice, Checkbox } from "ui";
 import { ProductCartButton } from "components";
 import { modifyPrice, modifyDiscount } from "helpers/utils";
 import styles from "./CartItem.module.sass";
-import { useAppDispatch } from "app/hooks";
+import { useAppDispatch } from "store/hooks";
 import {
   decreaseProductCount,
   increaseProductCount,
   productSelectionHandler,
-} from "features/cart/cart-slice";
+} from "store/cart/cart-slice";
 import cn from "classnames";
 
 interface CartItemProps {

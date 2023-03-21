@@ -6,16 +6,16 @@ import { modifyPrice, modifyDiscount, shortnerTitle } from "helpers/utils";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ProductCartButton } from "..";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { selectProductCount } from "features/cart/cart-selectors";
-import { addToCart, decreaseProductCount } from "features/cart/cart-slice";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { selectProductCount } from "store/cart/cart-selectors";
+import { addToCart, decreaseProductCount } from "store/cart/cart-slice";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
 import { ReactComponent as HeartFilledIcon } from "assets/icons/heart-filled.svg";
-import { selectIsInFavorites } from "features/favorites/favorites-selectors";
+import { selectIsInFavorites } from "store/favorites/favorites-selectors";
 import {
   addToFavorites,
   removeFromFavorites,
-} from "features/favorites/favorites.slice";
+} from "store/favorites/favorites-slice";
 
 interface ProductCardProps {
   product: ProductWithReviewsInfo;

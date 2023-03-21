@@ -3,9 +3,9 @@ import styles from "./Search.module.sass";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { useClickOutside, useDebounce } from "hooks";
 import { useRef, useEffect, useState, ChangeEvent } from "react";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { loadSearchResults, resetSearch } from "features/search/search-slice";
-import { selectSearchResults } from "features/search/search-selectors";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { loadSearchResults, resetSearch } from "store/search/search-slice";
+import { selectSearchResults } from "store/search/search-selectors";
 import { useLocation, Link } from "react-router-dom";
 import { Highlighter } from "components";
 interface SearchProps {

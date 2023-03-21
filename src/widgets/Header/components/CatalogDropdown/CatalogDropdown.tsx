@@ -2,7 +2,7 @@ import cn from "classnames";
 import styles from "./CatalogDropdown.module.sass";
 import { Link } from "react-router-dom";
 import { Text } from "ui";
-import { useCategories } from "features/categories/use-categories";
+import { useCategories } from "store/categories/use-categories";
 
 interface CatalogDropdownProps {
   isOpen: boolean;

@@ -4,9 +4,9 @@ import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
 import { ReactComponent as PackageIcon } from "assets/icons/package.svg";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
 import styles from "./Menu.module.sass";
-import { useAppSelector } from "app/hooks";
-import { selectCartLength } from "features/cart/cart-selectors";
-import { selectFavoritesLength } from "features/favorites/favorites-selectors";
+import { useAppSelector } from "store/hooks";
+import { selectCartLength } from "store/cart/cart-selectors";
+import { selectFavoritesLength } from "store/favorites/favorites-selectors";
 
 export const Menu = () => {
   const productCount = useAppSelector(selectCartLength);

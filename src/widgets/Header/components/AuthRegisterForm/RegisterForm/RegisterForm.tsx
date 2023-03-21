@@ -2,13 +2,15 @@ import styles from "./RegisterForm.module.sass";
 import { Htag, Button, BorderLoader } from "ui";
 import { InputDate, ButtonsGroup, TextField } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { PasswordField, SelectField, Option } from "components";
-import { Sex } from "types";
+import { PasswordField, SelectField } from "components";
+import { Sex, Option } from "types";
 import cn from "classnames";
 import { useAppDispatch } from "store/hooks";
 import { registerUser } from "store/register/register-slice";
 import toast from "react-hot-toast";
 import { useRegister } from "store/register/use-register";
+import { REGIONS } from "constants/regions";
+import { LOCALITIES } from "constants/localities";
 
 interface RegisterFormProps {
   onRegister: () => void;
@@ -28,10 +30,6 @@ interface FormValues {
   card: string;
   phone: string;
 }
-
-const regions = ["респ. Коми"];
-
-const cities = ["п. Щеляюр", "д. Вертеп", "с. Краснобор", "д. Диюр"];
 
 const options: [Option, Option] = [
   {
@@ -171,7 +169,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
             register={register("region", {
               required: "Выберите регион",
             })}
-            list={regions}
+            list={REGIONS}
             message={errors.region?.message}
             setFormValue={setValue}
             name={"region"}
@@ -182,7 +180,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
             register={register("locality", {
               required: "Выберите населенный пункт",
             })}
-            list={cities}
+            list={LOCALITIES}
             message={errors.locality?.message}
             name={"locality"}
             setFormValue={setValue}

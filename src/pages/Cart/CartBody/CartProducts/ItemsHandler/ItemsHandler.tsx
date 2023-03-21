@@ -2,21 +2,21 @@ import { Checkbox, Text, Button } from "ui";
 import styles from "./ItemsHandler.module.sass";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { allSelectionHandler, removeSelected } from "store/cart/cart-slice";
-import { selectSelectedCount } from "store/cart/cart-selectors";
+import {
+  selectProductUnitsCart,
+  selectSelectedCount,
+} from "store/cart/cart-selectors";
 import { useState, useEffect } from "react";
 import cn from "classnames";
 
 interface ItemsHandlerProps {
-  productsCount: number;
   className: string;
 }
 
-export const ItemsHandler = ({
-  productsCount,
-  className,
-}: ItemsHandlerProps) => {
+export const ItemsHandler = ({ className }: ItemsHandlerProps) => {
   const [selectionState, setSelectionState] = useState<boolean | null>(false);
 
+  const productUnitsCount = useAppSelector(selectProductUnitsCart);
   const selectedCount = useAppSelector(selectSelectedCount);
 
   const dispatch = useAppDispatch();
@@ -30,14 +30,14 @@ export const ItemsHandler = ({
   };
 
   useEffect(() => {
-    if (productsCount === selectedCount) {
+    if (productUnitsCount === selectedCount) {
       setSelectionState(true);
-    } else if (productsCount !== selectedCount && selectedCount !== 0) {
+    } else if (productUnitsCount !== selectedCount && selectedCount !== 0) {
       setSelectionState(null);
     } else {
       setSelectionState(false);
     }
-  }, [productsCount, selectedCount]);
+  }, [productUnitsCount, selectedCount]);
 
   return (
     <div className={cn(styles.itemsHandler, className)}>

@@ -1,4 +1,5 @@
 import {NavLinkProps} from 'react-router-dom'
+import dayjs from 'app/dayjs'
 import cn from 'classnames';
 
 //Helper for NavLink component
@@ -63,4 +64,14 @@ export const formatDate = (date: Date): string => {
 	}
 
 	return `${dd}.${mm}.${yy}`
+}
+
+export const getStringWeekRange = () => {
+	const result: string[] = []
+
+	for (let i = 1; i < 8; i++){
+		result.push(dayjs().add(i, 'day').format("DD.MM.YYYY"))
+	}
+
+	return result
 }

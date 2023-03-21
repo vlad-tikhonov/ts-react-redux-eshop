@@ -1,0 +1,50 @@
+.delivery
+	display: grid
+	grid-template-columns: repeat(12, 1fr)
+	grid-template-areas: "form form form form form form form form form summary summary summary"
+	grid-column-gap: 4rem
+
+.form
+	grid-area: form
+
+.summary
+	grid-area: summary
+	& .back
+		margin-bottom: 2.4rem
+		width: 100%
+	& .submit
+		width: 100%
+
+.where
+	display: flex
+	flex-wrap: nowrap
+	gap: 4rem
+	margin-bottom: 4rem
+
+	& .locality
+		flex-basis: 24.5rem
+	& .street
+		flex-basis: 22.4rem
+	& .house
+		flex-basis: 5.3rem
+	& .apartment
+		flex-basis: 7.4rem
+	& .extra
+		flex-basis: 14rem
+
+.when
+	display: flex
+	flex-wrap: nowrap
+	gap: 4rem
+	margin-bottom: 4rem
+	& .date
+		flex-basis: 15.5rem
+	& .time
+		flex-basis: 70rem
+.title
+	margin-bottom: 2.4rem
+
+.timeOptioons
+	display: flex
+	flex-wrap: nowrap
+	justify-content: space-between

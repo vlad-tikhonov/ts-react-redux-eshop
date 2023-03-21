@@ -1,0 +1,15 @@
+.products
+	display: grid
+	grid-template-columns: repeat(12, 1fr)
+	grid-template-areas: "info info info info info info info info info summary summary summary"
+	grid-column-gap: 4rem
+
+.info
+	grid-area: info
+	& .handler
+		margin-bottom: 2.4rem
+
+.summary
+	grid-area: summary
+	& .btn
+		width: 100%

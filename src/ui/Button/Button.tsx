@@ -9,11 +9,11 @@ import { ButtonHTMLAttributes } from "react";
 
 export interface ButtonProps {
   size: Exclude<ElementSizes, "xl" | "xs">;
-  decoration: ElementDecoration;
   children?: string;
   renderLeftIcon?: (className: string) => JSX.Element;
   renderRightIcon?: (className: string) => JSX.Element;
   accent: ElementAccent;
+  decoration?: ElementDecoration;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   onClick?: () => void;
   disabled?: boolean;
@@ -25,7 +25,7 @@ export const Button = (props: ButtonProps) => {
     renderLeftIcon = () => null,
     renderRightIcon = () => null,
     accent,
-    decoration,
+    decoration = "default",
     size,
     type = "button",
     children,

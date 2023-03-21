@@ -15,7 +15,13 @@ import {
 
 type SelectFieldProps<T extends FieldValues> = Pick<
   TextFieldProps,
-  "labelText" | "size" | "message" | "placeholder" | "disabled" | "register"
+  | "labelText"
+  | "size"
+  | "message"
+  | "placeholder"
+  | "disabled"
+  | "register"
+  | "className"
 > & {
   list: string[];
   setFormValue?: UseFormSetValue<T>;
@@ -26,6 +32,7 @@ export const SelectField = <T extends FieldValues>(
   props: SelectFieldProps<T>
 ) => {
   const { size, list, setFormValue, name } = props;
+  const { className, ...textFieldProps } = props;
 
   const [isShowList, setIsShowList] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -78,15 +85,18 @@ export const SelectField = <T extends FieldValues>(
   return (
     <div
       ref={wrapperRef}
-      className={cn({
-        [styles.wrapper]: true,
-        [styles.wrapper_m]: size === "m",
-        [styles.wrapper_l]: size === "l",
-      })}
+      className={cn(
+        {
+          [styles.wrapper]: true,
+          [styles.wrapper_m]: size === "m",
+          [styles.wrapper_l]: size === "l",
+        },
+        className
+      )}
       onClick={openList}
     >
       <TextField
-        {...props}
+        {...textFieldProps}
         value={value}
         onChange={handleChange}
         renderRightIcon={isShowList ? renderUpIcon : renderDownIcon}

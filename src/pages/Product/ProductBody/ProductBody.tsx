@@ -3,13 +3,13 @@ import { ProductWithReviewsInfoAndRelated } from "types";
 import { modifyDiscount, modifyPrice } from "helpers/utils";
 import { Notice, Text, Htag, Button } from "ui";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
-import { ReactComponent as SmileIcon } from "assets/icons/smile.svg";
 import { ProductCartButton } from "components";
 import { MiniProductCard } from "./MiniProductCard/MiniProductCard";
 import cn from "classnames";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { addToCart, decreaseProductCount } from "store/cart/cart-slice";
 import { selectProductCount } from "store/cart/cart-selectors";
+import { Bonuses } from "widgets";
 
 interface ProductBodyButtonProps {
   product: ProductWithReviewsInfoAndRelated;
@@ -109,18 +109,14 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
           )}
         </div>
         <ProductBodyButton product={product} />
-        <div className={styles.bonus_wrapper}>
-          <SmileIcon className={styles.smile} />
-          <Text size="xs" className={styles.text}>
-            Вы получаете{" "}
-            <b>
-              {priceWithCard
-                ? Math.floor(priceWithCard / 10)
-                : Math.floor(price / 10)}{" "}
-              бонусов
-            </b>
-          </Text>
-        </div>
+        <Bonuses
+          className={styles.bonuses}
+          count={
+            priceWithCard
+              ? Math.floor(priceWithCard / 10)
+              : Math.floor(price / 10)
+          }
+        />
         <div className={styles.features_wrapper}>
           <table className={styles.table}>
             <tbody className={styles.table_body}>

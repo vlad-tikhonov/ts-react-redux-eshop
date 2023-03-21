@@ -1,21 +1,39 @@
+import { useState } from "react";
 import { CartProduct } from "types";
-import { CartItem } from "./CartItem/CartItem";
+import { CartProducts } from "./CartProducts/CartProducts";
+import { CartDelivery } from "./CartDelivery/CartDelivery";
 import styles from "./CartBody.module.sass";
 import cn from "classnames";
 
 interface CartBodyProps {
   products: CartProduct[];
+  productsCount: number;
   className: string;
 }
 
-export const CartBody = ({ products, className }: CartBodyProps) => {
+export const CartBody = ({
+  products,
+  productsCount,
+  className,
+}: CartBodyProps) => {
+  const [isShowDelivery, setIsShowDelivery] = useState(false);
+
   return (
-    <div className={cn(styles.body, className)}>
-      <div className={styles.products}>
-        {products.map((p) => (
-          <CartItem cartProduct={p} key={p.id} />
-        ))}
-      </div>
-    </div>
+    <>
+      {isShowDelivery ? (
+        <CartDelivery
+          toBack={() => {
+            setIsShowDelivery(false);
+          }}
+        />
+      ) : (
+        <CartProducts
+          products={products}
+          onSubmit={() => {
+            setIsShowDelivery(true);
+          }}
+        />
+      )}
+    </>
   );
 };

@@ -1,0 +1,37 @@
+@use 'style/style.sass' as *
+
+.summary
+	display: flex
+	flex-direction: column
+
+.total
+	margin-bottom: 2.4rem
+	&_products, &_discount
+		display: flex
+		justify-content: space-between
+		align-items: center
+	&_products
+		margin-bottom: 1rem
+	&_discount
+		& .discount
+			color: $color-primary
+
+.line
+	background-color: $color-lightest
+	height: 2px
+	margin-bottom: 2.4rem
+
+.sum
+	display: flex
+	justify-content: space-between
+	align-items: center
+
+.bonuses
+	margin-bottom: 2.4rem
+
+.notice
+	min-height: 2rem
+	margin: 0 auto 1.6rem auto
+
+.label
+	color: $color-hard

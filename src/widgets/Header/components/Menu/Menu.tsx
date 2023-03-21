@@ -5,11 +5,11 @@ import { ReactComponent as PackageIcon } from "assets/icons/package.svg";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
 import styles from "./Menu.module.sass";
 import { useAppSelector } from "store/hooks";
-import { selectCartLength } from "store/cart/cart-selectors";
+import { selectCartProductsCount } from "store/cart/cart-selectors";
 import { selectFavoritesLength } from "store/favorites/favorites-selectors";
 
 export const Menu = () => {
-  const productCount = useAppSelector(selectCartLength);
+  const productCount = useAppSelector(selectCartProductsCount);
   const favoritesCount = useAppSelector(selectFavoritesLength);
 
   const MenuItems = [

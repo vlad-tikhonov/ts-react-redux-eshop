@@ -4,11 +4,10 @@ import { BreadcrumbItem } from "types";
 import { useAppSelector } from "store/hooks";
 import {
   selectCartProducts,
-  selectCartLength,
+  selectCartProductsCount,
 } from "store/cart/cart-selectors";
-import { EmtyCart } from "./EmptyCart/EmtyCart";
+import { EmptyCart } from "./EmptyCart/EmtyCart";
 import { CartTitle } from "./CartTitle/CartTitle";
-import { ItemsHandler } from "./ItemsHandler/ItemsHandler";
 import { CartBody } from "./CartBody/CartBody";
 import styles from "./Cart.module.sass";
 
@@ -18,20 +17,24 @@ const breadcrumbItems: BreadcrumbItem[] = [
 
 export const Cart = () => {
   const products = useAppSelector(selectCartProducts);
-  const count = useAppSelector(selectCartLength);
+  const productsCount = useAppSelector(selectCartProductsCount);
 
   return (
     <Wrapper>
       <Container>
         <Breadcrumbs items={breadcrumbItems} />
-        {count ? (
+        {productsCount ? (
           <>
-            <CartTitle productsCount={count} className={styles.title} />
-            <ItemsHandler productsCount={count} className={styles.handler} />
-            <CartBody products={products} className={styles.body} />
+            <CartTitle productsCount={productsCount} className={styles.title} />
+            {/* <ItemsHandler productsCount={count} className={styles.handler} /> */}
+            <CartBody
+              products={products}
+              productsCount={productsCount}
+              className={styles.body}
+            />
           </>
         ) : (
-          <EmtyCart />
+          <EmptyCart />
         )}
       </Container>
     </Wrapper>

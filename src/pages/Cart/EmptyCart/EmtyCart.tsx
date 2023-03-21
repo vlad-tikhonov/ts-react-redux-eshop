@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./EmtyCart.module.sass";
 
-export const EmtyCart = () => {
+export const EmptyCart = () => {
   return (
     <div className={styles.cart}>
       <Htag size="xs">Корзина пуста</Htag>

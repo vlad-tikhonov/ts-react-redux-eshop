@@ -48,7 +48,7 @@ export const ButtonsGroup = <T extends FieldValues>({
 
   return (
     <div className={styles.wrapper}>
-      <Text className={styles.label} size="s">
+      <Text size="s" className={styles.label}>
         {label}
       </Text>
       <div className={styles.buttons}>

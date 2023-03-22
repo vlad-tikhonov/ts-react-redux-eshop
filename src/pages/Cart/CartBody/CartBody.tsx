@@ -16,7 +16,7 @@ export const CartBody = ({
   productsCount,
   className,
 }: CartBodyProps) => {
-  const [isShowDelivery, setIsShowDelivery] = useState(false);
+  const [isShowDelivery, setIsShowDelivery] = useState(true);
 
   return (
     <>

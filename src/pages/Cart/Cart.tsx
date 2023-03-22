@@ -26,7 +26,6 @@ export const Cart = () => {
         {productsCount ? (
           <>
             <CartTitle productsCount={productsCount} className={styles.title} />
-            {/* <ItemsHandler productsCount={count} className={styles.handler} /> */}
             <CartBody
               products={products}
               productsCount={productsCount}

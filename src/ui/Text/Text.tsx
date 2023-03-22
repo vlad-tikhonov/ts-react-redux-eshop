@@ -24,5 +24,5 @@ export const Text = ({
     [styles.bold]: bold,
   };
 
-  return <span className={cn(className, textStyles)}>{children}</span>;
+  return <span className={cn(textStyles, className)}>{children}</span>;
 };

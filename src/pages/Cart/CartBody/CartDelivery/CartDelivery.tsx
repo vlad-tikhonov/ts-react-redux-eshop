@@ -25,6 +25,7 @@ interface FormValues {
   house: string;
   apartment: string;
   extra: string;
+  date: string;
 }
 
 const renderChevronIcon = (className: string) => (
@@ -50,11 +51,7 @@ export const CartDelivery = ({ toBack, className }: CartDeliveryProps) => {
 
   return (
     <div className={styles.delivery}>
-      <form
-        className={styles.form}
-        autoComplete="off"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className={styles.form} autoComplete="off">
         <div>
           <Htag size="m" className={styles.title}>
             Куда
@@ -66,6 +63,8 @@ export const CartDelivery = ({ toBack, className }: CartDeliveryProps) => {
               list={LOCALITIES}
               className={styles.locality}
               register={register("locality")}
+              setFormValue={setValue}
+              name={"locality"}
             />
             <TextField
               labelText="Улица"
@@ -103,9 +102,14 @@ export const CartDelivery = ({ toBack, className }: CartDeliveryProps) => {
               list={weekRange}
               size="m"
               className={styles.date}
+              register={register("date")}
+              setFormValue={setValue}
+              name={"date"}
             />
             <div className={styles.time}>
-              <Text size="s">Время</Text>
+              <Text size="s" className={styles.text}>
+                Время
+              </Text>
               <div className={styles.timeOptioons}>
                 {timeOptions.map((el, i) => (
                   <Button accent="secondary" size="m" key={i}>
@@ -128,7 +132,14 @@ export const CartDelivery = ({ toBack, className }: CartDeliveryProps) => {
         >
           Назад к товарам
         </Button>
-        <Button accent="primary" size="l" className={styles.submit} disabled>
+        <Button
+          accent="primary"
+          size="l"
+          className={styles.submit}
+          onClick={() => {
+            handleSubmit(onSubmit)();
+          }}
+        >
           Заказать
         </Button>
       </div>

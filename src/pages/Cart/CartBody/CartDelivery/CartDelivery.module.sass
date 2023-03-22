@@ -1,3 +1,5 @@
+@use 'style/style.sass' as *
+
 .delivery
 	display: grid
 	grid-template-columns: repeat(12, 1fr)
@@ -41,6 +43,9 @@
 		flex-basis: 15.5rem
 	& .time
 		flex-basis: 70rem
+		& .text
+			color: $color-hard
+
 .title
 	margin-bottom: 2.4rem
 

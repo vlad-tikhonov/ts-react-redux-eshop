@@ -115,7 +115,11 @@ export const TextField = ({
   return (
     <div className={cn(className, styles.wrapper)}>
       <label className={styles.label}>
-        {labelText && <Text size={size === "m" ? "s" : "m"}>{labelText}</Text>}
+        {labelText && (
+          <Text size={size === "m" ? "s" : "m"} className={styles.text}>
+            {labelText}
+          </Text>
+        )}
         <div className={inputWrapperClasses}>
           {renderLeftIcon && renderLeftIcon(iconsClasses)}
           <input

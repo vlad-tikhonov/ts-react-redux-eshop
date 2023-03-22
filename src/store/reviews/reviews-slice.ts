@@ -25,7 +25,7 @@ export const loadReviews = createAsyncThunk<
   "@@reviews/load-reviews",
   async (productId, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
-      return await api.getReviews(productId);
+      return await api.reviews.getReviews(productId);
     } catch (e) {
 			const message = errorHandler(e)
 
@@ -44,7 +44,7 @@ export const loadReviews = createAsyncThunk<
 
 export const createReview = createAsyncThunk<
   Review,
-  {review: CreateReview; token: Login['access_token']},
+  {review: CreateReview},
   {
     state: { reviews: ReviewsSlice };
     extra: Extra;
@@ -52,9 +52,9 @@ export const createReview = createAsyncThunk<
   }
 >(
   "@@reviews/create-review",
-  async ({ review, token }, { extra: { api, errorHandler }, rejectWithValue }) => {
+  async ({ review }, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
-      return await api.createReview(review, token);
+      return await api.reviews.createReview(review);
     } catch (e) {
 			const message = errorHandler(e)
 

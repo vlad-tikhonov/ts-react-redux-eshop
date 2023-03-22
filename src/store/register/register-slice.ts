@@ -25,7 +25,7 @@ export const registerUser = createAsyncThunk<
 		"@@register/register",
 		async(registerData, { extra: { api, errorHandler }, rejectWithValue}) => {
 			try {
-				return await api.register(registerData)
+				return await api.auth.register(registerData)
 			} catch (e) {
 				const message = errorHandler(e)
 

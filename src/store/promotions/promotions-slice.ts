@@ -25,7 +25,7 @@ export const loadPromotionsProducts = createAsyncThunk<
   "@@promotions/load-promotions",
   async (_, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
-      return await api.getPromotionProducts();
+      return await api.product.getPromotionProducts();
     } catch (e) {
 			const message = errorHandler(e)
 

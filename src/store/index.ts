@@ -1,4 +1,4 @@
-import * as api from 'api';
+import api from 'api';
 import { errorHandler } from 'helpers/errorHandler';
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { categoriesReducer } from './categories/categories-slice';

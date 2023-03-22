@@ -25,7 +25,7 @@ export const loadSearchResults = createAsyncThunk<
   "@@search/load-results",
   async (query, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
-      return await api.getSearchResult(query);
+      return await api.search.getSearchResult(query);
     } catch (e) {
 			const message = errorHandler(e)
 

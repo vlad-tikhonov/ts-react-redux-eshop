@@ -25,7 +25,7 @@ export const loadCategories = createAsyncThunk<
 		"@@categories/load-categories",
 		async(_, {extra: {api, errorHandler}, rejectWithValue}) => {
 			try {
-				return await api.getCategories()
+				return await api.category.getCategories()
 			} catch (e) {
 				const message = errorHandler(e)
 

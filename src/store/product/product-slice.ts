@@ -25,7 +25,7 @@ export const loadProduct = createAsyncThunk<
   "@@product/load-product",
   async (slug, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
-      return await api.getProduct(slug);
+      return await api.product.getProduct(slug);
     } catch (e) {
 			const message = errorHandler(e)
 

@@ -1,7 +1,7 @@
-import * as API from 'api'
+import api from 'api'
 import { errorHandler } from 'helpers/errorHandler'
 
 export type Extra = {
-	api: typeof API;
+	api: typeof api;
 	errorHandler: typeof errorHandler;
 }

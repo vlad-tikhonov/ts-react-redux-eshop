@@ -27,7 +27,7 @@ export const login = createAsyncThunk<
 		"@@auth/login",
 		async({email, password}, { extra: { api, errorHandler }, rejectWithValue}) => {
 			try {
-				return await api.login(email, password)
+				return await api.auth.login(email, password)
 			} catch (e) {
 				const message = errorHandler(e)
 

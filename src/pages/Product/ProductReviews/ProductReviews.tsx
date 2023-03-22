@@ -65,7 +65,6 @@ export const ProductReviews = ({
             productId,
             rating,
           },
-          token: accessToken,
         })
       ).then(() => {
         reset();

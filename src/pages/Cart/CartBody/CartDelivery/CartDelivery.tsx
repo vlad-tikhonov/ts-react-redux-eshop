@@ -6,6 +6,7 @@ import { ReactComponent as ChevronIcon } from "assets/icons/chevron-left.svg";
 import { LOCALITIES } from "constants/localities";
 import styles from "./CartDelivery.module.sass";
 import { getStringWeekRange } from "helpers/utils";
+import { useState } from "react";
 
 interface CartDeliveryProps {
   toBack: () => void;
@@ -26,6 +27,7 @@ interface FormValues {
   apartment: string;
   extra: string;
   date: string;
+  time: string;
 }
 
 const renderChevronIcon = (className: string) => (
@@ -33,6 +35,8 @@ const renderChevronIcon = (className: string) => (
 );
 
 export const CartDelivery = ({ toBack, className }: CartDeliveryProps) => {
+  const [time, setTime] = useState(timeOptions[0]);
+
   const {
     register,
     formState: { errors },
@@ -47,6 +51,11 @@ export const CartDelivery = ({ toBack, className }: CartDeliveryProps) => {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
+  };
+
+  const handleChangeTime = (time: string) => {
+    setTime(time);
+    setValue("time", time);
   };
 
   return (
@@ -112,7 +121,14 @@ export const CartDelivery = ({ toBack, className }: CartDeliveryProps) => {
               </Text>
               <div className={styles.timeOptioons}>
                 {timeOptions.map((el, i) => (
-                  <Button accent="secondary" size="m" key={i}>
+                  <Button
+                    accent={time === el ? "secondary" : "grayscale"}
+                    size="m"
+                    key={i}
+                    onClick={() => {
+                      handleChangeTime(el);
+                    }}
+                  >
                     {el}
                   </Button>
                 ))}

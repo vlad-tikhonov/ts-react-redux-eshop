@@ -75,3 +75,28 @@ export const getStringWeekRange = () => {
 
 	return result
 }
+
+/**
+* Функция для получения правильного варианта существительного  для числа из предложенных
+* @words {[string, string, string]} кортеж из 3х вариантов существительного:
+1. Именительный падеж, ед.ч - отзыв;
+2. Родительный падеж, ед.ч - отзыва;
+3. Родительный падеж, мн.ч - отзывов
+* @num {numebr} число, вместе с которым будет употребляться существительное.
+*/
+export const getCorrectWordCase = (words: [string, string, string], num: number) => {
+	if (num > 100) {
+		num = num % 100;
+	}
+
+  if (num <= 20 && num >= 10) {
+		return words[2];
+	}
+
+  if (num > 20) {
+		num = num % 10;
+	}
+
+  return num === 1 ? words[0] : num > 1 && num < 5 ? words[1] : words[2];
+}
+

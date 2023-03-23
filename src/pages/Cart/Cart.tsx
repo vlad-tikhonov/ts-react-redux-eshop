@@ -39,3 +39,5 @@ export const Cart = () => {
     </Wrapper>
   );
 };
+
+Cart.Test = () => {};

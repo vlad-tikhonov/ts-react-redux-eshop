@@ -10,6 +10,7 @@ import {
 } from "store/cart/cart-selectors";
 import styles from "./CartSummary.module.sass";
 import cn from "classnames";
+import { getCorrectWordCase } from "helpers/utils";
 
 interface CartSummaryProps {
   className?: string;
@@ -21,12 +22,17 @@ export const CartSummary = ({ className }: CartSummaryProps) => {
   const cartAmountFinal = useAppSelector(selectCartAmountWithDiscount);
   const cartDiscount = useAppSelector(selectCartDiscount);
 
+  const labelText = getCorrectWordCase(
+    ["товар", "товара", "товаров"],
+    productsCount
+  );
+
   return (
     <div className={cn(styles.summary, className)}>
       <div className={styles.total}>
         <div className={styles.total_products}>
           <Text size="s" className={styles.label}>
-            {productsCount} товара
+            {productsCount + " " + labelText}
           </Text>
           <Text size="s">{modifyPrice(cartAmount)}</Text>
         </div>

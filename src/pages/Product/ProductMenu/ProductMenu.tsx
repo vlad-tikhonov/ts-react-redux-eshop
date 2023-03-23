@@ -11,6 +11,7 @@ import {
   removeFromFavorites,
 } from "store/favorites/favorites-slice";
 import { selectIsInFavorites } from "store/favorites/favorites-selectors";
+import { getCorrectWordCase } from "helpers/utils";
 
 interface ProductMenuProps {
   product: ProductWithReviewsInfo;
@@ -40,6 +41,11 @@ export const ProductMenu = ({ product, className }: ProductMenuProps) => {
     dispatch(removeFromFavorites(product._id));
   };
 
+  const labelText = getCorrectWordCase(
+    ["отзыв", "отзыва", "отзывов"],
+    product.reviewsCount
+  );
+
   return (
     <div className={cn(styles.menu, className)}>
       <div className={styles.menu_code}>арт.{product.code}</div>
@@ -52,7 +58,7 @@ export const ProductMenu = ({ product, className }: ProductMenuProps) => {
         />
         <span className={styles.menu_reviewsCount}>
           {product.reviewsCount > 0
-            ? product.reviewsCount + " отзыва"
+            ? product.reviewsCount + " " + labelText
             : "нет отзывов"}
         </span>
       </div>

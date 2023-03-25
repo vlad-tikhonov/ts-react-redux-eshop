@@ -19,6 +19,7 @@ import {
 
 interface ProductCardProps {
   product: ProductWithReviewsInfo;
+  countInOrder?: number;
   className?: string;
 }
 

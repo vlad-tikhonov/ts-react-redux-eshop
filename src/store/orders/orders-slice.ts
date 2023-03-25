@@ -1,31 +1,31 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Extra, Review, CreateReview } from "types";
+import { Extra, Order, OrderPayload } from "types";
 
-type ReviewsSlice = {
-	data: Review[];
+type OrdersSlice = {
+	data: Order[];
 	errors: string[];
 	isLoading: boolean
 }
 
-const initialState: ReviewsSlice = {
+const initialState: OrdersSlice = {
 	data: [],
 	errors: [],
 	isLoading: false,
 }
 
-export const loadReviews = createAsyncThunk<
-  Review[],
+export const loadOrders = createAsyncThunk<
+  Order[],
   string,
   {
-    state: { reviews: ReviewsSlice };
+    state: { orders: OrdersSlice };
     extra: Extra;
     rejectValue: string[];
   }
 >(
-  "@@reviews/load-reviews",
-  async (productId, { extra: { api, errorHandler }, rejectWithValue }) => {
+  "@@orders/load-orders",
+  async (userId, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
-      return await api.reviews.getReviews(productId);
+      return await api.order.getOrders(userId);
     } catch (e) {
 			const message = errorHandler(e)
 
@@ -34,7 +34,7 @@ export const loadReviews = createAsyncThunk<
   },
   {
     condition: (_, { getState }) => {
-      const { reviews: { isLoading } } = getState();
+      const { orders: { isLoading } } = getState();
       if (isLoading) {
         return false;
       }
@@ -42,19 +42,19 @@ export const loadReviews = createAsyncThunk<
   }
 );
 
-export const createReview = createAsyncThunk<
-  Review,
-  {review: CreateReview},
+export const createOrder = createAsyncThunk<
+  Order,
+  OrderPayload,
   {
-    state: { reviews: ReviewsSlice };
+    state: { orders: OrdersSlice };
     extra: Extra;
     rejectValue: string[];
   }
 >(
-  "@@reviews/create-review",
-  async ({ review }, { extra: { api, errorHandler }, rejectWithValue }) => {
+  "@@orders/create-order",
+  async (payload, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
-      return await api.reviews.createReview(review);
+      return await api.order.createOrder(payload);
     } catch (e) {
 			const message = errorHandler(e)
 
@@ -63,7 +63,7 @@ export const createReview = createAsyncThunk<
   },
   {
     condition: (_, { getState }) => {
-      const { reviews: { isLoading } } = getState();
+      const { orders: { isLoading } } = getState();
       if (isLoading) {
         return false;
       }
@@ -72,17 +72,17 @@ export const createReview = createAsyncThunk<
 );
 
 
-const reviewsSlice = createSlice({
+const ordersSlice = createSlice({
 	name: "@@reviews",
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
-			.addCase(loadReviews.pending, (state) => {
+			.addCase(loadOrders.pending, (state) => {
 				state.isLoading = true
 				state.errors = []
 			})
-			.addCase(loadReviews.rejected, (state, action) => {
+			.addCase(loadOrders.rejected, (state, action) => {
         state.isLoading = false;
 
 				if (action.payload) {
@@ -91,15 +91,15 @@ const reviewsSlice = createSlice({
 					state.errors.push('Cannot load data - unknown error')
 				}
 			})
-			.addCase(loadReviews.fulfilled, (state, action) => {
+			.addCase(loadOrders.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
 			})
-			.addCase(createReview.pending, (state) => {
+			.addCase(createOrder.pending, (state) => {
 				state.isLoading = true
 				state.errors = []
 			})
-			.addCase(createReview.rejected, (state, action) => {
+			.addCase(createOrder.rejected, (state, action) => {
         state.isLoading = false;
 
 				if (action.payload) {
@@ -108,11 +108,10 @@ const reviewsSlice = createSlice({
 					state.errors.push('Cannot load data - unknown error')
 				}
 			})
-			.addCase(createReview.fulfilled, (state, action) => {
+			.addCase(createOrder.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data.push(action.payload)
 			})
 	}
 })
 
-export const reviewsReducer = reviewsSlice.reducer
+export const ordersReducer = ordersSlice.reducer

@@ -2,8 +2,6 @@ import { useState } from "react";
 import { CartProduct } from "types";
 import { CartProducts } from "./CartProducts/CartProducts";
 import { CartDelivery } from "./CartDelivery/CartDelivery";
-import styles from "./CartBody.module.sass";
-import cn from "classnames";
 
 interface CartBodyProps {
   products: CartProduct[];
@@ -11,12 +9,8 @@ interface CartBodyProps {
   className: string;
 }
 
-export const CartBody = ({
-  products,
-  productsCount,
-  className,
-}: CartBodyProps) => {
-  const [isShowDelivery, setIsShowDelivery] = useState(true);
+export const CartBody = ({ products }: CartBodyProps) => {
+  const [isShowDelivery, setIsShowDelivery] = useState(false);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import {Review, Rating} from 'types'
+import { Rating } from 'types'
 
 export type ProductDescription = {
 	brand: string;
@@ -26,11 +26,5 @@ export type ProductWithReviewsInfo = Product & {
 	reviewsCount: number;
 	reviewsAvg: Rating | null;
 }
-
-// export type ProductWithReviews = Product & {
-// 	reviews: Review[];
-// 	reviewsCount: number;
-// 	reviewsAvg: Rating | null;
-// }
 
 export type ProductWithReviewsInfoAndRelated = ProductWithReviewsInfo & { relatedProducts: Product[] }

@@ -83,7 +83,7 @@ export const ProductReviews = ({
           <div className={cn(styles.row, styles.row_title)}>
             <Rating rating={reviewsAvg ? reviewsAvg : 0} readonly />
             <Text size="m" bold>
-              {reviewsAvg ? reviewsAvg : 0} из 5
+              {reviewsAvg ? Math.ceil(reviewsAvg) : 0} из 5
             </Text>
           </div>
           <div className={styles.row}>

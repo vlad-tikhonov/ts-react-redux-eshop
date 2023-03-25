@@ -12,6 +12,7 @@ import { noveltiesReducer } from './novelties/novelties-slice';
 import { searchReducer } from './search/search-slice'
 import { reviewsReducer } from './reviews/reviews-slice';
 import { registerReducer } from './register/register-slice';
+import { ordersReducer } from './orders/orders-slice';
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ export const store = configureStore({
 		search: searchReducer,
 		reviews: reviewsReducer,
 		register: registerReducer,
+		orders: ordersReducer,
   },
 	devTools: process.env.NODE_ENV !== 'production',
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({

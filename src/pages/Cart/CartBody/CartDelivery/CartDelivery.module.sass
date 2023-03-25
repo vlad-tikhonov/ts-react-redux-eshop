@@ -16,6 +16,7 @@
 		width: 100%
 	& .submit
 		width: 100%
+		margin-bottom: 2.4rem
 
 .where
 	display: flex
@@ -48,8 +49,23 @@
 
 .title
 	margin-bottom: 2.4rem
+.time
+	& .timeOptions
+		display: flex
+		flex-wrap: nowrap
+		justify-content: space-between
+		margin-bottom: 3px
+	&	.message
+		color: $color-error
 
-.timeOptioons
+.alert
 	display: flex
-	flex-wrap: nowrap
 	justify-content: space-between
+	align-items: center
+	&_icon
+		margin-right: 1rem
+		fill: $color-error
+		width: 34px
+		height: 34px
+	&_text
+		color: $color-error

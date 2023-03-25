@@ -32,6 +32,7 @@ const cartSlice = createSlice({
 
 			state.data = cart
 		},
+		resetCart: () => initialState,
 		addToCart: (state, action: PayloadAction<Product>) => {
 			const cartProduct = state.data.find(p => p.id === action.payload._id)
 
@@ -84,9 +85,20 @@ const cartSlice = createSlice({
 			}
 
 			product.count++
+
+			setItem(PERSISTENCE_STORAGE_CART_KEY, state.data)
 		}
 	},
 })
 
-export const { initCart, addToCart, decreaseProductCount, productSelectionHandler, allSelectionHandler, removeSelected, increaseProductCount } = cartSlice.actions
+export const {
+	initCart,
+	addToCart,
+	decreaseProductCount,
+	productSelectionHandler,
+	allSelectionHandler,
+	removeSelected,
+	increaseProductCount,
+	resetCart
+} = cartSlice.actions
 export const cartReducer = cartSlice.reducer

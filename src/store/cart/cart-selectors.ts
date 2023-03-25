@@ -1,6 +1,6 @@
 import { RootState } from "store"
 import { createSelector } from "@reduxjs/toolkit"
-import { ProductWithReviewsInfoAndRelated } from "types"
+import { ProductInfo, ProductWithReviewsInfoAndRelated } from "types"
 
 const baseCartSelector = (state: RootState) => state.cart.data
 
@@ -57,3 +57,11 @@ export const selectCartDiscount = createSelector(
 		acc, 0)
 )
 
+export const selectCartProductsForOrder = createSelector(
+	baseCartSelector,
+	(cartData) => cartData.reduce((acc: ProductInfo[], p) => {
+		const {id: productId, count} = p
+		acc.push({productId, count})
+		return acc
+	}, [])
+)

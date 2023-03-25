@@ -20,3 +20,8 @@ export const selectToken = createSelector(
 	baseAuthSelector,
 	(auth) => auth.token
 )
+
+export const selectUserId = createSelector(
+	baseAuthSelector,
+	(auth) => auth.user?.id
+)

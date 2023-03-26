@@ -11,6 +11,7 @@ import { selectProductCount } from "store/cart/cart-selectors";
 import { addToCart, decreaseProductCount } from "store/cart/cart-slice";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
 import { ReactComponent as HeartFilledIcon } from "assets/icons/heart-filled.svg";
+import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
 import { selectIsInFavorites } from "store/favorites/favorites-selectors";
 import {
   addToFavorites,
@@ -64,7 +65,7 @@ const defaultBtnState: CardBtnProps = {
   decoration: "outline",
 };
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
   const {
     _id,
     title,
@@ -125,16 +126,14 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       onMouseLeave={changeStyleDefault}
     >
       <div className={styles.card_header}>
-        <img
-          src={process.env.REACT_APP_STATIC_CONTENT_URL + image}
-          alt={title}
-        />
-        {discount && (
-          <Notice size="m" accent="primary" className={styles.notice}>
-            {modifiedDiscount}
-          </Notice>
+        {countInOrder && (
+          <div className={styles.cartInfo}>
+            <CartIcon className={styles.cartInfo_icon} />
+            <Text size="m" bold>
+              {countInOrder}
+            </Text>
+          </div>
         )}
-        <Link to={productPageLink} className={styles.link}></Link>
         <div
           className={styles.favorites}
           onClick={
@@ -147,6 +146,16 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             <HeartIcon className={styles.heart} />
           )}
         </div>
+        <img
+          src={process.env.REACT_APP_STATIC_CONTENT_URL + image}
+          alt={title}
+        />
+        {discount && (
+          <Notice size="m" accent="primary" className={styles.notice}>
+            {modifiedDiscount}
+          </Notice>
+        )}
+        <Link to={productPageLink} className={styles.link}></Link>
       </div>
       <div className={styles.card_body}>
         <ProductPrice price={price} priceWithCard={priceWithCard} />

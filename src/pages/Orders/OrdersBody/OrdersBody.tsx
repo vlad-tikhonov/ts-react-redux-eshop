@@ -33,6 +33,7 @@ export const OrdersBody = ({ orders }: OrdersBodyProps) => {
             {order.products.map((productInfo) => (
               <ProductCard
                 product={productInfo.product}
+                countInOrder={productInfo.count}
                 key={productInfo.product._id}
               />
             ))}

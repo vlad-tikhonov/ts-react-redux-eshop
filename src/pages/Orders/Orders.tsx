@@ -3,7 +3,7 @@ import { useAppSelector } from "store/hooks";
 import styles from "./Orders.module.sass";
 import { selectUserId } from "store/auth/auth-selectors";
 import { useOrders } from "store/orders/use-orders";
-import { Htag, Text } from "ui";
+import { Htag, Text, Notice } from "ui";
 import { Breadcrumbs } from "widgets";
 import { BreadcrumbItem } from "types";
 import { modifyPrice } from "helpers/utils";
@@ -25,8 +25,6 @@ export const Orders = () => {
     return <div>Some error</div>;
   }
 
-  console.log(orders);
-
   return (
     <Wrapper>
       <Container>
@@ -42,9 +40,12 @@ export const Orders = () => {
                   <Text size="l" bold className={styles.date}>
                     {order.date}
                   </Text>
-                  <Text size="l" bold>
+                  <Text size="l" bold className={styles.time}>
                     {order.time}
                   </Text>
+                  <Notice size="m" accent="gray">
+                    В процессе
+                  </Notice>
                 </div>
                 <div className={styles.right}>
                   <Text size="l">{modifyPrice(order.total)}</Text>

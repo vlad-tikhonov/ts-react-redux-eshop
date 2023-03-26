@@ -32,7 +32,10 @@ const cartSlice = createSlice({
 
 			state.data = cart
 		},
-		resetCart: () => initialState,
+		resetCart: () => {
+			setItem(PERSISTENCE_STORAGE_CART_KEY, [])
+			return initialState
+		},
 		addToCart: (state, action: PayloadAction<Product>) => {
 			const cartProduct = state.data.find(p => p.id === action.payload._id)
 

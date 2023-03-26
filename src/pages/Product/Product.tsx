@@ -1,4 +1,5 @@
-import { Breadcrumbs, Htag } from "ui";
+import { Htag } from "ui";
+import { Breadcrumbs } from "widgets";
 import { useProduct } from "store/product/use-product";
 import { Container, Wrapper } from "layouts";
 import { useParams } from "react-router-dom";

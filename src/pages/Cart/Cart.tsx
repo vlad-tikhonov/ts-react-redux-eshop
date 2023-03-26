@@ -1,5 +1,5 @@
 import { Container, Wrapper } from "layouts";
-import { Breadcrumbs } from "ui";
+import { Breadcrumbs } from "widgets";
 import { BreadcrumbItem } from "types";
 import { useAppSelector } from "store/hooks";
 import {

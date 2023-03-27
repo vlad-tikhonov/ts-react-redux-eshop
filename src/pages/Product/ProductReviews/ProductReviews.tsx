@@ -27,7 +27,6 @@ export const ProductReviews = ({
   className,
 }: ProductReviewsProps) => {
   const [rating, setRating] = useState(0);
-  const [text, setText] = useState("");
 
   const dispatch = useAppDispatch();
 
@@ -48,7 +47,7 @@ export const ProductReviews = ({
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { isValid },
     handleSubmit,
     reset,
   } = useForm<FormValues>({

@@ -33,9 +33,11 @@ export const Product = () => {
     return (
       <>
         <Breadcrumbs items={breadcrumbItems} />
-        <Htag size="s">{product.title}</Htag>
-        <ProductMenu product={product} />
-        <ProductBody product={product} />
+        <Htag size="s" className={styles.title}>
+          {product.title}
+        </Htag>
+        <ProductMenu product={product} className={styles.menu} />
+        <ProductBody product={product} className={styles.body} />
         <ProductReviews
           productId={product._id}
           reviewsAvg={product.reviewsAvg}

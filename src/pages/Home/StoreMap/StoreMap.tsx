@@ -55,7 +55,7 @@ export const StoreMap = ({ className }: StoreMapProps) => {
   };
 
   return (
-    <div className={cn(styles.stores, className)}>
+    <div className={className}>
       <Htag size="m" className={styles.title}>
         Наши магазины
       </Htag>

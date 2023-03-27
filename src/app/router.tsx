@@ -9,6 +9,7 @@ import {
   Product,
   Favorites,
   Test,
+  E404,
 } from "pages";
 import { Layout } from "layouts";
 
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: RoutesNames.Product,
         element: <Product />,
+      },
+      {
+        path: "*",
+        element: <E404 />,
       },
     ],
   },

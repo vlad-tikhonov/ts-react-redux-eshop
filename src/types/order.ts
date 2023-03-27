@@ -1,5 +1,7 @@
 import { ProductWithReviewsInfo } from 'types'
 
+export type OrderStatus = 'inProgress' | 'received' | 'canceled'
+
 type OrderProductInfo = {
 	count: number;
 	product: ProductWithReviewsInfo;
@@ -7,7 +9,7 @@ type OrderProductInfo = {
 
 export type Order = {
 	_id: string;
-	status: string;
+	status: OrderStatus;
 	date: string;
 	time: string;
 	total: number;

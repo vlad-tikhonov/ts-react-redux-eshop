@@ -15,3 +15,8 @@ export const selectOrders = createSelector(
 	baseOrdersSelector,
 	(orders) => orders.data
 )
+
+export const selectActiveOrdersCount = createSelector(
+	baseOrdersSelector,
+	(orders) => orders.data.reduce((acc, o) => o.status === 'inProgress' ? ++acc : acc, 0)
+)

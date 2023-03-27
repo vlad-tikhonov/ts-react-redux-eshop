@@ -1,4 +1,3 @@
-import { Container, Wrapper } from "layouts";
 import { useParams } from "react-router-dom";
 import { useCategory } from "store/categories/use-category";
 import { Htag } from "ui";
@@ -27,20 +26,16 @@ export const Category = () => {
   ];
 
   return (
-    <Wrapper>
-      <Container>
-        <div>
-          <Breadcrumbs items={breadcrumbItems} />
-          <Htag size="l" className={styles.title}>
-            {category?.title}
-          </Htag>
-          <div className={styles.products}>
-            {products.map((p) => (
-              <ProductCard product={p} key={p._id} />
-            ))}
-          </div>
-        </div>
-      </Container>
-    </Wrapper>
+    <>
+      <Breadcrumbs items={breadcrumbItems} />
+      <Htag size="l" className={styles.title}>
+        {category?.title}
+      </Htag>
+      <div className={styles.products}>
+        {products.map((p) => (
+          <ProductCard product={p} key={p._id} />
+        ))}
+      </div>
+    </>
   );
 };

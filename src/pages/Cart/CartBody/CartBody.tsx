@@ -1,15 +1,8 @@
 import { useState } from "react";
-import { CartProduct } from "types";
 import { CartProducts } from "./CartProducts/CartProducts";
 import { CartDelivery } from "./CartDelivery/CartDelivery";
 
-interface CartBodyProps {
-  products: CartProduct[];
-  productsCount: number;
-  className: string;
-}
-
-export const CartBody = ({ products }: CartBodyProps) => {
+export const CartBody = () => {
   const [isShowDelivery, setIsShowDelivery] = useState(false);
 
   return (
@@ -22,7 +15,6 @@ export const CartBody = ({ products }: CartBodyProps) => {
         />
       ) : (
         <CartProducts
-          products={products}
           onSubmit={() => {
             setIsShowDelivery(true);
           }}

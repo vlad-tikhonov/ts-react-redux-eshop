@@ -1,7 +1,6 @@
 import { Htag } from "ui";
 import { Breadcrumbs } from "widgets";
 import { ProductCard } from "components";
-import { Container, Wrapper } from "layouts";
 import { BreadcrumbItem } from "types";
 import { selectFavorites } from "store/favorites/favorites-selectors";
 import styles from "./Favorites.module.sass";
@@ -19,25 +18,23 @@ export const Favorites = () => {
   const favorites = useAppSelector(selectFavorites);
 
   return (
-    <Wrapper>
-      <Container>
-        <Breadcrumbs items={breadcrumbItems} />
+    <>
+      <Breadcrumbs items={breadcrumbItems} />
 
-        {favorites.length ? (
-          <>
-            <Htag size="l" className={styles.title}>
-              Избранное
-            </Htag>
-            <div className={styles.favorites}>
-              {favorites.map((f) => (
-                <ProductCard product={f} key={f._id} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <FavoritesEmpty />
-        )}
-      </Container>
-    </Wrapper>
+      {favorites.length ? (
+        <>
+          <Htag size="l" className={styles.title}>
+            Избранное
+          </Htag>
+          <div className={styles.favorites}>
+            {favorites.map((f) => (
+              <ProductCard product={f} key={f._id} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <FavoritesEmpty />
+      )}
+    </>
   );
 };

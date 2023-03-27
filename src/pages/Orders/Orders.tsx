@@ -1,4 +1,3 @@
-import { Container, Wrapper } from "layouts";
 import { useAppSelector } from "store/hooks";
 import styles from "./Orders.module.sass";
 import { selectUserId } from "store/auth/auth-selectors";
@@ -27,22 +26,18 @@ export const Orders = () => {
   }
 
   return (
-    <Wrapper>
-      <Container>
-        <div>
-          <Breadcrumbs items={breadcrumbItems} />
-          {!userId ? (
-            <UnauthOrders />
-          ) : (
-            <>
-              <Htag size="xl" className={styles.title}>
-                Заказы
-              </Htag>
-              {orders.length ? <OrdersBody orders={orders} /> : <EmptyOrders />}
-            </>
-          )}
-        </div>
-      </Container>
-    </Wrapper>
+    <>
+      <Breadcrumbs items={breadcrumbItems} />
+      {!userId ? (
+        <UnauthOrders />
+      ) : (
+        <>
+          <Htag size="xl" className={styles.title}>
+            Заказы
+          </Htag>
+          {orders.length ? <OrdersBody orders={orders} /> : <EmptyOrders />}
+        </>
+      )}
+    </>
   );
 };

@@ -1,7 +1,6 @@
 import { Htag } from "ui";
 import { Breadcrumbs } from "widgets";
 import { useProduct } from "store/product/use-product";
-import { Container, Wrapper } from "layouts";
 import { useParams } from "react-router-dom";
 import { ProductBody } from "./ProductBody/ProductBody";
 import { ProductMenu } from "./ProductMenu/ProductMenu";
@@ -32,18 +31,16 @@ export const Product = () => {
     ];
 
     return (
-      <Wrapper>
-        <Container>
-          <Breadcrumbs items={breadcrumbItems} />
-          <Htag size="s">{product.title}</Htag>
-          <ProductMenu product={product} />
-          <ProductBody product={product} />
-          <ProductReviews
-            productId={product._id}
-            reviewsAvg={product.reviewsAvg}
-          />
-        </Container>
-      </Wrapper>
+      <>
+        <Breadcrumbs items={breadcrumbItems} />
+        <Htag size="s">{product.title}</Htag>
+        <ProductMenu product={product} />
+        <ProductBody product={product} />
+        <ProductReviews
+          productId={product._id}
+          reviewsAvg={product.reviewsAvg}
+        />
+      </>
     );
   }
 

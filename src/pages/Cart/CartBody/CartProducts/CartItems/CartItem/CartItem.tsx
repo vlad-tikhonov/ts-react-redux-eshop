@@ -9,6 +9,7 @@ import {
   increaseProductCount,
   productSelectionHandler,
 } from "store/cart/cart-slice";
+import { memo } from "react";
 import cn from "classnames";
 
 interface CartItemProps {
@@ -70,7 +71,7 @@ const CartItemPrice = ({
   }
 };
 
-export const CartItem = ({ cartProduct, className }: CartItemProps) => {
+const CartItem = ({ cartProduct, className }: CartItemProps) => {
   const { count, data: product } = cartProduct;
   const dispatch = useAppDispatch();
 
@@ -145,3 +146,5 @@ export const CartItem = ({ cartProduct, className }: CartItemProps) => {
     </div>
   );
 };
+
+export const MemoizedCartItem = memo(CartItem);

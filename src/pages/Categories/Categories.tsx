@@ -1,4 +1,3 @@
-import { Container, Wrapper } from "layouts";
 import { Htag } from "ui";
 import { Breadcrumbs } from "widgets";
 import { BreadcrumbItem } from "types/componets-types";
@@ -16,18 +15,16 @@ const breadcrumbItems: BreadcrumbItem[] = [
 export const Categories = () => {
   const [categories, { isLoading, errors }] = useCategories();
   return (
-    <Wrapper>
-      <Container>
-        <Breadcrumbs items={breadcrumbItems} />
-        <Htag size="xl" className={styles.title}>
-          Каталог
-        </Htag>
-        {isLoading ? (
-          <div>Loding data...</div>
-        ) : (
-          <CategoriesTile categories={categories} />
-        )}
-      </Container>
-    </Wrapper>
+    <>
+      <Breadcrumbs items={breadcrumbItems} />
+      <Htag size="xl" className={styles.title}>
+        Каталог
+      </Htag>
+      {isLoading ? (
+        <div>Loding data...</div>
+      ) : (
+        <CategoriesTile categories={categories} />
+      )}
+    </>
   );
 };

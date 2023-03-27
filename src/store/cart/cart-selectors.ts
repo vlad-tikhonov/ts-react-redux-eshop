@@ -65,3 +65,13 @@ export const selectCartProductsForOrder = createSelector(
 		return acc
 	}, [])
 )
+
+export const selectCartIsNotEmpty = createSelector(
+	baseCartSelector,
+	(cartData) => !!cartData.length
+)
+
+export const selectIsCartMinimalAmount = createSelector(
+	selectCartAmountWithDiscount,
+	(cartAmount) => cartAmount > 1000
+)

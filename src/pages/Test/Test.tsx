@@ -1,4 +1,3 @@
-import { Container, Wrapper } from "layouts";
 import styles from "./Test.module.sass";
 import { ReactComponent as LeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as RightIcon } from "assets/icons/chevron-right.svg";
@@ -36,20 +35,16 @@ const options = [
 
 export const Test = () => {
   return (
-    <Wrapper>
-      <Container>
-        <div className={styles.test}>
-          <div>
-            <InputDate size="m" message="" labelText="дд.мм.гггг" />
-          </div>
-          <div>
-            <SelectField labelText="Регион" message="" size="m" list={list} />
-          </div>
-          <div>
-            <SelectField labelText="Регион" message="" size="l" list={list} />
-          </div>
-        </div>
-      </Container>
-    </Wrapper>
+    <div className={styles.test}>
+      <div>
+        <InputDate size="m" message="" labelText="дд.мм.гггг" />
+      </div>
+      <div>
+        <SelectField labelText="Регион" message="" size="m" list={list} />
+      </div>
+      <div>
+        <SelectField labelText="Регион" message="" size="l" list={list} />
+      </div>
+    </div>
   );
 };

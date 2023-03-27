@@ -1,4 +1,3 @@
-import { Container } from "layouts";
 import { SpecialOffers } from "./SpecialOffers/SpecialOffers";
 import { DeliveryBanner } from "./DeliveryBanner/DeliveryBanner";
 import { ProductsPanel } from "widgets";
@@ -14,8 +13,8 @@ export const Home = () => {
   const [novelties, { isLoading: nIsLoading, errors: nErrors }] =
     useNovelties();
   return (
-    <Container>
-      <DeliveryBanner />
+    <>
+      <DeliveryBanner className={styles.banner} />
       <ProductsPanel
         products={promotions}
         title="Акции"
@@ -29,6 +28,6 @@ export const Home = () => {
       <StoreMap />
       <SpecialOffers className={styles.offers} />
       <Articles />
-    </Container>
+    </>
   );
 };

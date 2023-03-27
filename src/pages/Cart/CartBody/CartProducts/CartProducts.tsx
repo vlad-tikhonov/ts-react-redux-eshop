@@ -1,29 +1,22 @@
-import { CartProduct } from "types";
-import { CartItem } from "./CartItem/CartItem";
 import { ItemsHandler } from "./ItemsHandler/ItemsHandler";
 import { CartSummary } from "widgets";
-import styles from "./CartProducts.module.sass";
 import { Button } from "ui";
-import { selectCartAmountWithDiscount } from "store/cart/cart-selectors";
+import { selectIsCartMinimalAmount } from "store/cart/cart-selectors";
 import { useAppSelector } from "store/hooks";
+import { CartItems } from "./CartItems/CartItems";
+import styles from "./CartProducts.module.sass";
 
 interface CartProductsProps {
-  products: CartProduct[];
   onSubmit: () => void;
 }
 
-export const CartProducts = ({ products, onSubmit }: CartProductsProps) => {
-  const cartAmountFinal = useAppSelector(selectCartAmountWithDiscount);
-
+export const CartProducts = ({ onSubmit }: CartProductsProps) => {
+  const isMinimalAmount = useAppSelector(selectIsCartMinimalAmount);
   return (
     <div className={styles.products}>
       <div className={styles.info}>
         <ItemsHandler className={styles.handler} />
-        <div>
-          {products.map((p) => (
-            <CartItem cartProduct={p} key={p.id} />
-          ))}
-        </div>
+        <CartItems />
       </div>
       <div className={styles.summary}>
         <CartSummary />
@@ -32,7 +25,7 @@ export const CartProducts = ({ products, onSubmit }: CartProductsProps) => {
           accent="primary"
           className={styles.btn}
           onClick={onSubmit}
-          disabled={cartAmountFinal < 1000}
+          disabled={!isMinimalAmount}
         >
           Оформить заказ
         </Button>

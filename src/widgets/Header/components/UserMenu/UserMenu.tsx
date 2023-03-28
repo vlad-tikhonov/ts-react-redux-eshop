@@ -9,7 +9,7 @@ import { ReactComponent as LoginIcon } from "assets/icons/log-in.svg";
 import styles from "./UserMenu.module.sass";
 import { useAppDispatch } from "store/hooks";
 import { logout } from "store/auth/auth-slice";
-import { useAuth } from "store/auth/use-auth";
+import { useAuth } from "store/auth/feautures/use-auth";
 
 interface UserMenuProps {
   openModal: () => void;

@@ -1,5 +1,5 @@
 import makeRequest from 'api/makeRequest'
-import {  Review, Product, CreateReview } from 'types'
+import {  Review, Product, ReviewPayload } from 'types'
 import { AxiosResponse } from 'axios';
 
 export const getReviews = (productId: Product['_id']) => {
@@ -9,7 +9,7 @@ export const getReviews = (productId: Product['_id']) => {
 	}).then((response: AxiosResponse<Review[]>) => response.data)
 }
 
-export const createReview = (review: CreateReview): Promise<Review> => {
+export const createReview = (review: ReviewPayload): Promise<Review> => {
 	return makeRequest({
 		url: '/review/create',
 		method: 'post',

@@ -10,6 +10,7 @@ import {
   Favorites,
   Test,
   E404,
+  Error,
 } from "pages";
 import { Layout } from "layouts";
 
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
       {
         path: "*",
         element: <E404 />,
+      },
+      {
+        path: "404",
+        element: <E404 />,
+      },
+      {
+        path: "/error",
+        element: <Error />,
       },
     ],
   },

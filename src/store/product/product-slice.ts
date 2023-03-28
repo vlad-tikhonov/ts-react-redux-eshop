@@ -61,7 +61,6 @@ const productSlice = createSlice({
 				} else {
 					state.errors.push('Cannot load data - unknown error')
 				}
-
 			})
 			.addCase(loadProduct.fulfilled, (state, action) => {
         state.isLoading = false;

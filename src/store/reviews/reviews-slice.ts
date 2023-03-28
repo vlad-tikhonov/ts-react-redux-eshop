@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Extra, Review, CreateReview } from "types";
+import { Extra, Review, ReviewPayload } from "types";
 
 type ReviewsSlice = {
 	data: Review[];
@@ -44,7 +44,7 @@ export const loadReviews = createAsyncThunk<
 
 export const createReview = createAsyncThunk<
   Review,
-  {review: CreateReview},
+  ReviewPayload,
   {
     state: { reviews: ReviewsSlice };
     extra: Extra;
@@ -52,9 +52,9 @@ export const createReview = createAsyncThunk<
   }
 >(
   "@@reviews/create-review",
-  async ({ review }, { extra: { api, errorHandler }, rejectWithValue }) => {
+  async (payload, { extra: { api, errorHandler }, rejectWithValue }) => {
     try {
-      return await api.reviews.createReview(review);
+      return await api.reviews.createReview(payload);
     } catch (e) {
 			const message = errorHandler(e)
 

@@ -1,5 +1,5 @@
 import { useAppSelector } from "store/hooks";
-import { selectAuthInfo, selectUser } from "./auth-selectors";
+import { selectAuthInfo, selectUser } from "../auth-selectors";
 
 export const useAuth = (): [
   ReturnType<typeof selectUser>,

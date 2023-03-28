@@ -5,12 +5,9 @@ import styles from "./ProductReviews.module.sass";
 import { useState } from "react";
 import { ReactComponent as UserIcon } from "assets/icons/user.svg";
 import { formatDate } from "helpers/utils";
-import { useAuth } from "store/auth/use-auth";
+import { useAuth } from "store/auth/feautures/use-auth";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { selectToken } from "store/auth/auth-selectors";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { useReviews } from "store/reviews/use-reviews";
-import { createReview } from "store/reviews/reviews-slice";
+import { useReviews, useReviewsActions } from "store/reviews/features";
 interface ProductReviewsProps {
   productId: ProductWithReviewsInfo["_id"];
   reviewsAvg: ProductWithReviewsInfo["reviewsAvg"];
@@ -27,8 +24,8 @@ export const ProductReviews = ({
   className,
 }: ProductReviewsProps) => {
   const [rating, setRating] = useState(0);
-
-  const dispatch = useAppDispatch();
+  const [user] = useAuth();
+  const { create } = useReviewsActions();
 
   const [reviews, { isLoading, errors: reviewsErrors }] = useReviews(productId);
 
@@ -42,9 +39,6 @@ export const ProductReviews = ({
     return 0;
   };
 
-  const [user] = useAuth();
-  const accessToken = useAppSelector(selectToken);
-
   const {
     register,
     formState: { isValid },
@@ -55,17 +49,13 @@ export const ProductReviews = ({
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    if (user && accessToken) {
-      dispatch(
-        createReview({
-          review: {
-            name: user.name + " " + user.surname,
-            description: data.reviewText,
-            productId,
-            rating,
-          },
-        })
-      ).then(() => {
+    if (user) {
+      create({
+        name: user.name + " " + user.surname,
+        description: data.reviewText,
+        productId,
+        rating,
+      }).then(() => {
         reset();
         setRating(0);
       });

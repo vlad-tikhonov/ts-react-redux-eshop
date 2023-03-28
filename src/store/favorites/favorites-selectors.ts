@@ -4,7 +4,7 @@ import { Product } from "types"
 
 const baseFavoritesSelector = (state: RootState) => state.favorites
 
-export const selectIsInFavorites = (productId: Product['_id']) => createSelector(
+export const selectIsInFavorites = (productId: Product['_id'] | undefined) => createSelector(
 	baseFavoritesSelector,
 	(favorites) => {
 		const product = favorites.data.find(p => p._id === productId)

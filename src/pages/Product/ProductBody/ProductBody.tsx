@@ -6,25 +6,23 @@ import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
 import { ProductCartButton } from "components";
 import { MiniProductCard } from "./MiniProductCard/MiniProductCard";
 import cn from "classnames";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { addToCart, decreaseProductCount } from "store/cart/cart-slice";
-import { selectProductCount } from "store/cart/cart-selectors";
 import { Bonuses } from "widgets";
+import { useCartActions, useProductCount } from "store/cart/features";
 
 interface ProductBodyButtonProps {
   product: ProductWithReviewsInfoAndRelated;
 }
 
 const ProductBodyButton = ({ product }: ProductBodyButtonProps) => {
-  const dispatch = useAppDispatch();
-  const productCount = useAppSelector(selectProductCount(product._id));
+  const productCount = useProductCount(product._id);
+  const { add, decrease } = useCartActions();
 
   const handleAdd = () => {
-    dispatch(addToCart(product));
+    add(product);
   };
 
-  const handleRemove = () => {
-    dispatch(decreaseProductCount(product._id));
+  const handleDecrease = () => {
+    decrease(product._id);
   };
 
   return (
@@ -32,7 +30,7 @@ const ProductBodyButton = ({ product }: ProductBodyButtonProps) => {
       {productCount > 0 ? (
         <ProductCartButton
           addToCart={handleAdd}
-          removeFromCart={handleRemove}
+          removeFromCart={handleDecrease}
           size="l"
           className={styles.btn}
         >
@@ -55,7 +53,7 @@ const ProductBodyButton = ({ product }: ProductBodyButtonProps) => {
 };
 
 interface ProductBodyProps {
-  product: ProductWithReviewsInfoAndRelated;
+  product: ProductWithReviewsInfoAndRelated | null;
   className?: string;
 }
 
@@ -64,6 +62,10 @@ const CartRenderIcon = (className: string) => (
 );
 
 export const ProductBody = ({ product, className }: ProductBodyProps) => {
+  if (!product) {
+    return null;
+  }
+
   const {
     image,
     title,

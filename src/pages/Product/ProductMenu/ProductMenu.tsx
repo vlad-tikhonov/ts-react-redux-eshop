@@ -5,16 +5,14 @@ import { ReactComponent as ShareIcon } from "assets/icons/share.svg";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
 import { ReactComponent as HeartFilledIcon } from "assets/icons/heart-filled.svg";
 import { Button, Rating } from "ui";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import {
-  addToFavorites,
-  removeFromFavorites,
-} from "store/favorites/favorites-slice";
-import { selectIsInFavorites } from "store/favorites/favorites-selectors";
 import { getCorrectWordCase } from "helpers/utils";
+import {
+  useFavoritesActions,
+  useIsInFavorites,
+} from "store/favorites/features";
 
 interface ProductMenuProps {
-  product: ProductWithReviewsInfo;
+  product: ProductWithReviewsInfo | null;
   className?: string;
 }
 
@@ -29,22 +27,25 @@ const renderHearthFilledIcon = (className: string) => (
 );
 
 export const ProductMenu = ({ product, className }: ProductMenuProps) => {
-  const dispatch = useAppDispatch();
-
-  const isInFavorites = useAppSelector(selectIsInFavorites(product._id));
+  const [handleAdd, handleRemove] = useFavoritesActions();
+  const isInFavorites = useIsInFavorites(product?._id);
 
   const handleAddToFavorites = () => {
-    dispatch(addToFavorites(product));
+    handleAdd(product);
   };
 
   const handleRemoveFromFavorites = () => {
-    dispatch(removeFromFavorites(product._id));
+    handleRemove(product?._id);
   };
 
   const labelText = getCorrectWordCase(
     ["отзыв", "отзыва", "отзывов"],
-    product.reviewsCount
+    product?.reviewsCount
   );
+
+  if (!product) {
+    return null;
+  }
 
   return (
     <div className={cn(styles.menu, className)}>
@@ -83,7 +84,7 @@ export const ProductMenu = ({ product, className }: ProductMenuProps) => {
         size="s"
         className={styles.btn}
       >
-        В избранное
+        {isInFavorites ? "В избранном" : "В избранное"}
       </Button>
     </div>
   );

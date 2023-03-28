@@ -84,7 +84,11 @@ export const getStringWeekRange = () => {
 3. Родительный падеж, мн.ч - отзывов
 * @num {numebr} число, вместе с которым будет употребляться существительное.
 */
-export const getCorrectWordCase = (words: [string, string, string], num: number) => {
+export const getCorrectWordCase = (words: [string, string, string], num: number | undefined): string | undefined => {
+	if (!num) {
+		return
+	}
+
 	if (num > 100) {
 		num = num % 100;
 	}

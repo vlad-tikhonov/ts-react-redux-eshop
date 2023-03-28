@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { selectReviews, selectReviewsInfo } from "./reviews-selectors";
-import { loadReviews } from "./reviews-slice";
+import {
+  selectReviews,
+  selectReviewsInfo,
+} from "store/reviews/reviews-selectors";
+import { loadReviews } from "store/reviews/reviews-slice";
 import { Product, Review } from "types";
 
 export const useReviews = (

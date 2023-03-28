@@ -5,7 +5,7 @@ import { useAppDispatch } from "store/hooks";
 import { login } from "store/auth/auth-slice";
 import { PasswordField, TextField } from "components";
 import toast from "react-hot-toast";
-import { useAuth } from "store/auth/use-auth";
+import { useAuth } from "store/auth/feautures/use-auth";
 
 interface AuthFormProps {
   onLogin: () => void;

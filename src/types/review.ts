@@ -8,10 +8,3 @@ export type Review = {
 	productId: string;
 	createdAt: string;
 }
-
-export type CreateReview = {
-	name: string;
-	description: string;
-	rating: number;
-	productId: string;
-}

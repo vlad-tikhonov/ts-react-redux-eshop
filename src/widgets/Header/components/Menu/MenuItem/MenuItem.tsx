@@ -3,10 +3,9 @@ import styles from "./MenuItem.module.sass";
 import { setActiveClass } from "helpers/utils";
 interface MenuItemProps {
   label: string;
-  renderIcon: (className: string) => JSX.Element;
   path: string;
+  renderIcon: (className: string) => JSX.Element;
   renderCount: () => number;
-  // count: number;
 }
 
 const setIsActive = setActiveClass(styles.item_active, styles.item);

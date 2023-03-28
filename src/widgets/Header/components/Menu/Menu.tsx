@@ -3,11 +3,11 @@ import { RoutesNames } from "constants/routes-names";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
 import { ReactComponent as PackageIcon } from "assets/icons/package.svg";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
-import styles from "./Menu.module.sass";
 import { useId } from "react";
 import { useProductsCount } from "store/cart/features";
 import { useFavoritesCount } from "store/favorites/features";
 import { useActiveOrdersCount } from "store/orders/features";
+import styles from "./Menu.module.sass";
 
 export const Menu = () => {
   const MenuItems = [

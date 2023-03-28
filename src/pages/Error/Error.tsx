@@ -16,7 +16,6 @@ export const Error = () => {
 
   const { errors, pathname } = location.state as LocationState;
 
-  console.log(location);
   return (
     <div className={styles.wrapper}>
       <Htag size="m" className={styles.title_m}>
@@ -29,8 +28,8 @@ export const Error = () => {
         Возможные причины:
       </Htag>
       <ul className={styles.list}>
-        {errors.map((e) => (
-          <li>
+        {errors.map((e, i) => (
+          <li key={i}>
             <Text size="s">{e}</Text>
           </li>
         ))}

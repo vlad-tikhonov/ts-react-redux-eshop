@@ -27,15 +27,15 @@ const renderHearthFilledIcon = (className: string) => (
 );
 
 export const ProductMenu = ({ product, className }: ProductMenuProps) => {
-  const [handleAdd, handleRemove] = useFavoritesActions();
+  const { add, remove } = useFavoritesActions();
   const isInFavorites = useIsInFavorites(product?._id);
 
   const handleAddToFavorites = () => {
-    handleAdd(product);
+    add(product);
   };
 
   const handleRemoveFromFavorites = () => {
-    handleRemove(product?._id);
+    remove(product?._id);
   };
 
   const labelText = getCorrectWordCase(

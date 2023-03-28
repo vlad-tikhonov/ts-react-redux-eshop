@@ -1,5 +1,5 @@
 import { ProductsPanel } from "widgets";
-import { useNovelties } from "store/novelties/use-novelties";
+import { useNovelties } from "store/novelties/features";
 
 interface NoveltiesProps {
   className?: string;

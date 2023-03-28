@@ -1,5 +1,5 @@
 import { ProductsPanel } from "widgets";
-import { usePromotions } from "store/promotions/use-promotions";
+import { usePromotions } from "store/promotions/features/use-promotions";
 
 interface PromotionsProps {
   className?: string;

@@ -1,7 +1,7 @@
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { selectNoveltiesInfo, selectNoveltiesProducts} from "./novelties-selectors";
 import { useEffect } from "react";
-import { loadNoveltiesProducts } from "./novelties-slice";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { selectNoveltiesInfo, selectNoveltiesProducts} from "store/novelties/novelties-selectors";
+import { loadNoveltiesProducts } from "store/novelties/novelties-slice";
 import { ProductWithReviewsInfo } from "types";
 
 export const useNovelties = (): [

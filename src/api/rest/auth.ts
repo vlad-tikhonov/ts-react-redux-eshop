@@ -1,9 +1,9 @@
 import {  AxiosResponse } from 'axios'
 import makeRequest from "api/makeRequest";
-import { Login, RegisterData, RegisterResponse } from "types";
+import { Login, RegisterPayload, RegisterResponse } from "types";
 
 
-export const register = (data: RegisterData) => {
+export const register = (data: RegisterPayload) => {
 	return makeRequest({
 		url: '/auth/register',
 		method: 'post',

@@ -3,14 +3,9 @@ import { Text, Notice, Checkbox } from "ui";
 import { ProductCartButton } from "components";
 import { modifyPrice, modifyDiscount } from "helpers/utils";
 import styles from "./CartItem.module.sass";
-import { useAppDispatch } from "store/hooks";
-import {
-  decreaseProductCount,
-  increaseProductCount,
-  productSelectionHandler,
-} from "store/cart/cart-slice";
 import { memo } from "react";
 import cn from "classnames";
+import { useCartActions } from "store/cart/features";
 
 interface CartItemProps {
   cartProduct: CartProduct;
@@ -73,23 +68,22 @@ const CartItemPrice = ({
 
 const CartItem = ({ cartProduct, className }: CartItemProps) => {
   const { count, data: product } = cartProduct;
-  const dispatch = useAppDispatch();
+
+  const { selectionHandler, increase, decrease } = useCartActions();
 
   const handleToggle = (b: boolean) => {
-    dispatch(
-      productSelectionHandler({
-        id: cartProduct.id,
-        selectionState: b,
-      })
-    );
+    selectionHandler({
+      id: cartProduct.id,
+      selectionState: b,
+    });
   };
 
   const handleIncrease = () => {
-    dispatch(increaseProductCount(cartProduct.id));
+    increase(cartProduct.id);
   };
 
   const handleRemove = () => {
-    dispatch(decreaseProductCount(cartProduct.id));
+    decrease(cartProduct.id);
   };
 
   return (

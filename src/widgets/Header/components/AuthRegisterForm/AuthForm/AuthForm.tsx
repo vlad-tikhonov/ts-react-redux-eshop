@@ -1,11 +1,10 @@
 import { BorderLoader, Button, Htag } from "ui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./AuthForm.module.sass";
-import { useAppDispatch } from "store/hooks";
-import { login } from "store/auth/auth-slice";
 import { PasswordField, TextField } from "components";
 import toast from "react-hot-toast";
-import { useAuth } from "store/auth/feautures/use-auth";
+import { useAuth } from "store/auth/features/use-auth";
+import { useAuthActions } from "store/auth/features";
 
 interface AuthFormProps {
   onLogin: () => void;
@@ -19,7 +18,7 @@ interface FormValues {
 const renderLoader = () => <BorderLoader accent="primary" />;
 
 export const AuthForm = ({ onLogin }: AuthFormProps) => {
-  const dispatch = useAppDispatch();
+  const { signIn } = useAuthActions();
   const [, { isLoading }] = useAuth();
 
   const {
@@ -31,12 +30,10 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    dispatch(
-      login({
-        email: data.email,
-        password: data.password,
-      })
-    ).then((res) => {
+    signIn({
+      email: data.email,
+      password: data.password,
+    }).then((res) => {
       if (res.meta.requestStatus === "fulfilled") {
         onLogin();
         toast.success("Вход успешно выполнен", { duration: 5000 });

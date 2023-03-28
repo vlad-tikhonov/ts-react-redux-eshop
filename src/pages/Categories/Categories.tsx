@@ -1,7 +1,7 @@
 import { Htag } from "ui";
 import { Breadcrumbs } from "widgets";
 import { BreadcrumbItem } from "types/componets-types";
-import { useCategories } from "store/categories/use-categories";
+import { useCategories } from "store/categories/features/use-categories";
 import styles from "./Categories.module.sass";
 import { CategoriesTile } from "./CategoriesTile/CategoriesTile";
 import { ErrorDetecter } from "components";

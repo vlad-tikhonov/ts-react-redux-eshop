@@ -1,5 +1,8 @@
 import { useAppSelector } from "store/hooks";
-import { selectRegisterInfo, selectUser } from "./register-selectors";
+import {
+  selectRegisterInfo,
+  selectUser,
+} from "store/register/register-selectors";
 
 export const useRegister = (): [
   ReturnType<typeof selectUser>,

@@ -5,7 +5,7 @@ import styles from "./ProductReviews.module.sass";
 import { useState } from "react";
 import { ReactComponent as UserIcon } from "assets/icons/user.svg";
 import { formatDate } from "helpers/utils";
-import { useAuth } from "store/auth/feautures/use-auth";
+import { useAuth } from "store/auth/features/use-auth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useReviews, useReviewsActions } from "store/reviews/features";
 interface ProductReviewsProps {

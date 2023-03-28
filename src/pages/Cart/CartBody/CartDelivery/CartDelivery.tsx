@@ -8,13 +8,11 @@ import { LOCALITIES } from "constants/localities";
 import styles from "./CartDelivery.module.sass";
 import { getStringWeekRange } from "helpers/utils";
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { selectCartProductsForOrder } from "store/cart/cart-selectors";
-import { createOrder } from "store/orders/orders-slice";
-import { selectUserId } from "store/auth/auth-selectors";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { resetCart } from "store/cart/cart-slice";
+import { useUserId } from "store/auth/features";
+import { useProductsForOrder, useCartActions } from "store/cart/features";
+import { useOrdersActions } from "store/orders/features";
 
 interface CartDeliveryProps {
   toBack: () => void;
@@ -46,9 +44,11 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
 
   const navigate = useNavigate();
 
-  const dispatch = useAppDispatch();
-  const userId = useAppSelector(selectUserId);
-  const products = useAppSelector(selectCartProductsForOrder);
+  const { reset: resetCart } = useCartActions();
+  const { create: createOrder } = useOrdersActions();
+
+  const userId = useUserId();
+  const products = useProductsForOrder();
 
   const {
     register,
@@ -74,21 +74,19 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
       return;
     }
 
-    dispatch(
-      createOrder({
-        userId,
-        apartment,
-        date,
-        extra,
-        house,
-        locality,
-        street,
-        time,
-        products,
-      })
-    ).then((res) => {
+    createOrder({
+      userId,
+      apartment,
+      date,
+      extra,
+      house,
+      locality,
+      street,
+      time,
+      products,
+    }).then((res) => {
       if (res.meta.requestStatus === "fulfilled") {
-        dispatch(resetCart());
+        resetCart();
         navigate("/orders");
         toast.success("Заказ успешно создан", { duration: 5000 });
       }

@@ -1,26 +1,27 @@
 import { Text, Notice } from "ui";
 import { Bonuses } from "widgets";
 import { modifyPrice } from "helpers/utils";
-import { useAppSelector } from "store/hooks";
-import {
-  selectCartProductsCount,
-  selectCartFullAmount,
-  selectCartAmountWithDiscount,
-  selectCartDiscount,
-} from "store/cart/cart-selectors";
 import styles from "./CartSummary.module.sass";
 import cn from "classnames";
 import { getCorrectWordCase } from "helpers/utils";
+import {
+  useProductsCount,
+  useDiscountAmount,
+  useFullAmount,
+  useDiscountVolume,
+  useIsMinimalAmount,
+} from "store/cart/features";
 
 interface CartSummaryProps {
   className?: string;
 }
 
 export const CartSummary = ({ className }: CartSummaryProps) => {
-  const productsCount = useAppSelector(selectCartProductsCount);
-  const cartAmount = useAppSelector(selectCartFullAmount);
-  const cartAmountFinal = useAppSelector(selectCartAmountWithDiscount);
-  const cartDiscount = useAppSelector(selectCartDiscount);
+  const productsCount = useProductsCount();
+  const discountAmount = useDiscountAmount();
+  const fullAmount = useFullAmount();
+  const discountVolume = useDiscountVolume();
+  const isMinimalAmount = useIsMinimalAmount();
 
   const labelText = getCorrectWordCase(
     ["товар", "товара", "товаров"],
@@ -34,14 +35,14 @@ export const CartSummary = ({ className }: CartSummaryProps) => {
           <Text size="s" className={styles.label}>
             {productsCount + " " + labelText}
           </Text>
-          <Text size="s">{modifyPrice(cartAmount)}</Text>
+          <Text size="s">{modifyPrice(fullAmount)}</Text>
         </div>
         <div className={styles.total_discount}>
           <Text size="s" className={styles.label}>
             Скидка
           </Text>
           <Text size="s" bold className={styles.discount}>
-            {modifyPrice(cartDiscount)}
+            {modifyPrice(discountVolume)}
           </Text>
         </div>
       </div>
@@ -51,15 +52,15 @@ export const CartSummary = ({ className }: CartSummaryProps) => {
           Итог
         </Text>
         <Text size="l" bold>
-          {modifyPrice(cartAmountFinal)}
+          {modifyPrice(discountAmount)}
         </Text>
       </div>
       <Bonuses
-        count={Math.floor(cartAmountFinal / 10)}
+        count={Math.floor(discountAmount / 10)}
         className={styles.bonuses}
       />
       <div className={styles.notice}>
-        {cartAmountFinal < 1000 && (
+        {!isMinimalAmount && (
           <Notice accent="error" size="s" className={styles.notice}>
             Минимальная сумма заказа 1000₽
           </Notice>

@@ -1,13 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import cn from "classnames";
 import styles from "./Search.module.sass";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { useClickOutside, useDebounce } from "hooks";
 import { useRef, useEffect, useState, ChangeEvent } from "react";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { loadSearchResults, resetSearch } from "store/search/search-slice";
-import { selectSearchResults } from "store/search/search-selectors";
 import { useLocation, Link } from "react-router-dom";
 import { Highlighter } from "components";
+import { useSearchActions, useSearchResults } from "store/search/features";
 interface SearchProps {
   className?: string;
 }
@@ -17,10 +16,10 @@ export const Search = ({ className }: SearchProps) => {
   const debouncedValue = useDebounce<string>(value, 500);
   const [inputIsActive, setInputIsActive] = useState(false);
 
+  const { load, reset } = useSearchActions();
   const { pathname } = useLocation();
 
-  const dispatch = useAppDispatch();
-  const results = useAppSelector(selectSearchResults(pathname));
+  const results = useSearchResults(pathname);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -31,7 +30,7 @@ export const Search = ({ className }: SearchProps) => {
 
   const resetResults = () => {
     if (results.length) {
-      dispatch(resetSearch());
+      reset();
     }
   };
 
@@ -41,7 +40,7 @@ export const Search = ({ className }: SearchProps) => {
 
   useEffect(() => {
     if (debouncedValue) {
-      dispatch(loadSearchResults(debouncedValue));
+      load(debouncedValue);
     }
   }, [debouncedValue]);
 

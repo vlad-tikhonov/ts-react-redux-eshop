@@ -1,7 +1,10 @@
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { selectPromotionsInfo, selectPromotionsProducts} from "./promotions-selectors";
+import {
+  selectPromotionsInfo,
+  selectPromotionsProducts,
+} from "store/promotions/promotions-selectors";
 import { useEffect } from "react";
-import { loadPromotionsProducts } from "./promotions-slice";
+import { loadPromotionsProducts } from "../promotions-slice";
 import { ProductWithReviewsInfo } from "types";
 
 export const usePromotions = (): [

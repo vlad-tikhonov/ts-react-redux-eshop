@@ -1,5 +1,5 @@
 import { useLocation, useParams } from "react-router-dom";
-import { useCategory } from "store/categories/use-category";
+import { useCategory } from "store/categories/features/use-category";
 import { Htag } from "ui";
 import { Breadcrumbs } from "widgets";
 import { RoutesNames } from "constants/routes-names";

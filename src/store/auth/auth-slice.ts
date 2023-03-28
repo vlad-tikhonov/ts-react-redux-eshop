@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Extra, User, Login } from 'types'
+import { Extra, User, Login, LoginPayload } from 'types'
 
 type AuthSlice = {
 	user: User | null,
@@ -17,7 +17,7 @@ const initialState: AuthSlice = {
 
 export const login = createAsyncThunk<
 	Login,
-	{email: string, password: string},
+	LoginPayload,
 	{
 		state: { auth: AuthSlice },
 		extra: Extra,

@@ -1,13 +1,12 @@
 import { Checkbox, Text, Button } from "ui";
 import styles from "./ItemsHandler.module.sass";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { allSelectionHandler, removeSelected } from "store/cart/cart-slice";
-import {
-  selectProductUnitsCart,
-  selectSelectedCount,
-} from "store/cart/cart-selectors";
 import { useState, useEffect } from "react";
 import cn from "classnames";
+import {
+  useCartActions,
+  useProductUnitsCount,
+  useSelectedCount,
+} from "store/cart/features";
 
 interface ItemsHandlerProps {
   className: string;
@@ -16,17 +15,18 @@ interface ItemsHandlerProps {
 export const ItemsHandler = ({ className }: ItemsHandlerProps) => {
   const [selectionState, setSelectionState] = useState<boolean | null>(false);
 
-  const productUnitsCount = useAppSelector(selectProductUnitsCart);
-  const selectedCount = useAppSelector(selectSelectedCount);
+  const productUnitsCount = useProductUnitsCount();
+  const selectedCount = useSelectedCount();
 
-  const dispatch = useAppDispatch();
+  const { allProductsSelectionHandler, removeSelectedProducts } =
+    useCartActions();
 
   const handleSelectAll = (b: boolean) => {
-    dispatch(allSelectionHandler(b));
+    allProductsSelectionHandler(b);
   };
 
   const handleRemove = () => {
-    dispatch(removeSelected());
+    removeSelectedProducts();
   };
 
   useEffect(() => {

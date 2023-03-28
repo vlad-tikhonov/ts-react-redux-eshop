@@ -1,9 +1,8 @@
 import { MemoizedCartItem } from "./CartItem/CartItem";
-import { selectCartProducts } from "store/cart/cart-selectors";
-import { useAppSelector } from "store/hooks";
+import { useCartProducts } from "store/cart/features/use-cart-products";
 
 export const CartItems = () => {
-  const products = useAppSelector(selectCartProducts);
+  const products = useCartProducts();
 
   return (
     <div>

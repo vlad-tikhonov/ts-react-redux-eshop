@@ -1,4 +1,4 @@
-export type RegisterData = {
+export type RegisterPayload = {
 	login: string;
 	password:	string;
 	birthDate: string;

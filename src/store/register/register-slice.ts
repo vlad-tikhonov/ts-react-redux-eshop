@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Extra, RegisterData, RegisterResponse } from 'types'
+import { Extra, RegisterPayload, RegisterResponse } from 'types'
 
 type RegisterSlice = {
 	user: RegisterResponse | null,
@@ -15,7 +15,7 @@ const initialState: RegisterSlice = {
 
 export const registerUser = createAsyncThunk<
 	RegisterResponse,
-	RegisterData,
+	RegisterPayload,
 	{
 		state: { register: RegisterSlice },
 		extra: Extra,
@@ -23,9 +23,9 @@ export const registerUser = createAsyncThunk<
 	}>
 	(
 		"@@register/register",
-		async(registerData, { extra: { api, errorHandler }, rejectWithValue}) => {
+		async(payload, { extra: { api, errorHandler }, rejectWithValue}) => {
 			try {
-				return await api.auth.register(registerData)
+				return await api.auth.register(payload)
 			} catch (e) {
 				const message = errorHandler(e)
 

@@ -4,12 +4,12 @@ import { ProductInfo, ProductWithReviewsInfoAndRelated } from "types"
 
 const baseCartSelector = (state: RootState) => state.cart.data
 
-export const selectProductUnitsCart = createSelector(
+export const selectProductUnitsCount = createSelector(
 	baseCartSelector,
 	(cartData) => cartData.length
 )
 
-export const selectCartProductsCount = createSelector(
+export const selectProductsCount = createSelector(
 	baseCartSelector,
 	(cartData) => cartData.reduce((acc, p) => acc + p.count, 0)
 )

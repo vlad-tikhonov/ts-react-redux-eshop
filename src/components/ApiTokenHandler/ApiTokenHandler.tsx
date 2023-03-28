@@ -1,10 +1,9 @@
 import { useEffect } from "react";
-import { useAppSelector } from "store/hooks";
-import { selectToken } from "store/auth/auth-selectors";
 import { setToken } from "api";
+import { useToken } from "store/auth/features";
 
 export const ApiTokenHandler = () => {
-  const token = useAppSelector(selectToken);
+  const token = useToken();
 
   useEffect(() => {
     setToken(token);

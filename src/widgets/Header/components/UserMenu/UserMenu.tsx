@@ -5,11 +5,8 @@ import cn from "classnames";
 import { ReactComponent as ChevronDown } from "assets/icons/chevron-down.svg";
 import { ReactComponent as ChevronUp } from "assets/icons/chevron-up.svg";
 import { ReactComponent as LoginIcon } from "assets/icons/log-in.svg";
-
+import { useAuth, useAuthActions } from "store/auth/features";
 import styles from "./UserMenu.module.sass";
-import { useAppDispatch } from "store/hooks";
-import { logout } from "store/auth/auth-slice";
-import { useAuth } from "store/auth/feautures/use-auth";
 
 interface UserMenuProps {
   openModal: () => void;
@@ -24,11 +21,12 @@ export const UserMenu = ({ openModal, className }: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const dispatch = useAppDispatch();
+  const { signOut } = useAuthActions();
+
   const [user] = useAuth();
 
   const handleLogout = () => {
-    dispatch(logout());
+    signOut();
   };
 
   const closeMenu = () => {

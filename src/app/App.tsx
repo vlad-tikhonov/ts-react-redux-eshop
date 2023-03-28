@@ -1,27 +1,31 @@
-import { RouterProvider } from "react-router-dom";
-import router from "app/router";
-import "style/style.sass";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { initCart } from "store/cart/cart-slice";
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { loadOrders, resetOrders } from "store/orders/orders-slice";
-import { selectUserId } from "store/auth/auth-selectors";
+import router from "app/router";
+import { RouterProvider } from "react-router-dom";
+import { useCartActions } from "store/cart/features";
+import { useFavoritesActions } from "store/favorites/features";
+import { useUserId } from "store/auth/features";
+import { useOrdersActions } from "store/orders/features";
+import "style/style.sass";
 
 const App = () => {
-  const dispatch = useAppDispatch();
-  const userId = useAppSelector(selectUserId);
+  const { init: initCart } = useCartActions();
+  const { init: initFavorites } = useFavoritesActions();
+  const { reset: resetOrders, load: loadOrders } = useOrdersActions();
+  const userId = useUserId();
 
   useEffect(() => {
-    dispatch(initCart());
-  }, [dispatch]);
+    initCart();
+    initFavorites();
+  }, []);
 
   useEffect(() => {
     if (userId) {
-      dispatch(loadOrders(userId));
+      loadOrders(userId);
     } else {
-      dispatch(resetOrders());
+      resetOrders();
     }
-  }, [userId, dispatch]);
+  }, [userId]);
 
   return <RouterProvider router={router} />;
 };

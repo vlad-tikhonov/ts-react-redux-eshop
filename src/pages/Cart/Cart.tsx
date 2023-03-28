@@ -1,10 +1,9 @@
 import { Breadcrumbs } from "widgets";
 import { BreadcrumbItem } from "types";
-import { useAppSelector } from "store/hooks";
-import { selectCartIsNotEmpty } from "store/cart/cart-selectors";
 import { EmptyCart } from "./EmptyCart/EmtyCart";
 import { CartTitle } from "./CartTitle/CartTitle";
 import { CartBody } from "./CartBody/CartBody";
+import { useIsNotEmpty } from "store/cart/features";
 import styles from "./Cart.module.sass";
 
 const breadcrumbItems: BreadcrumbItem[] = [
@@ -12,12 +11,12 @@ const breadcrumbItems: BreadcrumbItem[] = [
 ];
 
 export const Cart = () => {
-  const cartIsNotEmpty = useAppSelector(selectCartIsNotEmpty);
+  const isNotEmty = useIsNotEmpty();
 
   return (
     <>
       <Breadcrumbs items={breadcrumbItems} />
-      {cartIsNotEmpty ? (
+      {isNotEmty ? (
         <>
           <CartTitle className={styles.title} />
           <CartBody />

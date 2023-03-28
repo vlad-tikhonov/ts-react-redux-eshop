@@ -1,17 +1,17 @@
 import { ItemsHandler } from "./ItemsHandler/ItemsHandler";
 import { CartSummary } from "widgets";
 import { Button } from "ui";
-import { selectIsCartMinimalAmount } from "store/cart/cart-selectors";
-import { useAppSelector } from "store/hooks";
 import { CartItems } from "./CartItems/CartItems";
 import styles from "./CartProducts.module.sass";
+import { useIsMinimalAmount } from "store/cart/features";
 
 interface CartProductsProps {
   onSubmit: () => void;
 }
 
 export const CartProducts = ({ onSubmit }: CartProductsProps) => {
-  const isMinimalAmount = useAppSelector(selectIsCartMinimalAmount);
+  const isMinimalAmount = useIsMinimalAmount();
+
   return (
     <div className={styles.products}>
       <div className={styles.info}>

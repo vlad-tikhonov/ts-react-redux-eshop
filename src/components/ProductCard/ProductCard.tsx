@@ -6,17 +6,14 @@ import { modifyPrice, modifyDiscount, shortnerTitle } from "helpers/utils";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ProductCartButton } from "..";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { selectProductCount } from "store/cart/cart-selectors";
-import { addToCart, decreaseProductCount } from "store/cart/cart-slice";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
 import { ReactComponent as HeartFilledIcon } from "assets/icons/heart-filled.svg";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
-import { selectIsInFavorites } from "store/favorites/favorites-selectors";
 import {
-  addToFavorites,
-  removeFromFavorites,
-} from "store/favorites/favorites-slice";
+  useFavoritesActions,
+  useIsInFavorites,
+} from "store/favorites/features";
+import { useCartActions, useProductCount } from "store/cart/features";
 
 interface ProductCardProps {
   product: ProductWithReviewsInfo;
@@ -81,7 +78,10 @@ export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
   const [isActive, setIsActive] = useState(false);
   const [btnState, setBtnState] = useState<CardBtnProps>(defaultBtnState);
 
-  const dispatch = useAppDispatch();
+  const { add: addToFavorites, remove: removeFromFavorites } =
+    useFavoritesActions();
+  const { add: addToCart, decrease: decreaseProductCount } = useCartActions();
+
   const productPageLink = `/categories/${categorySlug}/${slug}`;
   const modifiedDiscount = discount ? modifyDiscount(discount) : "";
   const croppedTitle = shortnerTitle(title, 40);
@@ -100,24 +100,24 @@ export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
   };
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product));
+    addToCart(product);
   };
 
   const handleRemoveFromCart = () => {
-    dispatch(decreaseProductCount(_id));
+    decreaseProductCount(_id);
   };
 
-  const productCount = useAppSelector(selectProductCount(_id));
+  const productCount = useProductCount(_id);
 
   const handleAddToFavorites = () => {
-    dispatch(addToFavorites(product));
+    addToFavorites(product);
   };
 
   const handleRemoveFromFavorites = () => {
-    dispatch(removeFromFavorites(_id));
+    removeFromFavorites(_id);
   };
 
-  const isInFavorites = useAppSelector(selectIsInFavorites(_id));
+  const isInFavorites = useIsInFavorites(_id);
 
   return (
     <div

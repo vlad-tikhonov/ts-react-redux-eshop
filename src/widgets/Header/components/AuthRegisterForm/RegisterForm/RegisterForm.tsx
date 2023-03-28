@@ -5,12 +5,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { PasswordField, SelectField } from "components";
 import { Sex, Option } from "types";
 import cn from "classnames";
-import { useAppDispatch } from "store/hooks";
-import { registerUser } from "store/register/register-slice";
 import toast from "react-hot-toast";
-import { useRegister } from "store/register/use-register";
+import { useRegister } from "store/register/features";
 import { REGIONS } from "constants/regions";
 import { LOCALITIES } from "constants/localities";
+import { useRegisterActions } from "store/register/features";
 
 interface RegisterFormProps {
   onRegister: () => void;
@@ -45,7 +44,7 @@ const options: [Option, Option] = [
 const renderLoader = () => <BorderLoader accent="primary" />;
 
 export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
-  const dispatch = useAppDispatch();
+  const { register: registerUser } = useRegisterActions();
   const [, { isLoading }] = useRegister();
 
   const {
@@ -59,20 +58,18 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    dispatch(
-      registerUser({
-        login: data.email,
-        password: data.password,
-        birthDate: data.birth.split(".").reverse().join("-"),
-        name: data.name,
-        surname: data.surname,
-        sex: data.sex,
-        region: data.region,
-        locality: data.locality,
-        phone: data.phone,
-        card: data.card,
-      })
-    ).then((res) => {
+    registerUser({
+      login: data.email,
+      password: data.password,
+      birthDate: data.birth.split(".").reverse().join("-"),
+      name: data.name,
+      surname: data.surname,
+      sex: data.sex,
+      region: data.region,
+      locality: data.locality,
+      phone: data.phone,
+      card: data.card,
+    }).then((res) => {
       if (res.meta.requestStatus === "fulfilled") {
         onRegister();
         toast.success("Регистрация прошла успешно. Выполните вход", {

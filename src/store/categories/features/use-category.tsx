@@ -1,20 +1,19 @@
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import {
-  selectCategoriesInfo,
+  selectCategory,
   selectAllCategories,
-} from "./categories-selectors";
+} from "store/categories/categories-selectors";
 import { useEffect } from "react";
-import { loadCategories } from "./categories-slice";
+import { loadCategories } from "store/categories/categories-slice";
 import { Category } from "types";
 
-export const useCategories = (): [
-  Category[],
-  ReturnType<typeof selectCategoriesInfo>
-] => {
+export const useCategory = (
+  slug: Pick<Category, "slug">["slug"] | undefined
+): Category => {
   const dispatch = useAppDispatch();
 
-  const { isLoading, errors } = useAppSelector(selectCategoriesInfo);
   const categories = useAppSelector(selectAllCategories);
+  const category = useAppSelector(selectCategory(slug));
 
   useEffect(() => {
     if (categories.length === 0) {
@@ -22,5 +21,5 @@ export const useCategories = (): [
     }
   }, [categories, dispatch]);
 
-  return [categories, { isLoading, errors }];
+  return category;
 };

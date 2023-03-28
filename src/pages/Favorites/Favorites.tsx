@@ -2,10 +2,9 @@ import { Htag } from "ui";
 import { Breadcrumbs } from "widgets";
 import { ProductCard } from "components";
 import { BreadcrumbItem } from "types";
-import { selectFavorites } from "store/favorites/favorites-selectors";
 import styles from "./Favorites.module.sass";
-import { useAppSelector } from "store/hooks";
 import { FavoritesEmpty } from "./FavoritesEmpty/FavoritesEmpty";
+import { useFavorites } from "store/favorites/features";
 
 const breadcrumbItems: BreadcrumbItem[] = [
   {
@@ -15,7 +14,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
 ];
 
 export const Favorites = () => {
-  const favorites = useAppSelector(selectFavorites);
+  const favorites = useFavorites();
 
   return (
     <>

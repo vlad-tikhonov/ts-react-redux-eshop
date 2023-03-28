@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "store/hooks";
-import { selectOrdersInfo, selectOrders } from "./orders-selectors";
-import { loadOrders } from "./orders-slice";
+import { selectOrdersInfo, selectOrders } from "store/orders/orders-selectors";
+import { loadOrders } from "store/orders/orders-slice";
 import { Order, OrderPayload } from "types";
 
 export const useOrders = (

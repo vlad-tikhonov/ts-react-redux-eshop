@@ -1,15 +1,14 @@
 import { Htag, Notice } from "ui";
 import cn from "classnames";
 import styles from "./CartTitle.module.sass";
-import { useAppSelector } from "store/hooks";
-import { selectCartProductsCount } from "store/cart/cart-selectors";
+import { useProductsCount } from "store/cart/features";
 
 interface CartTitleProps {
   className?: string;
 }
 
 export const CartTitle = ({ className }: CartTitleProps) => {
-  const productsCount = useAppSelector(selectCartProductsCount);
+  const productsCount = useProductsCount();
 
   return (
     <div className={cn(styles.title, className)}>

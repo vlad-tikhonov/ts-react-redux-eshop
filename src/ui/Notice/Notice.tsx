@@ -1,5 +1,6 @@
 import cn from "classnames";
 import { ElementAccent, ElementSizes } from "types";
+import { Text } from "ui";
 import styles from "./notice.module.sass";
 
 type NoticeAccent<T> = "gray" | "success" | T;
@@ -14,13 +15,23 @@ interface NoticeProps {
 export const Notice = ({ size, accent, children, className }: NoticeProps) => {
   const noticeStyles = {
     [styles.notice]: true,
-    [styles.s]: size === "s",
-    [styles.m]: size === "m",
     [styles.primary]: accent === "primary",
     [styles.gray]: accent === "gray",
     [styles.error]: accent === "error",
     [styles.secondary]: accent === "secondary",
     [styles.success]: accent === "success",
   };
-  return <span className={cn(noticeStyles, className)}>{children}</span>;
+
+  const textStyles = {
+    [styles.text]: true,
+    [styles.text_gray]: accent === "gray",
+  };
+
+  return (
+    <span className={cn(noticeStyles, className)}>
+      <Text size={size === "m" ? "s" : "xs"} className={cn(textStyles)}>
+        {children}
+      </Text>
+    </span>
+  );
 };

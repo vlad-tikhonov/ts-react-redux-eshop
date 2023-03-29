@@ -123,6 +123,7 @@ export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
       className={cn(styles.card, { [styles["card-active"]]: isActive })}
       onMouseEnter={changeStyle}
       onMouseLeave={changeStyleDefault}
+      title={title}
     >
       <div className={styles.card_header}>
         {countInOrder && (
@@ -158,7 +159,9 @@ export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
       </div>
       <div className={styles.card_body}>
         <ProductPrice price={price} priceWithCard={priceWithCard} />
-        <div className={styles.title}>{croppedTitle}</div>
+        <div className={styles.title}>
+          <Text size="s">{croppedTitle}</Text>
+        </div>
         <Rating
           rating={reviewsAvg ? reviewsAvg : 0}
           readonly

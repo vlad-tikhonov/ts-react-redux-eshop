@@ -6,13 +6,14 @@ import styles from "./user-menu.module.sass";
 import { ReactComponent as ChevronDown } from "assets/icons/chevron-down.svg";
 import { ReactComponent as ChevronUp } from "assets/icons/chevron-up.svg";
 import { User } from "types";
+import cn from "classnames";
 
 interface UserMenuProps {
   userName: User["name"];
-  userSurname: User["surname"];
+  className?: string;
 }
 
-export const UserMenu = ({ userName, userSurname }: UserMenuProps) => {
+export const UserMenu = ({ userName, className }: UserMenuProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -36,12 +37,12 @@ export const UserMenu = ({ userName, userSurname }: UserMenuProps) => {
   useClickOutside([menuRef], closeMenu);
 
   return (
-    <div ref={menuRef} className={styles.wrapper}>
+    <div ref={menuRef} className={cn(styles.wrapper, className)}>
       <div className={styles.menu} onClick={toggleMenu}>
         <div className={styles.photo}></div>
         <div className={styles.name}>
           <Text size="s" className={styles.name_text}>
-            {userName + " " + userSurname}
+            {userName}
           </Text>
         </div>
         <div className={styles.btn}>

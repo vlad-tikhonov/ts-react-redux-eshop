@@ -1,0 +1,11 @@
+@import 'style/mixins.sass'
+
+.wrapper
+	display: flex
+	justify-content: space-between
+	width: 21.7rem
+	@include respond(m)
+		width: auto
+
+	& .login, & .menu
+		margin: 0 auto

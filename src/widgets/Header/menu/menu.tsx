@@ -7,9 +7,14 @@ import { useId } from "react";
 import { useProductsCount } from "store/cart/features";
 import { useFavoritesCount } from "store/favorites/features";
 import { useActiveOrdersCount } from "store/orders/features";
+import cn from "classnames";
 import styles from "./menu.module.sass";
 
-export const Menu = () => {
+interface MenuProps {
+  className?: string;
+}
+
+export const Menu = ({ className }: MenuProps) => {
   const MenuItems = [
     {
       id: useId(),
@@ -35,7 +40,7 @@ export const Menu = () => {
   ];
 
   return (
-    <div className={styles.menu}>
+    <div className={cn(styles.menu, className)}>
       {MenuItems.map((item) => (
         <MenuItem
           label={item.label}

@@ -1,3 +1,9 @@
+@import 'style/mixins.sass'
+
 .menu
 	display: flex
 	gap: 2.4rem
+	@include respond(m)
+		gap: 1.6rem
+	@include respond(s)
+		display: none

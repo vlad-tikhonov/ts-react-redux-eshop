@@ -1,7 +1,10 @@
 @use 'style/style.sass' as *
+@import 'style/mixins.sass'
 
 .wrapper
 	position: relative
+	@include respond(s)
+		display: none
 
 	& > .menu
 		display: flex
@@ -14,7 +17,7 @@
 			color: $color-primary
 		&:hover .chevron
 			fill: $color-primary
-		& > .photo
+		& .photo
 			width: 5rem
 			height: 5rem
 			background-image: url('/assets/images/manager.png')
@@ -22,9 +25,14 @@
 			background-position: center
 			border: 1px solid $color-light
 			border-radius: 50%
-		& > .name
+		& .name
 			margin: 0 3.5rem 0 1rem
-		& > .btn
+			@include respond(m)
+				display: none
+
+		& .btn
+			@include respond(m)
+				display: none
 
 	& > .dropdown_wrapper
 		position: absolute

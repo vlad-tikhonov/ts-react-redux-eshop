@@ -5,7 +5,7 @@ import { Menu } from "./menu/menu";
 import { CatalogDropdown } from "./catalog-dropdown/catalog-dropdown";
 import { AuthMenu } from "./auth-menu/auth-menu";
 import { useRef } from "react";
-import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
+// import { ReactComponent as FullLogoImg } from "assets/images/logo-full.svg";
 import { Link } from "react-router-dom";
 import styles from "./header.module.sass";
 import { CatalogButton } from "./catalog-button/catalog-button";
@@ -19,7 +19,7 @@ export const Header = () => {
         <Container>
           <div className={styles.wrapper}>
             <div className={styles.logo}>
-              <FullLogoImg />
+              {/* <FullLogoImg /> */}
               <Link to={"/"} className={styles.homeLink} />
             </div>
             <CatalogButton ref={buttonRef} />

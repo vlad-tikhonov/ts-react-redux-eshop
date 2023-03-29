@@ -1,3 +1,5 @@
+@import 'style/mixins.sass'
+
 .header
 	display: flex
 	align-items: center
@@ -12,12 +14,25 @@
 	display: flex
 	align-items: center
 	gap: 4rem
+	@include respond(m)
+		gap: 2rem
 
 .search
-	flex-grow: 2
+	flex-grow: 1
+
+.menu
+	@include respond(m)
+		gap: 2rem
 
 .logo
 	position: relative
+	min-width: 152px
+	height: 32px
+	background: url('/assets/images/logo-full.svg')
+	@include respond(m)
+		min-width: 49px
+		height: 40px
+		background: url('/assets/images/logo-partial.svg')
 
 	& .homeLink
 		position: absolute

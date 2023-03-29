@@ -3,6 +3,8 @@ import { useModalsActions, useCatalogMenuState } from "store/modals/features";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
 import { forwardRef } from "react";
+import cn from "classnames";
+import styles from "./catalog-button.module.sass";
 
 const renderMenuIcon = (className: string) => (
   <MenuIcon className={className} />
@@ -28,7 +30,7 @@ export const CatalogButton = forwardRef<HTMLButtonElement, CatalogButtonProps>(
         renderLeftIcon={isOpen ? renderCrossIcon : renderMenuIcon}
         onClick={toggleCatalogMenu}
         ref={ref}
-        className={props.className}
+        className={cn(styles.btn, props.className)}
       >
         Каталог
       </Button>

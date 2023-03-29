@@ -6,7 +6,11 @@ const renderLoginIcon = (className: string) => (
   <LoginIcon className={className} />
 );
 
-export const LoginButton = () => {
+interface LoginButtonProps {
+  className?: string;
+}
+
+export const LoginButton = ({ className }: LoginButtonProps) => {
   const { toggleAuth } = useModalsActions();
 
   return (
@@ -16,6 +20,7 @@ export const LoginButton = () => {
       size="m"
       renderRightIcon={renderLoginIcon}
       onClick={toggleAuth}
+      className={className}
     >
       Войти
     </Button>

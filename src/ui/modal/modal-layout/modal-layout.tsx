@@ -2,7 +2,7 @@ import { Button } from "ui";
 import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
 import { CSSTransition } from "react-transition-group";
 import { useRef, useState, useEffect } from "react";
-import { ModalProps } from "components";
+import { ModalProps } from "ui";
 import animationStyles from "./animation.module.sass";
 import styles from "./modal-layout.module.sass";
 

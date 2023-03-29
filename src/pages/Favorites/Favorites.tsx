@@ -1,6 +1,5 @@
 import { Htag } from "ui";
-import { Breadcrumbs } from "widgets";
-import { ProductCard } from "components";
+import { Breadcrumbs, ProductCard } from "widgets";
 import { BreadcrumbItem } from "types";
 import { FavoritesEmpty } from "./favorites-empty/favorites-empty";
 import { useFavorites } from "store/favorites/features";

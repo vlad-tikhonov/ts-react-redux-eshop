@@ -1,6 +1,6 @@
 import { Order } from "types";
 import { Text, Notice } from "ui";
-import { ProductCard } from "components";
+import { ProductCard } from "widgets";
 import { modifyPrice } from "helpers/utils";
 import styles from "./orders-body.module.sass";
 

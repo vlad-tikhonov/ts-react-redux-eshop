@@ -1,5 +1,5 @@
 import { Htag } from "ui";
-import { ProductCard } from "components";
+import { ProductCard } from "widgets";
 import { ProductWithReviewsInfo } from "types";
 import cn from "classnames";
 import styles from "./products-panel.module.sass";

@@ -5,7 +5,8 @@ import { Breadcrumbs } from "widgets";
 import { RoutesNames } from "constants/routes-names";
 import { BreadcrumbItem } from "types";
 import { useProducts } from "store/products/use-products";
-import { ErrorDetecter, ProductCard } from "components";
+import { ErrorDetecter } from "components";
+import { ProductCard } from "widgets";
 import styles from "./category.module.sass";
 
 export const Category = () => {

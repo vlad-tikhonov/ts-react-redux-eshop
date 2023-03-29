@@ -1,7 +1,7 @@
 import { useAuth } from "store/auth/features";
 import { LoginButton } from "./login-button/login-button";
 import { UserMenu } from "./user-menu/user-menu";
-import { Modal } from "components";
+import { Modal } from "ui";
 import { AuthRegisterForm } from "widgets";
 import { useModalsActions, useAuthModalState } from "store/modals/features";
 

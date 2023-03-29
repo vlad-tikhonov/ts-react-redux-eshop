@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, Text } from "ui";
 import { Option } from "types";
-import styles from "./ButtonsGroup.module.sass";
 import {
   FieldValues,
   Path,
@@ -9,6 +8,7 @@ import {
   PathValue,
   FieldPath,
 } from "react-hook-form";
+import styles from "./buttons-group.module.sass";
 
 interface RadioProps<T extends FieldValues> {
   options: [Option, Option];

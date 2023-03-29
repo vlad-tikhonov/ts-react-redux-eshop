@@ -1,9 +1,9 @@
 import { Button } from "ui";
 import { ReactComponent as MinusIcon } from "assets/icons/minus.svg";
 import { ReactComponent as PlusIcon } from "assets/icons/plus.svg";
-import styles from "./ProductCartButton.module.sass";
 import cn from "classnames";
 import { ElementSizes } from "types";
+import styles from "./product-cart-button.module.sass";
 
 interface ProductCartButtonProps {
   className?: string;

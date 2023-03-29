@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 import { Portal } from "components";
-import { ModalLayout } from "./ModalLayout/ModalLayout";
-import { useMount } from "./useMount";
+import { ModalLayout } from "./modal-layout/modal-layout";
+import { useMount } from "./use-mount";
+
 export interface ModalProps {
   children: ReactNode;
   opened: boolean;

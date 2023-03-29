@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductWithReviewsInfo } from 'types'
-import { getItem, setItem} from 'helpers/persistenceStorage'
+import { getItem, setItem} from 'helpers/persistence-storage'
 import { PERSISTENCE_STORAGE_FAVORITES_KEY } from 'constants/persistence-storage'
 
 

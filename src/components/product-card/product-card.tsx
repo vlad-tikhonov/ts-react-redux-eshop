@@ -1,6 +1,5 @@
 import { Button, Rating, Text, Notice, ButtonProps } from "ui";
 import { ProductWithReviewsInfo } from "types";
-import styles from "./ProductCard.module.sass";
 import cn from "classnames";
 import { modifyPrice, modifyDiscount, shortnerTitle } from "helpers/utils";
 import { useState } from "react";
@@ -14,6 +13,7 @@ import {
   useIsInFavorites,
 } from "store/favorites/features";
 import { useCartActions, useProductCount } from "store/cart/features";
+import styles from "./product-card.module.sass";
 
 interface ProductCardProps {
   product: ProductWithReviewsInfo;

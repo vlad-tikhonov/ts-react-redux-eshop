@@ -1,6 +1,5 @@
 import { TextField, TextFieldProps } from "components";
 import { useState, useRef, ChangeEvent, MouseEvent } from "react";
-import styles from "./SelectField.module.sass";
 import { ReactComponent as ChevronDownIcon } from "assets/icons/chevron-down.svg";
 import { ReactComponent as ChevronUpIcon } from "assets/icons/chevron-up.svg";
 import { useClickOutside } from "hooks";
@@ -12,6 +11,7 @@ import {
   PathValue,
   FieldPath,
 } from "react-hook-form";
+import styles from "./select-field.module.sass";
 
 type SelectFieldProps<T extends FieldValues> = Pick<
   TextFieldProps,

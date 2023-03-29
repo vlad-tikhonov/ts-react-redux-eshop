@@ -1,10 +1,10 @@
-import { ModalProps } from "../Modal";
 import { Button } from "ui";
-import styles from "./ModalLayout.module.sass";
-import animationStyles from "./Animation.module.sass";
 import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
 import { CSSTransition } from "react-transition-group";
 import { useRef, useState, useEffect } from "react";
+import { ModalProps } from "components";
+import animationStyles from "./animation.module.sass";
+import styles from "./modal-layout.module.sass";
 
 interface ModalLayoutProps extends ModalProps {}
 

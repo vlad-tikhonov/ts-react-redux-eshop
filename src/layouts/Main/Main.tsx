@@ -1,5 +1,5 @@
-import styles from "./Main.module.sass";
 import { Container } from "layouts";
+import styles from "./main.module.sass";
 
 interface MainProps {
   children: React.ReactNode;

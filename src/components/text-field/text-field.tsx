@@ -1,9 +1,9 @@
-import styles from "./TextField.module.sass";
 import cn from "classnames";
 import { ElementSizes } from "types";
 import { Text } from "ui";
 import { HTMLInputTypeAttribute, useRef, useState, ChangeEvent } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
+import styles from "./text-field.module.sass";
 
 export interface TextFieldProps {
   size: Extract<ElementSizes, "m" | "l">;

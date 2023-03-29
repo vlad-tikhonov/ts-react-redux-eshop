@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product, CartProduct } from 'types'
-import { getItem, setItem} from 'helpers/persistenceStorage'
+import { getItem, setItem} from 'helpers/persistence-storage'
 import { PERSISTENCE_STORAGE_CART_KEY } from 'constants/persistence-storage'
 
 

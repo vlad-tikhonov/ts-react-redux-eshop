@@ -1,5 +1,5 @@
 import api from 'api';
-import { errorHandler } from 'helpers/errorHandler';
+import { errorHandler } from 'helpers/error-handler';
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { categoriesReducer } from './categories/categories-slice';
 import { productsReducer } from './products/products-slice'

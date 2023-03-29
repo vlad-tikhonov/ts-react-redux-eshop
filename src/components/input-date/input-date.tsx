@@ -4,7 +4,6 @@ import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg";
 import { DatePicker } from "widgets";
 import dayjs from "app/dayjs";
 import { Dayjs } from "dayjs";
-import styles from "./InputDate.module.sass";
 import cn from "classnames";
 import { useClickOutside } from "hooks";
 import { DATE_REGEXP } from "constants/date-regexp";
@@ -15,6 +14,7 @@ import {
   FieldPath,
   PathValue,
 } from "react-hook-form";
+import styles from "./input-date.module.sass";
 
 type InputDateProps<T extends FieldValues> = Pick<
   TextFieldProps,

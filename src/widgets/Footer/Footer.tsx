@@ -4,7 +4,7 @@ import { Container } from "layouts";
 import { Link } from "react-router-dom";
 import cn from "classnames";
 import { ReactComponent as PhoneIcon } from "assets/icons/phone.svg";
-import styles from "./Footer.module.sass";
+import styles from "./footer.module.sass";
 
 const menuItems = [
   {

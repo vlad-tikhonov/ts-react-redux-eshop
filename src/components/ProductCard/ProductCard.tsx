@@ -86,6 +86,9 @@ export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
   const modifiedDiscount = discount ? modifyDiscount(discount) : "";
   const croppedTitle = shortnerTitle(title, 40);
 
+  const isInFavorites = useIsInFavorites(_id);
+  const productCount = useProductCount(_id);
+
   const changeStyle = () => {
     setBtnState({
       accent: "primary",
@@ -107,8 +110,6 @@ export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
     decreaseProductCount(_id);
   };
 
-  const productCount = useProductCount(_id);
-
   const handleAddToFavorites = () => {
     addToFavorites(product);
   };
@@ -116,8 +117,6 @@ export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
   const handleRemoveFromFavorites = () => {
     removeFromFavorites(_id);
   };
-
-  const isInFavorites = useIsInFavorites(_id);
 
   return (
     <div

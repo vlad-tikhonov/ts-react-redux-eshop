@@ -81,7 +81,7 @@ export const InputDate = <T extends FieldValues>({
     <CalendarIcon className={className} onClick={toggleShowDatePicker} />
   );
 
-  useClickOutside(wrapperRef, () => {
+  useClickOutside([wrapperRef], () => {
     setIsShowDatePicker(false);
   });
 

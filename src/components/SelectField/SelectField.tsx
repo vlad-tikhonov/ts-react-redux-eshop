@@ -78,7 +78,7 @@ export const SelectField = <T extends FieldValues>(
     }
   };
 
-  useClickOutside(wrapperRef, () => {
+  useClickOutside([wrapperRef], () => {
     setIsShowList(false);
   });
 

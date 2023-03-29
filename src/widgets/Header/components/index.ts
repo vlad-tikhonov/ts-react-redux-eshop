@@ -1,5 +1,0 @@
-export * from './Search/Search'
-export * from './Menu/Menu'
-export * from './UserMenu/UserMenu'
-export * from './CatalogDropdown/CatalogDropdown'
-export * from './AuthRegisterForm/AuthRegisterForm'

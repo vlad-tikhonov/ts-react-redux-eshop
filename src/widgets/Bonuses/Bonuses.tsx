@@ -1,7 +1,7 @@
 import { ReactComponent as SmileIcon } from "assets/icons/smile.svg";
 import { Text } from "ui";
 import cn from "classnames";
-import styles from "./Bonuses.module.sass";
+import styles from "./bonuses.module.sass";
 
 interface BonusesProps {
   count: number;

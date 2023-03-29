@@ -1,16 +1,18 @@
 import { RefObject , useEffect } from "react";
 
 export const useClickOutside = (
-	ref: RefObject <HTMLElement>,
+	refs: RefObject <HTMLElement>[],
 	handler: (e: Event) => void
 ) => {
-	const el = ref.current
 
 	useEffect(() => {
 		const listener = (e: Event) => {
 			e.stopPropagation()
-			if (!el || el.contains(e.target as Node)) {
-				return
+			for (let ref of refs) {
+				const el = ref.current
+				if (!el || el.contains(e.target as Node)) {
+					return
+				}
 			}
 			handler(e)
 		}
@@ -21,5 +23,5 @@ export const useClickOutside = (
       document.removeEventListener('mousedown', listener)
       document.removeEventListener('touchstart', listener)
     }
-  }, [ref, handler, el])
+  }, [refs, handler])
 }

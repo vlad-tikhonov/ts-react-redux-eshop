@@ -1,5 +1,5 @@
 import cn from "classnames";
-import styles from "./Article.module.sass";
+import styles from "./article.module.sass";
 import { Text, Button, Htag } from "ui";
 import { useState } from "react";
 interface ArticleProps {

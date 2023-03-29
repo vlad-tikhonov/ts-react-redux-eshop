@@ -1,6 +1,7 @@
-import styles from "./DatePicker.module.sass";
+import styles from "./datepicker.module.sass";
 import { Dayjs } from "dayjs";
-import { DatePickerCalendar, DatePickerSelector } from "./components";
+import { DatePickerCalendar } from "./datepicker-calendar/datepicker-calendar";
+import { DatePickerSelector } from "./datepicker-selector/datepicker-selector";
 import cn from "classnames";
 interface DatePickerProps {
   selectedDate: Dayjs;

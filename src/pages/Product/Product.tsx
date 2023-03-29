@@ -2,11 +2,11 @@ import { Htag } from "ui";
 import { Breadcrumbs } from "widgets";
 import { useProduct } from "store/product/use-product";
 import { useLocation, useParams } from "react-router-dom";
-import { ProductBody } from "./ProductBody/ProductBody";
-import { ProductMenu } from "./ProductMenu/ProductMenu";
-import { ProductReviews } from "./ProductReviews/ProductReviews";
-import styles from "./Product.module.sass";
+import { ProductBody } from "./product-body/product-body";
+import { ProductMenu } from "./product-menu/product-menu";
+import { ProductReviews } from "./product-reviews/product-reviews";
 import { ErrorDetecter } from "components";
+import styles from "./product.module.sass";
 
 export const Product = () => {
   const location = useLocation();

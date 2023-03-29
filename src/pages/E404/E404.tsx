@@ -1,6 +1,6 @@
 import { Htag } from "ui";
 import { Link } from "react-router-dom";
-import styles from "./E404.module.sass";
+import styles from "./e404.module.sass";
 
 export const E404 = () => {
   return (

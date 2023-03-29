@@ -1,10 +1,10 @@
-import { SpecialOffers } from "./SpecialOffers/SpecialOffers";
-import { DeliveryBanner } from "./DeliveryBanner/DeliveryBanner";
-import { StoreMap } from "./StoreMap/StoreMap";
-import { Articles } from "./Articles/Articles";
-import { Novelties } from "./Novelties/Novelties";
-import { Promotions } from "./Promotions/Promotions";
-import styles from "./Home.module.sass";
+import { SpecialOffers } from "./special-offers/special-offers";
+import { DeliveryBanner } from "./delivery-banner/delivery-banner";
+import { StoreMap } from "./store-map/store-map";
+import { Articles } from "./articles/articles";
+import { Novelties } from "./novelties/novelties";
+import { Promotions } from "./promotions/promotions";
+import styles from "./home.module.sass";
 
 export const Home = () => {
   return (

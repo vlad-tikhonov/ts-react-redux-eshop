@@ -2,10 +2,10 @@ import { Htag } from "ui";
 import { Breadcrumbs } from "widgets";
 import { BreadcrumbItem } from "types/componets-types";
 import { useCategories } from "store/categories/features/use-categories";
-import styles from "./Categories.module.sass";
-import { CategoriesTile } from "./CategoriesTile/CategoriesTile";
+import { CategoriesTile } from "./categories-tile/categories-tile";
 import { ErrorDetecter } from "components";
 import { useLocation } from "react-router-dom";
+import styles from "./categories.module.sass";
 
 const breadcrumbItems: BreadcrumbItem[] = [
   {

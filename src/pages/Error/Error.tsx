@@ -1,6 +1,6 @@
 import { useLocation, Navigate } from "react-router-dom";
 import { Htag, Text } from "ui";
-import styles from "./Error.module.sass";
+import styles from "./error.module.sass";
 
 interface LocationState {
   errors: string[];

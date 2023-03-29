@@ -1,6 +1,6 @@
 import cn from "classnames";
 import { ElementAccent, ElementSizes } from "types";
-import styles from "./Notice.module.sass";
+import styles from "./notice.module.sass";
 
 type NoticeAccent<T> = "gray" | "success" | T;
 

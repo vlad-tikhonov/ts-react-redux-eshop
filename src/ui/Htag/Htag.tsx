@@ -1,7 +1,7 @@
 import cn from "classnames";
 import { ReactNode } from "react";
 import { ElementSizes } from "types/element-props";
-import styles from "./Htag.module.sass";
+import styles from "./htag.module.sass";
 
 interface HtagProps {
   size: ElementSizes;

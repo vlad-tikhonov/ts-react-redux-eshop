@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import cn from "classnames";
 import { Rating as TRating } from "types";
 import { ReactComponent as StarIcon } from "assets/icons/star.svg";
-import styles from "./Rating.module.sass";
+import styles from "./rating.module.sass";
 
 interface RatingProps {
   rating: TRating;

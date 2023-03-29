@@ -1,11 +1,11 @@
 import cn from "classnames";
-import styles from "./Button.module.sass";
 import {
   ElementSizes,
   ElementAccent,
   ElementDecoration,
 } from "types/element-props";
 import { ButtonHTMLAttributes, forwardRef } from "react";
+import styles from "./button.module.sass";
 
 export interface ButtonProps {
   size: Exclude<ElementSizes, "xl" | "xs">;

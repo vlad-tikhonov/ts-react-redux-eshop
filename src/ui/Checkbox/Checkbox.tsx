@@ -1,7 +1,8 @@
-import styles from "./Checkbox.module.sass";
+/* eslint-disable react-hooks/exhaustive-deps */
 import cn from "classnames";
 import { ElementSizes } from "types";
 import { useState, useRef, useEffect } from "react";
+import styles from "./checkbox.module.sass";
 
 interface CheckboxProps {
   size: Exclude<ElementSizes, "xs">;

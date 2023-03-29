@@ -1,10 +1,10 @@
 import { Article } from "widgets";
 import { Htag } from "ui";
-import styles from "./Articles.module.sass";
 import cn from "classnames";
 import manImg from "./images/man.png";
 import springImg from "./images/spring.png";
 import foodImg from "./images/food.png";
+import styles from "./articles.module.sass";
 
 interface ArticlesProps {
   className?: string;

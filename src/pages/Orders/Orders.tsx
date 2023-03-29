@@ -2,13 +2,13 @@ import { useOrders } from "store/orders/features";
 import { Htag } from "ui";
 import { Breadcrumbs } from "widgets";
 import { BreadcrumbItem } from "types";
-import { UnauthOrders } from "./UnauthOrders/UnauthOrders";
-import { EmptyOrders } from "./EmptyOrders/EmptyOrders";
-import { OrdersBody } from "./OrdersBody/OrdersBody";
+import { UnauthOrders } from "./unauth-orders/unauth-orders";
+import { EmptyOrders } from "./empty-orders/empty-orders";
+import { OrdersBody } from "./orders-body/orders-body";
 import { useLocation } from "react-router-dom";
 import { ErrorDetecter } from "components";
 import { useUserId } from "store/auth/features";
-import styles from "./Orders.module.sass";
+import styles from "./orders.module.sass";
 
 const breadcrumbItems: BreadcrumbItem[] = [
   { label: "Заказы", to: "/orders", end: true },

@@ -1,7 +1,7 @@
-import styles from "./Test.module.sass";
 import { ReactComponent as LeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as RightIcon } from "assets/icons/chevron-right.svg";
 import { InputDate, SelectField } from "components";
+import styles from "./test.module.sass";
 
 const renderLeftIcon = (className: string) => (
   <LeftIcon className={className} />

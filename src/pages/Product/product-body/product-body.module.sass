@@ -1,10 +1,19 @@
 @use 'style/variables' as *
+@import 'style/mixins.sass'
 
 .body
 	display: grid
 	grid-template-columns: repeat(12, 1fr)
 	grid-template-areas: "img img img img img img info info info info similar similar"
 	grid-column-gap: 4rem
+	@include respond(m)
+		grid-template-columns: repeat(8, 1fr)
+		grid-template-areas: "img img img img info info info info""similar similar similar similar similar similar similar similar"
+		grid-row-gap: 1.6rem
+	@include respond(m)
+		grid-template-columns: repeat(4, 1fr)
+		grid-template-rows: repeat(3, min-content)
+		grid-template-areas: "img img img img""info info info info""similar similar similar similar"
 
 	&_img
 		grid-area: img
@@ -14,6 +23,7 @@
 		height: 49.6rem
 		box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1)
 		position: relative
+
 		& > img
 			display: block
 			margin: 0 auto
@@ -27,14 +37,14 @@
 
 	&_info
 		grid-area: info
-		& > .price_wrapper
+		& .price_wrapper
 			margin-bottom: 1.6rem
-			& > .price, & > .labels
+			& .price, & .labels
 				display: flex
 				justify-content: space-between
 				align-items: center
-			& > .labels
-				& > .label
+			& .labels
+				& .label
 					color: $color-light
 
 		& > .bonuses
@@ -44,8 +54,8 @@
 			width: 100%
 			margin-bottom: .8rem
 
-		& >.features_wrapper
-			& > .table
+		& .features_wrapper
+			&	.table
 				width: 100%
 				border-spacing: 0 0
 				& .odd
@@ -57,6 +67,15 @@
 		grid-area: similar
 		display: flex
 		flex-direction: column
-		justify-content: space-between
+		gap: .8rem
+		& .cards
+			display: flex
+			flex-direction: column
+			justify-content: space-between
+			gap: 1.6rem
+			@include respond(m)
+				flex-direction: row
+			& .card
+
 		& > .title
 			color: $color-hardest

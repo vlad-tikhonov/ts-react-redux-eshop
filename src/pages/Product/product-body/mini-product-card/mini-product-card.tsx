@@ -1,7 +1,7 @@
 import { Product } from "types";
 import { modifyPrice } from "helpers/utils";
 import { Link } from "react-router-dom";
-import { Text } from "ui";
+import cn from "classnames";
 import styles from "./mini-product-card.module.sass";
 
 interface MiniProductCardProps {
@@ -9,6 +9,7 @@ interface MiniProductCardProps {
   title: Product["title"];
   price: Product["price"];
   link: string;
+  className?: string;
 }
 
 export const MiniProductCard = ({
@@ -16,9 +17,10 @@ export const MiniProductCard = ({
   title,
   price,
   link,
+  className,
 }: MiniProductCardProps) => {
   return (
-    <div className={styles.card} title={title}>
+    <div className={cn(styles.card, className)} title={title}>
       <Link to={link} className={styles.link}></Link>
       <div className={styles.header}>
         <img
@@ -27,9 +29,7 @@ export const MiniProductCard = ({
         />
       </div>
       <div className={styles.footer}>
-        <Text size="m" bold className={styles.price}>
-          {modifyPrice(price)}
-        </Text>
+        <span className={styles.price}>{modifyPrice(price)}</span>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 @use 'style/variables' as *
+@import 'style/mixins.sass'
 
 .title
 	margin-bottom: 4rem
@@ -8,57 +9,65 @@
 	grid-template: auto / repeat(12, 1fr)
 	grid-template-areas: "left left a right right right right right right right b c"
 	grid-column-gap: 4rem
+	@include respond(m)
+		grid-template: auto / repeat(8, 1fr)
+		grid-template-areas: "left left right right right right right right"
+	@include respond(m)
+		grid-template: repeat(2, min-content) / repeat(4, 1fr)
+		grid-template-areas: "left left left left""right right right right"
 
-	& > .left
+	& .left
 		grid-area: left
+		display: inline-block
+		justify-self: left
 
-		& > .row
+		& .row
 			display: flex
 			justify-content: space-between
 			align-items: center
 			color: $color-surface-text
 			margin-bottom: 1.6rem
 
-		& > .row_title
+		& .row_title
 			display: flex
 			align-items: center
 			flex-wrap: wrap
 
-	& > .right
+	& .right
 		grid-area: right
 
-		& > .reviews
-			& > .review
+		& .reviews
+			& .review
 				margin-bottom: 4rem
 
-				& > .user
+				& .user
 					display: flex
 					align-items: center
 					margin-bottom: .8rem
-					& > .icon
+					& .icon
 						margin-right: .8rem
-					& > .name
+					& .name
 
-				& > .rating
+				& .rating
 					margin-bottom: .8rem
-					& > .stars
+					& .stars
 						margin-right: .8rem
-					& > .createdAt
+					& .createdAt
 						color: $color-hard
 
-			& > .body
+			& .body
 
-		& > .new
-			& > .rating
+		& .new
+			&	.rating
 				display: flex
 				align-items: center
 				margin-bottom: 1.6rem
 
-				& > .rating_title
+				& .rating_title
 					margin-right: 1.6rem
 
-			& > .form
-				& > .textArea
+			& .form
+				& .textArea
 					width: 100%
 					border-radius: 4px
 					border: 1px solid $color-light
@@ -67,7 +76,7 @@
 					padding: .5rem
 					resize: none
 					font-family: $font-family
-					& > .textArea[disabled]
+					& .textArea[disabled]
 						border: 1px solid $color-light
 					&:focus
 						border-color: rgba(112, 192, 91, 0.2)

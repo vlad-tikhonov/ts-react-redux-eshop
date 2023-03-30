@@ -161,15 +161,18 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
         <Text size="s" className={styles.title}>
           Похожие
         </Text>
-        {relatedProducts.map((p) => (
-          <MiniProductCard
-            image={p.image}
-            title={p.title}
-            link={"/categories/" + p.categorySlug + "/" + p.slug}
-            price={p.price}
-            key={p._id}
-          />
-        ))}
+        <div className={styles.cards}>
+          {relatedProducts.map((p) => (
+            <MiniProductCard
+              image={p.image}
+              title={p.title}
+              link={"/categories/" + p.categorySlug + "/" + p.slug}
+              price={p.price}
+              key={p._id}
+              className={styles.card}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

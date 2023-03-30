@@ -62,7 +62,7 @@ export const Footer = () => (
         <ul className={styles.menu}>
           {menuItems.map((item) => (
             <li className={styles.menu_item} key={item.title}>
-              <Text size="xs">{item.title}</Text>
+              <span className={styles.text}>{item.title}</span>
             </li>
           ))}
         </ul>

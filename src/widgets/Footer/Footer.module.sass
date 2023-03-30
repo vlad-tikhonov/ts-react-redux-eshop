@@ -1,3 +1,6 @@
+@use 'style/style.sass' as *
+@import 'style/mixins.sass'
+
 .footer
 	background: url('/assets/patterns/pattern-2.svg')
 	background-color: #F9F4E2
@@ -7,20 +10,33 @@
 .wrapper
 	padding: 2.4rem 0
 	display: grid
-	grid-template: auto / repeat(12, 1fr)
+	grid-template: 1fr / repeat(12, 1fr)
 	grid-column-gap: 4rem
 	grid-template-areas: "logo menu menu menu menu menu menu menu socials socials contacts contacts"
 	align-items: center
+	@include respond(m)
+		grid-template: 1fr 1fr / repeat(8, 1fr)
+		grid-template-areas: "logo menu menu menu menu socials contacts contacts""logo menu menu menu menu socials contacts contacts"
+		grid-column-gap: 3.2rem
+	@include respond(s)
+		grid-template: repeat(4, 1fr) / repeat(4, 1fr)
+		grid-template-areas: "logo logo socials socials""logo logo contacts contacts""menu menu menu menu""menu menu menu menu"
+		grid-column-gap: 1.6rem
+		grid-row-gap: 1.6rem
+		justify-items: center
 
-.logo
-	grid-area: logo
-	position: relative
-	min-height: 4.4rem
-	background-image: url('/assets/images/logo.svg')
-	background-size: contain
-	background-repeat: no-repeat
-	background-position: center
-	flex-shrink: 0
+	.logo
+		grid-area: logo
+		position: relative
+		width: 6.4rem
+		height: 4.4rem
+		background-image: url('/assets/images/logo.svg')
+		background-size: contain
+		background-repeat: no-repeat
+		background-position: center
+		@include respond(s)
+			width: 9.3rem
+			height: 6.4rem
 
 .link
 	position: absolute
@@ -36,9 +52,14 @@
 	justify-content: space-between
 	align-items: center
 	list-style: none
+	gap: 4rem
+	@include respond(m)
+		gap: 1.6rem
 
 	&_item
-		// margin: 0 4rem .8rem 0
+		& .text
+			font-size: 12px
+			color: $color-surface-text
 
 .socials
 	grid-area: socials

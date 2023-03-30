@@ -1,8 +1,17 @@
+@import 'style/mixins.sass'
 .products
 	display: grid
 	grid-template-columns: repeat(12, 1fr)
 	grid-template-areas: "info info info info info info info info info summary summary summary"
 	grid-column-gap: 4rem
+	@include respond(m)
+		grid-template-columns: repeat(8, 1fr)
+		grid-column-gap: 3.2rem
+		grid-template-areas: "info info info info info summary summary summary"
+	@include respond(s)
+		grid-template: 1fr min-content / 1fr
+		grid-column-gap: 3.2rem
+		grid-template-areas: "info""summary"
 
 .info
 	grid-area: info

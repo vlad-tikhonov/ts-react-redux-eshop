@@ -1,10 +1,19 @@
 @use 'style/style.sass' as *
+@import 'style/mixins.sass'
 
 .delivery
 	display: grid
 	grid-template-columns: repeat(12, 1fr)
 	grid-template-areas: "form form form form form form form form form summary summary summary"
 	grid-column-gap: 4rem
+	@include respond(m)
+		grid-template-columns: repeat(8, 1fr)
+		grid-template-areas: "form form form form form summary summary summary"
+		grid-column-gap: 3.2rem
+	@include respond(s)
+		grid-template: 1fr min-content / 1fr
+		grid-template-areas: "form""summary"
+		grid-column-gap: 1.6rem
 
 .form
 	grid-area: form
@@ -23,6 +32,8 @@
 	flex-wrap: nowrap
 	gap: 4rem
 	margin-bottom: 4rem
+	@include respond(m)
+		flex-wrap: wrap
 
 	& .locality
 		flex-basis: 24.5rem
@@ -42,6 +53,7 @@
 	margin-bottom: 4rem
 	& .date
 		flex-basis: 15.5rem
+		flex-shrink: 0
 	& .time
 		flex-basis: 70rem
 		& .text
@@ -55,6 +67,10 @@
 		flex-wrap: nowrap
 		justify-content: space-between
 		margin-bottom: 3px
+		@include respond(m)
+			flex-wrap: wrap
+			gap: .8rem
+			justify-content: flex-start
 	&	.message
 		color: $color-error
 
@@ -62,6 +78,8 @@
 	display: flex
 	justify-content: space-between
 	align-items: center
+	@include respond(s)
+		justify-content: flex-start
 	&_icon
 		margin-right: 1rem
 		fill: $color-error

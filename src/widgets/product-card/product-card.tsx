@@ -1,10 +1,10 @@
-import { Button, Rating, Text, Notice, ButtonProps } from "ui";
+import { Button, Rating, Text, ButtonProps } from "ui";
 import { ProductWithReviewsInfo } from "types";
 import cn from "classnames";
 import { modifyPrice, modifyDiscount, shortnerTitle } from "helpers/utils";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ProductCartButton } from "components";
+import { ProductCartButton, Notice } from "components";
 import { ReactComponent as HeartIcon } from "assets/icons/heart.svg";
 import { ReactComponent as HeartFilledIcon } from "assets/icons/heart-filled.svg";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";

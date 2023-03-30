@@ -1,4 +1,5 @@
-import { Text, Notice } from "ui";
+import { Text } from "ui";
+import { Notice } from "components";
 import { Bonuses } from "widgets";
 import { modifyPrice } from "helpers/utils";
 import styles from "./cart-summary.module.sass";

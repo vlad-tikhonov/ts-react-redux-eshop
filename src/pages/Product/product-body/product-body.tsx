@@ -1,6 +1,7 @@
 import { ProductWithReviewsInfoAndRelated } from "types";
 import { modifyDiscount, modifyPrice } from "helpers/utils";
-import { Notice, Text, Htag, Button } from "ui";
+import { Text, Htag, Button } from "ui";
+import { Notice } from "components";
 import { ReactComponent as CartIcon } from "assets/icons/shopping-cart.svg";
 import { ProductCartButton } from "components";
 import { MiniProductCard } from "./mini-product-card/mini-product-card";

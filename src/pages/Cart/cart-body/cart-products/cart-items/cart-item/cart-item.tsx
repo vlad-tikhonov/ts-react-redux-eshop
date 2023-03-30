@@ -1,6 +1,6 @@
 import { CartProduct } from "types";
-import { Text, Notice, Checkbox } from "ui";
-import { ProductCartButton } from "components";
+import { Text, Checkbox } from "ui";
+import { ProductCartButton, Notice } from "components";
 import { modifyPrice, modifyDiscount } from "helpers/utils";
 import { memo } from "react";
 import cn from "classnames";

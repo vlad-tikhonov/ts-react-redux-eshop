@@ -1,5 +1,5 @@
 import { Htag } from "ui";
-import { Breadcrumbs, ProductCard } from "widgets";
+import { Breadcrumbs, ProductsGrid } from "widgets";
 import { BreadcrumbItem } from "types";
 import { FavoritesEmpty } from "./favorites-empty/favorites-empty";
 import { useFavorites } from "store/favorites/features";
@@ -24,11 +24,12 @@ export const Favorites = () => {
           <Htag size="l" className={styles.title}>
             Избранное
           </Htag>
-          <div className={styles.favorites}>
+          <ProductsGrid products={favorites} />
+          {/* <div className={styles.favorites}>
             {favorites.map((f) => (
               <ProductCard product={f} key={f._id} />
             ))}
-          </div>
+          </div> */}
         </>
       ) : (
         <FavoritesEmpty />

@@ -1,10 +1,7 @@
-.products
-	display: grid
-	grid-template-columns: 1fr 1fr 1fr
-	grid-template-rows: auto
-	grid-gap: 4rem
-	gap: 20px
-	justify-items: center
-
+@import 'style/mixins.sass'
 .title
 	margin-bottom: 6rem
+	@include respond(m)
+		margin-bottom: 4rem
+	@include respond(s)
+		margin-bottom: 3.2rem

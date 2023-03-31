@@ -1,6 +1,7 @@
 @use 'style/variables' as *
+@import 'style/mixins.sass'
 
-.test
+.layout
 	position: fixed
 	overflow: auto
 	left: 0
@@ -34,10 +35,11 @@
 	display: flex
 	z-index: 3
 
-	& > .btn
+	& .btn
 		position: absolute
 		top: 0
 		right: 0
 
-	& > .content
+	& .content
+		width: 100%
 		margin: auto

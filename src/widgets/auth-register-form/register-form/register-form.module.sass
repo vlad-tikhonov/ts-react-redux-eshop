@@ -1,8 +1,16 @@
+@import 'style/mixins.sass'
+
 .form
+	width: 100%
 	display: flex
 	flex-direction: column
 	align-items: center
 	padding: 0 6.75rem 2rem 6.75rem
+	@include respond(m)
+		padding: 0 3.4rem 2rem 3.4rem
+	@include respond(s)
+		transform: scale3d(0.9,0.9,0.9)
+		padding: 0 1.7rem 2rem 1.7rem
 
 .title
 	margin-bottom: 2rem
@@ -19,9 +27,13 @@
 	gap: 4rem
 	margin-bottom: 2rem
 	width: 100%
+	justify-content: center
+	@include respond(m)
+		gap: 2rem
+	@include respond(m)
+		gap: 1rem
 	& .left , & .right
 		display: flex
 		flex-direction: column
 		gap: 1.6rem
-		width: 100%
 	& .right

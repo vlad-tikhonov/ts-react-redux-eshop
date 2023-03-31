@@ -1,4 +1,7 @@
 @use 'style/style.sass' as *
+@import 'style/mixins.sass'
+
+.wrapper
 
 .label
 	color: $color-hard
@@ -8,6 +11,11 @@
 	border-radius: 4px
 	padding: 4px
 	background-color: $color-lightest
+	@include respond(s)
+		width: 100%
+		flex-direction: column
 
 .btn
 	width: 50%
+	@include respond(s)
+	width: 100%

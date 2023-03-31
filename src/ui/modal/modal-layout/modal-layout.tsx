@@ -51,7 +51,7 @@ export const ModalLayout = ({
   }, [opened]);
 
   return (
-    <div className={styles.test}>
+    <div className={styles.layout}>
       <CSSTransition
         in={animationIn}
         nodeRef={wrapperRef}

@@ -1,12 +1,11 @@
 import { useLocation, useParams } from "react-router-dom";
 import { useCategory } from "store/categories/features/use-category";
 import { Htag } from "ui";
-import { Breadcrumbs } from "widgets";
+import { Breadcrumbs, ProductsGrid } from "widgets";
 import { RoutesNames } from "constants/routes-names";
 import { BreadcrumbItem } from "types";
 import { useProducts } from "store/products/use-products";
 import { ErrorDetecter } from "components";
-import { ProductCard } from "widgets";
 import styles from "./category.module.sass";
 
 export const Category = () => {
@@ -34,11 +33,7 @@ export const Category = () => {
         <Htag size="l" className={styles.title}>
           {category?.title}
         </Htag>
-        <div className={styles.products}>
-          {products.map((p) => (
-            <ProductCard product={p} key={p._id} />
-          ))}
-        </div>
+        <ProductsGrid products={products} />
       </>
     </ErrorDetecter>
   );

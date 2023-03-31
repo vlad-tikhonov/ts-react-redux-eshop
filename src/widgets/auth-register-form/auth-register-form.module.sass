@@ -1,5 +1,10 @@
+@import 'style/mixins.sass'
 .wrapper
 	margin: 7.2rem 0 4rem 0
+	@include respond(m)
+		margin: 3.6rem 0 2rem 0
+	@include respond(s)
+		margin: 1.8rem 0 1rem 0
 
 .btn
 	margin: 0 auto

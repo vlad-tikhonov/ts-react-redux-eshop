@@ -32,7 +32,7 @@
 			@include respond(m)
 				display: none
 
-	& > .dropdown_wrapper
+	& .dropdown_wrapper
 		position: absolute
 		left: 0
 		right: 0
@@ -40,9 +40,15 @@
 		box-shadow: 4px 14px 16px rgba(0, 0, 0, 0.1)
 		border-radius: 0 0 4px 4px
 		padding: .5rem
-		& > .dropdown
+		@include respond(m)
+			left: -100%
+			box-shadow: 4px 14px 16px 4px rgba(0, 0, 0, 0.1)
+			border-radius: 4px
+		@include respond(s)
+			top: -175%
+		& .dropdown
 			list-style-type: none
-			& > .item
+			&	.item
 				padding: .8rem
 				cursor: pointer
 				margin-bottom: 1rem

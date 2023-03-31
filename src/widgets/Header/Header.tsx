@@ -8,13 +8,14 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "./header.module.sass";
 import { CatalogButton } from "./catalog-button/catalog-button";
+import { MobileMenu } from "./mobile-menu/mobile-menu";
 
 export const Header = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   return (
     <>
-      <header className={styles.header}>
+      <header id="header" className={styles.header}>
         <Container>
           <div className={styles.wrapper}>
             <div className={styles.logo}>
@@ -22,12 +23,13 @@ export const Header = () => {
             </div>
             <CatalogButton ref={buttonRef} />
             <Search className={styles.search} />
-            <Menu />
-            <AuthMenu />
+            <Menu className={styles.menu} />
+            <AuthMenu className={styles.authMenu} />
           </div>
         </Container>
       </header>
       <CatalogDropdown buttonRef={buttonRef} />
+      <MobileMenu />
     </>
   );
 };

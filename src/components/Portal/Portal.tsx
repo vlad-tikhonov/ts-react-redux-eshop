@@ -5,8 +5,9 @@ const portal = document.getElementById("portal") as HTMLElement;
 
 interface PortalProps {
   children: ReactNode;
+  to?: HTMLElement;
 }
 
-export const Portal = ({ children }: PortalProps) => {
-  return ReactDOM.createPortal(children, portal);
+export const Portal = ({ to = portal, children }: PortalProps) => {
+  return ReactDOM.createPortal(children, to);
 };

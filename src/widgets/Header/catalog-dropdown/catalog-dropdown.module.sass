@@ -1,10 +1,10 @@
 @use 'style/style.sass' as *
+@import 'style/mixins.sass'
 
 .dropdown
 	display: none
 	max-width: 1440px
 	width: 100%
-	height: 300px
 	background-color: #fff
 	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15)
 	position: fixed
@@ -13,15 +13,24 @@
 	transform: translate(-50%, 0)
 	padding: 4rem 11.6rem
 	z-index: 10
+	@include respond(m)
+		padding: 1.6rem
+	@include respond(s)
+		padding: .8rem
+
 	&_isOpen
 		display: block
 
 .items
 	display: grid
 	grid-template-columns: repeat(4, 1fr)
-	grid-row-gap: 24px
-	grid-column-gap: 40px
+	grid-row-gap: 2.4rem
+	grid-column-gap: 4rem
 	list-style: none
+	@include respond(m)
+		grid-template-columns: repeat(2, 1fr)
+		grid-column-gap: 3.2rem
+
 	& .item
 		position: relative
 		&:hover .text

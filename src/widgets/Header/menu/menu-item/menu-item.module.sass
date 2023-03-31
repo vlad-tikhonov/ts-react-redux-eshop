@@ -1,4 +1,5 @@
 @use 'style/variables' as *
+@import 'style/mixins.sass'
 
 .item
 	display: flex
@@ -6,7 +7,7 @@
 	align-items: center
 	gap: .8rem
 	text-decoration: none
-	font-size: 1.2rem
+	font-size: 12px
 	position: relative
 	&:visited
 		color: $color-surface-text
@@ -28,6 +29,8 @@
 
 .label
 	color: $color-surface-text
+	@include respond(s)
+		font-size: 8px
 
 .tag
 	border-radius: 4px

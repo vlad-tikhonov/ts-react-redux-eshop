@@ -4,9 +4,14 @@ import { UserMenu } from "./user-menu/user-menu";
 import { Modal } from "ui";
 import { AuthRegisterForm } from "widgets";
 import { useModalsActions, useAuthModalState } from "store/modals/features";
+import cn from "classnames";
 import styles from "./auth-menu.module.sass";
 
-export const AuthMenu = () => {
+interface AuthMenuProps {
+  className?: string;
+}
+
+export const AuthMenu = ({ className }: AuthMenuProps) => {
   const [user] = useAuth();
 
   const { toggleAuth } = useModalsActions();
@@ -14,7 +19,7 @@ export const AuthMenu = () => {
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className={cn(styles.wrapper, className)}>
         {!user ? (
           <LoginButton className={styles.login} />
         ) : (

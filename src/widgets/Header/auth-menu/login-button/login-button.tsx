@@ -1,6 +1,8 @@
 import { Button } from "ui";
 import { ReactComponent as LoginIcon } from "assets/icons/log-in.svg";
 import { useModalsActions } from "store/modals/features";
+import cn from "classnames";
+import styles from "./login-button.module.sass";
 
 const renderLoginIcon = (className: string) => (
   <LoginIcon className={className} />
@@ -20,7 +22,7 @@ export const LoginButton = ({ className }: LoginButtonProps) => {
       size="m"
       renderRightIcon={renderLoginIcon}
       onClick={toggleAuth}
-      className={className}
+      className={cn(styles.btn, className)}
     >
       Войти
     </Button>

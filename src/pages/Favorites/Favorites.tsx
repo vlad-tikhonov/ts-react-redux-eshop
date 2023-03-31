@@ -25,11 +25,6 @@ export const Favorites = () => {
             Избранное
           </Htag>
           <ProductsGrid products={favorites} />
-          {/* <div className={styles.favorites}>
-            {favorites.map((f) => (
-              <ProductCard product={f} key={f._id} />
-            ))}
-          </div> */}
         </>
       ) : (
         <FavoritesEmpty />

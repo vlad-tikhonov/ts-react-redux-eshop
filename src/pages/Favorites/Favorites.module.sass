@@ -1,3 +1,4 @@
+@import 'style/mixins.sass'
 
 .favorites
 	display: grid
@@ -9,3 +10,7 @@
 
 .title
 	margin-bottom: 6rem
+	@include respond(m)
+		margin-bottom: 4rem
+	@include respond(s)
+		margin-bottom: 3.2rem

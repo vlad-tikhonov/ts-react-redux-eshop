@@ -1,31 +1,32 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import { Text } from "ui";
 import { Container } from "layouts";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import cn from "classnames";
 import { ReactComponent as PhoneIcon } from "assets/icons/phone.svg";
 import styles from "./footer.module.sass";
+import { setActiveClass } from "helpers/utils";
 
 const menuItems = [
   {
     title: "О компании",
-    to: "",
+    to: "about",
   },
   {
     title: "Контакты",
-    to: "",
+    to: "contacts",
   },
   {
     title: "Вакансии",
-    to: "",
+    to: "vacancies",
   },
   {
     title: "Статьи",
-    to: "",
+    to: "articles",
   },
   {
     title: "Политика обработки персональных данных",
-    to: "",
+    to: "policy",
   },
 ];
 
@@ -52,6 +53,8 @@ const socialsItems = [
   },
 ];
 
+const setIsActive = setActiveClass(styles.text_active, styles.text);
+
 export const Footer = () => (
   <footer className={styles.footer}>
     <Container>
@@ -62,7 +65,10 @@ export const Footer = () => (
         <ul className={styles.menu}>
           {menuItems.map((item) => (
             <li className={styles.menu_item} key={item.title}>
-              <span className={styles.text}>{item.title}</span>
+              <NavLink to={item.to} className={setIsActive}>
+                {item.title}
+                {/* <span className={styles.text}>{item.title}</span> */}
+              </NavLink>
             </li>
           ))}
         </ul>

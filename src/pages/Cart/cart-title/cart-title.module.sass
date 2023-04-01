@@ -1,6 +1,10 @@
+@import 'style/mixins.sass'
+
 .title
 	position: relative
 	& > .notice
 		position: absolute
 		top: 0
 		left: 29rem
+		@include respond(s)
+			left: 22rem

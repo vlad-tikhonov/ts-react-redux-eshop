@@ -6,5 +6,8 @@ export enum RoutesNames {
 	Favorites = 'favorites',
 	Orders = 'orders',
 	Cart = 'cart',
-	Product = 'categories/:categorySlug/:productSlug'
+	Product = 'categories/:categorySlug/:productSlug',
+	About = 'about',
+	Contacts = 'contacts',
+	Vacancies = 'vacancies'
 }

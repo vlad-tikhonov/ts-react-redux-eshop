@@ -9,6 +9,9 @@ import {
   Product,
   Favorites,
   Test,
+  AboutCompany,
+  Contacts,
+  Vacancies,
   E404,
   Error,
 } from "pages";
@@ -52,6 +55,18 @@ const router = createBrowserRouter([
       {
         path: RoutesNames.Product,
         element: <Product />,
+      },
+      {
+        path: RoutesNames.Vacancies,
+        element: <Vacancies />,
+      },
+      {
+        path: RoutesNames.About,
+        element: <AboutCompany />,
+      },
+      {
+        path: RoutesNames.Contacts,
+        element: <Contacts />,
       },
       {
         path: "*",

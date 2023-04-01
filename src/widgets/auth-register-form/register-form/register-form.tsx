@@ -216,6 +216,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
         type="submit"
         renderRightIcon={isLoading ? renderLoader : undefined}
         disabled={isLoading}
+        className={styles.submit}
       >
         Продолжить
       </Button>

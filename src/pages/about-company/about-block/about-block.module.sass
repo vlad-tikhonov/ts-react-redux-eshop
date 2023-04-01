@@ -1,0 +1,87 @@
+@use 'style/variables.sass' as *
+@import 'style/mixins.sass'
+
+.overlay
+	position: relative
+	margin-top: -24px
+	padding: 20px 50px 8px 86px
+	@include respond(s)
+		padding: 0
+
+	& .wrapper
+		display: flex
+		height: 100%
+		width: 100%
+		position: relative
+		z-index: 1
+		& .text
+			padding: 20px 30px 96px 30px
+			@include respond(m)
+				padding: 20px 65px 327px 30px
+			@include respond(s)
+				padding: 0 0px 191px 0px
+			& .title
+				font-size: 64px
+				line-height: 150%
+				color: $color-surface-text
+				margin-bottom: 1.6rem
+				@include respond(m)
+					font-size: 48px
+				@include respond(s)
+					font-size: 36px
+			& .paragraph
+				display: inline-block
+				font-size: 24px
+				line-height: 150%
+				font-weight: 700
+				width: 60%
+				color: $color-primary
+				@include respond(m)
+					font-size: 18px
+					width: 100%
+				@include respond(s)
+					font-size: 14px
+	&Bg
+		background: url('/assets/patterns/pattern-big-pieces.svg')
+		background-size: contain
+		position: absolute
+		z-index: -1
+		top: 0
+		left: 0
+		bottom: 0
+		right: 0
+	& .image
+		position: absolute
+		top: 0
+		left: 0
+		bottom: 0
+		right: 0
+		@include respond(m)
+		&_image
+			background: url('/assets/images/office.svg') no-repeat
+			background-position: right bottom
+			position: absolute
+			top: 0
+			left: 0
+			bottom: 0
+			right: 0
+			z-index: -2
+			@include respond(m)
+				background-position: center bottom
+			@include respond(s)
+				background-size: contain
+				background-position: center bottom
+		&_bg
+			background: url('/assets/images/office-bg.svg') no-repeat
+			background-position: right bottom
+			// background-size: contain
+			position: absolute
+			top: 0
+			left: 0
+			bottom: 0
+			right: 0
+			z-index: -2
+			@include respond(m)
+				background-position: center bottom
+			@include respond(s)
+				background-size: contain

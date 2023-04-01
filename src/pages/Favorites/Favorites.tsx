@@ -1,7 +1,7 @@
 import { Htag } from "ui";
 import { Breadcrumbs, ProductsGrid } from "widgets";
-import { BreadcrumbItem } from "types";
 import { FavoritesEmpty } from "./favorites-empty/favorites-empty";
+import { BreadcrumbItem } from "types";
 import { useFavorites } from "store/favorites/features";
 import styles from "./favorites.module.sass";
 

@@ -1,7 +1,7 @@
 import { Htag, Button } from "ui";
 import { Map, Placemark } from "@pbe/react-yandex-maps";
 import { useState } from "react";
-import styles from "./store-map.module.sass";
+import styles from "./stores-map.module.sass";
 
 type Geometry = {
   id: number;
@@ -42,11 +42,11 @@ const geometries: Geometry[] = [
   },
 ];
 
-interface StoreMapProps {
+interface StoresMapProps {
   className?: string;
 }
 
-export const StoreMap = ({ className }: StoreMapProps) => {
+export const StoresMap = ({ className }: StoresMapProps) => {
   const [geometry, setGeometry] = useState<Geometry>(geometries[0]);
 
   const handleSetgeometry = (geometryItem: Geometry) => {

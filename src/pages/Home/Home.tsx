@@ -1,6 +1,6 @@
 import { SpecialOffers } from "./special-offers/special-offers";
 import { DeliveryBanner } from "./delivery-banner/delivery-banner";
-import { StoreMap } from "./store-map/store-map";
+import { StoresMap } from "widgets";
 import { Articles } from "./articles/articles";
 import { Novelties } from "./novelties/novelties";
 import { Promotions } from "./promotions/promotions";
@@ -12,7 +12,7 @@ export const Home = () => {
       <DeliveryBanner className={styles.banner} />
       <Promotions className={styles.promotions} />
       <Novelties className={styles.novelties} />
-      <StoreMap className={styles.stores} />
+      <StoresMap className={styles.stores} />
       <SpecialOffers className={styles.offers} />
       <Articles />
     </>

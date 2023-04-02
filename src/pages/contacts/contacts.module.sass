@@ -1,0 +1,16 @@
+@import 'style/mixins.sass'
+@include respond(m)
+
+.title
+	margin-bottom: 4rem
+	@include respond(m)
+		margin-bottom: 3.2rem
+	@include respond(s)
+		margin-bottom: 1.6rem
+
+.contacts
+	margin-bottom: 12rem
+	@include respond(m)
+		margin-bottom: 10rem
+	@include respond(s)
+		margin-bottom: 8rem

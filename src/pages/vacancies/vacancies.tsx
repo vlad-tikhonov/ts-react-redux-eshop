@@ -1,5 +1,21 @@
+import { BreadcrumbItem } from "types";
+import { Breadcrumbs } from "widgets";
+import { Htag } from "ui";
 import styles from "./vacancies.module.sass";
 
+const breadcrumbItems: BreadcrumbItem[] = [
+  {
+    label: "Вакансии",
+    to: "",
+  },
+];
+
 export const Vacancies = () => {
-  return <div>Vacancies page</div>;
+  return (
+    <>
+      <Breadcrumbs items={breadcrumbItems} />
+      <Htag size="xl">Вакансии</Htag>
+      <p className={styles.paragraph}>Нет опубликованных вакансий</p>
+    </>
+  );
 };

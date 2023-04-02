@@ -1,0 +1,15 @@
+@use 'style/variables.sass' as *
+@import 'style/mixins.sass'
+
+.title
+	margin-bottom: 6rem
+	@include respond(m)
+		margin-bottom: 3.2rem
+	@include respond(s)
+		margin-bottom: 1.6rem
+
+.paragraph
+	text-align: center
+	color: $color-surface-text
+	padding-top: 10vh
+	font-weight: 700

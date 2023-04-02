@@ -33,6 +33,10 @@ export const CatalogDropdown = ({
   });
 
   useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
     closeCatalogMenu();
   }, [pathname]);
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { selectProduct, selectProductInfo } from "./product-selectors";
@@ -15,10 +16,12 @@ export const useProduct = (
   const product = useAppSelector(selectProduct);
 
   useEffect(() => {
-    if (slug) {
-      dispatch(loadProduct(slug));
+    if (!slug) {
+      return;
     }
-  }, [slug, dispatch]);
+
+    dispatch(loadProduct(slug));
+  }, [slug]);
 
   return [product, { isLoading, errors }];
 };

@@ -14,7 +14,9 @@ export const Vacancies = () => {
   return (
     <>
       <Breadcrumbs items={breadcrumbItems} />
-      <Htag size="xl">Вакансии</Htag>
+      <Htag size="xl" className={styles.title}>
+        Вакансии
+      </Htag>
       <p className={styles.paragraph}>Нет опубликованных вакансий</p>
     </>
   );

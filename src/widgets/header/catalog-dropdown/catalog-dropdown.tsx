@@ -40,9 +40,7 @@ export const CatalogDropdown = ({
     closeCatalogMenu();
   }, [pathname]);
 
-  if (!categories.length) {
-    return null;
-  }
+  console.log(categories);
 
   return (
     <div

@@ -40,8 +40,6 @@ export const CatalogDropdown = ({
     closeCatalogMenu();
   }, [pathname]);
 
-  console.log(categories);
-
   return (
     <div
       ref={dropdownRef}

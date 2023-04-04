@@ -32,4 +32,4 @@ jobs:
         envkey_APP_STATIC_CONTENT_URL: ${{secrets.REACT_APP_STATIC_CONTENT_URL}}
         directory: "./"
         file_name: ".env.local"
-        fail_on_empty: false
+        fail_on_empty: true

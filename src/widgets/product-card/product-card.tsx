@@ -13,6 +13,7 @@ import {
   useIsInFavorites,
 } from "store/favorites/features";
 import { useCartActions, useProductCount } from "store/cart/features";
+import { STATIC_CONTENT_URL } from "constants/static-content-url";
 import styles from "./product-card.module.sass";
 
 interface ProductCardProps {
@@ -146,10 +147,7 @@ export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
             <HeartIcon className={styles.heart} />
           )}
         </div>
-        <img
-          src={process.env.REACT_APP_STATIC_CONTENT_URL + image}
-          alt={title}
-        />
+        <img src={STATIC_CONTENT_URL + image} alt={title} />
         {discount && (
           <Notice size="m" accent="primary" className={styles.notice}>
             {modifiedDiscount}

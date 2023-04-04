@@ -8,6 +8,7 @@ import { MiniProductCard } from "./mini-product-card/mini-product-card";
 import cn from "classnames";
 import { Bonuses } from "widgets";
 import { useCartActions, useProductCount } from "store/cart/features";
+import { STATIC_CONTENT_URL } from "constants/static-content-url";
 import styles from "./product-body.module.sass";
 
 interface ProductBodyButtonProps {
@@ -80,10 +81,7 @@ export const ProductBody = ({ product, className }: ProductBodyProps) => {
   return (
     <div className={cn(styles.body, className)}>
       <div className={styles.body_img}>
-        <img
-          src={process.env.REACT_APP_STATIC_CONTENT_URL + image}
-          alt={title}
-        />
+        <img src={STATIC_CONTENT_URL + image} alt={title} />
         {discount && (
           <Notice accent="primary" size="m" className={styles.notice}>
             {modifyDiscount(discount)}

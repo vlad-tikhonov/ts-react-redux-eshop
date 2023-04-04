@@ -2,6 +2,7 @@ import cn from "classnames";
 import { Text } from "ui";
 import { Category } from "types";
 import { Link } from "react-router-dom";
+import { STATIC_CONTENT_URL } from "constants/static-content-url";
 import styles from "./categories-tile.module.sass";
 
 interface CategoriesTileProps {
@@ -28,7 +29,7 @@ export const CategoriesTile = ({ categories }: CategoriesTileProps) => {
             </Text>
           </Link>
           <img
-            src={`${process.env.REACT_APP_STATIC_CONTENT_URL}/${c.image}`}
+            src={`${STATIC_CONTENT_URL}/${c.image}`}
             alt={c.title}
             className={styles.catalog_item_img}
           />

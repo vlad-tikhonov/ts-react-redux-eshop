@@ -5,6 +5,7 @@ import { modifyPrice, modifyDiscount } from "helpers/utils";
 import { memo } from "react";
 import cn from "classnames";
 import { useCartActions } from "store/cart/features";
+import { STATIC_CONTENT_URL } from "constants/static-content-url";
 import styles from "./cart-item.module.sass";
 
 interface CartItemProps {
@@ -95,10 +96,7 @@ const CartItem = ({ cartProduct, className }: CartItemProps) => {
         className={styles.checkbox}
       />
       <div className={styles.img}>
-        <img
-          src={process.env.REACT_APP_STATIC_CONTENT_URL + product.image}
-          alt={product.title}
-        />
+        <img src={STATIC_CONTENT_URL + product.image} alt={product.title} />
       </div>
       <div className={styles.body}>
         <div className={styles.productInfo}>

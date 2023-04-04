@@ -23,7 +23,7 @@ export const AuthMenu = ({ className }: AuthMenuProps) => {
         {!user ? (
           <LoginButton className={styles.login} />
         ) : (
-          <UserMenu userName={user.surname} className={styles.menu} />
+          <UserMenu userName={user.name} className={styles.menu} />
         )}
       </div>
       <Modal opened={isOpen} onClose={toggleAuth}>

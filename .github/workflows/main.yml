@@ -21,10 +21,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "develop"
-
-  create-envfile:
-    runs-on: ubuntu-latest
-    steps:
       - name: Make envfile
       uses: SpicyPizza/create-envfile@v1.3
       with:

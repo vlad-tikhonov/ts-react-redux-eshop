@@ -40,10 +40,12 @@ export const Product = () => {
         </Htag>
         <ProductMenu product={product} className={styles.menu} />
         <ProductBody product={product} className={styles.body} />
-        <ProductReviews
-          productId={product?._id ?? ""}
-          reviewsAvg={product?.reviewsAvg ?? 0}
-        />
+        {product && (
+          <ProductReviews
+            productId={product?._id ?? ""}
+            reviewsAvg={product?.reviewsAvg ?? 0}
+          />
+        )}
       </>
     </ErrorDetecter>
   );

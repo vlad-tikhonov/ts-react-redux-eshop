@@ -3,7 +3,7 @@ import config from './config'
 
 const makeRequest = ({url = '/', method = 'get', params = {}, data = {}, headers = {}}: AxiosRequestConfig) => {
 	const axiosInstanse = axios.create({
-		baseURL: process.env.REACT_APP_BASE_URL
+		baseURL: process.env.NODE_ENV === 'development' ? process.env.REACT_APP_BASE_URL : '/api/'
 	})
 
 	axiosInstanse.interceptors.response.use(

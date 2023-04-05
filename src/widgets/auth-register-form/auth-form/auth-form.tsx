@@ -53,11 +53,11 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
         Вход
       </Htag>
       <TextField
-        labelText="E-mail"
+        labelText="Логин"
         size="l"
-        type="email"
+        type="text"
         register={register("email", {
-          required: "Введите email",
+          required: "Введите логин",
         })}
         message={errors.email?.message}
         className={styles.email}

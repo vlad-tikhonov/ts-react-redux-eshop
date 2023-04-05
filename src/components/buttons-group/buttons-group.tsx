@@ -15,6 +15,7 @@ interface RadioProps<T extends FieldValues> {
   label: string;
   setFormValue?: UseFormSetValue<T>;
   name?: FieldPath<T>;
+  disabled?: boolean;
 }
 
 export const ButtonsGroup = <T extends FieldValues>({
@@ -22,6 +23,7 @@ export const ButtonsGroup = <T extends FieldValues>({
   label,
   setFormValue,
   name,
+  disabled,
 }: RadioProps<T>) => {
   const [firstOption, secondOption] = options;
   const [state, setState] = useState<Option["value"]>(firstOption.value);
@@ -58,6 +60,7 @@ export const ButtonsGroup = <T extends FieldValues>({
           decoration={state === firstOption.value ? "default" : "no"}
           className={styles.btn}
           onClick={() => handleSetState(true)}
+          disabled={disabled}
         >
           {firstOption.label}
         </Button>
@@ -67,6 +70,7 @@ export const ButtonsGroup = <T extends FieldValues>({
           decoration={state === secondOption.value ? "default" : "no"}
           className={styles.btn}
           onClick={() => handleSetState(false)}
+          disabled={disabled}
         >
           {secondOption.label}
         </Button>

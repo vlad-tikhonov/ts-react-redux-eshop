@@ -63,12 +63,12 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
       password: data.password,
       birthDate: data.birth.split(".").reverse().join("-"),
       name: data.name || data.email,
-      surname: data.surname || "",
+      surname: data.surname,
       sex: data.sex,
       region: data.region,
       locality: data.locality,
-      phone: data.phone || "",
-      card: data.card || "",
+      phone: data.phone,
+      card: data.card,
     }).then((res) => {
       if (res.meta.requestStatus === "fulfilled") {
         onRegister();
@@ -102,32 +102,25 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
       <div className={styles.required}>
         <div className={styles.left}>
           <TextField
-            labelText="Логин"
+            labelText="E-mail"
             size="m"
             register={register("email", {
-              required: "Введите логин",
-              minLength: { value: 4, message: "Минимальная длина 4 символа" },
-              maxLength: {
-                value: 10,
-                message: "Максимумальная длина 10 символов",
-              },
+              required: "Введите email",
             })}
-            type="text"
+            type="email"
             message={errors.email?.message}
           />
           <TextField
             labelText="Фамилия"
             size="m"
-            register={register("surname")}
+            register={register("surname", { required: "Введите фамилию" })}
             message={errors.surname?.message}
-            disabled
           />
           <TextField
             labelText="Имя"
             size="m"
-            register={register("name")}
+            register={register("name", { required: "Введите имя" })}
             message={errors.name?.message}
-            disabled
           />
           <PasswordField
             labelText="Пароль"
@@ -154,9 +147,9 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
         </div>
         <div className={styles.right}>
           <InputDate
-            labelText="Дата"
+            labelText="Дата рождения"
             register={register("birth", {
-              required: "Введите дату",
+              required: "Введите дату рождения",
             })}
             size="m"
             message={errors.birth?.message}
@@ -190,7 +183,6 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
             label="Пол"
             setFormValue={setValue}
             name="sex"
-            disabled
           />
         </div>
       </div>
@@ -203,7 +195,6 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
             labelText="Номер карты"
             size="m"
             register={register("card")}
-            disabled
           />
         </div>
         <div className={styles.right}>
@@ -211,7 +202,6 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
             labelText="Телефон"
             size="m"
             register={register("phone")}
-            disabled
           />
         </div>
       </div>

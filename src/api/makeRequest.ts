@@ -1,9 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios'
+import { BASE_URL } from 'constants/base-url'
 import config from './config'
 
 const makeRequest = ({url = '/', method = 'get', params = {}, data = {}, headers = {}}: AxiosRequestConfig) => {
 	const axiosInstanse = axios.create({
-		baseURL: process.env.NODE_ENV === 'development' ? process.env.REACT_APP_BASE_URL : '/api/'
+		baseURL: BASE_URL
 	})
 
 	axiosInstanse.interceptors.response.use(

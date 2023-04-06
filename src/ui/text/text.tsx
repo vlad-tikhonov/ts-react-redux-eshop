@@ -3,11 +3,10 @@ import { ElementSizes } from "types/element-props";
 import { ReactNode } from "react";
 import styles from "./text.module.sass";
 
-interface TextProps {
+interface TextProps extends React.HTMLAttributes<HTMLSpanElement> {
   size: ElementSizes;
   children: ReactNode;
   bold?: boolean;
-  className?: string;
 }
 
 export const Text = ({

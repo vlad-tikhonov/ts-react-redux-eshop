@@ -25,8 +25,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       decoration = "default",
       size,
       children,
-      disabled = false,
-      onClick,
       className,
       ...restProps
     } = props;
@@ -46,24 +44,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       [styles.btn_no]: decoration === "no",
     };
 
-    const handleClick = (
-      e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-    ) => {
-      if (disabled || !onClick) {
-        return;
-      }
-
-      onClick(e);
-    };
-
     return (
-      <button
-        className={cn(buttonStyles, className)}
-        disabled={disabled}
-        onClick={handleClick}
-        ref={ref}
-        {...restProps}
-      >
+      <button className={cn(buttonStyles, className)} ref={ref} {...restProps}>
         {renderLeftIcon(styles.icon)}
         {children && <span className={styles.text}>{children}</span>}
         {renderRightIcon(styles.icon)}

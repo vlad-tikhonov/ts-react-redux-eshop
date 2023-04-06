@@ -2,14 +2,14 @@ import cn from "classnames";
 import { ElementAccent } from "types";
 import styles from "./border-loader.module.sass";
 
-interface BorderLoaderProps {
+interface BorderLoaderProps extends React.HTMLAttributes<HTMLSpanElement> {
   accent: ElementAccent;
-  className?: string;
 }
 
 export const BorderLoader = ({
   accent = "secondary",
   className,
+  ...restPorps
 }: BorderLoaderProps) => (
   <span
     className={cn(styles.spinner, className, {
@@ -18,5 +18,6 @@ export const BorderLoader = ({
       [styles.spinner_grayscale]: accent === "grayscale",
       [styles.spinner_error]: accent === "error",
     })}
+    {...restPorps}
   ></span>
 );

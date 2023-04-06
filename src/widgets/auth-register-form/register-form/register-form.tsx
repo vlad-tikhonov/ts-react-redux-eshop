@@ -1,8 +1,13 @@
 import styles from "./register-form.module.sass";
 import { Htag, Button, BorderLoader } from "ui";
-import { InputDate, ButtonsGroup, InputPassword } from "components";
+import {
+  InputDate,
+  ButtonsGroup,
+  InputPassword,
+  InputSelect,
+} from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { InputText, SelectField, WithMessage } from "components";
+import { InputText, WithMessage } from "components";
 import { Sex, Option } from "types";
 import cn from "classnames";
 import toast from "react-hot-toast";
@@ -53,6 +58,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
     handleSubmit,
     getValues,
     setValue,
+    trigger,
   } = useForm<FormValues>({
     mode: "onSubmit",
   });
@@ -85,7 +91,15 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
     });
   };
 
-  register("sex");
+  register("sex", {
+    required: "Выберите пол",
+  });
+  register("locality", {
+    required: "Выберите населенный пункт",
+  });
+  register("region", {
+    required: "Выберите регион",
+  });
 
   return (
     <form
@@ -158,42 +172,48 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
           </WithMessage>
         </div>
         <div className={styles.right}>
-          <InputDate
-            label="Дата рождения"
-            inputSize="m"
-            className={styles.field}
-            {...register("birth", {
-              required: "Введите дату рождения",
-            })}
-          />
-          <SelectField
-            labelText="Регион"
-            size="m"
-            register={register("region", {
-              required: "Выберите регион",
-            })}
-            list={REGIONS}
-            message={errors.region?.message}
-            setFormValue={setValue}
-            name={"region"}
-          />
-          <SelectField
-            labelText="Населенный пункт"
-            size="m"
-            register={register("locality", {
-              required: "Выберите населенный пункт",
-            })}
-            list={LOCALITIES}
-            message={errors.locality?.message}
-            name={"locality"}
-            setFormValue={setValue}
-          />
-          <ButtonsGroup
-            options={options}
-            label="Пол"
-            setFormValue={setValue}
-            name="sex"
-          />
+          <WithMessage message={errors.birth?.message}>
+            <InputDate
+              label="Дата рождения"
+              inputSize="m"
+              className={styles.field}
+              {...register("birth", {
+                required: "Введите дату рождения",
+              })}
+            />
+          </WithMessage>
+          <WithMessage message={errors.region?.message}>
+            <InputSelect
+              options={REGIONS}
+              label="Регион"
+              className={styles.field}
+              onChange={(value: string) => {
+                setValue("region", value);
+                trigger("region");
+              }}
+            />
+          </WithMessage>
+          <WithMessage message={errors.locality?.message}>
+            <InputSelect
+              options={LOCALITIES}
+              label="Населенный пункт"
+              className={styles.field}
+              onChange={(value: string) => {
+                setValue("locality", value);
+                trigger("locality");
+              }}
+            />
+          </WithMessage>
+          <WithMessage message={errors.sex?.message}>
+            <ButtonsGroup
+              options={options}
+              label="Пол"
+              onChange={(value) => {
+                setValue("sex", String(value));
+                trigger("sex");
+              }}
+            />
+          </WithMessage>
         </div>
       </div>
       <Htag size="xs" className={styles.title_opt}>

@@ -1,0 +1,51 @@
+@use 'style/style.sass' as *
+
+.wrapper
+	& .label
+		font-size: 16px
+		color: $color-hard
+	& .select
+		display: inline-block
+		background-color: $color-surface
+		border: 1px solid $color-surface
+		box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1)
+		border-radius: 4px
+		cursor: pointer
+		position: relative
+		min-width: 15rem
+		&_active
+			border: 1px solid $color-secondary
+			border-bottom: 1px solid transparent
+			border-radius: 4px 4px 0 0
+		& .header
+			display: flex
+			justify-content: space-between
+			align-items: center
+			padding: 8px 8px 8px 16px
+			gap: 4px
+			& .icon
+				width: 24px
+				height: 24px
+				fill: $color-light
+				&:hover
+					fill: $color-surface-text
+		& .list
+			list-style-type: none
+			position: absolute
+			background-color: inherit
+			width: inherit
+			border: 1px solid $color-secondary
+			border-radius: 0 0 4px 4px
+			border-top: 1px solid $color-surface
+			z-index: 1
+			width: calc( 100% + 2px)
+			left: -1px
+			& .item
+				font-size: 16px
+				line-height: 150%
+				padding: 8px 16px
+				&:hover
+					color: $color-primary
+					background-color: $color-primary-muted
+				&:last-child
+					border-radius: 0 0 4px 4px

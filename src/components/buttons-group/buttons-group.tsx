@@ -1,76 +1,64 @@
-import { useState, useEffect } from "react";
-import { Button, Text } from "ui";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState } from "react";
+import { Button } from "ui";
 import { Option } from "types";
-import {
-  FieldValues,
-  Path,
-  UseFormSetValue,
-  PathValue,
-  FieldPath,
-} from "react-hook-form";
 import styles from "./buttons-group.module.sass";
 
-interface RadioProps<T extends FieldValues> {
+interface ButtonsGroupProps {
   options: [Option, Option];
   label: string;
-  setFormValue?: UseFormSetValue<T>;
-  name?: FieldPath<T>;
   disabled?: boolean;
+  onChange?: (value: number) => void;
 }
 
-export const ButtonsGroup = <T extends FieldValues>({
+export const ButtonsGroup = ({
   options,
   label,
-  setFormValue,
-  name,
+  onChange,
   disabled,
-}: RadioProps<T>) => {
+}: ButtonsGroupProps) => {
   const [firstOption, secondOption] = options;
-  const [state, setState] = useState<Option["value"]>(firstOption.value);
+  const [value, setValue] = useState<Option["value"]>();
 
   const updateFormValue = (value: Option["value"]) => {
-    if (name && setFormValue) {
-      setFormValue(name, value as PathValue<T, Path<T>>);
+    if (onChange) {
+      onChange(value);
     }
   };
 
   const handleSetState = (first: boolean) => {
     if (first) {
-      setState(firstOption.value);
+      setValue(firstOption.value);
       updateFormValue(firstOption.value);
     } else {
-      setState(secondOption.value);
+      setValue(secondOption.value);
       updateFormValue(secondOption.value);
     }
   };
 
-  useEffect(() => {
-    updateFormValue(firstOption.value);
-  }, []);
-
   return (
     <div className={styles.wrapper}>
-      <Text size="s" className={styles.label}>
-        {label}
-      </Text>
+      <span className={styles.label}>{label}</span>
       <div className={styles.buttons}>
         <Button
           size="s"
-          accent={state === firstOption.value ? "secondary" : "grayscale"}
-          decoration={state === firstOption.value ? "default" : "no"}
+          accent={value === firstOption.value ? "secondary" : "grayscale"}
+          decoration={value === firstOption.value ? "default" : "no"}
           className={styles.btn}
           onClick={() => handleSetState(true)}
           disabled={disabled}
+          type="button"
         >
           {firstOption.label}
         </Button>
         <Button
           size="s"
-          accent={state === secondOption.value ? "secondary" : "grayscale"}
-          decoration={state === secondOption.value ? "default" : "no"}
+          accent={value === secondOption.value ? "secondary" : "grayscale"}
+          decoration={value === secondOption.value ? "default" : "no"}
           className={styles.btn}
           onClick={() => handleSetState(false)}
           disabled={disabled}
+          type="button"
         >
           {secondOption.label}
         </Button>

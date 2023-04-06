@@ -1,10 +1,10 @@
 import { BorderLoader, Button, Htag } from "ui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./auth-form.module.sass";
-import { PasswordField, TextField } from "components";
 import toast from "react-hot-toast";
 import { useAuth } from "store/auth/features/use-auth";
 import { useAuthActions } from "store/auth/features";
+import { WithMessage, InputText, InputPassword } from "components";
 
 interface AuthFormProps {
   onLogin: () => void;
@@ -52,29 +52,24 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
       <Htag size="s" className={styles.title}>
         Вход
       </Htag>
-      <TextField
-        labelText="Email"
-        size="l"
-        type="text"
-        register={register("email", {
-          required: "Введите email",
-        })}
-        message={errors.email?.message}
-        className={styles.email}
-      />
-      <PasswordField
-        labelText="Пароль"
-        size="l"
-        register={register("password", {
-          required: "Введите пароль",
-          minLength: {
-            value: 4,
-            message: "Минимальная длинна пароля 4 символа",
-          },
-        })}
+      <WithMessage message={errors.email?.message} className={styles.email}>
+        <InputText
+          label="Email"
+          inputSize="l"
+          type="email"
+          {...register("email", { required: "Введите email" })}
+        />
+      </WithMessage>
+      <WithMessage
         message={errors.password?.message}
         className={styles.password}
-      />
+      >
+        <InputPassword
+          label="Пароль"
+          inputSize="l"
+          {...register("password", { required: "Введите пароль" })}
+        />
+      </WithMessage>
       <Button
         accent="primary"
         decoration="default"

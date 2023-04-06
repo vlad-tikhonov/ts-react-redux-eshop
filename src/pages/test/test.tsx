@@ -1,6 +1,7 @@
 import { ReactComponent as LeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as RightIcon } from "assets/icons/chevron-right.svg";
-import { InputDate, SelectField } from "components";
+import { Input } from "ui";
+import { InputText } from "components";
 import styles from "./test.module.sass";
 
 const renderLeftIcon = (className: string) => (
@@ -11,39 +12,45 @@ const renderRightIcon = (className: string) => (
   <RightIcon className={className} />
 );
 
-const list = [
-  "Республика Башкортостан",
-  "Удмуртская республика",
-  "Москва",
-  "Санткт-Петербург",
-];
-
-const options = [
-  {
-    value: "1",
-    label: "Мужской",
-    checked: true,
-    id: "1",
-  },
-  {
-    value: "1",
-    label: "Женский",
-    checked: false,
-    id: "2",
-  },
-];
-
 export const Test = () => {
   return (
     <div className={styles.test}>
-      <div>
-        <InputDate size="m" message="" labelText="дд.мм.гггг" />
+      <div className={styles.row}>
+        {/* <InputDate size="m" message="" labelText="дд.мм.гггг" /> */}
+        <Input inputSize="m" />
       </div>
-      <div>
-        <SelectField labelText="Регион" message="" size="m" list={list} />
+      <div className={styles.row}>
+        {/* <InputDate size="m" message="" labelText="дд.мм.гггг" /> */}
+        <Input inputSize="l" />
       </div>
-      <div>
-        <SelectField labelText="Регион" message="" size="l" list={list} />
+
+      <div className={styles.row}>
+        <InputText inputSize="m" />
+      </div>
+      <div className={styles.row}>
+        <InputText inputSize="l" />
+      </div>
+      <div className={styles.row}>
+        <InputText inputSize="m" label="Label" />
+      </div>
+      <div className={styles.row}>
+        <InputText inputSize="l" label="Label" />
+      </div>
+      <div className={styles.row}>
+        <InputText
+          inputSize="m"
+          label="Label"
+          renderLeftIcon={renderLeftIcon}
+          renderRightIcon={renderRightIcon}
+        />
+      </div>
+      <div className={styles.row}>
+        <InputText
+          inputSize="l"
+          label="Label"
+          renderLeftIcon={renderLeftIcon}
+          renderRightIcon={renderRightIcon}
+        />
       </div>
     </div>
   );

@@ -1,0 +1,33 @@
+@use 'style/variables' as *
+
+.wrapper
+	display: inline-block
+	& .label
+		display: block
+		color: $color-hard
+		&_m
+			font-size: 16px
+		&_l
+			font-size: 18px
+	& .inputWrapper
+		border-radius: 4px
+		background-color: $color-surface
+		border: 1px solid $color-light
+		display: flex
+		justify-content: space-between
+		align-items: center
+		gap: 8px
+		&_m
+			padding: 8px
+		&_l
+			padding: 12px 12px
+		&_active
+			border-color: $color-secondary
+		& .icon
+			fill: $color-surface-text
+			&_m
+				width: 24px
+				height: 24px
+			&_l
+				width: 36px
+				height: 36px

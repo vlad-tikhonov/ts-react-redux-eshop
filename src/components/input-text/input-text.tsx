@@ -13,6 +13,7 @@ interface InputTextProps extends InputProps {
 export const InputText = ({
   inputSize,
   label,
+  disabled,
   className,
   renderLeftIcon,
   renderRightIcon,
@@ -23,6 +24,7 @@ export const InputText = ({
   const inputWrapperClasses = cn({
     [styles.inputWrapper]: true,
     [styles.inputWrapper_active]: isActive,
+    [styles.inputWrapper_disabled]: disabled,
     [styles.inputWrapper_m]: inputSize === "m",
     [styles.inputWrapper_l]: inputSize === "l",
   });
@@ -52,7 +54,7 @@ export const InputText = ({
       {label && <span className={labelClasses}>{label}</span>}
       <div className={inputWrapperClasses}>
         {renderLeftIcon && renderLeftIcon(iconsClasses)}
-        <Input inputSize={inputSize} {...restProps} />
+        <Input inputSize={inputSize} disabled={disabled} {...restProps} />
         {renderRightIcon && renderRightIcon(iconsClasses)}
       </div>
     </div>

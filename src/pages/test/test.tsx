@@ -25,16 +25,16 @@ export const Test = () => {
       </div>
 
       <div className={styles.row}>
-        <InputText inputSize="m" />
+        <InputText inputSize="m" disabled />
       </div>
       <div className={styles.row}>
-        <InputText inputSize="l" />
+        <InputText inputSize="l" disabled />
       </div>
       <div className={styles.row}>
-        <InputText inputSize="m" label="Label" />
+        <InputText inputSize="m" label="Label" disabled />
       </div>
       <div className={styles.row}>
-        <InputText inputSize="l" label="Label" />
+        <InputText inputSize="l" label="Label" disabled />
       </div>
       <div className={styles.row}>
         <InputText
@@ -42,6 +42,7 @@ export const Test = () => {
           label="Label"
           renderLeftIcon={renderLeftIcon}
           renderRightIcon={renderRightIcon}
+          disabled
         />
       </div>
       <div className={styles.row}>
@@ -50,6 +51,7 @@ export const Test = () => {
           label="Label"
           renderLeftIcon={renderLeftIcon}
           renderRightIcon={renderRightIcon}
+          disabled
         />
       </div>
     </div>

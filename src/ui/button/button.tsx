@@ -7,17 +7,13 @@ import {
 import { ButtonHTMLAttributes, forwardRef } from "react";
 import styles from "./button.module.sass";
 
-export interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size: Exclude<ElementSizes, "xl" | "xs">;
-  children?: string;
-  renderLeftIcon?: (className: string) => JSX.Element;
-  renderRightIcon?: (className: string) => JSX.Element;
   accent: ElementAccent;
+  renderRightIcon?: (className: string) => JSX.Element;
+  renderLeftIcon?: (className: string) => JSX.Element;
   decoration?: ElementDecoration;
-  type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
-  onClick?: () => void;
-  disabled?: boolean;
-  className?: string;
+  children?: string;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -28,11 +24,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       accent,
       decoration = "default",
       size,
-      type = "button",
       children,
       disabled = false,
       onClick,
       className,
+      ...restProps
     } = props;
 
     const buttonStyles = {
@@ -50,21 +46,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       [styles.btn_no]: decoration === "no",
     };
 
-    const handleClick = () => {
+    const handleClick = (
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
       if (disabled || !onClick) {
         return;
       }
 
-      onClick();
+      onClick(e);
     };
 
     return (
       <button
         className={cn(buttonStyles, className)}
         disabled={disabled}
-        type={type}
-        onClick={disabled ? undefined : handleClick}
+        onClick={handleClick}
         ref={ref}
+        {...restProps}
       >
         {renderLeftIcon(styles.icon)}
         {children && <span className={styles.text}>{children}</span>}

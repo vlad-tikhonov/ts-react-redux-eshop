@@ -17,5 +17,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     [styles.input_l]: inputSize === "l",
   };
 
-  return <input className={cn(inputClasses, className)} {...restProps} />;
+  return (
+    <input className={cn(inputClasses, className)} ref={ref} {...restProps} />
+  );
 });

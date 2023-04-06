@@ -56,7 +56,12 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(
         {label && <span className={labelClasses}>{label}</span>}
         <div className={inputWrapperClasses}>
           {renderLeftIcon && renderLeftIcon(iconsClasses)}
-          <Input inputSize={inputSize} disabled={disabled} {...restProps} />
+          <Input
+            inputSize={inputSize}
+            disabled={disabled}
+            ref={ref}
+            {...restProps}
+          />
           {renderRightIcon && renderRightIcon(iconsClasses)}
         </div>
       </div>

@@ -1,8 +1,8 @@
 import styles from "./register-form.module.sass";
 import { Htag, Button, BorderLoader } from "ui";
-import { InputDate, ButtonsGroup, TextField } from "components";
+import { InputDate, ButtonsGroup, InputPassword } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { PasswordField, SelectField } from "components";
+import { InputText, SelectField, WithMessage } from "components";
 import { Sex, Option } from "types";
 import cn from "classnames";
 import toast from "react-hot-toast";
@@ -101,60 +101,70 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
       </Htag>
       <div className={styles.required}>
         <div className={styles.left}>
-          <TextField
-            labelText="E-mail"
-            size="m"
-            register={register("email", {
-              required: "Введите email",
-            })}
-            type="email"
-            message={errors.email?.message}
-          />
-          <TextField
-            labelText="Фамилия"
-            size="m"
-            register={register("surname", { required: "Введите фамилию" })}
-            message={errors.surname?.message}
-          />
-          <TextField
-            labelText="Имя"
-            size="m"
-            register={register("name", { required: "Введите имя" })}
-            message={errors.name?.message}
-          />
-          <PasswordField
-            labelText="Пароль"
-            size="m"
-            register={register("password", {
-              required: "Введите пароль",
-              minLength: {
-                value: 4,
-                message: "Минимальная длинна пароля 4 символа",
-              },
-            })}
-            message={errors.password?.message}
-          />
-          <PasswordField
-            labelText="Повторите пароль"
-            size="m"
-            register={register("confirm", {
-              required: "Повторите пароль",
-              validate: (value) =>
-                value === getValues("password") || "Пароли не совпадают",
-            })}
-            message={errors.confirm?.message}
-          />
+          <WithMessage message={errors.email?.message}>
+            <InputText
+              inputSize="m"
+              label="E-mail"
+              type="email"
+              className={styles.field}
+              {...register("email", {
+                required: "Введите email",
+              })}
+            />
+          </WithMessage>
+          <WithMessage message={errors.surname?.message}>
+            <InputText
+              inputSize="m"
+              label="Фамилия"
+              type="text"
+              className={styles.field}
+              {...register("surname", { required: "Введите фамилию" })}
+            />
+          </WithMessage>
+          <WithMessage message={errors.name?.message}>
+            <InputText
+              inputSize="m"
+              label="Имя"
+              type="text"
+              className={styles.field}
+              {...register("name", { required: "Введите имя" })}
+            />
+          </WithMessage>
+          <WithMessage message={errors.password?.message}>
+            <InputPassword
+              label="Пароль"
+              inputSize="m"
+              className={styles.field}
+              {...register("password", {
+                required: "Введите пароль",
+                minLength: {
+                  value: 4,
+                  message: "Минимальная длинна пароля 4 символа",
+                },
+              })}
+            />
+          </WithMessage>
+          <WithMessage message={errors.confirm?.message}>
+            <InputPassword
+              label="Пароль"
+              inputSize="m"
+              className={styles.field}
+              {...register("confirm", {
+                required: "Введите пароль",
+                validate: (value) =>
+                  value === getValues("password") || "Пароли не совпадают",
+              })}
+            />
+          </WithMessage>
         </div>
         <div className={styles.right}>
           <InputDate
-            labelText="Дата рождения"
-            register={register("birth", {
+            label="Дата рождения"
+            inputSize="m"
+            className={styles.field}
+            {...register("birth", {
               required: "Введите дату рождения",
             })}
-            size="m"
-            message={errors.birth?.message}
-            setFormValue={setValue}
-            name={"birth"}
           />
           <SelectField
             labelText="Регион"
@@ -191,17 +201,21 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
       </Htag>
       <div className={styles.optional}>
         <div className={styles.left}>
-          <TextField
-            labelText="Номер карты"
-            size="m"
-            register={register("card")}
+          <InputText
+            inputSize="m"
+            label="Номер карты"
+            type="text"
+            className={styles.field}
+            {...register("card")}
           />
         </div>
         <div className={styles.right}>
-          <TextField
-            labelText="Телефон"
-            size="m"
-            register={register("phone")}
+          <InputText
+            inputSize="m"
+            label="Телефон"
+            type="text"
+            className={styles.field}
+            {...register("phone")}
           />
         </div>
       </div>

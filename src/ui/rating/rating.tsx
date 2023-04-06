@@ -5,13 +5,12 @@ import { Rating as TRating } from "types";
 import { ReactComponent as StarIcon } from "assets/icons/star.svg";
 import styles from "./rating.module.sass";
 
-interface RatingProps {
+interface RatingProps extends React.HTMLAttributes<HTMLDivElement> {
   rating: TRating;
   readonly?: boolean;
   big?: boolean;
   stars?: TRating;
   setRating?: (i: number) => void;
-  className?: string;
 }
 
 export const Rating = ({
@@ -21,6 +20,7 @@ export const Rating = ({
   readonly = false,
   setRating,
   className,
+  ...restProps
 }: RatingProps) => {
   const [items, setItems] = useState<JSX.Element[]>(new Array(stars));
 
@@ -68,7 +68,7 @@ export const Rating = ({
 
   return (
     <>
-      <div className={cn(styles.rating, className)}>
+      <div className={cn(styles.rating, className)} {...restProps}>
         {items.map((star, i) => (
           <span
             key={i}

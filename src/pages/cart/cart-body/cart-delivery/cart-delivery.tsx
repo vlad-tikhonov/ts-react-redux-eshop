@@ -1,5 +1,5 @@
 import { Text, Button, Htag } from "ui";
-import { SelectField, TextField } from "components";
+import { WithMessage, InputSelect, InputText } from "components";
 import { CartSummary } from "widgets";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ReactComponent as ChevronIcon } from "assets/icons/chevron-left.svg";
@@ -55,6 +55,7 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
     formState: { errors },
     handleSubmit,
     setValue,
+    trigger,
   } = useForm<FormValues>({
     mode: "onSubmit",
   });
@@ -105,6 +106,14 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
     required: "Выберите время доставки",
   });
 
+  register("locality", {
+    required: "Выберите населенный пункт",
+  });
+
+  register("date", {
+    required: "Выберите дату доставки",
+  });
+
   return (
     <div className={styles.delivery}>
       <form className={styles.form} autoComplete="off">
@@ -113,51 +122,54 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
             Куда
           </Htag>
           <div className={styles.where}>
-            <SelectField
-              labelText="Населенный пункт"
-              size="m"
-              list={LOCALITIES}
-              className={styles.locality}
-              register={register("locality", {
-                required: "Выберите населенный пункт",
-              })}
-              setFormValue={setValue}
-              message={errors.locality?.message}
-              name={"locality"}
-            />
-            <TextField
-              labelText="Улица"
-              size="m"
-              className={styles.street}
-              register={register("street", {
-                required: "Введите улицу",
-              })}
-              message={errors.street?.message}
-            />
-            <TextField
-              labelText="Дом"
-              size="m"
-              className={styles.house}
-              register={register("house", {
-                required: "Введите номер дома",
-              })}
-              message={errors.house?.message}
-            />
-            <TextField
-              labelText="Квартира"
-              size="m"
-              className={styles.apartment}
-              register={register("apartment", {
-                required: "Введите номер квартиры",
-              })}
-              message={errors.apartment?.message}
-            />
-            <TextField
-              labelText="Дополнительно"
-              size="m"
-              className={styles.extra}
-              register={register("extra")}
-            />
+            <WithMessage message={errors.locality?.message}>
+              <InputSelect
+                options={LOCALITIES}
+                label="Населенный пункт"
+                onChange={(value: string) => {
+                  setValue("locality", value);
+                  trigger("locality");
+                }}
+              />
+            </WithMessage>
+            <WithMessage message={errors.street?.message}>
+              <InputText
+                label="Улица"
+                className={styles.street}
+                inputSize="m"
+                {...register("street", {
+                  required: "Введите улицу",
+                })}
+              />
+            </WithMessage>
+            <WithMessage message={errors.street?.message}>
+              <InputText
+                label="Дом"
+                className={styles.house}
+                inputSize="m"
+                {...register("house", {
+                  required: "Введите номер дома",
+                })}
+              />
+            </WithMessage>
+            <WithMessage message={errors.apartment?.message}>
+              <InputText
+                label="Квартира"
+                className={styles.apartment}
+                inputSize="m"
+                {...register("apartment", {
+                  required: "Введите номер квартиры",
+                })}
+              />
+            </WithMessage>
+            <WithMessage message={errors.extra?.message}>
+              <InputText
+                label="Дополнительно"
+                className={styles.extra}
+                inputSize="m"
+                {...register("extra", {})}
+              />
+            </WithMessage>
           </div>
         </div>
         <div>
@@ -165,40 +177,38 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
             Когда
           </Htag>
           <div className={styles.when}>
-            <SelectField
-              labelText="Дата"
-              list={weekRange}
-              size="m"
-              className={styles.date}
-              register={register("date", {
-                required: "Выберите дату доставки",
-              })}
-              setFormValue={setValue}
-              name={"date"}
-              message={errors.date?.message}
-            />
-            <div className={styles.time}>
-              <Text size="s" className={styles.text}>
-                Время
-              </Text>
-              <div className={styles.timeOptions}>
-                {timeOptions.map((el, i) => (
-                  <Button
-                    accent={time === el ? "secondary" : "grayscale"}
-                    size="m"
-                    key={i}
-                    onClick={() => {
-                      handleChangeTime(el);
-                    }}
-                  >
-                    {el}
-                  </Button>
-                ))}
-              </div>
-              <Text size="xs" className={styles.message}>
-                {errors.time?.message}
-              </Text>
-            </div>
+            <WithMessage message={errors.date?.message}>
+              <InputSelect
+                options={weekRange}
+                label="Дата"
+                onChange={(value: string) => {
+                  setValue("date", value);
+                  trigger("date");
+                }}
+              />
+            </WithMessage>
+            <WithMessage message={errors.time?.message} className={styles.time}>
+              <>
+                <Text size="s" className={styles.text}>
+                  Время
+                </Text>
+                <div className={styles.timeOptions}>
+                  {timeOptions.map((el, i) => (
+                    <Button
+                      accent={time === el ? "secondary" : "grayscale"}
+                      size="m"
+                      key={i}
+                      type="button"
+                      onClick={() => {
+                        handleChangeTime(el);
+                      }}
+                    >
+                      {el}
+                    </Button>
+                  ))}
+                </div>
+              </>
+            </WithMessage>
           </div>
         </div>
       </form>

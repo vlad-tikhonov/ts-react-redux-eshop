@@ -3,9 +3,8 @@ import { Text } from "ui";
 import cn from "classnames";
 import styles from "./bonuses.module.sass";
 
-interface BonusesProps {
+interface BonusesProps extends React.HTMLAttributes<HTMLDivElement> {
   count: number;
-  className?: string;
 }
 
 export const Bonuses = ({ count, className }: BonusesProps) => {

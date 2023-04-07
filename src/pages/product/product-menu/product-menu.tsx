@@ -1,7 +1,8 @@
 import { ProductWithReviewsInfo } from "types";
 import cn from "classnames";
 import { ReactComponent as ShareIcon } from "assets/icons/share.svg";
-import { Button, Rating } from "ui";
+import { Button } from "ui";
+import { Rating } from "components";
 import { getCorrectWordCase } from "helpers/utils";
 import { FavoritesButton } from "./favorites-button/favorites-button";
 import styles from "./product-menu.module.sass";

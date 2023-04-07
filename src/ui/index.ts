@@ -1,7 +1,6 @@
 export * from './htag/htag'
 export * from './text/text'
 export * from './button/button'
-export * from './rating/rating'
 export * from './checkbox/checkbox'
 export * from './border-loader/border-loader'
 export * from './modal/modal'

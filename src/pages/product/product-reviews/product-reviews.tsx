@@ -1,4 +1,5 @@
-import { Htag, Text, Rating, Button } from "ui";
+import { Htag, Text, Button } from "ui";
+import { Rating } from "components";
 import { ProductWithReviewsInfo } from "types";
 import cn from "classnames";
 import { useState } from "react";

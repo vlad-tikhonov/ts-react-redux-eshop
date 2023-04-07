@@ -1,6 +1,6 @@
 import { ReactComponent as LeftIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as RightIcon } from "assets/icons/chevron-right.svg";
-import { InputSelect } from "components";
+import { Select } from "components";
 import styles from "./test.module.sass";
 
 const renderLeftIcon = (className: string) => (
@@ -21,7 +21,7 @@ export const Test = () => {
   return (
     <div className={styles.test}>
       <div className={styles.row}>
-        <InputSelect label="Label" options={options} />
+        <Select label="Label" options={options} />
       </div>
     </div>
   );

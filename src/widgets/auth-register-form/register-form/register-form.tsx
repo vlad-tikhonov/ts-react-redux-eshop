@@ -1,11 +1,6 @@
 import styles from "./register-form.module.sass";
 import { Htag, Button, BorderLoader } from "ui";
-import {
-  InputDate,
-  ButtonsGroup,
-  InputPassword,
-  InputSelect,
-} from "components";
+import { InputDate, ButtonsGroup, InputPassword, Select } from "components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { InputText, WithMessage } from "components";
 import { Sex, Option } from "types";
@@ -183,7 +178,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
             />
           </WithMessage>
           <WithMessage message={errors.region?.message}>
-            <InputSelect
+            <Select
               options={REGIONS}
               label="Регион"
               className={styles.field}
@@ -194,7 +189,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
             />
           </WithMessage>
           <WithMessage message={errors.locality?.message}>
-            <InputSelect
+            <Select
               options={LOCALITIES}
               label="Населенный пункт"
               className={styles.field}

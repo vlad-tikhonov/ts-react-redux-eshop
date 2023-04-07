@@ -1,4 +1,4 @@
-import styles from "./input-select.module.sass";
+import styles from "./select.module.sass";
 import { useState } from "react";
 import { ReactComponent as ChevronUpIcon } from "assets/icons/chevron-up.svg";
 import { ReactComponent as ChevronDownIcon } from "assets/icons/chevron-down.svg";
@@ -12,7 +12,7 @@ interface InputSelectProps {
   onChange?: (value: string) => void;
 }
 
-export const InputSelect = ({
+export const Select = ({
   options,
   label,
   onChange,

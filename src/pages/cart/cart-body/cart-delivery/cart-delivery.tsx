@@ -1,5 +1,5 @@
 import { Text, Button, Htag } from "ui";
-import { WithMessage, InputSelect, InputText } from "components";
+import { WithMessage, Select, InputText } from "components";
 import { CartSummary } from "widgets";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ReactComponent as ChevronIcon } from "assets/icons/chevron-left.svg";
@@ -123,7 +123,7 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
           </Htag>
           <div className={styles.where}>
             <WithMessage message={errors.locality?.message}>
-              <InputSelect
+              <Select
                 options={LOCALITIES}
                 label="Населенный пункт"
                 onChange={(value: string) => {
@@ -178,7 +178,7 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
           </Htag>
           <div className={styles.when}>
             <WithMessage message={errors.date?.message}>
-              <InputSelect
+              <Select
                 options={weekRange}
                 label="Дата"
                 onChange={(value: string) => {

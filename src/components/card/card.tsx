@@ -13,13 +13,10 @@ export const Card = ({
 }: CardProps) => {
   return (
     <div
-      className={cn(
-        {
-          [styles.card]: true,
-          [styles.card_active]: isActive,
-        },
-        className
-      )}
+      className={cn(className, {
+        [styles.card]: true,
+        [styles.card_active]: isActive,
+      })}
       {...restProps}
     >
       {children}

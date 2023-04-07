@@ -20,11 +20,11 @@ export type Product = {
 	tags: string[];
 	code: string;
 	slug: string;
+	reviewsAvg: Rating | null;
 }
 
 export type ProductWithReviewsInfo = Product & {
 	reviewsCount: number;
-	reviewsAvg: Rating | null;
 }
 
 export type ProductWithReviewsInfoAndRelated = ProductWithReviewsInfo & { relatedProducts: Product[] }

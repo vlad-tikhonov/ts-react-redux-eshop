@@ -1,7 +1,8 @@
 import styles from "./select.module.sass";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ReactComponent as ChevronUpIcon } from "assets/icons/chevron-up.svg";
 import { ReactComponent as ChevronDownIcon } from "assets/icons/chevron-down.svg";
+import { useClickOutside } from "hooks";
 import cn from "classnames";
 
 interface InputSelectProps {
@@ -21,6 +22,8 @@ export const Select = ({
   const [isActive, setIsActive] = useState(false);
   const [value, setValue] = useState<string>("");
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
   const handleSelect = (option: string) => {
     setValue(option);
 
@@ -34,8 +37,16 @@ export const Select = ({
     [styles.select_active]: isActive,
   });
 
+  useClickOutside([wrapperRef], () => {
+    if (!isActive) {
+      return;
+    }
+
+    setIsActive(false);
+  });
+
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={wrapperRef}>
       {label && <p className={styles.label}>{label}</p>}
       <div
         className={cn(selectClasses, className)}

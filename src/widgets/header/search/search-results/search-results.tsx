@@ -15,7 +15,6 @@ export const SearchResults = ({
   query,
   isOpen,
 }: SearchResultsProps) => {
-  console.log(results);
   const resultsIsEmpty = !results.length;
 
   if (!isOpen) {

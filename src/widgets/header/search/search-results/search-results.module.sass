@@ -1,0 +1,55 @@
+
+@use 'style/style.sass' as *
+
+.results
+	width: calc(100% + 2px)
+	max-height: calc(100vh - 150px)
+	border: inherit
+	border-radius: 0 0 4px 4px
+	border-top: none
+	box-sizing: border-box
+	position: absolute
+	background-color: inherit
+	top: 36px
+	left: -1px
+	overflow-y: auto
+	padding: 0
+	&::-webkit-scrollbar
+		width: 4px
+		border-radius: 4px
+		background-color: $color-lightest
+	&::-webkit-scrollbar-thumb
+		background-color: $color-secondary
+		border-radius: 4px
+
+.item
+	padding: .8rem
+	display: flex
+	position: relative
+	&:hover
+		background-color: $color-lightest
+
+	&_category
+		display: flex
+		justify-content: space-between
+		align-items: center
+		&::after
+			content: ""
+			width: 24px
+			height: 24px
+			background-image: url('/assets/icons/menu.svg')
+	& .link
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+	& .highlighter
+		display: inline-block
+		&::first-letter
+			text-transform: uppercase
+
+.empty
+	color: $color-light
+	padding: 2rem
+	text-align: center

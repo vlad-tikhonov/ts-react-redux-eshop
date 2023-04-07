@@ -23,7 +23,7 @@ export const MiniProductCard = ({
   className,
 }: MiniProductCardProps) => {
   const [isActive, setIsActive] = useState(false);
-  console.log(isActive);
+
   return (
     <Card
       title={title}

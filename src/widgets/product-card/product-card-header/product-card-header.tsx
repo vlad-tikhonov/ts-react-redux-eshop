@@ -54,8 +54,6 @@ export const ProductCardHeader = ({
     return <HeartIcon className={classNames} onClick={onClick} />;
   };
 
-  console.log(countInOrder);
-
   return (
     <CardHeader className={cn(styles.header, className)} {...restProps}>
       <>

@@ -1,8 +1,9 @@
-import cn from "classnames";
-import styles from "./article.module.sass";
+import styles from "./article-card.module.sass";
 import { Text, Button, Htag } from "ui";
 import { useState } from "react";
-interface ArticleProps extends React.HTMLAttributes<HTMLElement> {
+import { Card, CardHeader, CardBody, CardProps } from "components";
+
+interface ArticleProps extends CardProps {
   image: string;
   date: string;
   title: string;
@@ -10,36 +11,30 @@ interface ArticleProps extends React.HTMLAttributes<HTMLElement> {
   link: string;
 }
 
-export const Article = ({
+export const ArticleCard = ({
   image,
   date,
   title,
   description,
   link,
 }: ArticleProps) => {
-  const [activeArticle, setActiveArticle] = useState(false);
-
-  const onMouseEnter = () => {
-    setActiveArticle(true);
-  };
-
-  const onMouseLeave = () => {
-    setActiveArticle(false);
-  };
+  const [isActive, setIsActive] = useState(false);
 
   return (
-    <article
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      className={cn({
-        [styles.article]: true,
-        [styles.article_active]: activeArticle,
-      })}
+    <Card
+      onMouseEnter={() => {
+        setIsActive(true);
+      }}
+      onMouseLeave={() => {
+        setIsActive(false);
+      }}
+      isActive={isActive}
+      className={styles.article}
     >
-      <div className={styles.header}>
+      <CardHeader className={styles.header}>
         <img src={image} alt="article img" />
-      </div>
-      <div className={styles.body}>
+      </CardHeader>
+      <CardBody className={styles.body}>
         <div className={styles.date}>
           <Text size="xs">{date}</Text>
         </div>
@@ -54,12 +49,12 @@ export const Article = ({
             size="m"
             decoration="default"
             accent="secondary"
-            disabled={!activeArticle}
+            disabled={!isActive}
           >
             Подробнее
           </Button>
         </div>
-      </div>
-    </article>
+      </CardBody>
+    </Card>
   );
 };

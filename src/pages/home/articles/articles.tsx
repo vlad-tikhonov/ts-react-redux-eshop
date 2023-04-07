@@ -1,4 +1,4 @@
-import { Article } from "widgets";
+import { ArticleCard } from "widgets";
 import { Htag } from "ui";
 import cn from "classnames";
 import manImg from "./images/man.png";
@@ -48,7 +48,7 @@ export const Articles = ({ className }: ArticlesProps) => {
       </Htag>
       <div className={styles.items}>
         {articles.map((a, i) => (
-          <Article {...a} key={i} />
+          <ArticleCard {...a} key={i} />
         ))}
       </div>
     </div>

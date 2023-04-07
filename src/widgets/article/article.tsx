@@ -2,7 +2,7 @@ import cn from "classnames";
 import styles from "./article.module.sass";
 import { Text, Button, Htag } from "ui";
 import { useState } from "react";
-interface ArticleProps {
+interface ArticleProps extends React.HTMLAttributes<HTMLElement> {
   image: string;
   date: string;
   title: string;

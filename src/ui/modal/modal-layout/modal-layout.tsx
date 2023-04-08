@@ -5,6 +5,7 @@ import { useRef, useState, useEffect } from "react";
 import { ModalProps } from "ui";
 import animationStyles from "./animation.module.sass";
 import styles from "./modal-layout.module.sass";
+import { useKeyPressEvent } from "hooks/use-key-press-event";
 
 interface ModalLayoutProps extends ModalProps {}
 
@@ -45,6 +46,8 @@ export const ModalLayout = ({
   const modalClick = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
   };
+
+  useKeyPressEvent("Escape", handleClose);
 
   useEffect(() => {
     setAnimationIn(opened);

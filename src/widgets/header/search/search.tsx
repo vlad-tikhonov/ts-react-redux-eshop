@@ -86,7 +86,14 @@ export const Search = ({ className }: SearchProps) => {
         ref={inputRef}
       />
       <SearchIcon />
-      <SearchResults query={debouncedValue} results={results} isOpen={isOpen} />
+      <SearchResults
+        query={debouncedValue}
+        results={results}
+        isOpen={isOpen}
+        close={() => {
+          setIsOpen(false);
+        }}
+      />
     </form>
   );
 };

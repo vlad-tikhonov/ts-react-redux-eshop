@@ -13,7 +13,7 @@
 	top: 36px
 	left: -1px
 	overflow-y: auto
-	padding: 0
+	padding: 2px 0
 	&::-webkit-scrollbar
 		width: 4px
 		border-radius: 4px
@@ -26,8 +26,8 @@
 	padding: .8rem
 	display: flex
 	position: relative
-	&:hover, &_active
-		background-color: $color-secondary-muted
+	&:hover, &:has(.link:focus)
+		background-color: $color-lightest
 	&_category
 		display: flex
 		justify-content: space-between
@@ -43,8 +43,6 @@
 		right: 0
 		bottom: 0
 		left: 0
-		&:focus
-			outline: none
 	& .highlighter
 		display: inline-block
 		&::first-letter

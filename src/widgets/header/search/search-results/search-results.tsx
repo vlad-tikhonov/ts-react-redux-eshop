@@ -4,24 +4,22 @@ import { Link } from "react-router-dom";
 import cn from "classnames";
 import styles from "./search-results.module.sass";
 import { useKeyPressEvent } from "hooks/use-key-press-event";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 interface SearchResultsProps {
   results: SearchItem[];
   query: string;
   isOpen: boolean;
+  close: () => void;
 }
 
 export const SearchResults = ({
   results,
   query,
   isOpen,
+  close,
 }: SearchResultsProps) => {
   const [activeItemIndex, setActiveItemIndex] = useState(-1);
   const resultsIsEmpty = !results.length;
-
-  console.log("results", results);
-
-  const activeItemRef = useRef<Element | null>(null);
 
   useKeyPressEvent({
     condition: isOpen && !resultsIsEmpty,
@@ -44,31 +42,22 @@ export const SearchResults = ({
     },
   });
 
+  useKeyPressEvent({
+    condition: isOpen,
+    keyCode: "Escape",
+    cb: () => {
+      close();
+    },
+  });
+
   useEffect(() => {
     setActiveItemIndex(-1);
   }, [results]);
 
   useEffect(() => {
-    const update = () => {
-      const itemActiveClass = styles["item_active"];
-      const items = document.querySelectorAll("." + styles.item);
-      console.log(items);
-
-      if (!items.length) {
-        return;
-      }
-
-      activeItemRef.current?.classList.remove(itemActiveClass);
-
-      const link = items[activeItemIndex]?.querySelector("a");
-
-      link?.focus();
-
-      items[activeItemIndex].classList.add(itemActiveClass);
-      activeItemRef.current = items[activeItemIndex];
-    };
-
-    update();
+    const items = document.querySelectorAll("." + styles.item);
+    const link = items[activeItemIndex]?.querySelector("a");
+    link?.focus();
   }, [activeItemIndex]);
 
   if (!isOpen) {

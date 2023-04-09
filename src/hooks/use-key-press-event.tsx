@@ -13,7 +13,7 @@ export const useKeyPressEvent = ({
   condition,
 }: useKeyPressEventProps): void => {
   useEffect(() => {
-    if (!condition) {
+    if (typeof condition !== "undefined" && !condition) {
       return;
     }
 

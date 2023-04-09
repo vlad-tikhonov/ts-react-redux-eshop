@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, RefObject } from "react";
+import { useEffect } from "react";
 
 interface useKeyPressEventProps {
   keyCode: string;

@@ -38,6 +38,7 @@ export const ModalLayout = ({
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
 
   const handleClose = () => {
     onClose();
@@ -47,14 +48,17 @@ export const ModalLayout = ({
     e.stopPropagation();
   };
 
-  useKeyPressEvent("Escape", handleClose);
+  useKeyPressEvent({
+    keyCode: "Escape",
+    cb: handleClose,
+  });
 
   useEffect(() => {
     setAnimationIn(opened);
   }, [opened]);
 
   return (
-    <div className={styles.layout}>
+    <div className={styles.layout} ref={divRef}>
       <CSSTransition
         in={animationIn}
         nodeRef={wrapperRef}

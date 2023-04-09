@@ -26,6 +26,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size,
       children,
       className,
+      type = "button",
       ...restProps
     } = props;
 
@@ -43,9 +44,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       [styles.btn_outline]: decoration === "outline",
       [styles.btn_no]: decoration === "no",
     };
-
     return (
-      <button className={cn(buttonStyles, className)} ref={ref} {...restProps}>
+      <button
+        type={type}
+        className={cn(buttonStyles, className)}
+        ref={ref}
+        {...restProps}
+      >
         {renderLeftIcon(styles.icon)}
         {children && <span className={styles.text}>{children}</span>}
         {renderRightIcon(styles.icon)}

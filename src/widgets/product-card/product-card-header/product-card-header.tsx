@@ -40,18 +40,18 @@ export const ProductCardHeader = ({
     remove(_id);
   };
 
-  const renderHearthIcon = (className: string) => {
-    const onClick = isOnFavorites
-      ? handleRemoveFromFavorites
-      : handleAddToFavorites;
+  const onClick = isOnFavorites
+    ? handleRemoveFromFavorites
+    : handleAddToFavorites;
 
+  const renderHearthIcon = (className: string) => {
     const classNames = cn(className, styles.heart);
 
     if (isOnFavorites) {
-      return <HeartFilledIcon className={classNames} onClick={onClick} />;
+      return <HeartFilledIcon className={classNames} />;
     }
 
-    return <HeartIcon className={classNames} onClick={onClick} />;
+    return <HeartIcon className={classNames} />;
   };
 
   return (
@@ -69,6 +69,7 @@ export const ProductCardHeader = ({
           size="s"
           accent="grayscale"
           renderLeftIcon={renderHearthIcon}
+          onClick={onClick}
           className={styles.favorites}
         />
         <img src={STATIC_CONTENT_URL + image} alt={title} />

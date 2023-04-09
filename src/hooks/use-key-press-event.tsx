@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 
 interface useKeyPressEventProps {
+  condition?: boolean;
   keyCode: string;
   cb: () => void;
 }
@@ -9,12 +10,16 @@ interface useKeyPressEventProps {
 export const useKeyPressEvent = ({
   keyCode,
   cb,
+  condition,
 }: useKeyPressEventProps): void => {
   useEffect(() => {
+    if (!condition) {
+      return;
+    }
+
     const listener = (e: KeyboardEvent) => {
-      console.log(e.target, "target");
-      console.log(e.currentTarget, "current");
       if (e.code === keyCode) {
+        e.preventDefault();
         e.stopImmediatePropagation();
         cb();
       }
@@ -22,6 +27,8 @@ export const useKeyPressEvent = ({
 
     document.addEventListener("keydown", listener);
 
-    return () => document.removeEventListener("keydown", listener);
-  }, []);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [condition, cb]);
 };

@@ -26,9 +26,8 @@
 	padding: .8rem
 	display: flex
 	position: relative
-	&:hover
-		background-color: $color-lightest
-
+	&:hover, &_active
+		background-color: $color-secondary-muted
 	&_category
 		display: flex
 		justify-content: space-between
@@ -44,6 +43,8 @@
 		right: 0
 		bottom: 0
 		left: 0
+		&:focus
+			outline: none
 	& .highlighter
 		display: inline-block
 		&::first-letter

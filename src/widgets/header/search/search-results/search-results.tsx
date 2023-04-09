@@ -3,7 +3,8 @@ import { Highlighter } from "components";
 import { Link } from "react-router-dom";
 import cn from "classnames";
 import styles from "./search-results.module.sass";
-
+import { useKeyPressEvent } from "hooks/use-key-press-event";
+import { useEffect, useState, useRef } from "react";
 interface SearchResultsProps {
   results: SearchItem[];
   query: string;
@@ -15,7 +16,57 @@ export const SearchResults = ({
   query,
   isOpen,
 }: SearchResultsProps) => {
+  const [activeItemIndex, setActiveItemIndex] = useState(-1);
   const resultsIsEmpty = !results.length;
+
+  const activeItemRef = useRef<Element | null>(null);
+
+  useKeyPressEvent({
+    condition: isOpen && !resultsIsEmpty,
+    keyCode: "ArrowDown",
+    cb: () => {
+      activeItemIndex === results.length - 1
+        ? setActiveItemIndex(0)
+        : setActiveItemIndex((n) => n + 1);
+    },
+  });
+
+  useKeyPressEvent({
+    condition: isOpen && !resultsIsEmpty,
+    keyCode: "ArrowUp",
+    cb: () => {
+      if (activeItemIndex < 1) {
+        setActiveItemIndex(results.length);
+      }
+      setActiveItemIndex((n) => n - 1);
+    },
+  });
+
+  useEffect(() => {
+    setActiveItemIndex(-1);
+  }, [results]);
+
+  useEffect(() => {
+    const update = () => {
+      const itemActiveClass = styles["item_active"];
+      const items = document.querySelectorAll("." + styles.item);
+
+      if (!items.length) {
+        return;
+      }
+
+      activeItemRef.current?.classList.remove(itemActiveClass);
+
+      const link = items[activeItemIndex].querySelector("a");
+
+      link?.focus();
+
+      items[activeItemIndex].classList.add(itemActiveClass);
+      activeItemRef.current = items[activeItemIndex];
+    };
+
+    update();
+  }, [activeItemIndex]);
 
   if (!isOpen) {
     return null;
@@ -34,7 +85,7 @@ export const SearchResults = ({
   return (
     <div className={styles.results}>
       <ul>
-        {results.map((r) => (
+        {results.map((r, i) => (
           <li
             key={r.id}
             className={cn(styles.item, {
@@ -46,7 +97,7 @@ export const SearchResults = ({
               text={r.title}
               query={query}
               className={styles.highlighter}
-            ></Highlighter>
+            />
             <Link to={`/categories/${r.slug}`} className={styles.link}></Link>
           </li>
         ))}

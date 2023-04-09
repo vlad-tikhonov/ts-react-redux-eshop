@@ -3,7 +3,7 @@ import cn from "classnames";
 import styles from "./search.module.sass";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { useDebounce } from "hooks";
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { useSearchActions, useSearchResults } from "store/search/features";
 import { Input } from "ui";
@@ -18,6 +18,8 @@ export const Search = ({ className }: SearchProps) => {
   const debouncedValue = useDebounce<string>(value, 500);
   const [inputIsActive, setInputIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const { load, reset } = useSearchActions();
   const { pathname } = useLocation();
@@ -52,6 +54,10 @@ export const Search = ({ className }: SearchProps) => {
     if (value) {
       setValue("");
     }
+
+    if (isOpen) {
+      setIsOpen(false);
+    }
   }, [pathname]);
 
   return (
@@ -62,11 +68,14 @@ export const Search = ({ className }: SearchProps) => {
       onFocus={() => {
         setInputIsActive(true);
       }}
-      onBlur={() => {
-        setInputIsActive(false);
-        setIsOpen(false);
-        resetResults();
+      onSubmit={(e) => {
+        e.preventDefault();
       }}
+      // onBlur={() => {
+      //   setInputIsActive(false);
+      //   setIsOpen(false);
+      //   resetResults();
+      // }}
     >
       <Input
         inputSize="m"
@@ -74,6 +83,7 @@ export const Search = ({ className }: SearchProps) => {
         placeholder="Найти товар"
         onChange={handleChange}
         value={value}
+        ref={inputRef}
       />
       <SearchIcon />
       <SearchResults query={debouncedValue} results={results} isOpen={isOpen} />

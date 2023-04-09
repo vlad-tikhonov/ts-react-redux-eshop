@@ -19,6 +19,8 @@ export const SearchResults = ({
   const [activeItemIndex, setActiveItemIndex] = useState(-1);
   const resultsIsEmpty = !results.length;
 
+  console.log("results", results);
+
   const activeItemRef = useRef<Element | null>(null);
 
   useKeyPressEvent({
@@ -50,6 +52,7 @@ export const SearchResults = ({
     const update = () => {
       const itemActiveClass = styles["item_active"];
       const items = document.querySelectorAll("." + styles.item);
+      console.log(items);
 
       if (!items.length) {
         return;
@@ -57,7 +60,7 @@ export const SearchResults = ({
 
       activeItemRef.current?.classList.remove(itemActiveClass);
 
-      const link = items[activeItemIndex].querySelector("a");
+      const link = items[activeItemIndex]?.querySelector("a");
 
       link?.focus();
 

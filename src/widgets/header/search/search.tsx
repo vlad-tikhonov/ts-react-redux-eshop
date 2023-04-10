@@ -2,7 +2,7 @@
 import cn from "classnames";
 import styles from "./search.module.sass";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
-import { useDebounce } from "hooks";
+import { useClickOutside, useDebounce } from "hooks";
 import { useEffect, useState, ChangeEvent, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { useSearchActions, useSearchResults } from "store/search/features";
@@ -30,11 +30,27 @@ export const Search = ({ className }: SearchProps) => {
     setValue(e.target.value);
   };
 
-  const resetResults = () => {
+  const changeToDefault = () => {
     if (results.length) {
       reset();
     }
+
+    if (value) {
+      setValue("");
+    }
+
+    if (isOpen) {
+      setIsOpen(false);
+    }
+
+    if (inputIsActive) {
+      setInputIsActive(false);
+    }
   };
+
+  useClickOutside([inputRef], () => {
+    changeToDefault();
+  });
 
   useEffect(() => {
     if (debouncedValue) {
@@ -47,17 +63,7 @@ export const Search = ({ className }: SearchProps) => {
   }, [debouncedValue]);
 
   useEffect(() => {
-    if (results.length) {
-      resetResults();
-    }
-
-    if (value) {
-      setValue("");
-    }
-
-    if (isOpen) {
-      setIsOpen(false);
-    }
+    changeToDefault();
   }, [pathname]);
 
   return (

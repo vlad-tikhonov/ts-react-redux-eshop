@@ -25,9 +25,10 @@ export const SearchResults = ({
     condition: isOpen && !resultsIsEmpty,
     keyCode: "ArrowDown",
     cb: () => {
-      activeItemIndex === results.length - 1
-        ? setActiveItemIndex(0)
-        : setActiveItemIndex((n) => n + 1);
+      if (activeItemIndex === results.length - 1) {
+        setActiveItemIndex(0);
+      }
+      setActiveItemIndex((n) => n + 1);
     },
   });
 

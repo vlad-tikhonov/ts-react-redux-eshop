@@ -19,7 +19,6 @@ export const Search = ({ className }: SearchProps) => {
   const [inputIsActive, setInputIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const { load, reset } = useSearchActions();
@@ -75,7 +74,6 @@ export const Search = ({ className }: SearchProps) => {
         placeholder="Найти товар"
         onChange={handleChange}
         value={value}
-        ref={inputRef}
       />
       <SearchIcon />
       <SearchResults

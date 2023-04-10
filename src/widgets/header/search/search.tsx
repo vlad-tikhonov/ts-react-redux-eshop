@@ -20,6 +20,7 @@ export const Search = ({ className }: SearchProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const { load, reset } = useSearchActions();
   const { pathname } = useLocation();
@@ -31,24 +32,13 @@ export const Search = ({ className }: SearchProps) => {
   };
 
   const changeToDefault = () => {
-    if (results.length) {
-      reset();
-    }
-
-    if (value) {
-      setValue("");
-    }
-
-    if (isOpen) {
-      setIsOpen(false);
-    }
-
-    if (inputIsActive) {
-      setInputIsActive(false);
-    }
+    if (results.length) reset();
+    if (value) setValue("");
+    if (isOpen) setIsOpen(false);
+    if (inputIsActive) setInputIsActive(false);
   };
 
-  useClickOutside([inputRef], () => {
+  useClickOutside([formRef], () => {
     changeToDefault();
   });
 
@@ -77,11 +67,7 @@ export const Search = ({ className }: SearchProps) => {
       onSubmit={(e) => {
         e.preventDefault();
       }}
-      // onBlur={() => {
-      //   setInputIsActive(false);
-      //   setIsOpen(false);
-      //   resetResults();
-      // }}
+      ref={formRef}
     >
       <Input
         inputSize="m"

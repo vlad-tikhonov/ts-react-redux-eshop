@@ -6,6 +6,7 @@ import { RoutesNames } from "constants/routes-names";
 import { BreadcrumbItem } from "types";
 import { useProducts } from "store/products/use-products";
 import { ErrorDetecter } from "components";
+import { CategoryEmpty } from "./category-empty/category-empty";
 import styles from "./category.module.sass";
 
 export const Category = () => {
@@ -33,7 +34,11 @@ export const Category = () => {
         <Htag size="l" className={styles.title}>
           {category?.title}
         </Htag>
-        <ProductsGrid products={products} />
+        {!!products.length ? (
+          <ProductsGrid products={products} />
+        ) : (
+          <CategoryEmpty />
+        )}
       </>
     </ErrorDetecter>
   );

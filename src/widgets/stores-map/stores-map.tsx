@@ -2,6 +2,7 @@ import { Htag, Button } from "ui";
 import { Map, Placemark } from "@pbe/react-yandex-maps";
 import { useState } from "react";
 import styles from "./stores-map.module.sass";
+import { YMaps } from "@pbe/react-yandex-maps";
 
 type Geometry = {
   id: number;
@@ -74,13 +75,15 @@ export const StoresMap = ({ className }: StoresMapProps) => {
         ))}
       </div>
       <div className={styles.map}>
-        <Map
-          state={{ center: geometry.mapState, zoom: geometry.zoom }}
-          defaultState={{ center: geometry.mapState, zoom: geometry.zoom }}
-          className={styles.ymap}
-        >
-          <Placemark geometry={geometry.placemark} />
-        </Map>
+        <YMaps>
+          <Map
+            state={{ center: geometry.mapState, zoom: geometry.zoom }}
+            defaultState={{ center: geometry.mapState, zoom: geometry.zoom }}
+            className={styles.ymap}
+          >
+            <Placemark geometry={geometry.placemark} />
+          </Map>
+        </YMaps>
       </div>
     </div>
   );

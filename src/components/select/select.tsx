@@ -1,5 +1,5 @@
 import styles from "./select.module.sass";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { ReactComponent as ChevronUpIcon } from "assets/icons/chevron-up.svg";
 import { ReactComponent as ChevronDownIcon } from "assets/icons/chevron-down.svg";
 import { useClickOutside } from "hooks";
@@ -37,13 +37,11 @@ export const Select = ({
     [styles.select_active]: isActive,
   });
 
-  useClickOutside([wrapperRef], () => {
-    if (!isActive) {
-      return;
-    }
-
+  const hideList = useCallback(() => {
     setIsActive(false);
-  });
+  }, []);
+
+  useClickOutside(wrapperRef, hideList, isActive);
 
   return (
     <div className={styles.wrapper} ref={wrapperRef}>

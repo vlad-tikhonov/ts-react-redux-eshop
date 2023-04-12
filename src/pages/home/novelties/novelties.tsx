@@ -6,10 +6,13 @@ interface NoveltiesProps {
 }
 
 export const Novelties = ({ className }: NoveltiesProps) => {
-  const [novelties, { isLoading: nIsLoading, errors: nErrors }] =
-    useNovelties();
-
+  const [novelties, { isLoading, errors }] = useNovelties();
   return (
-    <ProductsPanel products={novelties} title="Новинки" className={className} />
+    <ProductsPanel
+      products={novelties}
+      title="Новинки"
+      className={className}
+      isLoading={isLoading}
+    />
   );
 };

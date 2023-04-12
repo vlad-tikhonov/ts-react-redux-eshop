@@ -6,10 +6,14 @@ interface PromotionsProps {
 }
 
 export const Promotions = ({ className }: PromotionsProps) => {
-  const [promotions, { isLoading: pIsLoading, errors: pErrors }] =
-    usePromotions();
+  const [promotions, { isLoading, errors }] = usePromotions();
 
   return (
-    <ProductsPanel products={promotions} title="Акции" className={className} />
+    <ProductsPanel
+      products={promotions}
+      title="Акции"
+      className={className}
+      isLoading={isLoading}
+    />
   );
 };

@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import cn from "classnames";
-import styles from "./search.module.sass";
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { useClickOutside, useDebounce } from "hooks";
-import { useEffect, useState, ChangeEvent, useRef } from "react";
+import { useEffect, useState, ChangeEvent, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { useSearchActions, useSearchResults } from "store/search/features";
 import { Input } from "ui";
 import { SearchResults } from "./search-results/search-results";
+import styles from "./search.module.sass";
+import cn from "classnames";
 
 interface SearchProps {
   className?: string;
@@ -15,7 +15,7 @@ interface SearchProps {
 
 export const Search = ({ className }: SearchProps) => {
   const [value, setValue] = useState<string>("");
-  const debouncedValue = useDebounce<string>(value, 500);
+  const debouncedValue = useDebounce<string>(value, 600);
   const [inputIsActive, setInputIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,16 +30,12 @@ export const Search = ({ className }: SearchProps) => {
     setValue(e.target.value);
   };
 
-  const changeToDefault = () => {
-    if (results.length) reset();
-    if (value) setValue("");
-    if (isOpen) setIsOpen(false);
-    if (inputIsActive) setInputIsActive(false);
-  };
+  const changeToDefault = useCallback(() => {
+    setIsOpen(false);
+    setInputIsActive(false);
+  }, []);
 
-  useClickOutside([formRef], () => {
-    changeToDefault();
-  });
+  useClickOutside(formRef, changeToDefault, inputIsActive);
 
   useEffect(() => {
     if (debouncedValue) {
@@ -52,7 +48,13 @@ export const Search = ({ className }: SearchProps) => {
   }, [debouncedValue]);
 
   useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
     changeToDefault();
+    setValue("");
+    reset();
   }, [pathname]);
 
   return (

@@ -5,18 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Text } from "ui";
 import { useCategories } from "store/categories/features/use-categories";
 import { useCatalogMenuState, useModalsActions } from "store/modals/features";
-import { useRef, useEffect, RefObject } from "react";
+import { useRef, useEffect } from "react";
 import { useClickOutside } from "hooks";
 
 interface CatalogDropdownProps {
   className?: string;
-  buttonRef: RefObject<HTMLButtonElement>;
 }
 
-export const CatalogDropdown = ({
-  buttonRef,
-  className,
-}: CatalogDropdownProps) => {
+export const CatalogDropdown = ({ className }: CatalogDropdownProps) => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const { pathname } = useLocation();
   const [categories] = useCategories();
@@ -24,13 +20,7 @@ export const CatalogDropdown = ({
   const { closeCatalogMenu } = useModalsActions();
   const isOpen = useCatalogMenuState();
 
-  useClickOutside([dropdownRef, buttonRef], () => {
-    if (!isOpen) {
-      return;
-    }
-
-    closeCatalogMenu();
-  });
+  useClickOutside(dropdownRef, closeCatalogMenu, isOpen);
 
   useEffect(() => {
     if (!isOpen) {

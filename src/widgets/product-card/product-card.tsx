@@ -41,3 +41,5 @@ export const ProductCard = ({ product, countInOrder }: ProductCardProps) => {
     </Card>
   );
 };
+
+export * from "./skeleton-product-card/skeleton-product-card";

@@ -1,5 +1,5 @@
 import { useClickOutside } from "hooks";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import { useAuthActions } from "store/auth/features";
 import { Text } from "ui";
 import styles from "./user-menu.module.sass";
@@ -20,11 +20,9 @@ export const UserMenu = ({ userName, className }: UserMenuProps) => {
 
   const { signOut } = useAuthActions();
 
-  const closeMenu = () => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  };
+  const closeMenu = useCallback(() => {
+    setIsOpen(false);
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen((b) => !b);
@@ -34,7 +32,7 @@ export const UserMenu = ({ userName, className }: UserMenuProps) => {
     signOut();
   };
 
-  useClickOutside([menuRef], closeMenu);
+  useClickOutside(menuRef, closeMenu, isOpen);
 
   return (
     <div ref={menuRef} className={cn(styles.wrapper, className)}>

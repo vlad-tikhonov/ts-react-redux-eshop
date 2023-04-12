@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState, forwardRef } from "react";
+import { ChangeEvent, useRef, useState, forwardRef, useCallback } from "react";
 import { ReactComponent as CalendarIcon } from "assets/icons/calendar.svg";
 import { DatePicker } from "widgets";
 import dayjs from "app/dayjs";
@@ -51,13 +51,15 @@ export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
       setIsShowDatePicker((x) => !x);
     };
 
+    const hideDatePicker = useCallback(() => {
+      setIsShowDatePicker(false);
+    }, []);
+
     const renderCalendarIcon = (className: string) => (
       <CalendarIcon className={className} onClick={toggleShowDatePicker} />
     );
 
-    useClickOutside([wrapperRef], () => {
-      setIsShowDatePicker(false);
-    });
+    useClickOutside(wrapperRef, hideDatePicker, isShowDatePicker);
 
     return (
       <div className={styles.wrapper} ref={wrapperRef}>

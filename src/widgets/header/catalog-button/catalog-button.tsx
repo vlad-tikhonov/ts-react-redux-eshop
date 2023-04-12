@@ -1,8 +1,7 @@
-import { Button } from "ui";
+import { Button, ButtonProps } from "ui";
 import { useModalsActions, useCatalogMenuState } from "store/modals/features";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
-import { forwardRef } from "react";
 import cn from "classnames";
 import styles from "./catalog-button.module.sass";
 
@@ -13,27 +12,28 @@ const renderCrossIcon = (className: string) => (
   <CrossIcon className={className} />
 );
 
-interface CatalogButtonProps {
-  className?: string;
-}
+interface CatalogButtonProps extends ButtonProps {}
 
-export const CatalogButton = forwardRef<HTMLButtonElement, CatalogButtonProps>(
-  (props, ref) => {
-    const { toggleCatalogMenu } = useModalsActions();
-    const isOpen = useCatalogMenuState();
+export const CatalogButton = ({
+  size,
+  accent,
+  className,
+  ...restProps
+}: CatalogButtonProps) => {
+  const { toggleCatalogMenu } = useModalsActions();
+  const isOpen = useCatalogMenuState();
 
-    return (
-      <Button
-        accent="secondary"
-        size="m"
-        decoration="default"
-        renderLeftIcon={isOpen ? renderCrossIcon : renderMenuIcon}
-        onClick={toggleCatalogMenu}
-        ref={ref}
-        className={cn(styles.btn, props.className)}
-      >
-        Каталог
-      </Button>
-    );
-  }
-);
+  return (
+    <Button
+      accent={accent}
+      size={size}
+      decoration="default"
+      renderLeftIcon={isOpen ? renderCrossIcon : renderMenuIcon}
+      onClick={toggleCatalogMenu}
+      className={cn(styles.btn, className)}
+      {...restProps}
+    >
+      Каталог
+    </Button>
+  );
+};

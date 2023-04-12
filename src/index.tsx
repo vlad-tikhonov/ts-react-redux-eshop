@@ -3,16 +3,16 @@ import { Provider } from "react-redux";
 import { store } from "store";
 import App from "./app/App";
 import { ApiTokenHandler, OrdersLoader } from "components";
-import { YMaps } from "@pbe/react-yandex-maps";
+import React from "react";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 root.render(
+  // <React.StrictMode>
   <Provider store={store}>
-    <YMaps>
-      <App />
-      <ApiTokenHandler />
-      <OrdersLoader />
-    </YMaps>
+    <App />
+    <ApiTokenHandler />
+    <OrdersLoader />
   </Provider>
+  // </React.StrictMode>
 );

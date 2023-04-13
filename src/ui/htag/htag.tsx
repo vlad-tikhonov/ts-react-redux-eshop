@@ -45,11 +45,5 @@ export const Htag = ({
           {children}
         </h5>
       );
-    default:
-      return (
-        <h1 className={cn(styles.h1, className)} {...restProps}>
-          {children}
-        </h1>
-      );
   }
 };

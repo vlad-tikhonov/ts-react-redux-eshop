@@ -5,25 +5,26 @@ import {
   toggleCatalogDropdown,
   closeCatalogDropdown,
 } from "store/modals/modals-slice";
+import { useCallback } from "react";
 
 export const useModalsActions = () => {
   const dispatch = useAppDispatch();
 
-  const toggleAuth = () => {
+  const toggleAuth = useCallback(() => {
     dispatch(toggleAuthModal());
-  };
+  }, [dispatch]);
 
-  const closeAuth = () => {
+  const closeAuth = useCallback(() => {
     dispatch(closeAuthModal());
-  };
+  }, [dispatch]);
 
-  const toggleCatalogMenu = () => {
+  const toggleCatalogMenu = useCallback(() => {
     dispatch(toggleCatalogDropdown());
-  };
+  }, [dispatch]);
 
-  const closeCatalogMenu = () => {
+  const closeCatalogMenu = useCallback(() => {
     dispatch(closeCatalogDropdown());
-  };
+  }, [dispatch]);
 
   return {
     toggleAuth,

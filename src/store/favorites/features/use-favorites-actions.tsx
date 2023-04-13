@@ -5,29 +5,36 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from "store/favorites/favorites-slice";
+import { useCallback } from "react";
 
 export const useFavoritesActions = () => {
   const dispatch = useAppDispatch();
 
-  const init = () => {
+  const init = useCallback(() => {
     dispatch(initFavorites());
-  };
+  }, [dispatch]);
 
-  const add = (product: ProductWithReviewsInfo | null) => {
-    if (!product) {
-      return;
-    }
+  const add = useCallback(
+    (product: ProductWithReviewsInfo | null) => {
+      if (!product) {
+        return;
+      }
 
-    dispatch(addToFavorites(product));
-  };
+      dispatch(addToFavorites(product));
+    },
+    [dispatch]
+  );
 
-  const remove = (productId: ProductWithReviewsInfo["_id"] | undefined) => {
-    if (!productId) {
-      return;
-    }
+  const remove = useCallback(
+    (productId: ProductWithReviewsInfo["_id"] | undefined) => {
+      if (!productId) {
+        return;
+      }
 
-    dispatch(removeFromFavorites(productId));
-  };
+      dispatch(removeFromFavorites(productId));
+    },
+    [dispatch]
+  );
 
   return {
     init,

@@ -12,9 +12,9 @@ export const useSearchActions = () => {
     [dispatch]
   );
 
-  const reset = () => {
+  const reset = useCallback(() => {
     return dispatch(resetSearch());
-  };
+  }, [dispatch]);
 
   return {
     load,

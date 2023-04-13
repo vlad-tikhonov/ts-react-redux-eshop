@@ -9,45 +9,58 @@ import {
   removeSelected,
   increaseProductCount,
 } from "store/cart/cart-slice";
+import { useCallback } from "react";
 import { Product, CartProduct } from "types";
 
 export const useCartActions = () => {
   const dispatch = useAppDispatch();
 
-  const init = () => {
+  const init = useCallback(() => {
     dispatch(initCart());
-  };
+  }, [dispatch]);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     dispatch(resetCart());
-  };
+  }, [dispatch]);
 
-  const add = (product: Product) => {
-    dispatch(addToCart(product));
-  };
+  const add = useCallback(
+    (product: Product) => {
+      dispatch(addToCart(product));
+    },
+    [dispatch]
+  );
 
-  const increase = (productId: CartProduct["id"]) => {
-    dispatch(increaseProductCount(productId));
-  };
+  const increase = useCallback(
+    (productId: CartProduct["id"]) => {
+      dispatch(increaseProductCount(productId));
+    },
+    [dispatch]
+  );
 
-  const decrease = (productId: Product["_id"]) => {
-    dispatch(decreaseProductCount(productId));
-  };
+  const decrease = useCallback(
+    (productId: Product["_id"]) => {
+      dispatch(decreaseProductCount(productId));
+    },
+    [dispatch]
+  );
 
-  const selectionHandler = (payload: {
-    id: CartProduct["id"];
-    selectionState: boolean;
-  }) => {
-    dispatch(productSelectionHandler(payload));
-  };
+  const selectionHandler = useCallback(
+    (payload: { id: CartProduct["id"]; selectionState: boolean }) => {
+      dispatch(productSelectionHandler(payload));
+    },
+    [dispatch]
+  );
 
-  const allProductsSelectionHandler = (selectionState: boolean) => {
-    dispatch(allSelectionHandler(selectionState));
-  };
+  const allProductsSelectionHandler = useCallback(
+    (selectionState: boolean) => {
+      dispatch(allSelectionHandler(selectionState));
+    },
+    [dispatch]
+  );
 
-  const removeSelectedProducts = () => {
+  const removeSelectedProducts = useCallback(() => {
     dispatch(removeSelected());
-  };
+  }, [dispatch]);
 
   return {
     init,

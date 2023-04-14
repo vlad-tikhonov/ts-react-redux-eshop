@@ -13,10 +13,8 @@ interface AuthMenuProps {
 
 export const AuthMenu = ({ className }: AuthMenuProps) => {
   const [user] = useAuth();
-
-  const { toggleAuth } = useModalsActions();
+  const { closeAuth } = useModalsActions();
   const isOpen = useAuthModalState();
-
   return (
     <>
       <div className={cn(styles.wrapper, className)}>
@@ -26,8 +24,8 @@ export const AuthMenu = ({ className }: AuthMenuProps) => {
           <UserMenu userName={user.name} className={styles.menu} />
         )}
       </div>
-      <Modal opened={isOpen} onClose={toggleAuth}>
-        <AuthRegisterForm close={toggleAuth} />
+      <Modal opened={isOpen} onClose={closeAuth}>
+        <AuthRegisterForm onClose={closeAuth} />
       </Modal>
     </>
   );

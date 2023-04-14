@@ -5,11 +5,16 @@ import { Menu } from "./menu/menu";
 import { CatalogDropdown } from "./catalog-dropdown/catalog-dropdown";
 import { AuthMenu } from "./auth-menu/auth-menu";
 import { Link } from "react-router-dom";
-import styles from "./header.module.sass";
 import { CatalogButton } from "./catalog-button/catalog-button";
 import { MobileMenu } from "./mobile-menu/mobile-menu";
+import { useWindowSize } from "hooks/useWindowSize";
+import { WIDTH_BREAKPOINT_S } from "constants/css-breakpoints";
+import styles from "./header.module.sass";
 
 export const Header = () => {
+  const { width } = useWindowSize();
+  const isShowMobilemenu = width && width <= WIDTH_BREAKPOINT_S;
+
   return (
     <>
       <header id="header" className={styles.header}>
@@ -20,13 +25,17 @@ export const Header = () => {
             </div>
             <CatalogButton size="m" accent="secondary" />
             <Search className={styles.search} />
-            <Menu className={styles.menu} />
-            <AuthMenu className={styles.authMenu} />
+            {!isShowMobilemenu && (
+              <>
+                <Menu className={styles.menu} />
+                <AuthMenu className={styles.authMenu} />
+              </>
+            )}
           </div>
         </Container>
       </header>
       <CatalogDropdown />
-      <MobileMenu />
+      {isShowMobilemenu && <MobileMenu />}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { useAppDispatch } from "store/hooks";
 import { useCallback } from "react";
-import { login, logout } from "store/auth/auth-slice";
+import { login, logout, resetErrors } from "store/auth/auth-slice";
 import { LoginPayload } from "types";
 
 export const useAuthActions = () => {
@@ -8,17 +8,22 @@ export const useAuthActions = () => {
 
   const signIn = useCallback(
     (payload: LoginPayload) => {
-      return dispatch(login(payload));
+      dispatch(login(payload));
     },
     [dispatch]
   );
 
   const signOut = useCallback(() => {
-    return dispatch(logout());
+    dispatch(logout());
+  }, [dispatch]);
+
+  const resetErrorMessages = useCallback(() => {
+    dispatch(resetErrors());
   }, [dispatch]);
 
   return {
     signIn,
     signOut,
+    resetErrorMessages,
   };
 };

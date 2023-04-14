@@ -1,0 +1,3 @@
+export const WIDTH_BREAKPOINT_S = 768
+export const WIDTH_BREAKPOINT_M = 1279
+export const WIDTH_BREAKPOINT_L = 1400

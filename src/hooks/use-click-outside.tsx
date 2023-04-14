@@ -4,7 +4,7 @@ import { useLatest } from "hooks";
 export const useClickOutside = (
   ref: RefObject<HTMLElement>,
   handler: (e: Event) => void,
-  attached: boolean = true
+  attached: boolean
 ) => {
   const latestHandler = useLatest(handler);
 

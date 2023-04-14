@@ -38,7 +38,6 @@ export const Menu = ({ className }: MenuProps) => {
       renderCount: useProductsCount,
     },
   ];
-
   return (
     <div className={cn(styles.menu, className)}>
       {MenuItems.map((item) => (

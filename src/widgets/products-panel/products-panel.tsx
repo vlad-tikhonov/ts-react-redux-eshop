@@ -38,7 +38,9 @@ export const ProductsPanel = ({
       </Htag>
       <div className={styles.products}>
         {test
-          ? new Array(4).fill("").map((e, i) => <SkeletonProductCard key={i} />)
+          ? new Array(4)
+              .fill(null)
+              .map((e, i) => <SkeletonProductCard key={i} />)
           : products.map((p) => <ProductCard product={p} key={p._id} />)}
       </div>
     </div>

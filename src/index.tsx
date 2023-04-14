@@ -2,7 +2,11 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "store";
 import App from "./app/App";
-import { ApiTokenHandler, OrdersLoader } from "components";
+import {
+  ApiTokenHandler,
+  OrdersLoader,
+  ToastEventsSubscriber,
+} from "components";
 import React from "react";
 
 const container = document.getElementById("root")!;
@@ -13,6 +17,7 @@ root.render(
     <App />
     <ApiTokenHandler />
     <OrdersLoader />
+    <ToastEventsSubscriber />
   </Provider>
   // </React.StrictMode>
 );

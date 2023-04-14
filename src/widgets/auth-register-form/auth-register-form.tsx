@@ -7,7 +7,7 @@ import animationStyles from "./animation.module.sass";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 interface AuthRegisterFormProps {
-  close: () => void;
+  onClose: () => void;
 }
 
 const formAnimation = {
@@ -17,7 +17,7 @@ const formAnimation = {
   exitActive: animationStyles["form-exit-active"],
 };
 
-export const AuthRegisterForm = ({ close }: AuthRegisterFormProps) => {
+export const AuthRegisterForm = ({ onClose }: AuthRegisterFormProps) => {
   const [isShowRegister, setIsShowRegister] = useState(false);
   const helloRef = useRef<HTMLDivElement>(null);
   const goodbyeRef = useRef<HTMLDivElement>(null);
@@ -39,9 +39,9 @@ export const AuthRegisterForm = ({ close }: AuthRegisterFormProps) => {
         >
           <div ref={nodeRef}>
             {isShowRegister ? (
-              <RegisterForm onRegister={close} />
+              <RegisterForm onRegister={onClose} />
             ) : (
-              <AuthForm onLogin={close} />
+              <AuthForm onLogin={onClose} />
             )}
           </div>
         </CSSTransition>

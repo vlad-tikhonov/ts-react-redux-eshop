@@ -1,6 +1,6 @@
 import eventsBus from 'events-bus/events-bus'
 
-const eventName = 'requestSuccess'
+const eventName = 'toastFailure'
 
 const subscribe = (callback: (messages: string[]) => void) => {
 	return eventsBus.subscribe(eventName, callback);
@@ -10,9 +10,9 @@ const broadcast = (messages: string[]) => {
 	eventsBus.broadcast(eventName, messages)
 }
 
-const requestSuccess = {
+const toastFailure = {
 	subscribe,
 	broadcast
 }
 
-export default requestSuccess
+export default toastFailure

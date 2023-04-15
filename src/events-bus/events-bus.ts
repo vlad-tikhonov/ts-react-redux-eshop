@@ -1,5 +1,5 @@
 
-const subscriptions: Record<string, Set<(...args: any[]) => void>> = {}
+const subscriptions: Record<string, Set<(...args: any[]) => void>> = Object.create(null)
 
 const subscribe = (eventName: string, callback: (...args: any[]) => void) => {
 	if (!subscriptions[eventName]) {

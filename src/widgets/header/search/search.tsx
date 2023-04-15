@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ReactComponent as SearchIcon } from "assets/icons/search.svg";
 import { useClickOutside, useDebounce } from "hooks";
 import { useEffect, useState, ChangeEvent, useRef, useCallback } from "react";

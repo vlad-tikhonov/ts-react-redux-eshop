@@ -45,7 +45,12 @@ export const registerUser = createAsyncThunk<
 const registerSlice = createSlice({
 	name: "@@register",
 	initialState,
-	reducers: {},
+	reducers: {
+		resetState: () => initialState,
+		resetErrors: (state) => {
+			state.errors.length = 0
+		}
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(registerUser.pending, (state) => {
@@ -68,4 +73,5 @@ const registerSlice = createSlice({
 	}
 })
 
+export const { resetErrors, resetState } = registerSlice.actions
 export const registerReducer = registerSlice.reducer

@@ -30,6 +30,7 @@ export const SearchResults = ({
       }
       setActiveItemIndex((n) => n + 1);
     },
+    preventDefault: true,
   });
 
   useKeyPressEvent({
@@ -41,6 +42,7 @@ export const SearchResults = ({
       }
       setActiveItemIndex((n) => n - 1);
     },
+    preventDefault: true,
   });
 
   useKeyPressEvent({

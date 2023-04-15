@@ -17,13 +17,13 @@ export const useAuthActions = () => {
     dispatch(logout());
   }, [dispatch]);
 
-  const resetErrorMessages = useCallback(() => {
+  const resetAuthErrors = useCallback(() => {
     dispatch(resetErrors());
   }, [dispatch]);
 
   return {
     signIn,
     signOut,
-    resetErrorMessages,
+    resetAuthErrors,
   };
 };

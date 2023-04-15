@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { requestSuccess, requestError } from "events-bus";
+import { toastSuccess, toastFailure } from "events-bus";
 
 type ToastHandler = typeof toast.error | typeof toast.success;
 
@@ -14,10 +14,10 @@ const subscribeCallback =
 
 export const ToastEventsSubscriber = () => {
   useEffect(() => {
-    const unsubscribeEventSuccess = requestSuccess.subscribe(
+    const unsubscribeEventSuccess = toastSuccess.subscribe(
       subscribeCallback(toast.success)
     );
-    const unsubscribeEventError = requestError.subscribe(
+    const unsubscribeEventError = toastFailure.subscribe(
       subscribeCallback(toast.error)
     );
 

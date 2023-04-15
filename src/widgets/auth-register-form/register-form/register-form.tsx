@@ -1,15 +1,18 @@
 import styles from "./register-form.module.sass";
 import { Htag, Button, BorderLoader } from "ui";
 import { InputDate, ButtonsGroup, InputPassword, Select } from "components";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useController, useForm } from "react-hook-form";
 import { InputText, WithMessage } from "components";
 import { Sex, Option } from "types";
-import cn from "classnames";
-import toast from "react-hot-toast";
 import { useRegister } from "store/register/features";
 import { REGIONS } from "constants/regions";
 import { LOCALITIES } from "constants/localities";
+import { useEffect } from "react";
+import { toastSuccess, toastFailure } from "events-bus";
 import { useRegisterActions } from "store/register/features";
+import { REGISTER_SUCCESS, FORM_FIELDS } from "./constants";
+import cn from "classnames";
+import { DATE_REGEXP } from "constants/date-regexp";
 
 interface RegisterFormProps {
   onRegister: () => void;
@@ -30,7 +33,7 @@ interface FormValues {
   phone: string;
 }
 
-const options: [Option, Option] = [
+const sexOptions: [Option, Option] = [
   {
     value: Sex.Male,
     label: "Мужской",
@@ -44,8 +47,12 @@ const options: [Option, Option] = [
 const renderLoader = () => <BorderLoader accent="primary" />;
 
 export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
-  const { register: registerUser } = useRegisterActions();
-  const [, { isLoading }] = useRegister();
+  const {
+    register: registerUser,
+    resetRegisterErrors,
+    resetRegisterState,
+  } = useRegisterActions();
+  const [user, { isLoading, errors: registerErrors }] = useRegister();
 
   const {
     register,
@@ -54,8 +61,21 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
     getValues,
     setValue,
     trigger,
+    control,
   } = useForm<FormValues>({
     mode: "onSubmit",
+  });
+
+  const {
+    field: { onChange: onChangeBirth },
+  } = useController({
+    name: "birth",
+    rules: {
+      required: FORM_FIELDS.birth.requiredMessage,
+      validate: (value: string) =>
+        DATE_REGEXP.test(value) || FORM_FIELDS.birth.validateMessage,
+    },
+    control,
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -65,36 +85,36 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
       birthDate: data.birth.split(".").reverse().join("-"),
       name: data.name || data.email,
       surname: data.surname,
-      sex: data.sex,
+      sex: parseInt(data.sex),
       region: data.region,
       locality: data.locality,
       phone: data.phone,
       card: data.card,
-    }).then((res) => {
-      if (res.meta.requestStatus === "fulfilled") {
-        onRegister();
-        toast.success("Регистрация прошла успешно. Выполните вход", {
-          duration: 5000,
-        });
-      }
-
-      if (Array.isArray(res.payload)) {
-        res.payload.forEach((m) => {
-          toast.error(m, { duration: 5000 });
-        });
-      }
     });
   };
 
   register("sex", {
-    required: "Выберите пол",
+    required: FORM_FIELDS.sex.requiredMessage,
   });
   register("locality", {
-    required: "Выберите населенный пункт",
+    required: FORM_FIELDS.locality.requiredMessage,
   });
   register("region", {
-    required: "Выберите регион",
+    required: FORM_FIELDS.region.requiredMessage,
   });
+
+  useEffect(() => {
+    if (!user) return;
+    toastSuccess.broadcast([REGISTER_SUCCESS]);
+    onRegister();
+    resetRegisterState();
+  }, [user, onRegister, resetRegisterState]);
+
+  useEffect(() => {
+    if (!registerErrors.length) return;
+    toastFailure.broadcast(registerErrors);
+    resetRegisterErrors();
+  }, [registerErrors, resetRegisterErrors]);
 
   return (
     <form
@@ -117,7 +137,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
               type="email"
               className={styles.field}
               {...register("email", {
-                required: "Введите email",
+                required: FORM_FIELDS.email.requiredMessage,
               })}
             />
           </WithMessage>
@@ -127,7 +147,9 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
               label="Фамилия"
               type="text"
               className={styles.field}
-              {...register("surname", { required: "Введите фамилию" })}
+              {...register("surname", {
+                required: FORM_FIELDS.surname.requiredMessage,
+              })}
             />
           </WithMessage>
           <WithMessage message={errors.name?.message}>
@@ -136,7 +158,9 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
               label="Имя"
               type="text"
               className={styles.field}
-              {...register("name", { required: "Введите имя" })}
+              {...register("name", {
+                required: FORM_FIELDS.name.requiredMessage,
+              })}
             />
           </WithMessage>
           <WithMessage message={errors.password?.message}>
@@ -145,23 +169,24 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
               inputSize="m"
               className={styles.field}
               {...register("password", {
-                required: "Введите пароль",
+                required: FORM_FIELDS.password.requiredMessage,
                 minLength: {
                   value: 4,
-                  message: "Минимальная длинна пароля 4 символа",
+                  message: FORM_FIELDS.password.minLengthMessage,
                 },
               })}
             />
           </WithMessage>
           <WithMessage message={errors.confirm?.message}>
             <InputPassword
-              label="Пароль"
+              label="Повторите пароль"
               inputSize="m"
               className={styles.field}
               {...register("confirm", {
-                required: "Введите пароль",
+                required: FORM_FIELDS.confirm.requiredMessage,
                 validate: (value) =>
-                  value === getValues("password") || "Пароли не совпадают",
+                  value === getValues("password") ||
+                  FORM_FIELDS.confirm.validateMessage,
               })}
             />
           </WithMessage>
@@ -172,9 +197,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
               label="Дата рождения"
               inputSize="m"
               className={styles.field}
-              {...register("birth", {
-                required: "Введите дату рождения",
-              })}
+              onChangeDate={onChangeBirth}
             />
           </WithMessage>
           <WithMessage message={errors.region?.message}>
@@ -182,7 +205,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
               options={REGIONS}
               label="Регион"
               className={styles.field}
-              onChange={(value: string) => {
+              onChange={(value) => {
                 setValue("region", value);
                 trigger("region");
               }}
@@ -193,7 +216,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
               options={LOCALITIES}
               label="Населенный пункт"
               className={styles.field}
-              onChange={(value: string) => {
+              onChange={(value) => {
                 setValue("locality", value);
                 trigger("locality");
               }}
@@ -201,7 +224,7 @@ export const RegisterForm = ({ onRegister, className }: RegisterFormProps) => {
           </WithMessage>
           <WithMessage message={errors.sex?.message}>
             <ButtonsGroup
-              options={options}
+              options={sexOptions}
               label="Пол"
               onChange={(value) => {
                 setValue("sex", String(value));

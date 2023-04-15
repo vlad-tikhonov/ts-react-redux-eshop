@@ -8,11 +8,13 @@ import { useClickOutside } from "hooks";
 import { DATE_REGEXP } from "constants/date-regexp";
 import { InputText, InputTextProps } from "components";
 import styles from "./input-date.module.sass";
-
-interface InputDateProps extends InputTextProps {}
+interface InputDateProps extends InputTextProps {
+  onChangeDate?: (...args: any[]) => void;
+}
 
 export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
   (props, ref) => {
+    const { onChangeDate, ...restProps } = props;
     const [inputValue, setInputValue] = useState("");
     const [isShowDatePicker, setIsShowDatePicker] = useState(false);
     const [currentDate, setCurrentDate] = useState<Dayjs>(dayjs());
@@ -23,7 +25,12 @@ export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
     const validateDate = (value: string) => DATE_REGEXP.test(value);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
+      let value = e.target.value;
+
+      if (value.length > 10) {
+        return;
+      }
+
       const isValid = validateDate(value);
 
       if (isValid) {
@@ -31,6 +38,10 @@ export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
         const newDate = dayjs(new Date(dateArr[2], dateArr[1] - 1, dateArr[0]));
         setSelectedDate(dayjs(newDate));
         setCurrentDate(dayjs(newDate));
+      }
+
+      if (onChangeDate) {
+        onChangeDate(value);
       }
 
       setInputValue(value);
@@ -41,6 +52,10 @@ export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
       setInputValue(newValue);
       setSelectedDate(date);
       setIsShowDatePicker(false);
+
+      if (onChangeDate) {
+        onChangeDate(newValue);
+      }
     };
 
     const handleSetCurrentDate = (date: Dayjs) => {
@@ -68,7 +83,7 @@ export const InputDate = forwardRef<HTMLInputElement, InputDateProps>(
           renderRightIcon={renderCalendarIcon}
           value={inputValue}
           onChange={onChange}
-          {...props}
+          {...restProps}
         />
         {isShowDatePicker && (
           <DatePicker

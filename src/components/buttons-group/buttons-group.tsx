@@ -21,9 +21,8 @@ export const ButtonsGroup = ({
   const [value, setValue] = useState<Option["value"]>();
 
   const updateFormValue = (value: Option["value"]) => {
-    if (onChange) {
-      onChange(value);
-    }
+    if (!onChange) return;
+    onChange(value);
   };
 
   const handleSetState = (first: boolean) => {

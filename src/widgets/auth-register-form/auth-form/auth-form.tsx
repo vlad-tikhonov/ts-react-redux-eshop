@@ -4,7 +4,7 @@ import styles from "./auth-form.module.sass";
 import { useAuth } from "store/auth/features/use-auth";
 import { useAuthActions } from "store/auth/features";
 import { WithMessage, InputText, InputPassword } from "components";
-import { requestSuccess, requestError } from "events-bus";
+import { toastSuccess, toastFailure } from "events-bus";
 import { useEffect } from "react";
 import { LOGIN_SUCCESS, FORM_FIELDS } from "./constants";
 interface AuthFormProps {
@@ -19,7 +19,7 @@ interface FormValues {
 const renderLoader = () => <BorderLoader accent="primary" />;
 
 export const AuthForm = ({ onLogin }: AuthFormProps) => {
-  const { signIn, resetErrorMessages } = useAuthActions();
+  const { signIn, resetAuthErrors } = useAuthActions();
   const [user, { isLoading, errors: authErrors }] = useAuth();
 
   const {
@@ -39,15 +39,15 @@ export const AuthForm = ({ onLogin }: AuthFormProps) => {
 
   useEffect(() => {
     if (!user) return;
-    requestSuccess.broadcast([LOGIN_SUCCESS]);
+    toastSuccess.broadcast([LOGIN_SUCCESS]);
     onLogin();
   }, [user, onLogin]);
 
   useEffect(() => {
-    if (!authErrors) return;
-    requestError.broadcast(authErrors);
-    resetErrorMessages();
-  }, [authErrors, resetErrorMessages]);
+    if (!authErrors.length) return;
+    toastFailure.broadcast(authErrors);
+    resetAuthErrors();
+  }, [authErrors, resetAuthErrors]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>

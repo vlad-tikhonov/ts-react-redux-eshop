@@ -1,7 +1,7 @@
-import requestSuccess  from './events/request-success'
-import requestError from './events/request-error'
+import toastSuccess  from './events/toast-success'
+import toastFailure from './events/toast-failure'
 
 export {
-	requestSuccess,
-	requestError,
+	toastSuccess,
+	toastFailure,
 }

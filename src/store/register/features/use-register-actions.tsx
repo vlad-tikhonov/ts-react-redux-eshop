@@ -1,5 +1,9 @@
 import { useAppDispatch } from "store/hooks";
-import { registerUser } from "store/register/register-slice";
+import {
+  registerUser,
+  resetErrors,
+  resetState,
+} from "store/register/register-slice";
 import { RegisterPayload } from "types";
 import { useCallback } from "react";
 
@@ -13,7 +17,17 @@ export const useRegisterActions = () => {
     [dispatch]
   );
 
+  const resetRegisterErrors = useCallback(() => {
+    dispatch(resetErrors());
+  }, [dispatch]);
+
+  const resetRegisterState = useCallback(() => {
+    dispatch(resetState());
+  }, [dispatch]);
+
   return {
     register,
+    resetRegisterState,
+    resetRegisterErrors,
   };
 };

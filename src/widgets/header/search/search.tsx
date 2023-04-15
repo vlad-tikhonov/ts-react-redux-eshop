@@ -38,13 +38,10 @@ export const Search = ({ className }: SearchProps) => {
   useClickOutside(formRef, changeToDefault, inputIsActive);
 
   useEffect(() => {
-    if (debouncedValue) {
-      load(debouncedValue).then((res) => {
-        if (res.meta.requestStatus === "fulfilled") {
-          setIsOpen((b) => (b ? b : !b));
-        }
+    if (debouncedValue)
+      load(debouncedValue).then(() => {
+        setIsOpen((b) => (b ? b : !b));
       });
-    }
   }, [debouncedValue]);
 
   useEffect(() => {

@@ -20,8 +20,11 @@
 	&_label
 		color: $color-light
 	& .title
-		display: inline-block
-		width: 100%
+		height: 5rem
+		@include respond(m)
+			height: 6.7rem
+		@include respond(s)
+			height: 6.5rem
 	& .rating
 		margin-bottom: .8rem
 	& .link

@@ -59,9 +59,11 @@ export const ProductCardBody = ({
     <CardBody className={cn(styles.body, className)}>
       <>
         <ProductPrice price={price} priceWithCard={priceWithCard} />
-        <Text size="s" className={styles.title}>
-          {croppedTitle}
-        </Text>
+        <div className={styles.title}>
+          <Text size="s" className={styles.title}>
+            {croppedTitle}
+          </Text>
+        </div>
         <Rating
           rating={reviewsAvg ? reviewsAvg : 0}
           readonly

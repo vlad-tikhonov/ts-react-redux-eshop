@@ -1,3 +1,5 @@
 export * from './use-orders'
 export * from './use-orders-actions'
 export * from './use-active-orders-count'
+export * from './use-new-order'
+export * from './use-orders-errors'

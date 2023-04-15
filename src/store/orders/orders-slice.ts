@@ -4,13 +4,15 @@ import { Extra, Order, OrderPayload } from "types";
 type OrdersSlice = {
 	data: Order[];
 	errors: string[];
-	isLoading: boolean
+	isLoading: boolean;
+	new: Order | null;
 }
 
 const initialState: OrdersSlice = {
 	data: [],
 	errors: [],
 	isLoading: false,
+	new: null
 }
 
 export const loadOrders = createAsyncThunk<
@@ -76,7 +78,13 @@ const ordersSlice = createSlice({
 	name: "@@orders",
 	initialState,
 	reducers: {
-		resetOrders: () => initialState
+		resetOrders: () => initialState,
+		resetNew: (state) => {
+			state.new = null
+		},
+		resetErrors: (state) => {
+			state.errors.length = 0
+		}
 	},
 	extraReducers: (builder) => {
 		builder
@@ -112,9 +120,10 @@ const ordersSlice = createSlice({
 			})
 			.addCase(createOrder.fulfilled, (state, action) => {
         state.isLoading = false;
+				state.new = action.payload
 			})
 	}
 })
 
-export const { resetOrders } = ordersSlice.actions
+export const { resetOrders, resetNew, resetErrors } = ordersSlice.actions
 export const ordersReducer = ordersSlice.reducer

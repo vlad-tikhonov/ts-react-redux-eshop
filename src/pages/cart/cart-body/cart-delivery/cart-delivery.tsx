@@ -6,24 +6,27 @@ import { ReactComponent as ChevronIcon } from "assets/icons/chevron-left.svg";
 import { ReactComponent as AlerIcon } from "assets/icons/alert-circle.svg";
 import { LOCALITIES } from "constants/localities";
 import { getStringWeekRange } from "helpers/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useUserId } from "store/auth/features";
 import { useProductsForOrder, useCartActions } from "store/cart/features";
-import { useOrdersActions } from "store/orders/features";
+import {
+  useOrdersActions,
+  useNewOrder,
+  useOrdersErrors,
+} from "store/orders/features";
+import {
+  FORM_FIELDS,
+  ORDER_SUCCESSFULLY_CREATED,
+  TIME_OPTIONS,
+} from "./constants";
+import { toastSuccess, toastFailure } from "events-bus";
 import styles from "./cart-delivery.module.sass";
 
 interface CartDeliveryProps {
   toBack: () => void;
 }
-
-const timeOptions = [
-  "8:00 - 14:00",
-  "14:00 - 18.00",
-  "18:00 - 20:00",
-  "20:00 - 22:00",
-];
 
 interface FormValues {
   locality: string;
@@ -45,10 +48,16 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
   const navigate = useNavigate();
 
   const { reset: resetCart } = useCartActions();
-  const { create: createOrder } = useOrdersActions();
+  const {
+    create: createOrder,
+    resetNewOrder,
+    resetOrdersErrors,
+  } = useOrdersActions();
 
   const userId = useUserId();
   const products = useProductsForOrder();
+  const newOrder = useNewOrder();
+  const ordersErrors = useOrdersErrors();
 
   const {
     register,
@@ -85,12 +94,6 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
       street,
       time,
       products,
-    }).then((res) => {
-      if (res.meta.requestStatus === "fulfilled") {
-        resetCart();
-        navigate("/orders");
-        toast.success("Заказ успешно создан", { duration: 5000 });
-      }
     });
   };
 
@@ -103,16 +106,29 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
   };
 
   register("time", {
-    required: "Выберите время доставки",
+    required: FORM_FIELDS.time.requiredMessage,
   });
 
   register("locality", {
-    required: "Выберите населенный пункт",
+    required: FORM_FIELDS.locality.requiredMessage,
   });
 
   register("date", {
-    required: "Выберите дату доставки",
+    required: FORM_FIELDS.date.requiredMessage,
   });
+
+  useEffect(() => {
+    if (!newOrder) return;
+    toastSuccess.broadcast([ORDER_SUCCESSFULLY_CREATED]);
+    resetNewOrder();
+    navigate("/orders");
+  }, [newOrder]);
+
+  useEffect(() => {
+    if (!ordersErrors.length) return;
+    toastFailure.broadcast(ordersErrors);
+    resetOrdersErrors();
+  }, [ordersErrors]);
 
   return (
     <div className={styles.delivery}>
@@ -138,7 +154,7 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
                 className={styles.street}
                 inputSize="m"
                 {...register("street", {
-                  required: "Введите улицу",
+                  required: FORM_FIELDS.street.requiredMessage,
                 })}
               />
             </WithMessage>
@@ -148,7 +164,7 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
                 className={styles.house}
                 inputSize="m"
                 {...register("house", {
-                  required: "Введите номер дома",
+                  required: FORM_FIELDS.house.requiredMessage,
                 })}
               />
             </WithMessage>
@@ -158,7 +174,7 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
                 className={styles.apartment}
                 inputSize="m"
                 {...register("apartment", {
-                  required: "Введите номер квартиры",
+                  required: FORM_FIELDS.apartment.requiredMessage,
                 })}
               />
             </WithMessage>
@@ -167,7 +183,7 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
                 label="Дополнительно"
                 className={styles.extra}
                 inputSize="m"
-                {...register("extra", {})}
+                {...register("extra")}
               />
             </WithMessage>
           </div>
@@ -193,7 +209,7 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
                   Время
                 </Text>
                 <div className={styles.timeOptions}>
-                  {timeOptions.map((el, i) => (
+                  {TIME_OPTIONS.map((el, i) => (
                     <Button
                       accent={time === el ? "secondary" : "grayscale"}
                       size="m"

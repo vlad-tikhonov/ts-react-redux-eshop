@@ -40,3 +40,13 @@ export const selectProductCount = (productId: Product['_id'], orderId: Order['_i
 		return product.count
 	}
 )
+
+export const selectNewOrder = createSelector(
+	baseOrdersSelector,
+	(orders) => orders.new
+)
+
+export const selectOrdersErrors = createSelector(
+	baseOrdersSelector,
+	(orders) => orders.errors
+)

@@ -2,6 +2,8 @@ import {
   loadOrders,
   createOrder,
   resetOrders,
+  resetNew,
+  resetErrors,
 } from "store/orders/orders-slice";
 import { useAppDispatch } from "store/hooks";
 import { OrderPayload, User } from "types";
@@ -28,9 +30,19 @@ export const useOrdersActions = () => {
     [dispatch]
   );
 
+  const resetNewOrder = useCallback(() => {
+    dispatch(resetNew());
+  }, [dispatch]);
+
+  const resetOrdersErrors = useCallback(() => {
+    dispatch(resetErrors());
+  }, [dispatch]);
+
   return {
     reset,
     load,
     create,
+    resetNewOrder,
+    resetOrdersErrors,
   };
 };

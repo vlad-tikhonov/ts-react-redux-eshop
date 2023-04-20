@@ -6,11 +6,7 @@ import springImg from "./images/spring.png";
 import foodImg from "./images/food.png";
 import styles from "./articles.module.sass";
 
-interface ArticlesProps {
-  className?: string;
-}
-
-const articles = [
+export const articlesData = [
   {
     image: manImg,
     date: "05.03.2023",
@@ -40,6 +36,10 @@ const articles = [
   },
 ];
 
+interface ArticlesProps {
+  className?: string;
+}
+
 export const Articles = ({ className }: ArticlesProps) => {
   return (
     <div className={cn(styles.articles, className)}>
@@ -47,7 +47,7 @@ export const Articles = ({ className }: ArticlesProps) => {
         Статьи
       </Htag>
       <div className={styles.items}>
-        {articles.map((a, i) => (
+        {articlesData.map((a, i) => (
           <ArticleCard {...a} key={i} />
         ))}
       </div>

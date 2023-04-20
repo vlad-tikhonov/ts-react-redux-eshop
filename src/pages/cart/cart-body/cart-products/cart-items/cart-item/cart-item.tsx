@@ -123,13 +123,13 @@ const CartItem = ({ cartProduct, className }: CartItemProps) => {
             <div className={styles.totalWithOutDiscount}>
               <Text size="m" bold>
                 {product.priceWithCard
-                  ? modifyPrice(product.priceWithCard)
-                  : modifyPrice(product.price)}
+                  ? modifyPrice(product.priceWithCard * count)
+                  : modifyPrice(product.price * count)}
               </Text>
             </div>
             {product.priceWithCard && (
               <div className={styles.totalWithDiscount}>
-                {modifyPrice(product.price)}
+                {modifyPrice(product.price * count)}
               </div>
             )}
           </div>

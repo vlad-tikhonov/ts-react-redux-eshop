@@ -1,11 +1,10 @@
 import { Htag } from "ui";
 import { ProductCard, SkeletonProductCard } from "widgets";
 import { ProductWithReviewsInfo } from "types";
-import cn from "classnames";
+import { useBoolTimeout } from "hooks";
 import styles from "./products-panel.module.sass";
-import { useEffect, useState } from "react";
-import { useDebounce } from "hooks";
-
+import cn from "classnames";
+import { SKELETONS_SHOW_TIME } from "constants/";
 interface ProductsPanelProps {
   title: string;
   products: ProductWithReviewsInfo[];
@@ -19,17 +18,10 @@ export const ProductsPanel = ({
   className,
   isLoading,
 }: ProductsPanelProps) => {
-  // const test = useDebounce(isLoading, 1000);
-  // console.log(test);
-  const [test, setTest] = useState(true);
-
-  useEffect(() => {
-    if (!isLoading && !!products) {
-      setTimeout(() => {
-        setTest(false);
-      }, 500);
-    }
-  }, [isLoading, products]);
+  const isShowProducts = useBoolTimeout({
+    condition: !isLoading && !!products,
+    delay: SKELETONS_SHOW_TIME,
+  });
 
   return (
     <div className={cn(styles.panel, className)}>
@@ -37,11 +29,11 @@ export const ProductsPanel = ({
         {title}
       </Htag>
       <div className={styles.products}>
-        {test
-          ? new Array(4)
+        {isShowProducts
+          ? products.map((p) => <ProductCard product={p} key={p._id} />)
+          : new Array(4)
               .fill(null)
-              .map((e, i) => <SkeletonProductCard key={i} />)
-          : products.map((p) => <ProductCard product={p} key={p._id} />)}
+              .map((e, i) => <SkeletonProductCard key={i} />)}
       </div>
     </div>
   );

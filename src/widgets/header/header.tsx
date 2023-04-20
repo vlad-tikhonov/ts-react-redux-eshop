@@ -7,7 +7,7 @@ import { AuthMenu } from "./auth-menu/auth-menu";
 import { Link } from "react-router-dom";
 import { CatalogButton } from "./catalog-button/catalog-button";
 import { MobileMenu } from "./mobile-menu/mobile-menu";
-import { useWindowSize } from "hooks/useWindowSize";
+import { useWindowSize } from "hooks";
 import { WIDTH_BREAKPOINT_S } from "constants/css-breakpoints";
 import styles from "./header.module.sass";
 

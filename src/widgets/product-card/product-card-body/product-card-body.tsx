@@ -6,6 +6,8 @@ import { Text } from "ui";
 import { Link } from "react-router-dom";
 import cn from "classnames";
 
+const MAX_PRODUCT_TITLE_LENGTH = 40;
+
 interface ProductPriceProps
   extends Pick<ProductWithReviewsInfo, "price" | "priceWithCard"> {}
 
@@ -53,7 +55,7 @@ export const ProductCardBody = ({
   priceWithCard,
   price,
 }: ProductCardBodyProps) => {
-  const croppedTitle = shortnerTitle(productTitle, 40);
+  const croppedTitle = shortnerTitle(productTitle, MAX_PRODUCT_TITLE_LENGTH);
 
   return (
     <CardBody className={cn(styles.body, className)}>

@@ -7,7 +7,6 @@ import { ReactComponent as AlerIcon } from "assets/icons/alert-circle.svg";
 import { LOCALITIES } from "constants/localities";
 import { getStringWeekRange } from "helpers/utils";
 import { useState, useEffect } from "react";
-import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useUserId } from "store/auth/features";
 import { useProductsForOrder, useCartActions } from "store/cart/features";
@@ -121,6 +120,7 @@ export const CartDelivery = ({ toBack }: CartDeliveryProps) => {
     if (!newOrder) return;
     toastSuccess.broadcast([ORDER_SUCCESSFULLY_CREATED]);
     resetNewOrder();
+    resetCart();
     navigate("/orders");
   }, [newOrder]);
 

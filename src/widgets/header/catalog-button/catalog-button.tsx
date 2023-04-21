@@ -1,8 +1,7 @@
-import { Button, ButtonProps } from "ui";
 import { useModalsActions, useCatalogMenuState } from "store/modals/features";
 import { ReactComponent as MenuIcon } from "assets/icons/menu.svg";
 import { ReactComponent as CrossIcon } from "assets/icons/x.svg";
-import cn from "classnames";
+import { Button } from "ui";
 import styles from "./catalog-button.module.sass";
 
 const renderMenuIcon = (className: string) => (
@@ -12,26 +11,19 @@ const renderCrossIcon = (className: string) => (
   <CrossIcon className={className} />
 );
 
-interface CatalogButtonProps extends ButtonProps {}
-
-export const CatalogButton = ({
-  size,
-  accent,
-  className,
-  ...restProps
-}: CatalogButtonProps) => {
+export const CatalogButton = () => {
   const { toggleCatalogMenu } = useModalsActions();
   const isOpen = useCatalogMenuState();
 
   return (
     <Button
-      accent={accent}
-      size={size}
       decoration="default"
       renderLeftIcon={isOpen ? renderCrossIcon : renderMenuIcon}
       onClick={toggleCatalogMenu}
-      className={cn(styles.btn, className)}
-      {...restProps}
+      className={styles.btn}
+      aria-label="Открыть меню каталога"
+      size="m"
+      accent="secondary"
     >
       Каталог
     </Button>

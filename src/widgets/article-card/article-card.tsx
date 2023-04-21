@@ -1,5 +1,5 @@
 import styles from "./article-card.module.sass";
-import { Text, Button, Htag } from "ui";
+import { Text, Button } from "ui";
 import { useState } from "react";
 import { Card, CardHeader, CardBody, CardProps } from "components";
 
@@ -32,15 +32,13 @@ export const ArticleCard = ({
       className={styles.article}
     >
       <CardHeader className={styles.header}>
-        <img src={image} alt="article img" />
+        <img src={image} alt="article img" width={376} height={162} />
       </CardHeader>
       <CardBody className={styles.body}>
         <div className={styles.date}>
           <Text size="xs">{date}</Text>
         </div>
-        <div className={styles.title}>
-          <Htag size="xs">{title}</Htag>
-        </div>
+        <p className={styles.title}>{title}</p>
         <div className={styles.description}>
           <Text size="s">{description}</Text>
         </div>
@@ -50,6 +48,7 @@ export const ArticleCard = ({
             decoration="default"
             accent="secondary"
             disabled={!isActive}
+            aria-label={`Подробнее о ${title}`}
           >
             Подробнее
           </Button>

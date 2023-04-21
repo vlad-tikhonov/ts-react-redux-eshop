@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Container } from "layouts";
 import { Search } from "./search/search";
 import { Menu } from "./menu/menu";
@@ -21,9 +20,13 @@ export const Header = () => {
         <Container>
           <div className={styles.wrapper}>
             <div className={styles.logo}>
-              <Link to={"/"} className={styles.homeLink} />
+              <Link
+                to={"/"}
+                className={styles.homeLink}
+                aria-label="Перейти на главную страницу"
+              />
             </div>
-            <CatalogButton size="m" accent="secondary" />
+            <CatalogButton />
             <Search className={styles.search} />
             {!isShowMobilemenu && (
               <>

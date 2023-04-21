@@ -23,6 +23,7 @@ export const LoginButton = ({ className }: LoginButtonProps) => {
       renderRightIcon={renderLoginIcon}
       onClick={toggleAuth}
       className={cn(styles.btn, className)}
+      aria-label="Открыть диалоговое окно входа"
     >
       Войти
     </Button>

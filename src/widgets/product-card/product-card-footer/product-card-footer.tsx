@@ -38,6 +38,7 @@ export const ProductCardFooter = ({
           accent={isActive ? "primary" : "secondary"}
           decoration={isActive ? "default" : "outline"}
           className={styles.btn}
+          aria-label="Добавить товар в корзину"
           onClick={() => {
             add(product);
           }}

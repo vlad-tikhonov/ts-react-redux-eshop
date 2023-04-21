@@ -1,16 +1,15 @@
-// @use './mixins' as *
-// @use './variables' as *
-
 @font-face
 	font-family: 'Rubik'
 	font-weight: 700
 	src: url('/assets/fonts/Rubik-Bold.woff2') format('woff2'),
 	src: url('/assets/fonts/Rubik-Bold.woff') format('woff')
+	font-display: swap
 @font-face
 	font-family: 'Rubik'
 	font-weight: 400
 	src: url('/assets/fonts/Rubik-Regular.woff2') format('woff2'),
 	src: url('/assets/fonts/Rubik-Regular.woff') format('woff')
+	font-display: swap
 
 *, ::after, ::before
 	margin: 0
@@ -19,9 +18,6 @@
 
 html
 	font-size: 62.5%
-
-	// @include respond("tab-port")
-	// 	font-size: 55%
 
 body
 	font-family: 'Rubik', sans-serif

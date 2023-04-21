@@ -9,9 +9,13 @@ interface DeliveryBannerProps {
 export const DeliveryBanner = ({ className }: DeliveryBannerProps) => (
   <div className={cn(styles.banner, className)}>
     <div className={styles.wrapper}>
-      <img src={productPackageImg} alt="prod_package.png" />
+      <img
+        src={productPackageImg}
+        alt="prod_package.png"
+        width={275}
+        height={164}
+      />
       <h2 className={styles.title}>Доставка бесплатно от 1000 ₽</h2>
-      {/* <Htag size="l">Доставка бесплатно от 1000 ₽</Htag> */}
     </div>
   </div>
 );

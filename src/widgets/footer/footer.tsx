@@ -60,14 +60,17 @@ export const Footer = () => (
     <Container>
       <div className={styles.wrapper}>
         <div className={styles.logo}>
-          <Link to={"/"} className={styles.link}></Link>
+          <Link
+            to={"/"}
+            className={styles.link}
+            aria-label="Перейти на главную страницу"
+          ></Link>
         </div>
         <ul className={styles.menu}>
           {menuItems.map((item) => (
             <li className={styles.menu_item} key={item.title}>
               <NavLink to={item.to} className={setIsActive}>
                 {item.title}
-                {/* <span className={styles.text}>{item.title}</span> */}
               </NavLink>
             </li>
           ))}
@@ -88,9 +91,11 @@ export const Footer = () => (
         <div className={styles.contacts}>
           <PhoneIcon className={styles.contacts_icon} />
           <Text size="s">8 800 777 33 33</Text>
-          <a href="callto:88007773333" className={styles.contacts_link}>
-            {""}
-          </a>
+          <a
+            href="callto:88007773333"
+            className={styles.contacts_link}
+            aria-label="Позвонить на 88007773333"
+          />
         </div>
       </div>
     </Container>

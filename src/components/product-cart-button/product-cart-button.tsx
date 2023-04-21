@@ -36,7 +36,8 @@ export const ProductCartButton = ({
         className={styles.minus}
         renderLeftIcon={renderMinusIcon}
         onClick={removeFromCart}
-      ></Button>
+        aria-label="Уменьшить количество товара в корзине на 1"
+      />
       <span
         className={cn({
           [styles.count]: true,
@@ -52,7 +53,8 @@ export const ProductCartButton = ({
         className={styles.plus}
         renderLeftIcon={renderPlusIcon}
         onClick={addToCart}
-      ></Button>
+        aria-label="Увеличить количество товара в корзине на 1"
+      />
     </div>
   );
 };

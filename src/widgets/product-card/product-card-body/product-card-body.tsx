@@ -71,7 +71,11 @@ export const ProductCardBody = ({
           readonly
           className={styles.rating}
         />
-        <Link to={productPageLink} className={styles.link}></Link>
+        <Link
+          to={productPageLink}
+          className={styles.link}
+          aria-label={`Перейти на страницу ${productTitle}`}
+        ></Link>
       </>
     </CardBody>
   );

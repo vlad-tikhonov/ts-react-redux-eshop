@@ -71,6 +71,7 @@ export const ProductCardHeader = ({
           renderLeftIcon={renderHearthIcon}
           onClick={onClick}
           className={styles.favorites}
+          aria-label="Добавить товар в изобранное"
         />
         <img src={STATIC_CONTENT_URL + image} alt={title} />
         {discount && (
@@ -78,7 +79,11 @@ export const ProductCardHeader = ({
             {modifyDiscount(discount)}
           </Notice>
         )}
-        <Link to={productPageLink} className={styles.link}></Link>
+        <Link
+          to={productPageLink}
+          className={styles.link}
+          aria-label={`Перейти на страницу ${product.title}`}
+        ></Link>
       </>
     </CardHeader>
   );

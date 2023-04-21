@@ -1,4 +1,5 @@
 @use 'style/style.sass' as *
+@import 'style/mixins.sass'
 
 .article
 	max-width: 38rem
@@ -10,7 +11,8 @@
 		background-color: #fff
 		& img
 			width: 100%
-			object-fit: contain
+			height: 100%
+			object-fit: cover
 			border-radius: 4px 4px 0 0
 	& .body
 		padding: 1rem
@@ -25,8 +27,11 @@
 			& span
 				color: $color-hard
 		& .title
+			font-size: 1.8rem
 			margin-bottom: 1rem
 			min-height: 5.5rem
+			@include respond(s)
+				font-size: 1.6rem
 		& .description
 			margin-bottom: 1rem
 			min-height: 10rem

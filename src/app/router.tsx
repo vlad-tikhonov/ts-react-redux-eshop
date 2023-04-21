@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "layouts";
 import { RoutesNames } from "constants/routes-names";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 
 const Cart = lazy(() => import("pages/cart/cart"));
 const Categories = lazy(() => import("pages/categories/categories"));
@@ -24,59 +24,115 @@ const router = createBrowserRouter([
     children: [
       {
         path: RoutesNames.Test,
-        element: <Test />,
+        element: (
+          <Suspense fallback={null}>
+            <Test />
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.Home,
-        element: <Home />,
+        element: (
+          <Suspense fallback={null}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.Categories,
-        element: <Categories />,
+        element: (
+          <Suspense fallback={null}>
+            <Categories />
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.Category,
-        element: <Category />,
+        element: (
+          <Suspense fallback={null}>
+            <Category />
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.Favorites,
-        element: <Favorites />,
+        element: (
+          <Suspense fallback={null}>
+            <Favorites />
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.Orders,
-        element: <Orders />,
+        element: (
+          <Suspense fallback={null}>
+            <Orders />
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.Cart,
-        element: <Cart />,
+        element: (
+          <Suspense fallback={null}>
+            <Cart />
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.Product,
-        element: <Product />,
+        element: (
+          <Suspense fallback={null}>
+            <Product />
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.Vacancies,
-        element: <Vacancies />,
+        element: (
+          <Suspense fallback={null}>
+            <Vacancies />,
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.About,
-        element: <AboutCompany />,
+        element: (
+          <Suspense fallback={null}>
+            <AboutCompany />
+          </Suspense>
+        ),
       },
       {
         path: RoutesNames.Contacts,
-        element: <Contacts />,
+        element: (
+          <Suspense fallback={null}>
+            <Contacts />
+          </Suspense>
+        ),
       },
       {
         path: "*",
-        element: <E404 />,
+        element: (
+          <Suspense fallback={null}>
+            <E404 />
+          </Suspense>
+        ),
       },
       {
         path: "404",
-        element: <E404 />,
+        element: (
+          <Suspense fallback={null}>
+            <E404 />
+          </Suspense>
+        ),
       },
       {
         path: "/error",
-        element: <Error />,
+        element: (
+          <Suspense fallback={null}>
+            <Error />
+          </Suspense>
+        ),
       },
     ],
   },

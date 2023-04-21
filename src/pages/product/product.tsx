@@ -8,7 +8,7 @@ import { ProductReviews } from "./product-reviews/product-reviews";
 import { ErrorDetecter } from "components";
 import styles from "./product.module.sass";
 
-export const Product = () => {
+const Product = () => {
   const location = useLocation();
   const { productSlug } = useParams();
   const [product, { isLoading, errors }] = useProduct(productSlug);
@@ -50,3 +50,5 @@ export const Product = () => {
     </ErrorDetecter>
   );
 };
+
+export default Product;

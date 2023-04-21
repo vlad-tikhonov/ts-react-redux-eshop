@@ -1,23 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
-
-import {
-  Cart,
-  Categories,
-  Category,
-  Home,
-  Orders,
-  Product,
-  Favorites,
-  Test,
-  AboutCompany,
-  Contacts,
-  Vacancies,
-  E404,
-  Error,
-} from "pages";
 import { Layout } from "layouts";
-
 import { RoutesNames } from "constants/routes-names";
+import { lazy } from "react";
+
+const Cart = lazy(() => import("pages/cart/cart"));
+const Categories = lazy(() => import("pages/categories/categories"));
+const Category = lazy(() => import("pages/category/category"));
+const Home = lazy(() => import("pages/home/home"));
+const Orders = lazy(() => import("pages/orders/orders"));
+const Product = lazy(() => import("pages/product/product"));
+const Favorites = lazy(() => import("pages/favorites/favorites"));
+const Test = lazy(() => import("pages/test/test"));
+const AboutCompany = lazy(() => import("pages/about-company/about-company"));
+const Contacts = lazy(() => import("pages/contacts/contacts"));
+const Vacancies = lazy(() => import("pages/vacancies/vacancies"));
+const E404 = lazy(() => import("pages/e404/e404"));
+const Error = lazy(() => import("pages/error/error"));
 
 const router = createBrowserRouter([
   {

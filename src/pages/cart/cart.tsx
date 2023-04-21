@@ -10,7 +10,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
   { label: "Корзина", to: "/cart", end: true },
 ];
 
-export const Cart = () => {
+const Cart = () => {
   const isNotEmty = useIsNotEmpty();
 
   return (
@@ -27,3 +27,5 @@ export const Cart = () => {
     </>
   );
 };
+
+export default Cart;

@@ -14,7 +14,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
   { label: "Заказы", to: "/orders", end: true },
 ];
 
-export const Orders = () => {
+const Orders = () => {
   const location = useLocation();
 
   const userId = useUserId();
@@ -42,3 +42,5 @@ export const Orders = () => {
     </ErrorDetecter>
   );
 };
+
+export default Orders;

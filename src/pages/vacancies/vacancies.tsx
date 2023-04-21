@@ -10,7 +10,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
   },
 ];
 
-export const Vacancies = () => {
+const Vacancies = () => {
   return (
     <>
       <Breadcrumbs items={breadcrumbItems} />
@@ -21,3 +21,5 @@ export const Vacancies = () => {
     </>
   );
 };
+
+export default Vacancies;

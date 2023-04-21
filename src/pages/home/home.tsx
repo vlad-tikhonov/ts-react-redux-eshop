@@ -6,7 +6,7 @@ import { Novelties } from "./novelties/novelties";
 import { Promotions } from "./promotions/promotions";
 import styles from "./home.module.sass";
 
-export const Home = () => {
+const Home = () => {
   return (
     <>
       <DeliveryBanner className={styles.banner} />
@@ -18,3 +18,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

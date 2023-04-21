@@ -12,7 +12,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
   },
 ];
 
-export const Favorites = () => {
+const Favorites = () => {
   const favorites = useFavorites();
 
   return (
@@ -32,3 +32,5 @@ export const Favorites = () => {
     </>
   );
 };
+
+export default Favorites;

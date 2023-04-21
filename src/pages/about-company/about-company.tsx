@@ -22,3 +22,5 @@ export const AboutCompany = () => {
     </>
   );
 };
+
+export default AboutCompany;

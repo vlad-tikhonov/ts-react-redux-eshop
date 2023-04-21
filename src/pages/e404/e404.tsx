@@ -2,7 +2,7 @@ import { Htag } from "ui";
 import { Link } from "react-router-dom";
 import styles from "./e404.module.sass";
 
-export const E404 = () => {
+const E404 = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.fourHundredFour}>
@@ -23,3 +23,5 @@ export const E404 = () => {
     </div>
   );
 };
+
+export default E404;

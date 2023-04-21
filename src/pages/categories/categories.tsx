@@ -14,7 +14,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
   },
 ];
 
-export const Categories = () => {
+const Categories = () => {
   const location = useLocation();
   const [categories, { isLoading, errors }] = useCategories();
 
@@ -34,3 +34,5 @@ export const Categories = () => {
     </ErrorDetecter>
   );
 };
+
+export default Categories;

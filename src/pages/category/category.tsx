@@ -9,7 +9,7 @@ import { ErrorDetecter } from "components";
 import { CategoryEmpty } from "./category-empty/category-empty";
 import styles from "./category.module.sass";
 
-export const Category = () => {
+const Category = () => {
   const { slug } = useParams();
   const location = useLocation();
   const category = useCategory(slug);
@@ -43,3 +43,5 @@ export const Category = () => {
     </ErrorDetecter>
   );
 };
+
+export default Category;

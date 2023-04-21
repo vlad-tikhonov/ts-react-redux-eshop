@@ -7,7 +7,7 @@ interface LocationState {
   pathname: string;
 }
 
-export const Error = () => {
+const Error = () => {
   const location = useLocation();
 
   if (!location.state) {
@@ -37,3 +37,5 @@ export const Error = () => {
     </div>
   );
 };
+
+export default Error;

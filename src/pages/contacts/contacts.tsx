@@ -11,7 +11,7 @@ const breadcrumbItems: BreadcrumbItem[] = [
   },
 ];
 
-export const Contacts = () => {
+const Contacts = () => {
   return (
     <>
       <Breadcrumbs items={breadcrumbItems} />
@@ -23,3 +23,5 @@ export const Contacts = () => {
     </>
   );
 };
+
+export default Contacts;
